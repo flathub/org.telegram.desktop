@@ -12,6 +12,7 @@
                      "--socket=x11",
                      "--socket=pulseaudio",
                      "--talk-name=org.kde.StatusNotifierWatcher",
+                     "--talk-name=org.freedesktop.Notifications",
                      "--env=QT_QPA_PLATFORM=flatpak",
                      "--device=dri" ],
     "cleanup": [ "/cache",
@@ -196,6 +197,22 @@
             ],
             "build-commands": [
                 "python2 setup.py install --prefix=/app"
+            ]
+        },
+        {
+            "name": "libnotify",
+            "cleanup": [ "/bin" ],
+            "config-opts": [
+                "--disable-static",
+                "--disable-tests",
+                "--disable-introspection"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/libnotify/0.7/libnotify-0.7.7.tar.xz",
+                    "sha256": "9cb4ce315b2655860c524d46b56010874214ec27e854086c1a1d0260137efc04"
+                }
             ]
         },
         {
