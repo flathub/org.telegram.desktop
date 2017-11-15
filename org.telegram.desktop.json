@@ -289,6 +289,14 @@
                     "path": "Debian-build-fixes-on-various-arches.patch"
                 },
                 {
+                    "type": "patch",
+                    "path": "telegram-gnome-appindicator.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "telegram-single-instance.patch"
+                },
+                {
                     "type": "file",
                     "path": "CMakeLists.inj"
                 },
