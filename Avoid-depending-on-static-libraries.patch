@@ -142,7 +142,7 @@ index 80160d1..bd5dd44 100644
        '<(minizip_loc)',
        '<(sp_media_key_tap_loc)',
 diff --git a/Telegram/gyp/qt.gypi b/Telegram/gyp/qt.gypi
-index 81c13a1..0477f03 100644
+index 6032d066..2b349c0c 100644
 --- a/Telegram/gyp/qt.gypi
 +++ b/Telegram/gyp/qt.gypi
 @@ -27,25 +27,22 @@
@@ -217,7 +217,7 @@ index 81c13a1..0477f03 100644
    },
 
    'configurations': {
-@@ -193,13 +184,13 @@
+@@ -193,13 +184,14 @@
    },
 
    'include_dirs': [
@@ -231,6 +231,7 @@ index 81c13a1..0477f03 100644
 +    '/usr/include/'
 +    '/usr/include/QtCore',
 +    '/usr/include/QtGui',
++    '/usr/include/QtDBus',
 +    '/usr/include/QtCore/<(qt_version)/',
 +    '/usr/include/QtGui/<(qt_version)/',
 +    '/usr/include/QtCore/<(qt_version)/QtCore',
@@ -238,7 +239,7 @@ index 81c13a1..0477f03 100644
    ],
    'library_dirs': [
      '<(qt_loc)/lib',
-@@ -220,11 +220,8 @@
+@@ -220,11 +212,8 @@
          '<(qt_loc)/plugins/platforminputcontexts',
        ],
        'libraries': [
@@ -251,8 +252,8 @@ index 81c13a1..0477f03 100644
          '-lxcb',
          '-lX11',
          '-lX11-xcb',
-@@ -235,10 +223,11 @@
-         'pthread',
+@@ -235,10 +224,11 @@
+         '-lpthread',
        ],
        'include_dirs': [
 -        '<(qt_loc)/mkspecs/linux-g++',
