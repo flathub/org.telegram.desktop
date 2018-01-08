@@ -1,56 +1,30 @@
-Description: Fix build for various architectures
- * Turn off errors on big endian
- * Remove the build_config.h file
-   - Some macros are moved to the basic_types.h file
-   - The ARCH_CPU_32_BITS macro is replaced with _LP64 and others
-Author: Nicholas Guriev <guriev-ns@ya.ru>
-Bug: https://github.com/telegramdesktop/tdesktop/issues/3167
-Bug-Debian: https://bugs.debian.org/859057
-Last-Update: 2017-08-03
-
+diff --git a/Telegram/SourceFiles/config.h b/Telegram/SourceFiles/config.h
+index e6eee71c..dfe3941b 100644
 --- a/Telegram/SourceFiles/config.h
 +++ b/Telegram/SourceFiles/config.h
-@@ -255,7 +255,7 @@
+@@ -237,7 +237,7 @@ static const char *ApiHash = "344583e45741c457fe1862106095a5eb";
  #endif
- 
+
  #if Q_BYTE_ORDER == Q_BIG_ENDIAN
 -#error "Only little endian is supported!"
 +#warning "Be aware, only little endian is supported!"
  #endif // Q_BYTE_ORDER == Q_BIG_ENDIAN
- 
+
  #ifndef BETA_VERSION_MACRO
+diff --git a/Telegram/SourceFiles/core/basic_types.h b/Telegram/SourceFiles/core/basic_types.h
+index b974ef2a..3d1e5c4f 100644
 --- a/Telegram/SourceFiles/core/basic_types.h
 +++ b/Telegram/SourceFiles/core/basic_types.h
-@@ -25,15 +25,11 @@
+@@ -25,7 +25,6 @@ Copyright (c) 2014-2017 John Preston, https://desktop.telegram.org
  #include <memory>
  #include <ctime>
- 
+
 -#include "base/build_config.h"
--
- template <typename Type>
- using not_null = gsl::not_null<Type>;
- 
- // Custom libc++ build used for old OS X versions already has this.
--#ifndef OS_MAC_OLD
--
--#if defined COMPILER_CLANG || defined COMPILER_GCC
-+#if !defined OS_MAC_OLD && (defined __GNUC__ || defined __clang__)
- namespace std {
- 
- template <typename T>
-@@ -45,9 +41,7 @@ template <typename T>
- void as_const(const T&&) = delete;
- 
- } // namespace std
--#endif // COMPILER_CLANG || COMPILER_GCC
--
--#endif // OS_MAC_OLD
-+#endif
- 
  #include "base/ordered_set.h"
- 
-@@ -63,3 +57,17 @@ using float64 = double;
- 
+
+ using gsl::not_null;
+@@ -42,3 +41,17 @@ using float64 = double;
+
  #define qsl(s) QStringLiteral(s)
  #define qstr(s) QLatin1String(s, sizeof(s) - 1)
 +
@@ -67,21 +41,25 @@ Last-Update: 2017-08-03
 +#else
 +#define FORCE_INLINE inline
 +#endif
+diff --git a/Telegram/SourceFiles/ui/animation.h b/Telegram/SourceFiles/ui/animation.h
+index aa4f5991..88c294a4 100644
 --- a/Telegram/SourceFiles/ui/animation.h
 +++ b/Telegram/SourceFiles/ui/animation.h
-@@ -171,9 +171,10 @@ FORCE_INLINE int interpolate(int a, int
+@@ -181,9 +181,10 @@ FORCE_INLINE int interpolate(int a, int b, float64 b_ratio) {
  	return qRound(a + float64(b - a) * b_ratio);
  }
- 
+
 -#ifdef ARCH_CPU_32_BITS
 +#if !(defined _LP64 || defined _M_X64 || defined _M_ARM64 || defined _M_ALPHA)
 +// _LP64 is defined by GCC, others by MSVC
  #define SHIFTED_USE_32BIT
 -#endif // ARCH_CPU_32_BITS
 +#endif
- 
+
  #ifdef SHIFTED_USE_32BIT
- 
+
+diff --git a/Telegram/gyp/telegram_sources.txt b/Telegram/gyp/telegram_sources.txt
+index e90614da..a8d3547c 100644
 --- a/Telegram/gyp/telegram_sources.txt
 +++ b/Telegram/gyp/telegram_sources.txt
 @@ -1,6 +1,5 @@
@@ -89,5 +67,5 @@ Last-Update: 2017-08-03
  <(src_loc)/base/assertion.h
 -<(src_loc)/base/build_config.h
  <(src_loc)/base/flags.h
+ <(src_loc)/base/enum_mask.h
  <(src_loc)/base/flat_map.h
- <(src_loc)/base/flat_set.h
