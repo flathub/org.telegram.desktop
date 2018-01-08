@@ -1,12 +1,8 @@
-Description: Specify preprocessor and compiler flags for precompiled header and Qt object files
-Author: Nicholas Guriev <guriev-ns@ya.ru>
-Last-Update: 2017-01-26
-
-diff --git a/Telegram/gyp/qt.gypi b/Telegram/gyp/qt.gypi
-index 24ededb..21f9740 100644
---- a/Telegram/gyp/qt.gypi
-+++ b/Telegram/gyp/qt.gypi
-@@ -241,11 +241,12 @@
+diff --git a/Telegram/gyp/qt_moc.gypi b/Telegram/gyp/qt_moc.gypi
+index fae668dc..dfb1f839 100644
+--- a/Telegram/gyp/qt_moc.gypi
++++ b/Telegram/gyp/qt_moc.gypi
+@@ -25,11 +25,12 @@
        '<(SHARED_INTERMEDIATE_DIR)/<(_target_name)/moc/moc_<(RULE_INPUT_ROOT).cpp',
      ],
      'action': [
