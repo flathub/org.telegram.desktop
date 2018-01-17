@@ -13,6 +13,7 @@
     "finish-args": [ "--share=ipc",
                      "--share=network",
                      "--socket=x11",
+                     "--socket=wayland",
                      "--socket=pulseaudio",
                      "--filesystem=xdg-documents",
                      "--filesystem=xdg-download",
