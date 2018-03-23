@@ -190,8 +190,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ffmpeg.org/releases/ffmpeg-3.3.5.tar.xz",
-                    "sha256": "a893490c3a8a7caaa9c47373b789c0335d0ac3572f2ba61059de842b9e45d802"
+                    "url": "https://ffmpeg.org/releases/ffmpeg-3.4.2.tar.xz",
+                    "sha256": "2b92e9578ef8b3e49eeab229e69305f5f4cbc1fdaa22e927fc7fca18acccd740"
                 }
             ]
         },
@@ -277,7 +277,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.2.6"
+                    "branch": "v1.2.14"
                 },
                 {
                     "type": "patch",
