@@ -319,7 +319,7 @@
                     "type": "script",
                     "dest-filename": "telegram-desktop",
                     "commands": [
-                        "exec /app/bin/Telegram \"$@\""
+                        "exec env TMPDIR=$XDG_CACHE_HOME /app/bin/Telegram \"$@\""
                     ]
                 }
             ]

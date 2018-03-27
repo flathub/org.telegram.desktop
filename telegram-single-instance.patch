@@ -11,3 +11,17 @@ index f6651943..814c01bb 100644
  }
  inline void psCheckLocalSocket(const QString &serverName) {
      QFile address(serverName);
+diff --git a/Telegram/SourceFiles/application.cpp b/Telegram/SourceFiles/application.cpp
+index fe8d656e..92cdaf31 100644
+--- a/Telegram/SourceFiles/application.cpp
++++ b/Telegram/SourceFiles/application.cpp
+@@ -70,7 +70,7 @@ Application::Application(
+ 	char h[33] = { 0 };
+ 	hashMd5Hex(d.constData(), d.size(), h);
+ #ifndef OS_MAC_STORE
+-	_localServerName = psServerPrefix() + h + '-' + cGUIDStr();
++	_localServerName = psServerPrefix() + h;
+ #else // OS_MAC_STORE
+ 	h[4] = 0; // use only first 4 chars
+ 	_localServerName = psServerPrefix() + h;
+
