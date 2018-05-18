@@ -37,6 +37,17 @@
         }
     },
     "modules": [
+        {
+            "name": "dbus-glib",
+            "config-opts": [ "--disable-static" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-0.108.tar.gz",
+                    "sha256": "9f340c7e2352e9cdf113893ca77ca9075d9f8d5e81476bf2bf361099383c602c"
+                }
+            ]
+        },
         "shared-modules/libappindicator/libappindicator-gtk3-12.10.json",
         {
             "name": "dee",
@@ -46,17 +57,6 @@
                     "type": "archive",
                     "url": "https://launchpad.net/dee/1.0/1.2.7/+download/dee-1.2.7.tar.gz",
                     "sha256": "1bf0336ce684aa0f48d6eae2469628c1a9b43695a77443bc31a5790aa673bf8a"
-                }
-            ]
-        },
-        {
-            "name": "dbus-glib",
-            "config-opts": [ "--disable-static" ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-0.108.tar.gz",
-                    "sha256": "9f340c7e2352e9cdf113893ca77ca9075d9f8d5e81476bf2bf361099383c602c"
                 }
             ]
         },
