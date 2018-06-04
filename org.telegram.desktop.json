@@ -223,11 +223,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.2.17"
-                },
-                {
-                    "type": "patch",
-                    "path": "libgtvoip-arm-build.patch"
+                    "branch": "v1.3.0"
                 },
                 {
                     "type": "patch",
