@@ -1,8 +1,8 @@
 diff --git a/Telegram/SourceFiles/config.h b/Telegram/SourceFiles/config.h
-index ac4bd254..7e5d0912 100644
+index 5bcb92472..950183dac 100644
 --- a/Telegram/SourceFiles/config.h
 +++ b/Telegram/SourceFiles/config.h
-@@ -209,7 +209,7 @@ static const char *ApiHash = "344583e45741c457fe1862106095a5eb";
+@@ -204,7 +204,7 @@ static const char *ApiHash = "344583e45741c457fe1862106095a5eb";
  #endif
 
  #if Q_BYTE_ORDER == Q_BIG_ENDIAN
@@ -12,21 +12,21 @@ index ac4bd254..7e5d0912 100644
 
  #ifndef BETA_VERSION_MACRO
 diff --git a/Telegram/SourceFiles/core/basic_types.h b/Telegram/SourceFiles/core/basic_types.h
-index 275ada13..2e2fbfa4 100644
+index bf2ed209d..4dea41e37 100644
 --- a/Telegram/SourceFiles/core/basic_types.h
 +++ b/Telegram/SourceFiles/core/basic_types.h
-@@ -12,7 +12,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
- #include <memory>
- #include <ctime>
+@@ -14,7 +14,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ #include <functional>
 
+ #include <crl/crl.h>
 -#include "base/build_config.h"
  #include "base/ordered_set.h"
-
- using gsl::not_null;
-@@ -29,3 +28,17 @@ using float64 = double;
+ #include "base/unique_function.h"
+ #include "base/functors.h"
+@@ -41,3 +40,17 @@ using float64 = double;
 
  #define qsl(s) QStringLiteral(s)
- #define qstr(s) QLatin1String(s, sizeof(s) - 1)
+ #define qstr(s) QLatin1String((s), sizeof(s) - 1)
 +
 +#if defined(__GNUC__) || defined(__clang__)
 +#define WARN_UNUSED_RESULT __attribute__((warn_unused_result))
@@ -42,7 +42,7 @@ index 275ada13..2e2fbfa4 100644
 +#define FORCE_INLINE inline
 +#endif
 diff --git a/Telegram/SourceFiles/ui/animation.h b/Telegram/SourceFiles/ui/animation.h
-index a6000ce1..45cf8f00 100644
+index 778bee47a..e3cef288d 100644
 --- a/Telegram/SourceFiles/ui/animation.h
 +++ b/Telegram/SourceFiles/ui/animation.h
 @@ -168,9 +168,10 @@ FORCE_INLINE int interpolate(int a, int b, float64 b_ratio) {
@@ -59,7 +59,7 @@ index a6000ce1..45cf8f00 100644
  #ifdef SHIFTED_USE_32BIT
 
 diff --git a/Telegram/gyp/telegram_sources.txt b/Telegram/gyp/telegram_sources.txt
-index f60aba58..a4cd261c 100644
+index b980b4cda..ca39f088c 100644
 --- a/Telegram/gyp/telegram_sources.txt
 +++ b/Telegram/gyp/telegram_sources.txt
 @@ -1,6 +1,5 @@
