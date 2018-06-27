@@ -12,13 +12,13 @@ index 5bcb92472..950183dac 100644
 
  #ifndef BETA_VERSION_MACRO
 diff --git a/Telegram/SourceFiles/core/basic_types.h b/Telegram/SourceFiles/core/basic_types.h
-index bf2ed209d..4dea41e37 100644
+index 309ff41b4..2b965cea4 100644
 --- a/Telegram/SourceFiles/core/basic_types.h
 +++ b/Telegram/SourceFiles/core/basic_types.h
 @@ -14,7 +14,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
  #include <functional>
+ #include <gsl/gsl>
 
- #include <crl/crl.h>
 -#include "base/build_config.h"
  #include "base/ordered_set.h"
  #include "base/unique_function.h"

@@ -124,10 +124,10 @@ index 5d6830e9..c3f08d3f 100644
          IMPLICIT_DEPENDS CXX "${_pch_header}"
          COMMENT "Precompiling ${_name} for ${_target} (C++)")
 diff --git a/Telegram/gyp/Telegram.gyp b/Telegram/gyp/Telegram.gyp
-index 84a06153..c6f805c1 100644
+index 65917d9b5..beba7758c 100644
 --- a/Telegram/gyp/Telegram.gyp
 +++ b/Telegram/gyp/Telegram.gyp
-@@ -81,29 +81,26 @@
+@@ -73,7 +73,6 @@
        'codegen.gyp:codegen_lang',
        'codegen.gyp:codegen_numbers',
        'codegen.gyp:codegen_style',
@@ -135,13 +135,14 @@ index 84a06153..c6f805c1 100644
        'utils.gyp:Updater',
        '../ThirdParty/libtgvoip/libtgvoip.gyp:libtgvoip',
        'crl.gyp:crl',
+@@ -81,22 +80,21 @@
      ],
 
      'defines': [
 -      'AL_LIBTYPE_STATIC',
 -      'AL_ALEXT_PROTOTYPES',
        'TGVOIP_USE_CXX11_LIB',
--      '<!@(python -c "for s in \'<(build_defines)\'.split(\',\'): print(s)")',
+       '<!@(python -c "for s in \'<(build_defines)\'.split(\',\'): print(s)")',
 +      '__STDC_FORMAT_MACROS', 'TDESKTOP_DISABLE_AUTOUPDATE',
 +      'TDESKTOP_DISABLE_CRASH_REPORTS',
 +      'TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME',
