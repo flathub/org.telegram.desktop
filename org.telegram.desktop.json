@@ -176,8 +176,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/ericniebler/range-v3/archive/0.3.0.tar.gz",
-                    "sha256": "cc29fbed5b06b11e7f9a732f7e1211483ebbd3cfe29d86e40c93209014790d74"
+                    "url": "https://github.com/ericniebler/range-v3/archive/0.3.6.tar.gz",
+                    "sha256": "ce6e80c6b018ca0e03df8c54a34e1fd04282ac1b068cd39e902e2e5201ac117f"
                 }
             ]
         },
@@ -189,7 +189,8 @@
                     "CC": "/usr/lib/sdk/gcc7/bin/gcc",
                     "CXX": "/usr/lib/sdk/gcc7/bin/g++"
                 },
-                "cxxflags": "-std=gnu++17 -O2 -g -Wno-deprecated-declarations -fstack-protector-strong -D_FORTIFY_SOURCE=2"
+                "cxxflags": "-std=gnu++17 -O2 -g -Wno-deprecated-declarations -fstack-protector-strong -D_FORTIFY_SOURCE=2",
+                "prepend-path": "/usr/lib/sdk/gcc7/bin/"
             },
             "build-commands": [
                 "sed -i s/org.telegram.desktop/org.telegram.desktop.desktop/ lib/xdg/telegramdesktop.appdata.xml",
@@ -223,7 +224,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.3.8"
+                    "branch": "v1.3.9"
                 },
                 {
                     "type": "patch",
@@ -252,6 +253,10 @@
                 {
                     "type": "patch",
                     "path": "telegram-single-instance.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "adjust-path-for-gcc-wrappers.patch"
                 },
                 {
                     "type": "file",

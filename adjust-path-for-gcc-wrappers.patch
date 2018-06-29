@@ -1,0 +1,17 @@
+diff --git a/Telegram/gyp/settings_linux.gypi b/Telegram/gyp/settings_linux.gypi
+index 17219fa2c..a1a0642dd 100644
+--- a/Telegram/gyp/settings_linux.gypi
++++ b/Telegram/gyp/settings_linux.gypi
+@@ -73,9 +73,9 @@
+         '-Wno-register',
+       ],
+       'make_global_settings': [
+-        ['AR', '/usr/bin/gcc-ar'],
+-        ['RANLIB', '/usr/bin/gcc-ranlib'],
+-        ['NM', '/usr/bin/gcc-nm'],
++        ['AR', '/usr/lib/sdk/gcc7/bin/gcc-ar'],
++        ['RANLIB', '/usr/lib/sdk/gcc7/bin/gcc-ranlib'],
++        ['NM', '/usr/lib/sdk/gcc7/bin/gcc-nm'],
+       ],
+       'configurations': {
+         'Debug': {
