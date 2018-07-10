@@ -9,9 +9,9 @@ index 17219fa2c..a1a0642dd 100644
 -        ['AR', '/usr/bin/gcc-ar'],
 -        ['RANLIB', '/usr/bin/gcc-ranlib'],
 -        ['NM', '/usr/bin/gcc-nm'],
-+        ['AR', '/usr/lib/sdk/gcc7/bin/gcc-ar'],
-+        ['RANLIB', '/usr/lib/sdk/gcc7/bin/gcc-ranlib'],
-+        ['NM', '/usr/lib/sdk/gcc7/bin/gcc-nm'],
++        ['AR', '/usr/lib/sdk/gcc8/bin/gcc-ar'],
++        ['RANLIB', '/usr/lib/sdk/gcc8/bin/gcc-ranlib'],
++        ['NM', '/usr/lib/sdk/gcc8/bin/gcc-nm'],
        ],
        'configurations': {
          'Debug': {

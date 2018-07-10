@@ -127,14 +127,18 @@ diff --git a/Telegram/gyp/Telegram.gyp b/Telegram/gyp/Telegram.gyp
 index 65917d9b5..beba7758c 100644
 --- a/Telegram/gyp/Telegram.gyp
 +++ b/Telegram/gyp/Telegram.gyp
-@@ -73,7 +73,6 @@
-       'codegen.gyp:codegen_lang',
-       'codegen.gyp:codegen_numbers',
-       'codegen.gyp:codegen_style',
--      'tests/tests.gyp:tests',
-       'utils.gyp:Updater',
-       '../ThirdParty/libtgvoip/libtgvoip.gyp:libtgvoip',
-       'crl.gyp:crl',
+-@@ -82,13 +82,11 @@
++@@ -74,14 +74,12 @@
+        'codegen.gyp:codegen_numbers',
+        'codegen.gyp:codegen_style',
+        'tests/tests.gyp:tests',
+ -      'utils.gyp:Updater',
+        '../ThirdParty/libtgvoip/libtgvoip.gyp:libtgvoip',
+        'crl.gyp:crl',
++       'lib_export.gyp:lib_export',
+      ],
+
+      'defines': [
 @@ -81,22 +80,21 @@
      ],
 
