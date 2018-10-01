@@ -176,8 +176,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/ericniebler/range-v3/archive/0.3.6.tar.gz",
-                    "sha256": "ce6e80c6b018ca0e03df8c54a34e1fd04282ac1b068cd39e902e2e5201ac117f"
+                    "url": "https://github.com/ericniebler/range-v3/archive/0.3.7.tar.gz",
+                    "sha256": "e6b0fb33bfd07ec32d54bcddd3e8d62e995a3cf0b64b34788ec264da62581207"
                 }
             ]
         },
@@ -224,7 +224,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.3.14"
+                    "branch": "v1.4.0"
                 },
                 {
                     "type": "patch",

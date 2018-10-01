@@ -1,21 +1,21 @@
 diff --git a/Telegram/SourceFiles/core/launcher.cpp b/Telegram/SourceFiles/core/launcher.cpp
-index bf21d14d..07e82257 100644
+index d4bdadc17..4a28c07ce 100644
 --- a/Telegram/SourceFiles/core/launcher.cpp
 +++ b/Telegram/SourceFiles/core/launcher.cpp
-@@ -42,6 +42,8 @@ void Launcher::init() {
-
+@@ -37,6 +37,8 @@ void Launcher::init() {
+ 
  	prepareSettings();
-
+ 
 +	// I don't know why path is not in QT_PLUGIN_PATH by default
 +	QCoreApplication::addLibraryPath("/usr/lib/plugins");
  	QCoreApplication::setApplicationName(qsl("TelegramDesktop"));
-
+ 
  #ifndef OS_MAC_OLD
 diff --git a/Telegram/SourceFiles/qt_static_plugins.cpp b/Telegram/SourceFiles/qt_static_plugins.cpp
-index b975c7a8..f2f876b3 100644
+index e29f348c8..122ff0f5d 100644
 --- a/Telegram/SourceFiles/qt_static_plugins.cpp
 +++ b/Telegram/SourceFiles/qt_static_plugins.cpp
-@@ -28,13 +28,4 @@ Q_IMPORT_PLUGIN(QWebpPlugin)
+@@ -15,13 +15,4 @@ Q_IMPORT_PLUGIN(QWebpPlugin)
  Q_IMPORT_PLUGIN(QCocoaIntegrationPlugin)
  Q_IMPORT_PLUGIN(QGenericEnginePlugin)
  #elif defined Q_OS_LINUX // Q_OS_WIN | Q_OS_MAC
@@ -30,12 +30,12 @@ index b975c7a8..f2f876b3 100644
 -Q_IMPORT_PLUGIN(QHimePlatformInputContextPlugin)
  #endif // Q_OS_WIN | Q_OS_MAC | Q_OS_LINUX
 diff --git a/Telegram/SourceFiles/stdafx.cpp b/Telegram/SourceFiles/stdafx.cpp
-index e7f5b545..fe92aed6 100644
+index d140f5eef..e151b2718 100644
 --- a/Telegram/SourceFiles/stdafx.cpp
 +++ b/Telegram/SourceFiles/stdafx.cpp
-@@ -21,3 +21,67 @@ Copyright (c) 2014-2017 John Preston, https://desktop.telegram.org
+@@ -8,3 +8,67 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
  #include "stdafx.h"
-
+ 
  // Precompiled header helper.
 +
 +/* This file contains some code from Qt source to ensure successful build.
@@ -102,10 +102,10 @@ index e7f5b545..fe92aed6 100644
 +        flags |= QTextItem::StrikeOut;
 +}
 diff --git a/Telegram/gyp/PrecompiledHeader.cmake b/Telegram/gyp/PrecompiledHeader.cmake
-index 5d6830e9..c3f08d3f 100644
+index a0e1e0489..bd9bce0c1 100644
 --- a/Telegram/gyp/PrecompiledHeader.cmake
 +++ b/Telegram/gyp/PrecompiledHeader.cmake
-@@ -112,7 +112,7 @@ function(add_precompiled_header _target _input)
+@@ -114,7 +114,7 @@ function(add_precompiled_header _target _input)
        set(_compiler_FLAGS "@${_pch_c_flags_file}")
        add_custom_command(
          OUTPUT "${_output_c}"
@@ -114,7 +114,7 @@ index 5d6830e9..c3f08d3f 100644
          DEPENDS "${_pchfile}" "${_pch_c_flags_file}"
          IMPLICIT_DEPENDS C "${_pch_header}"
          COMMENT "Precompiling ${_name} for ${_target} (C)")
-@@ -123,7 +123,7 @@ function(add_precompiled_header _target _input)
+@@ -125,7 +125,7 @@ function(add_precompiled_header _target _input)
        set(_compiler_FLAGS "@${_pch_cpp_flags_file}")
        add_custom_command(
          OUTPUT "${_output_cxx}"
@@ -122,37 +122,26 @@ index 5d6830e9..c3f08d3f 100644
 +        COMMAND "${CMAKE_CXX_COMPILER}" "$(CXX_DEFINES)" "$(CXX_INCLUDES)" "$(CXX_FLAGS)" -x c++-header -o "${_output_cxx}" -c "${_pchfile}"
          DEPENDS "${_pchfile}" "${_pch_cpp_flags_file}"
          IMPLICIT_DEPENDS CXX "${_pch_header}"
-         COMMENT "Precompiling ${_name} for ${_target} (C++)")
+         COMMENT "Precompiling header ${_name} for ${_target} (C++)")
 diff --git a/Telegram/gyp/Telegram.gyp b/Telegram/gyp/Telegram.gyp
-index 65917d9b5..beba7758c 100644
+index 1cab5ae29..7549f146c 100644
 --- a/Telegram/gyp/Telegram.gyp
 +++ b/Telegram/gyp/Telegram.gyp
--@@ -82,13 +82,11 @@
-+@@ -74,14 +74,12 @@
-        'codegen.gyp:codegen_numbers',
-        'codegen.gyp:codegen_style',
-        'tests/tests.gyp:tests',
- -      'utils.gyp:Updater',
-        '../ThirdParty/libtgvoip/libtgvoip.gyp:libtgvoip',
-        'crl.gyp:crl',
-+       'lib_export.gyp:lib_export',
-      ],
-
-      'defines': [
-@@ -81,22 +80,21 @@
+@@ -84,23 +84,22 @@
      ],
-
+ 
      'defines': [
 -      'AL_LIBTYPE_STATIC',
 -      'AL_ALEXT_PROTOTYPES',
        'TGVOIP_USE_CXX11_LIB',
+       'XXH_INLINE_ALL',
        '<!@(python -c "for s in \'<(build_defines)\'.split(\',\'): print(s)")',
 +      '__STDC_FORMAT_MACROS', 'TDESKTOP_DISABLE_AUTOUPDATE',
 +      'TDESKTOP_DISABLE_CRASH_REPORTS',
 +      'TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME',
 +      'TDESKTOP_DISABLE_UNITY_INTEGRATION',
      ],
-
+ 
      'include_dirs': [
        '<(src_loc)',
        '<(SHARED_INTERMEDIATE_DIR)',
@@ -170,10 +159,10 @@ index 65917d9b5..beba7758c 100644
        '<(sp_media_key_tap_loc)',
        '<(emoji_suggestions_loc)',
 diff --git a/Telegram/gyp/qt.gypi b/Telegram/gyp/qt.gypi
-index dea127a3..a578e6f1 100644
+index 0b783ec21..c438f1074 100644
 --- a/Telegram/gyp/qt.gypi
 +++ b/Telegram/gyp/qt.gypi
-@@ -27,25 +27,22 @@
+@@ -14,25 +14,22 @@
                [ 'build_macold', {
                  'qt_version%': '5.3.2',
                }, {
@@ -201,7 +190,7 @@ index dea127a3..a578e6f1 100644
              }]
            ]
          },
-@@ -85,19 +82,14 @@
+@@ -72,19 +69,14 @@
              ],
            }],
            [ 'build_linux', {
@@ -224,7 +213,7 @@ index dea127a3..a578e6f1 100644
                'Xi',
                'Xext',
                'Xfixes',
-@@ -110,7 +102,6 @@
+@@ -97,7 +89,6 @@
                'xcb-shm',
                'xcb-xfixes',
                'xcb-render',
@@ -232,7 +221,7 @@ index dea127a3..a578e6f1 100644
              ],
            }],
          ],
-@@ -140,11 +131,6 @@
+@@ -127,11 +118,6 @@
      # '<!@(python <(DEPTH)/list_sources.py [sources] <(qt_moc_list_sources_arg))'
      # where [sources] contains all your source files
      'qt_moc_list_sources_arg': '--moc-prefix SHARED_INTERMEDIATE_DIR/<(_target_name)/moc/moc_',
@@ -242,11 +231,11 @@ index dea127a3..a578e6f1 100644
 -    'linux_lib_crypto%': '/usr/local/ssl/lib/libcrypto.a',
 -    'linux_lib_icu%': 'libicutu.a libicui18n.a libicuuc.a libicudata.a',
    },
-
+ 
    'configurations': {
-@@ -193,14 +179,14 @@
+@@ -180,14 +166,14 @@
    },
-
+ 
    'include_dirs': [
 -    '<(qt_loc)/include',
 -    '<(qt_loc)/include/QtCore',
@@ -267,7 +256,7 @@ index dea127a3..a578e6f1 100644
    ],
    'library_dirs': [
      '<(qt_loc)/lib',
-@@ -225,11 +211,8 @@
+@@ -212,11 +198,8 @@
        ],
        'libraries': [
          '<(PRODUCT_DIR)/obj.target/liblinux_glibc_wraps.a',
@@ -280,7 +269,7 @@ index dea127a3..a578e6f1 100644
          '-lxcb',
          '-lX11',
          '-lX11-xcb',
-@@ -240,10 +223,15 @@
+@@ -227,10 +210,15 @@
          '-lpthread',
        ],
        'include_dirs': [
@@ -299,10 +288,10 @@ index dea127a3..a578e6f1 100644
          '-rdynamic',
        ],
 diff --git a/Telegram/gyp/settings_linux.gypi b/Telegram/gyp/settings_linux.gypi
-index b93bace4..1a637e93 100644
+index 17219fa2c..2e8c61e1d 100644
 --- a/Telegram/gyp/settings_linux.gypi
 +++ b/Telegram/gyp/settings_linux.gypi
-@@ -22,10 +22,6 @@
+@@ -9,10 +9,6 @@
      [ 'build_linux', {
        'variables': {
          'linux_common_flags': [
@@ -322,10 +311,10 @@ index b93bace4..1a637e93 100644
        ],
        'cflags_c': [
 diff --git a/Telegram/gyp/telegram_linux.gypi b/Telegram/gyp/telegram_linux.gypi
-index f6918c22..19b3a1cb 100644
+index 80259c687..e269b950b 100644
 --- a/Telegram/gyp/telegram_linux.gypi
 +++ b/Telegram/gyp/telegram_linux.gypi
-@@ -28,50 +28,33 @@
+@@ -18,50 +18,33 @@
  # QApplication() -> createPlatformIntegration -> QXcbIntegrationPlugin::create
          #'xkbcommon',
        ],
@@ -398,13 +387,13 @@ index f6918c22..19b3a1cb 100644
      ],
      'cflags_cc': [
 diff --git a/Telegram/gyp/tests/common_test.gypi b/Telegram/gyp/tests/common_test.gypi
-index 5e912bdf..901eb7ba 100644
+index ab9ed3cf5..581e5bd3f 100644
 --- a/Telegram/gyp/tests/common_test.gypi
 +++ b/Telegram/gyp/tests/common_test.gypi
-@@ -27,7 +27,9 @@
-     '<(submodules_loc)/GSL/include',
+@@ -15,7 +15,9 @@
      '<(submodules_loc)/variant/include',
      '<(submodules_loc)/Catch/include',
+     '<(submodules_loc)/crl/src',
 -    '<(libs_loc)/range-v3/include',
 +    '/app/include/meta',
 +    '/app/include/range/',
