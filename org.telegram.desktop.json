@@ -214,7 +214,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.5.1"
+                    "branch": "v1.5.2"
                 },
                 {
                     "type": "patch",
