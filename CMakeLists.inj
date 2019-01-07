@@ -12,8 +12,8 @@ add_precompiled_header(lib_base ../../Telegram/SourceFiles/base/base_pch.h)
 add_precompiled_header(lib_export ../../Telegram/SourceFiles/export/export_pch.h)
 add_precompiled_header(lib_storage ../../Telegram/SourceFiles/storage/storage_pch.h)
 
-SET(CMAKE_C_ARCHIVE_FINISH "/usr/lib/sdk/gcc8/bin/gcc-ranlib -c <TARGET>")
-SET(CMAKE_CXX_ARCHIVE_FINISH "/usr/lib/sdk/gcc8/bin/gcc-ranlib -c <TARGET>")
+SET(CMAKE_C_ARCHIVE_FINISH "/usr/bin/gcc-ranlib -c <TARGET>")
+SET(CMAKE_CXX_ARCHIVE_FINISH "/usr/bin/gcc-ranlib -c <TARGET>")
 
 # You can discover new PCHs using this link:
 # https://github.com/telegramdesktop/tdesktop/search?q=pch_header&unscoped_q=pch_header
