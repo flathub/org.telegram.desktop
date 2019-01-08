@@ -176,7 +176,7 @@
             },
             "build-commands": [
                 "sed -i s/org.telegram.desktop/org.telegram.desktop.desktop/ lib/xdg/telegramdesktop.appdata.xml",
-                "gyp --no-parallel -Gconfig=Release --depth=Telegram/gyp --generator-output=../.. -Goutput_dir=out Telegram/gyp/Telegram.gyp --format=cmake",
+                "gyp -Gconfig=Release --depth=Telegram/gyp --generator-output=../.. -Goutput_dir=out Telegram/gyp/Telegram.gyp --format=cmake",
                 "NUM=$((`wc -l < out/Release/CMakeLists.txt` - 2)); sed -i \"$NUM r CMakeLists.inj\" out/Release/CMakeLists.txt",
                 "cd out/Release && cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release",
                 "cd out/Release && make -j$(nproc)"
