@@ -172,7 +172,8 @@
             "name": "telegram-desktop",
             "buildsystem": "simple",
             "build-options": {
-                "cxxflags": "-std=gnu++17 -O2 -g -Wno-deprecated-declarations -fstack-protector-strong -D_FORTIFY_SOURCE=2"
+                "cxxflags": "-std=gnu++17",
+                "ldflags": "-Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
             },
             "build-commands": [
                 "sed -i s/org.telegram.desktop/org.telegram.desktop.desktop/ lib/xdg/telegramdesktop.appdata.xml",
