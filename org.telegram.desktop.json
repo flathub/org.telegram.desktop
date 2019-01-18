@@ -12,11 +12,7 @@
                      "--socket=x11",
                      "--socket=wayland",
                      "--socket=pulseaudio",
-                     "--filesystem=xdg-documents",
-                     "--filesystem=xdg-download",
-                     "--filesystem=xdg-music",
-                     "--filesystem=xdg-pictures",
-                     "--filesystem=xdg-videos",
+                     "--filesystem=home",
                      "--talk-name=org.kde.StatusNotifierWatcher",
                      "--talk-name=org.freedesktop.Notifications",
                      "--device=dri" ],
@@ -211,35 +207,39 @@
                 },
                 {
                     "type": "patch",
-                    "path": "Avoid-depending-on-static-libraries.patch"
+                    "path": "patch/telegram-build.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Downgrade-Qt-version.patch"
+                    "path": "patch/telegram-add-additional-plugin-path.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Fix-rcc-path.patch"
+                    "path": "patch/telegram-remove-static-plugins.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Flags-for-precompiled-header-and-MOC.patch"
+                    "path": "patch/telegram-missing-function-symbols.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Use-gtk3-headers.patch"
+                    "path": "patch/telegram-libtgvoip.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Debian-build-fixes-on-various-arches.patch"
+                    "path": "patch/telegram-build-fixes-on-various-arches.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "telegram-single-instance.patch"
+                    "path": "patch/telegram-single-instance.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patch/telegram-no-gtk2.patch"
                 },
                 {
                     "type": "file",
-                    "path": "CMakeLists.inj"
+                    "path": "patch/CMakeLists.inj"
                 },
                 {
                     "type": "script",

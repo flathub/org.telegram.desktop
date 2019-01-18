@@ -24,4 +24,3 @@ index fe8d656e..92cdaf31 100644
  #else // OS_MAC_STORE
  	h[4] = 0; // use only first 4 chars
  	_localServerName = psServerPrefix() + h;
-
