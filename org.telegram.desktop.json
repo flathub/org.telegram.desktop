@@ -231,10 +231,6 @@
                     "path": "patch/telegram-single-instance.patch"
                 },
                 {
-                    "type": "patch",
-                    "path": "patch/telegram-no-gtk2.patch"
-                },
-                {
                     "type": "file",
                     "path": "patch/CMakeLists.inj"
                 },
