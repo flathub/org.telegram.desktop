@@ -1,8 +1,8 @@
 diff --git a/Telegram/gyp/Telegram.gyp b/Telegram/gyp/Telegram.gyp
-index ac7696e1d..acaa4a393 100644
+index ac7696e1d..1ee4d8063 100644
 --- a/Telegram/gyp/Telegram.gyp
 +++ b/Telegram/gyp/Telegram.gyp
-@@ -84,26 +84,26 @@
+@@ -84,26 +84,27 @@
      ],
 
      'defines': [
@@ -17,6 +17,7 @@ index ac7696e1d..acaa4a393 100644
 +      '__STDC_FORMAT_MACROS', 'TDESKTOP_DISABLE_AUTOUPDATE',
 +      'TDESKTOP_DISABLE_CRASH_REPORTS',
 +      'TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME',
++      'TDESKTOP_DISABLE_GTK_INTEGRATION',
 +      'TDESKTOP_DISABLE_UNITY_INTEGRATION',
 +      'TDESKTOP_DISABLE_OPENAL_EFFECTS',
        '<!@(python -c "for s in \'<(build_defines)\'.split(\',\'): print(s)")',
@@ -187,7 +188,7 @@ index fae668dc..dfb1f839 100644
        # Silence "Note: No relevant classes found. No output generated."
        '--no-notes',
 
-+      '-DTDESKTOP_DISABLE_AUTOUPDATE -DTDESKTOP_DISABLE_CRASH_REPORTS -DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME -DTDESKTOP_DISABLE_UNITY_INTEGRATION',
++      '-DTDESKTOP_DISABLE_AUTOUPDATE -DTDESKTOP_DISABLE_CRASH_REPORTS -DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME -TDESKTOP_DISABLE_GTK_INTEGRATION -DTDESKTOP_DISABLE_UNITY_INTEGRATION',
        '<!@(python -c "for s in \'<@(_defines)\'.split(\' \'): print(\'-D\' + s)")',
        # '<!@(python -c "for s in \'<@(_include_dirs)\'.split(\' \'): print(\'-I\' + s)")',
        '<(RULE_INPUT_PATH)',
@@ -229,6 +230,15 @@ diff --git a/Telegram/gyp/telegram_linux.gypi b/Telegram/gyp/telegram_linux.gypi
 index ffe0e5a96..dd51bad58 100644
 --- a/Telegram/gyp/telegram_linux.gypi
 +++ b/Telegram/gyp/telegram_linux.gypi
+@@ -10,7 +10,7 @@
+       'variables': {
+         'build_defines%': '',
+       },
+-      'not_need_gtk%': '<!(python -c "print(\'TDESKTOP_DISABLE_GTK_INTEGRATION\' in \'<(build_defines)\')")',
++      'not_need_gtk%': 'True',
+       'pkgconfig_libs': [
+ # In order to work libxkbcommon must be linked statically,
+ # PKGCONFIG links it like "-L/usr/local/lib -lxkbcommon"
 @@ -18,51 +18,35 @@
  # QApplication() -> createPlatformIntegration -> QXcbIntegrationPlugin::create
          #'xkbcommon',
@@ -302,15 +312,3 @@ index ffe0e5a96..dd51bad58 100644
  #      '<!(pkg-config 2> /dev/null --libs <@(pkgconfig_libs))',
      ],
      'cflags_cc': [
-@@ -97,9 +89,8 @@
-         ],
-       }], ['not_need_gtk!="True"', {
-         'cflags_cc': [
--          '<!(pkg-config 2> /dev/null --cflags gtk+-2.0)',
--          '<!(pkg-config 2> /dev/null --cflags glib-2.0)',
--          '<!(pkg-config 2> /dev/null --cflags dee-1.0)',
-+          '<!(pkg-config 2> /dev/null --cflags appindicator3-0.1)',
-+          '<!(pkg-config 2> /dev/null --cflags gtk+-3.0)',
-         ],
-       }], ['<!(pkg-config ayatana-appindicator3-0.1; echo $?) == 0', {
-         'cflags_cc': [ '<!(pkg-config --cflags ayatana-appindicator3-0.1)' ],

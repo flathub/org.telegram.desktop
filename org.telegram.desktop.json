@@ -12,7 +12,6 @@
                      "--socket=x11",
                      "--socket=wayland",
                      "--socket=pulseaudio",
-                     "--filesystem=home",
                      "--talk-name=org.kde.StatusNotifierWatcher",
                      "--talk-name=org.freedesktop.Notifications",
                      "--device=dri" ],
@@ -30,8 +29,6 @@
         }
     },
     "modules": [
-        "shared-modules/dbus-glib/dbus-glib-0.110.json",
-        "shared-modules/libappindicator/libappindicator-gtk3-12.10.json",
         {
             "name": "dee",
             "config-opts": ["--enable-maintainer-flags=no"],
