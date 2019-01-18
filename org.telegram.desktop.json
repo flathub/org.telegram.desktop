@@ -20,14 +20,6 @@
                  "/share/man",
                  "/lib/systemd",
                  "*.la", "*.a"],
-    "build-options" : {
-        "cflags": "-O2 -g -Wno-deprecated-declarations -fstack-protector-strong -D_FORTIFY_SOURCE=2 -fPIC",
-        "cxxflags": "-O2 -g -Wno-deprecated-declarations -fstack-protector-strong -D_FORTIFY_SOURCE=2 -fPIC",
-        "ldflags": "-fstack-protector-strong -Wl,-z,relro,-z,now",
-        "env": {
-            "V": "1"
-        }
-    },
     "modules": [
         {
             "name": "dee",
