@@ -21,6 +21,8 @@
                  "/lib/systemd",
                  "*.la", "*.a"],
     "modules": [
+        "shared-modules/dbus-glib/dbus-glib-0.110.json",
+        "shared-modules/libappindicator/libappindicator-gtk3-12.10.json",
         {
             "name": "dee",
             "config-opts": ["--enable-maintainer-flags=no"],
@@ -221,6 +223,10 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-single-instance.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patch/telegram-enable-appindicator-for-notifications.patch"
                 },
                 {
                     "type": "file",

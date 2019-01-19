@@ -1,0 +1,232 @@
+diff --git a/Telegram/SourceFiles/platform/linux/linux_gdk_helper.cpp b/Telegram/SourceFiles/platform/linux/linux_gdk_helper.cpp
+index 92c028651..314f2bbd1 100644
+--- a/Telegram/SourceFiles/platform/linux/linux_gdk_helper.cpp
++++ b/Telegram/SourceFiles/platform/linux/linux_gdk_helper.cpp
+@@ -5,7 +5,6 @@ the official desktop application for the Telegram messaging service.
+ For license and copyright information please follow this link:
+ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ */
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ #include "platform/linux/linux_gdk_helper.h"
+
+ #include "platform/linux/linux_libs.h"
+@@ -99,4 +98,3 @@ void XSetTransientForHint(GdkWindow *window, quintptr winId) {
+
+ } // namespace internal
+ } // namespace Platform
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+diff --git a/Telegram/SourceFiles/platform/linux/linux_gdk_helper.h b/Telegram/SourceFiles/platform/linux/linux_gdk_helper.h
+index af331f179..c95f591d3 100644
+--- a/Telegram/SourceFiles/platform/linux/linux_gdk_helper.h
++++ b/Telegram/SourceFiles/platform/linux/linux_gdk_helper.h
+@@ -9,7 +9,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+
+ #include <QtCore/QObject>
+
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ extern "C" {
+ #undef signals
+ #include <gtk/gtk.h>
+@@ -26,4 +25,3 @@ void XSetTransientForHint(GdkWindow *window, quintptr winId);
+
+ } // namespace internal
+ } // namespace Platform
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+diff --git a/Telegram/SourceFiles/platform/linux/linux_libnotify.cpp b/Telegram/SourceFiles/platform/linux/linux_libnotify.cpp
+index 657c46075..558ad266b 100644
+--- a/Telegram/SourceFiles/platform/linux/linux_libnotify.cpp
++++ b/Telegram/SourceFiles/platform/linux/linux_libnotify.cpp
+@@ -31,7 +31,6 @@ bool loadLibrary(QLibrary &lib, const char *name, int version) {
+
+ } // namespace
+
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ f_notify_init notify_init = nullptr;
+ f_notify_uninit notify_uninit = nullptr;
+ f_notify_is_initted notify_is_initted = nullptr;
+@@ -104,7 +103,6 @@ void startLibNotify() {
+ 	load(lib_notify, "notify_notification_close", notify_notification_close);
+ 	load(lib_notify, "notify_notification_get_closed_reason", notify_notification_get_closed_reason);
+ }
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+
+ } // namespace Libs
+ } // namespace Platform
+diff --git a/Telegram/SourceFiles/platform/linux/linux_libnotify.h b/Telegram/SourceFiles/platform/linux/linux_libnotify.h
+index 6dcfd676a..d262282bf 100644
+--- a/Telegram/SourceFiles/platform/linux/linux_libnotify.h
++++ b/Telegram/SourceFiles/platform/linux/linux_libnotify.h
+@@ -7,7 +7,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ */
+ #pragma once
+
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ extern "C" {
+ #undef signals
+ #include <gtk/gtk.h>
+@@ -117,4 +116,3 @@ extern f_notify_notification_get_closed_reason notify_notification_get_closed_re
+
+ } // namespace Libs
+ } // namespace Platform
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+diff --git a/Telegram/SourceFiles/platform/linux/linux_libs.cpp b/Telegram/SourceFiles/platform/linux/linux_libs.cpp
+index f8d74fee1..02c9bfc9f 100644
+--- a/Telegram/SourceFiles/platform/linux/linux_libs.cpp
++++ b/Telegram/SourceFiles/platform/linux/linux_libs.cpp
+@@ -31,7 +31,6 @@ bool loadLibrary(QLibrary &lib, const char *name, int version) {
+     return false;
+ }
+
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ bool setupGtkBase(QLibrary &lib_gtk) {
+ 	if (!load(lib_gtk, "gtk_init_check", gtk_init_check)) return false;
+ 	if (!load(lib_gtk, "gtk_menu_new", gtk_menu_new)) return false;
+@@ -130,11 +129,9 @@ bool setupAppIndicator(QLibrary &lib_indicator) {
+ 	DEBUG_LOG(("Library appindicator functions loaded!"));
+ 	return true;
+ }
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+
+ } // namespace
+
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ f_gtk_init_check gtk_init_check = nullptr;
+ f_gtk_menu_new gtk_menu_new = nullptr;
+ f_gtk_menu_get_type gtk_menu_get_type = nullptr;
+@@ -225,11 +222,9 @@ f_unity_launcher_entry_set_count unity_launcher_entry_set_count = nullptr;
+ f_unity_launcher_entry_set_count_visible unity_launcher_entry_set_count_visible = nullptr;
+ f_unity_launcher_entry_get_for_desktop_id unity_launcher_entry_get_for_desktop_id = nullptr;
+ #endif // !TDESKTOP_DISABLE_UNITY_INTEGRATION
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+
+ void start() {
+ 	DEBUG_LOG(("Loading libraries"));
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+
+ 	bool gtkLoaded = false;
+ 	bool indicatorLoaded = false;
+@@ -280,7 +275,6 @@ void start() {
+ 		load(lib_gtk, "g_idle_add", g_idle_add);
+
+ 		internal::GdkHelperLoad(lib_gtk);
+-
+ 		load(lib_gtk, "gtk_dialog_get_widget_for_response", gtk_dialog_get_widget_for_response);
+ 		load(lib_gtk, "gtk_button_set_label", gtk_button_set_label);
+ 		load(lib_gtk, "gtk_button_get_type", gtk_button_get_type);
+@@ -302,7 +296,6 @@ void start() {
+ 	if (gtkLoaded) {
+ 		startLibNotify();
+ 	}
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ }
+
+ } // namespace Libs
+diff --git a/Telegram/SourceFiles/platform/linux/linux_libs.h b/Telegram/SourceFiles/platform/linux/linux_libs.h
+index 4834fee11..d8aa51196 100644
+--- a/Telegram/SourceFiles/platform/linux/linux_libs.h
++++ b/Telegram/SourceFiles/platform/linux/linux_libs.h
+@@ -7,7 +7,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ */
+ #pragma once
+
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ extern "C" {
+ #undef signals
+ #ifdef TDESKTOP_USE_AYATANA_INDICATORS
+@@ -23,7 +22,6 @@ extern "C" {
+ #ifndef TDESKTOP_DISABLE_UNITY_INTEGRATION
+ #include <unity/unity/unity.h>
+ #endif // !TDESKTOP_DISABLE_UNITY_INTEGRATION
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+
+ namespace Platform {
+ namespace Libs {
+@@ -45,7 +43,6 @@ bool load(QLibrary &lib, const char *name, Function &func) {
+ 	return false;
+ }
+
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ typedef gboolean (*f_gtk_init_check)(int *argc, char ***argv);
+ extern f_gtk_init_check gtk_init_check;
+
+@@ -375,7 +372,6 @@ extern f_unity_launcher_entry_set_count_visible unity_launcher_entry_set_count_v
+ typedef UnityLauncherEntry* (*f_unity_launcher_entry_get_for_desktop_id)(const gchar* desktop_id);
+ extern f_unity_launcher_entry_get_for_desktop_id unity_launcher_entry_get_for_desktop_id;
+ #endif // !TDESKTOP_DISABLE_UNITY_INTEGRATION
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+
+ } // namespace Libs
+ } // namespace Platform
+diff --git a/Telegram/SourceFiles/platform/linux/notifications_manager_linux.cpp b/Telegram/SourceFiles/platform/linux/notifications_manager_linux.cpp
+index 6ed7f15e8..8fd532f2c 100644
+--- a/Telegram/SourceFiles/platform/linux/notifications_manager_linux.cpp
++++ b/Telegram/SourceFiles/platform/linux/notifications_manager_linux.cpp
+@@ -15,7 +15,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+
+ namespace Platform {
+ namespace Notifications {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ namespace {
+
+ bool LibNotifyLoaded() {
+@@ -259,10 +258,8 @@ QString GetServerName() {
+ auto LibNotifyServerName = QString();
+
+ } // namespace
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+
+ bool Supported() {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	static auto Checked = false;
+ 	if (!Checked) {
+ 		Checked = true;
+@@ -270,31 +267,23 @@ bool Supported() {
+ 	}
+
+ 	return !LibNotifyServerName.isEmpty();
+-#else
+-	return false;
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ }
+
+ std::unique_ptr<Window::Notifications::Manager> Create(Window::Notifications::System *system) {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	if (Global::NativeNotifications() && Supported()) {
+ 		return std::make_unique<Manager>(system);
+ 	}
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	return nullptr;
+ }
+
+ void Finish() {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	if (Libs::notify_is_initted && Libs::notify_uninit) {
+ 		if (Libs::notify_is_initted()) {
+ 			Libs::notify_uninit();
+ 		}
+ 	}
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ }
+
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ class Manager::Private {
+ public:
+ 	using Type = Window::Notifications::CachedUserpics::Type;
+@@ -347,9 +336,7 @@ private:
+ 	std::shared_ptr<Manager*> _guarded;
+
+ };
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ void Manager::Private::init(Manager *manager) {
+ 	_guarded = std::make_shared<Manager*>(manager);
+
+@@ -551,7 +538,6 @@ void Manager::doClearAllFast() {
+ void Manager::doClearFromHistory(History *history) {
+ 	_private->clearFromHistory(history);
+ }
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+
+ } // namespace Notifications
+ } // namespace Platform

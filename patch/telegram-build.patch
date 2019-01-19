@@ -230,13 +230,6 @@ diff --git a/Telegram/gyp/telegram_linux.gypi b/Telegram/gyp/telegram_linux.gypi
 index ffe0e5a96..dd51bad58 100644
 --- a/Telegram/gyp/telegram_linux.gypi
 +++ b/Telegram/gyp/telegram_linux.gypi
-@@ -10,7 +10,7 @@
-       'variables': {
-         'build_defines%': '',
-       },
--      'not_need_gtk%': '<!(python -c "print(\'TDESKTOP_DISABLE_GTK_INTEGRATION\' in \'<(build_defines)\')")',
-+      'not_need_gtk%': 'True',
-       'pkgconfig_libs': [
  # In order to work libxkbcommon must be linked statically,
  # PKGCONFIG links it like "-L/usr/local/lib -lxkbcommon"
 @@ -18,51 +18,35 @@
@@ -312,3 +305,15 @@ index ffe0e5a96..dd51bad58 100644
  #      '<!(pkg-config 2> /dev/null --libs <@(pkgconfig_libs))',
      ],
      'cflags_cc': [
+@@ -97,9 +97,8 @@
+         ],
+       }], ['not_need_gtk!="True"', {
+         'cflags_cc': [
+-          '<!(pkg-config 2> /dev/null --cflags gtk+-2.0)',
+-          '<!(pkg-config 2> /dev/null --cflags glib-2.0)',
+-          '<!(pkg-config 2> /dev/null --cflags dee-1.0)',
++          '<!(pkg-config 2> /dev/null --cflags appindicator3-0.1)',
++          '<!(pkg-config 2> /dev/null --cflags gtk+-3.0)',
+         ],
+       }], ['<!(pkg-config ayatana-appindicator3-0.1; echo $?) == 0', {
+         'cflags_cc': [ '<!(pkg-config --cflags ayatana-appindicator3-0.1)' ],
