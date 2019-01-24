@@ -8,10 +8,10 @@ index 92c028651..314f2bbd1 100644
  */
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  #include "platform/linux/linux_gdk_helper.h"
-
+ 
  #include "platform/linux/linux_libs.h"
 @@ -99,4 +98,3 @@ void XSetTransientForHint(GdkWindow *window, quintptr winId) {
-
+ 
  } // namespace internal
  } // namespace Platform
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
@@ -20,15 +20,15 @@ index af331f179..c95f591d3 100644
 --- a/Telegram/SourceFiles/platform/linux/linux_gdk_helper.h
 +++ b/Telegram/SourceFiles/platform/linux/linux_gdk_helper.h
 @@ -9,7 +9,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
-
+ 
  #include <QtCore/QObject>
-
+ 
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  extern "C" {
  #undef signals
  #include <gtk/gtk.h>
 @@ -26,4 +25,3 @@ void XSetTransientForHint(GdkWindow *window, quintptr winId);
-
+ 
  } // namespace internal
  } // namespace Platform
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
@@ -37,9 +37,9 @@ index 657c46075..558ad266b 100644
 --- a/Telegram/SourceFiles/platform/linux/linux_libnotify.cpp
 +++ b/Telegram/SourceFiles/platform/linux/linux_libnotify.cpp
 @@ -31,7 +31,6 @@ bool loadLibrary(QLibrary &lib, const char *name, int version) {
-
+ 
  } // namespace
-
+ 
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  f_notify_init notify_init = nullptr;
  f_notify_uninit notify_uninit = nullptr;
@@ -49,7 +49,7 @@ index 657c46075..558ad266b 100644
  	load(lib_notify, "notify_notification_get_closed_reason", notify_notification_get_closed_reason);
  }
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
-
+ 
  } // namespace Libs
  } // namespace Platform
 diff --git a/Telegram/SourceFiles/platform/linux/linux_libnotify.h b/Telegram/SourceFiles/platform/linux/linux_libnotify.h
@@ -59,13 +59,13 @@ index 6dcfd676a..d262282bf 100644
 @@ -7,7 +7,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
  */
  #pragma once
-
+ 
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  extern "C" {
  #undef signals
  #include <gtk/gtk.h>
 @@ -117,4 +116,3 @@ extern f_notify_notification_get_closed_reason notify_notification_get_closed_re
-
+ 
  } // namespace Libs
  } // namespace Platform
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
@@ -76,7 +76,7 @@ index f8d74fee1..02c9bfc9f 100644
 @@ -31,7 +31,6 @@ bool loadLibrary(QLibrary &lib, const char *name, int version) {
      return false;
  }
-
+ 
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  bool setupGtkBase(QLibrary &lib_gtk) {
  	if (!load(lib_gtk, "gtk_init_check", gtk_init_check)) return false;
@@ -86,9 +86,9 @@ index f8d74fee1..02c9bfc9f 100644
  	return true;
  }
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
-
+ 
  } // namespace
-
+ 
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  f_gtk_init_check gtk_init_check = nullptr;
  f_gtk_menu_new gtk_menu_new = nullptr;
@@ -98,16 +98,16 @@ index f8d74fee1..02c9bfc9f 100644
  f_unity_launcher_entry_get_for_desktop_id unity_launcher_entry_get_for_desktop_id = nullptr;
  #endif // !TDESKTOP_DISABLE_UNITY_INTEGRATION
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
-
+ 
  void start() {
  	DEBUG_LOG(("Loading libraries"));
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
-
+ 
  	bool gtkLoaded = false;
  	bool indicatorLoaded = false;
 @@ -280,7 +275,6 @@ void start() {
  		load(lib_gtk, "g_idle_add", g_idle_add);
-
+ 
  		internal::GdkHelperLoad(lib_gtk);
 -
  		load(lib_gtk, "gtk_dialog_get_widget_for_response", gtk_dialog_get_widget_for_response);
@@ -119,7 +119,7 @@ index f8d74fee1..02c9bfc9f 100644
  	}
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
  }
-
+ 
  } // namespace Libs
 diff --git a/Telegram/SourceFiles/platform/linux/linux_libs.h b/Telegram/SourceFiles/platform/linux/linux_libs.h
 index 4834fee11..d8aa51196 100644
@@ -128,7 +128,7 @@ index 4834fee11..d8aa51196 100644
 @@ -7,7 +7,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
  */
  #pragma once
-
+ 
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  extern "C" {
  #undef signals
@@ -138,43 +138,255 @@ index 4834fee11..d8aa51196 100644
  #include <unity/unity/unity.h>
  #endif // !TDESKTOP_DISABLE_UNITY_INTEGRATION
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
-
+ 
  namespace Platform {
  namespace Libs {
 @@ -45,7 +43,6 @@ bool load(QLibrary &lib, const char *name, Function &func) {
  	return false;
  }
-
+ 
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  typedef gboolean (*f_gtk_init_check)(int *argc, char ***argv);
  extern f_gtk_init_check gtk_init_check;
-
+ 
 @@ -375,7 +372,6 @@ extern f_unity_launcher_entry_set_count_visible unity_launcher_entry_set_count_v
  typedef UnityLauncherEntry* (*f_unity_launcher_entry_get_for_desktop_id)(const gchar* desktop_id);
  extern f_unity_launcher_entry_get_for_desktop_id unity_launcher_entry_get_for_desktop_id;
  #endif // !TDESKTOP_DISABLE_UNITY_INTEGRATION
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
-
+ 
  } // namespace Libs
+ } // namespace Platform
+diff --git a/Telegram/SourceFiles/platform/linux/main_window_linux.cpp b/Telegram/SourceFiles/platform/linux/main_window_linux.cpp
+index f3a504136..a29a2dd5e 100644
+--- a/Telegram/SourceFiles/platform/linux/main_window_linux.cpp
++++ b/Telegram/SourceFiles/platform/linux/main_window_linux.cpp
+@@ -24,21 +24,18 @@ namespace {
+ bool noQtTrayIcon = false, tryAppIndicator = false;
+ bool useGtkBase = false, useAppIndicator = false, useStatusIcon = false, trayIconChecked = false, useUnityCount = false;
+ 
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ AppIndicator *_trayIndicator = 0;
+ GtkStatusIcon *_trayIcon = 0;
+ GtkWidget *_trayMenu = 0;
+ GdkPixbuf *_trayPixbuf = 0;
+ QByteArray _trayPixbufData;
+ QList<QPair<GtkWidget*, QObject*> > _trayItems;
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ 
+ int32 _trayIconSize = 22;
+ bool _trayIconMuted = true;
+ int32 _trayIconCount = 0;
+ QImage _trayIconImageBack, _trayIconImage;
+ 
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ void _trayIconPopup(GtkStatusIcon *status_icon, guint button, guint32 activate_time, gpointer popup_menu) {
+ 	Libs::gtk_menu_popup(Libs::gtk_menu_cast(popup_menu), NULL, NULL, Libs::gtk_status_icon_position_menu, status_icon, button, activate_time);
+ }
+@@ -56,19 +53,16 @@ gboolean _trayIconResized(GtkStatusIcon *status_icon, gint size, gpointer popup_
+ 	if (Global::started()) Notify::unreadCounterUpdated();
+ 	return FALSE;
+ }
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ 
+ #define QT_RED 0
+ #define QT_GREEN 1
+ #define QT_BLUE 2
+ #define QT_ALPHA 3
+ 
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ #define GTK_RED 2
+ #define GTK_GREEN 1
+ #define GTK_BLUE 0
+ #define GTK_ALPHA 3
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ 
+ QImage _trayIconImageGen() {
+ 	const auto counter = Messenger::Instance().unreadBadge();
+@@ -133,7 +127,6 @@ QString _trayIconImageFile() {
+ 
+ 	return QString();
+ }
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 
+ void loadPixbuf(QImage image) {
+ 	int w = image.width(), h = image.height(), perline = image.bytesPerLine(), s = image.byteCount();
+@@ -181,7 +174,6 @@ static gboolean _trayIconCheck(gpointer/* pIn*/) {
+ #ifndef TDESKTOP_DISABLE_UNITY_INTEGRATION
+ UnityLauncherEntry *_psUnityLauncherEntry = nullptr;
+ #endif // !TDESKTOP_DISABLE_UNITY_INTEGRATION
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ 
+ } // namespace
+ 
+@@ -194,17 +186,11 @@ MainWindow::MainWindow() {
+ }
+ 
+ bool MainWindow::hasTrayIcon() const {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	return trayIcon || ((useAppIndicator || (useStatusIcon && trayIconChecked)) && (Global::WorkMode().value() != dbiwmWindowOnly));
+-#else
+-	return trayIcon;
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ }
+ 
+ void MainWindow::psStatusIconCheck() {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	_trayIconCheck(0);
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	if (cSupportTray() || !--_psCheckStatusIconLeft) {
+ 		_psCheckStatusIconTimer.stop();
+ 		return;
+@@ -215,7 +201,6 @@ void MainWindow::psShowTrayMenu() {
+ }
+ 
+ void MainWindow::psTrayMenuUpdated() {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	if (noQtTrayIcon && (useAppIndicator || useStatusIcon)) {
+ 		const QList<QAction*> &actions = trayIconMenu->actions();
+ 		if (_trayItems.isEmpty()) {
+@@ -239,7 +224,6 @@ void MainWindow::psTrayMenuUpdated() {
+ 			}
+ 		}
+ 	}
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ }
+ 
+ void MainWindow::psSetupTrayIcon() {
+@@ -283,13 +267,11 @@ void MainWindow::workmodeUpdated(DBIWorkMode mode) {
+ 
+ 	if (mode == dbiwmWindowOnly) {
+ 		if (noQtTrayIcon) {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 			if (useAppIndicator) {
+ 				Libs::app_indicator_set_status(_trayIndicator, APP_INDICATOR_STATUS_PASSIVE);
+ 			} else if (useStatusIcon) {
+ 				Libs::gtk_status_icon_set_visible(_trayIcon, false);
+ 			}
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ 		} else {
+ 			if (trayIcon) {
+ 				trayIcon->setContextMenu(0);
+@@ -299,13 +281,11 @@ void MainWindow::workmodeUpdated(DBIWorkMode mode) {
+ 		}
+ 	} else {
+ 		if (noQtTrayIcon) {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 			if (useAppIndicator) {
+ 				Libs::app_indicator_set_status(_trayIndicator, APP_INDICATOR_STATUS_ACTIVE);
+ 			} else if (useStatusIcon) {
+ 				Libs::gtk_status_icon_set_visible(_trayIcon, true);
+ 			}
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ 		} else {
+ 			psSetupTrayIcon();
+ 		}
+@@ -313,7 +293,6 @@ void MainWindow::workmodeUpdated(DBIWorkMode mode) {
+ }
+ 
+ void MainWindow::psUpdateIndicator() {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	_psUpdateIndicatorTimer.stop();
+ 	_psLastIndicatorUpdate = getms();
+ 	QFileInfo iconFile(_trayIconImageFile());
+@@ -324,7 +303,6 @@ void MainWindow::psUpdateIndicator() {
+ 	} else {
+ 		useAppIndicator = false;
+ 	}
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ }
+ 
+ void MainWindow::unreadCounterChangedHook() {
+@@ -349,7 +327,6 @@ void MainWindow::updateIconCounters() {
+ #endif // !TDESKTOP_DISABLE_GTK_INTEGRATION && !TDESKTOP_DISABLE_UNITY_INTEGRATION
+ 
+ 	if (noQtTrayIcon) {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 		if (useAppIndicator) {
+ 			if (getms() > _psLastIndicatorUpdate + 1000) {
+ 				psUpdateIndicator();
+@@ -366,7 +343,6 @@ void MainWindow::updateIconCounters() {
+ 				Libs::gtk_status_icon_set_from_pixbuf(_trayIcon, _trayPixbuf);
+ 			}
+ 		}
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	} else if (trayIcon) {
+ 		QIcon icon;
+ 		QFileInfo iconFile(_trayIconImageFile());
+@@ -388,15 +364,12 @@ void MainWindow::updateIconCounters() {
+ 
+ void MainWindow::LibsLoaded() {
+ 	noQtTrayIcon = !DesktopEnvironment::TryQtTrayIcon();
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	tryAppIndicator = DesktopEnvironment::PreferAppIndicatorTrayIcon();
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ 
+ 	LOG(("Tray Icon: Try Qt = %1, Prefer appindicator = %2").arg(Logs::b(!noQtTrayIcon)).arg(Logs::b(tryAppIndicator)));
+ 
+ 	if (noQtTrayIcon) cSetSupportTray(false);
+ 
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	useGtkBase = (Libs::gtk_init_check != nullptr)
+ 			&& (Libs::gtk_menu_new != nullptr)
+ 			&& (Libs::gtk_menu_get_type != nullptr)
+@@ -451,7 +424,6 @@ void MainWindow::LibsLoaded() {
+ 		DEBUG_LOG(("Unity count api loaded!"));
+ 	}
+ #endif // !TDESKTOP_DISABLE_UNITY_INTEGRATION
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ }
+ 
+ void MainWindow::psCreateTrayIcon() {
+@@ -461,7 +433,6 @@ void MainWindow::psCreateTrayIcon() {
+ 		return;
+ 	}
+ 
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	if (useAppIndicator) {
+ 		DEBUG_LOG(("Trying to create AppIndicator"));
+ 		_trayMenu = Libs::gtk_menu_new();
+@@ -539,7 +510,6 @@ void MainWindow::psCreateTrayIcon() {
+ 	} else {
+ 		workmodeUpdated(Global::WorkMode().value());
+ 	}
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ }
+ 
+ void MainWindow::psFirstShow() {
+@@ -596,7 +566,6 @@ void MainWindow::psUpdateMargins() {
+ }
+ 
+ MainWindow::~MainWindow() {
+-#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
+ 	if (_trayIcon) {
+ 		Libs::g_object_unref(_trayIcon);
+ 		_trayIcon = nullptr;
+@@ -620,7 +589,6 @@ MainWindow::~MainWindow() {
+ 		_psUnityLauncherEntry = nullptr;
+ 	}
+ #endif // ! TDESKTOP_DISABLE_UNITY_INTEGRATION
+-#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
+ }
+ 
  } // namespace Platform
 diff --git a/Telegram/SourceFiles/platform/linux/notifications_manager_linux.cpp b/Telegram/SourceFiles/platform/linux/notifications_manager_linux.cpp
 index 6ed7f15e8..8fd532f2c 100644
 --- a/Telegram/SourceFiles/platform/linux/notifications_manager_linux.cpp
 +++ b/Telegram/SourceFiles/platform/linux/notifications_manager_linux.cpp
 @@ -15,7 +15,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
-
+ 
  namespace Platform {
  namespace Notifications {
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  namespace {
-
+ 
  bool LibNotifyLoaded() {
 @@ -259,10 +258,8 @@ QString GetServerName() {
  auto LibNotifyServerName = QString();
-
+ 
  } // namespace
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
-
+ 
  bool Supported() {
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  	static auto Checked = false;
@@ -182,13 +394,13 @@ index 6ed7f15e8..8fd532f2c 100644
  		Checked = true;
 @@ -270,31 +267,23 @@ bool Supported() {
  	}
-
+ 
  	return !LibNotifyServerName.isEmpty();
 -#else
 -	return false;
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
  }
-
+ 
  std::unique_ptr<Window::Notifications::Manager> Create(Window::Notifications::System *system) {
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  	if (Global::NativeNotifications() && Supported()) {
@@ -197,7 +409,7 @@ index 6ed7f15e8..8fd532f2c 100644
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
  	return nullptr;
  }
-
+ 
  void Finish() {
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  	if (Libs::notify_is_initted && Libs::notify_uninit) {
@@ -207,26 +419,26 @@ index 6ed7f15e8..8fd532f2c 100644
  	}
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
  }
-
+ 
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  class Manager::Private {
  public:
  	using Type = Window::Notifications::CachedUserpics::Type;
 @@ -347,9 +336,7 @@ private:
  	std::shared_ptr<Manager*> _guarded;
-
+ 
  };
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
-
+ 
 -#ifndef TDESKTOP_DISABLE_GTK_INTEGRATION
  void Manager::Private::init(Manager *manager) {
  	_guarded = std::make_shared<Manager*>(manager);
-
+ 
 @@ -551,7 +538,6 @@ void Manager::doClearAllFast() {
  void Manager::doClearFromHistory(History *history) {
  	_private->clearFromHistory(history);
  }
 -#endif // !TDESKTOP_DISABLE_GTK_INTEGRATION
-
+ 
  } // namespace Notifications
  } // namespace Platform
