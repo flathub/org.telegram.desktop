@@ -3,7 +3,7 @@
     "runtime": "org.kde.Platform",
     "runtime-version": "5.12",
     "sdk": "org.kde.Sdk",
-    "command": "Telegram",
+    "command": "telegram-desktop",
     "rename-desktop-file": "telegramdesktop.desktop",
     "rename-appdata-file": "telegramdesktop.appdata.xml",
     "rename-icon": "telegram-desktop",
@@ -15,8 +15,7 @@
                      "--talk-name=org.kde.StatusNotifierWatcher",
                      "--talk-name=org.freedesktop.Notifications",
                      "--filesystem=xdg-download",
-                     "--device=dri",
-                     "--env=TMPDIR=/var/tmp" ],
+                     "--device=dri" ],
     "cleanup": [ "/cache",
                  "/man",
                  "/share/man",
@@ -176,6 +175,7 @@
 
                 "install -dm755 /app/bin",
                 "install -m755 out/Release/Telegram /app/bin/Telegram",
+                "install -m755 telegram-desktop /app/bin/telegram-desktop",
 
                 "install -d /app/share/applications",
                 "install -m644 lib/xdg/telegramdesktop.desktop /app/share/applications/telegramdesktop.desktop",
@@ -232,6 +232,13 @@
                 {
                     "type": "file",
                     "path": "patch/CMakeLists.inj"
+                },
+                {
+                    "type": "script",
+                    "dest-filename": "telegram-desktop",
+                    "commands": [
+                        "exec env TMPDIR=$XDG_CACHE_HOME /app/bin/Telegram \"$@\""
+                    ]
                 }
             ]
         }
