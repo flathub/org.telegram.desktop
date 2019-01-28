@@ -188,7 +188,7 @@ index fae668dc..dfb1f839 100644
        # Silence "Note: No relevant classes found. No output generated."
        '--no-notes',
 
-+      '-DTDESKTOP_DISABLE_AUTOUPDATE -DTDESKTOP_DISABLE_CRASH_REPORTS -DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME -TDESKTOP_DISABLE_GTK_INTEGRATION -DTDESKTOP_DISABLE_UNITY_INTEGRATION',
++      '-DTDESKTOP_DISABLE_AUTOUPDATE -DTDESKTOP_DISABLE_CRASH_REPORTS -DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME -DTDESKTOP_DISABLE_GTK_INTEGRATION -DTDESKTOP_DISABLE_UNITY_INTEGRATION',
        '<!@(python -c "for s in \'<@(_defines)\'.split(\' \'): print(\'-D\' + s)")',
        # '<!@(python -c "for s in \'<@(_include_dirs)\'.split(\' \'): print(\'-I\' + s)")',
        '<(RULE_INPUT_PATH)',
