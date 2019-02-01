@@ -1,13 +1,13 @@
 diff --git a/Telegram/SourceFiles/core/launcher.cpp b/Telegram/SourceFiles/core/launcher.cpp
-index d4bdadc17..4a28c07ce 100644
+index 129407523..0019e726e 100644
 --- a/Telegram/SourceFiles/core/launcher.cpp
 +++ b/Telegram/SourceFiles/core/launcher.cpp
-@@ -37,6 +37,8 @@ void Launcher::init() {
-
+@@ -206,6 +206,8 @@ void Launcher::init() {
+ 
  	prepareSettings();
-
+ 
 +	// I don't know why path is not in QT_PLUGIN_PATH by default
 +	QCoreApplication::addLibraryPath("/usr/lib/plugins");
- 	QCoreApplication::setApplicationName(qsl("TelegramDesktop"));
-
+ 	QApplication::setApplicationName(qsl("TelegramDesktop"));
+ 
  #ifndef OS_MAC_OLD
