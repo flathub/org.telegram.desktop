@@ -1,11 +1,8 @@
 {
     "id": "org.telegram.desktop",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.9",
+    "runtime-version": "5.12",
     "sdk": "org.kde.Sdk",
-    "sdk-extensions": [
-        "org.freedesktop.Sdk.Extension.gcc7"
-    ],
     "command": "telegram-desktop",
     "rename-desktop-file": "telegramdesktop.desktop",
     "rename-appdata-file": "telegramdesktop.appdata.xml",
@@ -15,68 +12,18 @@
                      "--socket=x11",
                      "--socket=wayland",
                      "--socket=pulseaudio",
-                     "--filesystem=xdg-documents",
-                     "--filesystem=xdg-download",
-                     "--filesystem=xdg-music",
-                     "--filesystem=xdg-pictures",
-                     "--filesystem=xdg-videos",
                      "--talk-name=org.kde.StatusNotifierWatcher",
                      "--talk-name=org.freedesktop.Notifications",
+                     "--filesystem=xdg-download",
                      "--device=dri" ],
     "cleanup": [ "/cache",
                  "/man",
                  "/share/man",
                  "/lib/systemd",
                  "*.la", "*.a"],
-    "build-options" : {
-        "cflags": "-O2 -g -Wno-deprecated-declarations -fstack-protector-strong -D_FORTIFY_SOURCE=2 -fPIC",
-        "cxxflags": "-O2 -g -Wno-deprecated-declarations -fstack-protector-strong -D_FORTIFY_SOURCE=2 -fPIC",
-        "ldflags": "-fstack-protector-strong -Wl,-z,relro,-z,now",
-        "env": {
-            "V": "1"
-        }
-    },
     "modules": [
-        {
-            "name": "libdbusmenu",
-            "config-opts": [ "--with-gtk=3", "-disable-static", "--disable-tests", "--disable-gtk-doc", "--disable-doc", "--disable-dumper", "--enable-introspection=no", "--disable-vala"],
-            "build-options" : {
-                "env": {
-                    "HAVE_VALGRIND_TRUE": "'#'",
-                    "HAVE_VALGRIND_FALSE": "''"
-                }
-            },
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://launchpad.net/libdbusmenu/16.04/16.04.0/+download/libdbusmenu-16.04.0.tar.gz",
-                    "sha256": "b9cc4a2acd74509435892823607d966d424bd9ad5d0b00938f27240a1bfa878a"
-                }
-            ]
-        },
-        {
-            "name": "libindicator",
-            "config-opts": [ "--with-gtk=3", "-disable-static", "--disable-tests", "--disable-gtk-doc"],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://launchpad.net/libindicator/12.10/12.10.1/+download/libindicator-12.10.1.tar.gz",
-                    "sha256": "b2d2e44c10313d5c9cd60db455d520f80b36dc39562df079a3f29495e8f9447f"
-                },
-                {
-                    "type": "shell",
-                    "commands": [
-                          "sed '/-Werror/s/$/ -Wno-deprecated-declarations/' -i libindicator/Makefile.{am,in}",
-                          "sed 's/LIBINDICATOR_LIBS+=\"$LIBM\"/LIBINDICATOR_LIBS+=\" $LIBM\"/g' -i configure",
-                          "sed 's/LIBM=\"-lmw\"/LIBM=\" -lmw\"/g' -i configure",
-                          "sed 's/LIBM=\"-lm\"/LIBM=\" -lm\"/g' -i configure",
-                          "sed 's/LIBS=\"-lm  $LIBS\"/LIBS=\" -lm  $LIBS\"/g' -i configure",
-                          "sed 's/LIBS=\"-lmw  $LIBS\"/LIBS=\" -lmw  $LIBS\"/g' -i configure"
-
-                    ]
-                }
-            ]
-        },
+        "shared-modules/dbus-glib/dbus-glib-0.110.json",
+        "shared-modules/libappindicator/libappindicator-gtk3-12.10.json",
         {
             "name": "dee",
             "config-opts": ["--enable-maintainer-flags=no"],
@@ -89,38 +36,12 @@
             ]
         },
         {
-            "name": "dbus-glib",
-            "config-opts": [ "--disable-static" ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-0.108.tar.gz",
-                    "sha256": "9f340c7e2352e9cdf113893ca77ca9075d9f8d5e81476bf2bf361099383c602c"
-                }
-            ]
-        },
-        {
-            "name": "libappindicator",
-            "config-opts": [ "-disable-static", "--disable-tests", "--disable-gtk-doc", "--enable-introspection=no", "--with-gtk=3" ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://launchpad.net/libappindicator/12.10/12.10.0/+download/libappindicator-12.10.0.tar.gz",
-                    "sha256": "d5907c1f98084acf28fd19593cb70672caa0ca1cf82d747ba6f4830d4cc3b49f"
-                },
-                {
-                    "type": "patch",
-                    "path": "libappindicator-disable-python-bindings.patch"
-                }
-            ]
-        },
-        {
             "name": "opus",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://archive.mozilla.org/pub/opus/opus-1.2.1.tar.gz",
-                    "sha256": "cfafd339ccd9c5ef8d6ab15d7e1a412c054bf4cb4ecbbbcc78c12ef2def70732"
+                    "url": "https://archive.mozilla.org/pub/opus/opus-1.3.tar.gz",
+                    "sha256": "4f3d69aefdf2dbaf9825408e452a8a414ffc60494c70633560700398820dc550"
                 }
             ]
         },
@@ -190,8 +111,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ffmpeg.org/releases/ffmpeg-3.3.5.tar.xz",
-                    "sha256": "a893490c3a8a7caaa9c47373b789c0335d0ac3572f2ba61059de842b9e45d802"
+                    "url": "https://ffmpeg.org/releases/ffmpeg-3.4.5.tar.xz",
+                    "sha256": "741cbd6394eaed370774ca4cc089eaafbc54d0824b9aa360d4b3b0cbcbc4a92c"
                 }
             ]
         },
@@ -230,8 +151,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/ericniebler/range-v3/archive/0.3.0.tar.gz",
-                    "sha256": "cc29fbed5b06b11e7f9a732f7e1211483ebbd3cfe29d86e40c93209014790d74"
+                    "url": "https://github.com/ericniebler/range-v3/archive/0.4.0.tar.gz",
+                    "sha256": "5dbc878b7dfc500fb04b6b9f99d63993a2731ea34b0a4b8d5f670a5a71a18e39"
                 }
             ]
         },
@@ -239,17 +160,14 @@
             "name": "telegram-desktop",
             "buildsystem": "simple",
             "build-options": {
-                "env": {
-                    "CC": "/usr/lib/sdk/gcc7/bin/gcc",
-                    "CXX": "/usr/lib/sdk/gcc7/bin/g++"
-                },
-                "cxxflags": "-std=gnu++17 -O2 -g -Wno-deprecated-declarations -fstack-protector-strong -D_FORTIFY_SOURCE=2"
+                "cxxflags": "-std=gnu++17",
+                "ldflags": "-Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
             },
             "build-commands": [
                 "sed -i s/org.telegram.desktop/org.telegram.desktop.desktop/ lib/xdg/telegramdesktop.appdata.xml",
-                "gyp --no-parallel -Gconfig=Release --depth=Telegram/gyp --generator-output=../.. -Goutput_dir=out Telegram/gyp/Telegram.gyp --format=cmake",
+                "gyp -Gconfig=Release --depth=Telegram/gyp --generator-output=../.. -Goutput_dir=out Telegram/gyp/Telegram.gyp --format=cmake",
                 "NUM=$((`wc -l < out/Release/CMakeLists.txt` - 2)); sed -i \"$NUM r CMakeLists.inj\" out/Release/CMakeLists.txt",
-                "cd out/Release && cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=None",
+                "cd out/Release && cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release",
                 "cd out/Release && make -j$(nproc)"
             ],
             "post-install": [
@@ -277,49 +195,49 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.2.6"
+                    "branch": "v1.5.12"
                 },
                 {
                     "type": "patch",
-                    "path": "libgtvoip-arm-build.patch"
+                    "path": "patch/telegram-build.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Avoid-depending-on-static-libraries.patch"
+                    "path": "patch/telegram-add-additional-plugin-path.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Downgrade-Qt-version.patch"
+                    "path": "patch/telegram-remove-static-plugins.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Fix-rcc-path.patch"
+                    "path": "patch/telegram-missing-function-symbols.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Flags-for-precompiled-header-and-MOC.patch"
+                    "path": "patch/telegram-libtgvoip.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Use-gtk3-headers.patch"
+                    "path": "patch/telegram-build-fixes-on-various-arches.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "Debian-build-fixes-on-various-arches.patch"
+                    "path": "patch/telegram-single-instance.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "telegram-single-instance.patch"
+                    "path": "patch/telegram-enable-appindicator-for-notifications.patch"
                 },
                 {
                     "type": "file",
-                    "path": "CMakeLists.inj"
+                    "path": "patch/CMakeLists.inj"
                 },
                 {
                     "type": "script",
                     "dest-filename": "telegram-desktop",
                     "commands": [
-                        "exec /app/bin/Telegram \"$@\""
+                        "exec env TMPDIR=$XDG_CACHE_HOME /app/bin/Telegram \"$@\""
                     ]
                 }
             ]

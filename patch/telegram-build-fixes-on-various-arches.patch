@@ -1,0 +1,63 @@
+diff --git a/Telegram/SourceFiles/base/basic_types.h b/Telegram/SourceFiles/base/basic_types.h
+index 08c6218fb..d64e1fdd4 100644
+--- a/Telegram/SourceFiles/base/basic_types.h
++++ b/Telegram/SourceFiles/base/basic_types.h
+@@ -7,7 +7,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ */
+ #pragma once
+ 
+-#include "base/build_config.h"
+ #include "base/ordered_set.h"
+ #include "base/unique_function.h"
+ #include "base/functors.h"
+@@ -48,6 +47,20 @@ using float64 = double;
+ using TimeMs = int64;
+ using TimeId = int32;
+ 
++#if defined(__GNUC__) || defined(__clang__)
++#define WARN_UNUSED_RESULT __attribute__((warn_unused_result))
++#else
++#define WARN_UNUSED_RESULT
++#endif
++
++#if defined(__GNUC__)
++#define FORCE_INLINE inline __attribute__((always_inline))
++#elif defined(_MSC_VER)
++#define FORCE_INLINE __forceinline
++#else
++#define FORCE_INLINE inline
++#endif
++
+ // Define specializations for QByteArray for Qt 5.3.2, because
+ // QByteArray in Qt 5.3.2 doesn't declare "pointer" subtype.
+ #ifdef OS_MAC_OLD
+diff --git a/Telegram/SourceFiles/config.h b/Telegram/SourceFiles/config.h
+index 863d0280e..8ed87c2c5 100644
+--- a/Telegram/SourceFiles/config.h
++++ b/Telegram/SourceFiles/config.h
+@@ -202,7 +202,7 @@ static const char *ApiHash = "344583e45741c457fe1862106095a5eb";
+ #endif
+ 
+ #if Q_BYTE_ORDER == Q_BIG_ENDIAN
+-#error "Only little endian is supported!"
++#warning "Be aware, only little endian is supported!"
+ #endif // Q_BYTE_ORDER == Q_BIG_ENDIAN
+ 
+ #ifndef ALPHA_VERSION_MACRO
+diff --git a/Telegram/SourceFiles/ui/animation.h b/Telegram/SourceFiles/ui/animation.h
+index 470e67506..c85ff1a90 100644
+--- a/Telegram/SourceFiles/ui/animation.h
++++ b/Telegram/SourceFiles/ui/animation.h
+@@ -169,9 +169,10 @@ TG_FORCE_INLINE int interpolate(int a, int b, float64 b_ratio) {
+ 	return qRound(a + float64(b - a) * b_ratio);
+ }
+ 
+-#ifdef ARCH_CPU_32_BITS
++#if !(defined _LP64 || defined _M_X64 || defined _M_ARM64 || defined _M_ALPHA)
++// _LP64 is defined by GCC, others by MSVC
+ #define SHIFTED_USE_32BIT
+-#endif // ARCH_CPU_32_BITS
++#endif
+ 
+ #ifdef SHIFTED_USE_32BIT
+ 
