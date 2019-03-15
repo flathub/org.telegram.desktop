@@ -3,6 +3,7 @@
     "runtime": "org.kde.Platform",
     "runtime-version": "5.12",
     "sdk": "org.kde.Sdk",
+    "default-branch": "beta",
     "command": "telegram-desktop",
     "rename-desktop-file": "telegramdesktop.desktop",
     "rename-appdata-file": "telegramdesktop.appdata.xml",
@@ -195,7 +196,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.5.15"
+                    "branch": "v1.5.17"
                 },
                 {
                     "type": "patch",
