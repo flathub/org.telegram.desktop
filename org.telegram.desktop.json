@@ -3,7 +3,7 @@
     "runtime": "org.kde.Platform",
     "runtime-version": "5.12",
     "sdk": "org.kde.Sdk",
-    "default-branch": "beta",
+    "default-branch": "stable",
     "command": "telegram-desktop",
     "rename-desktop-file": "telegramdesktop.desktop",
     "rename-appdata-file": "telegramdesktop.appdata.xml",
