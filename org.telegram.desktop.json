@@ -196,7 +196,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.6.1"
+                    "branch": "v1.6.2"
                 },
                 {
                     "type": "patch",
@@ -229,6 +229,10 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-enable-appindicator-for-notifications.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patch/telegram-appdata.patch"
                 },
                 {
                     "type": "file",
