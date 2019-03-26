@@ -1,8 +1,8 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 7bcf8d835..6c48d1af4 100644
+index 7bcf8d835..5aacd3cca 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -6,19 +6,83 @@
+@@ -6,19 +6,88 @@
      <name>Telegram Desktop</name>
      <summary>Telegram Desktop messenger</summary>
      <description>
@@ -35,6 +35,11 @@ index 7bcf8d835..6c48d1af4 100644
 +        <keyword>im</keyword>
 +    </keywords>
 +    <releases>
++        <release version="1.6.3" date="2019-03-25">
++            <description>
++                <p>Bug fixes and other minor improvements.</p>
++            </description>
++        </release>
 +        <release version="1.6.2" date="2019-03-24">
 +            <description>
 +                <p>Delete any message on both ends in any private chat, anytime.</p>
