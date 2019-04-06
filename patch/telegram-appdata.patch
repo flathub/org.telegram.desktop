@@ -1,8 +1,8 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 7bcf8d835..5aacd3cca 100644
+index 7bcf8d835..a69371c04 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -6,19 +6,88 @@
+@@ -6,19 +6,101 @@
      <name>Telegram Desktop</name>
      <summary>Telegram Desktop messenger</summary>
      <description>
@@ -35,6 +35,19 @@ index 7bcf8d835..5aacd3cca 100644
 +        <keyword>im</keyword>
 +    </keywords>
 +    <releases>
++        <release version="1.6.5" date="2019-04-06">
++            <description>
++                <p>Bug fixes and other minor improvements.</p>
++            </description>
++        </release>
++        <release version="1.6.4" date="2019-04-05">
++            <description>
++                <p>Replace media when editing messages with media content.</p>
++                <p>Jump quickly to the top of your chats list.</p>
++                <p>Get emoji suggestions for the first word you type in a message.</p>
++                <p>Help Telegram improve emoji suggestions in your language using <a href ="https://translations.telegram.org/en/emoji">this interface.</a></p>
++            </description>
++        </release>
 +        <release version="1.6.3" date="2019-03-25">
 +            <description>
 +                <p>Bug fixes and other minor improvements.</p>
