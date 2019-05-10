@@ -167,7 +167,7 @@
             },
             "build-commands": [
                 "sed -i s/org.telegram.desktop/org.telegram.desktop.desktop/ lib/xdg/telegramdesktop.appdata.xml",
-                "gyp -Gconfig=Release --depth=Telegram/gyp --generator-output=../.. -Goutput_dir=out Telegram/gyp/Telegram.gyp --format=cmake",
+                "gyp -Dbuild_defines=TDESKTOP_FLATPAK_BUILD -Gconfig=Release --depth=Telegram/gyp --generator-output=../.. -Goutput_dir=out Telegram/gyp/Telegram.gyp --format=cmake",
                 "NUM=$((`wc -l < out/Release/CMakeLists.txt` - 2)); sed -i \"$NUM r CMakeLists.inj\" out/Release/CMakeLists.txt",
                 "cd out/Release && cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release",
                 "cd out/Release && make -j$(nproc)"
@@ -197,7 +197,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "f8740c589"
+                    "branch": "69960a47d"
                 },
                 {
                     "type": "patch",
@@ -234,10 +234,6 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-appdata.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-wayland-icon.patch"
                 },
                 {
                     "type": "file",
