@@ -1,10 +1,10 @@
 diff --git a/Telegram/gyp/Telegram.gyp b/Telegram/gyp/Telegram.gyp
-index ac7696e1d..1ee4d8063 100644
+index 57d81be5f..d597456d1 100644
 --- a/Telegram/gyp/Telegram.gyp
 +++ b/Telegram/gyp/Telegram.gyp
-@@ -84,26 +84,27 @@
+@@ -85,26 +85,27 @@
      ],
-
+ 
      'defines': [
 -      'AL_LIBTYPE_STATIC',
 -      'AL_ALEXT_PROTOTYPES',
@@ -14,15 +14,15 @@ index ac7696e1d..1ee4d8063 100644
 -      'TDESKTOP_API_HASH=<(api_hash)',
 +      'TDESKTOP_API_ID=611335',
 +      'TDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c',
-+      '__STDC_FORMAT_MACROS', 'TDESKTOP_DISABLE_AUTOUPDATE',
++      '__STDC_FORMAT_MACROS',
++      'TDESKTOP_DISABLE_AUTOUPDATE',
 +      'TDESKTOP_DISABLE_CRASH_REPORTS',
 +      'TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME',
-+      'TDESKTOP_DISABLE_GTK_INTEGRATION',
 +      'TDESKTOP_DISABLE_UNITY_INTEGRATION',
 +      'TDESKTOP_DISABLE_OPENAL_EFFECTS',
        '<!@(python -c "for s in \'<(build_defines)\'.split(\',\'): print(s)")',
      ],
-
+ 
      'include_dirs': [
        '<(src_loc)',
        '<(SHARED_INTERMEDIATE_DIR)',
@@ -41,7 +41,7 @@ index ac7696e1d..1ee4d8063 100644
        '<(emoji_suggestions_loc)',
        '<(submodules_loc)/GSL/include',
 diff --git a/Telegram/gyp/qt.gypi b/Telegram/gyp/qt.gypi
-index 0b783ec21..3f917765a 100644
+index 0b783ec21..aacee11f6 100644
 --- a/Telegram/gyp/qt.gypi
 +++ b/Telegram/gyp/qt.gypi
 @@ -14,25 +14,21 @@
@@ -108,7 +108,7 @@ index 0b783ec21..3f917765a 100644
              ],
            }],
          ],
-@@ -127,11 +118,6 @@
+@@ -127,11 +104,6 @@
      # '<!@(python <(DEPTH)/list_sources.py [sources] <(qt_moc_list_sources_arg))'
      # where [sources] contains all your source files
      'qt_moc_list_sources_arg': '--moc-prefix SHARED_INTERMEDIATE_DIR/<(_target_name)/moc/moc_',
@@ -118,11 +118,11 @@ index 0b783ec21..3f917765a 100644
 -    'linux_lib_crypto%': '/usr/local/ssl/lib/libcrypto.a',
 -    'linux_lib_icu%': 'libicutu.a libicui18n.a libicuuc.a libicudata.a',
    },
-
+ 
    'configurations': {
-@@ -180,14 +166,14 @@
+@@ -180,14 +152,14 @@
    },
-
+ 
    'include_dirs': [
 -    '<(qt_loc)/include',
 -    '<(qt_loc)/include/QtCore',
@@ -143,7 +143,7 @@ index 0b783ec21..3f917765a 100644
    ],
    'library_dirs': [
      '<(qt_loc)/lib',
-@@ -212,11 +198,8 @@
+@@ -212,11 +184,8 @@
        ],
        'libraries': [
          '<(PRODUCT_DIR)/obj.target/liblinux_glibc_wraps.a',
@@ -156,7 +156,7 @@ index 0b783ec21..3f917765a 100644
          '-lxcb',
          '-lX11',
          '-lX11-xcb',
-@@ -227,10 +210,15 @@
+@@ -227,10 +196,15 @@
          '-lpthread',
        ],
        'include_dirs': [
@@ -175,29 +175,28 @@ index 0b783ec21..3f917765a 100644
          '-rdynamic',
        ],
 diff --git a/Telegram/gyp/qt_moc.gypi b/Telegram/gyp/qt_moc.gypi
-index fae668dc..dfb1f839 100644
+index ebee90a15..697c1113c 100644
 --- a/Telegram/gyp/qt_moc.gypi
 +++ b/Telegram/gyp/qt_moc.gypi
-@@ -25,11 +25,12 @@
+@@ -15,11 +15,12 @@
        '<(SHARED_INTERMEDIATE_DIR)/<(_target_name)/moc/moc_<(RULE_INPUT_ROOT).cpp',
      ],
      'action': [
 -      '<(qt_loc)/bin/moc<(exe_ext)',
 +      '/usr/bin/moc',
-
+ 
        # Silence "Note: No relevant classes found. No output generated."
        '--no-notes',
-
-+      '-DTDESKTOP_DISABLE_AUTOUPDATE -DTDESKTOP_DISABLE_CRASH_REPORTS -DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME -DTDESKTOP_DISABLE_GTK_INTEGRATION -DTDESKTOP_DISABLE_UNITY_INTEGRATION',
+ 
++      '-DTDESKTOP_DISABLE_AUTOUPDATE -DTDESKTOP_DISABLE_CRASH_REPORTS -DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME -DTDESKTOP_DISABLE_UNITY_INTEGRATION',
        '<!@(python -c "for s in \'<@(_defines)\'.split(\' \'): print(\'-D\' + s)")',
        # '<!@(python -c "for s in \'<@(_include_dirs)\'.split(\' \'): print(\'-I\' + s)")',
        '<(RULE_INPUT_PATH)',
-
 diff --git a/Telegram/gyp/qt_rcc.gypi b/Telegram/gyp/qt_rcc.gypi
-index eebc6967..19a346fe 100644
+index f5624a82b..1129a95c5 100644
 --- a/Telegram/gyp/qt_rcc.gypi
 +++ b/Telegram/gyp/qt_rcc.gypi
-@@ -28,7 +28,7 @@
+@@ -15,7 +15,7 @@
        '<(SHARED_INTERMEDIATE_DIR)/<(_target_name)/qrc/qrc_<(RULE_INPUT_ROOT).cpp',
      ],
      'action': [
@@ -207,7 +206,7 @@ index eebc6967..19a346fe 100644
        '-no-compress',
        '<(RULE_INPUT_PATH)',
 diff --git a/Telegram/gyp/settings_linux.gypi b/Telegram/gyp/settings_linux.gypi
-index 17219fa2c..6853b5c3e 100644
+index 17f7a5c9c..60b145a1b 100644
 --- a/Telegram/gyp/settings_linux.gypi
 +++ b/Telegram/gyp/settings_linux.gypi
 @@ -11,7 +11,6 @@
@@ -218,7 +217,7 @@ index 17219fa2c..6853b5c3e 100644
            '-W',
            '-fPIC',
            '-Wno-unused-variable',
-@@ -60,7 +59,6 @@
+@@ -63,7 +62,6 @@
        ],
        'defines': [
          '_REENTRANT',
@@ -227,11 +226,9 @@ index 17219fa2c..6853b5c3e 100644
        ],
        'cflags_c': [
 diff --git a/Telegram/gyp/telegram_linux.gypi b/Telegram/gyp/telegram_linux.gypi
-index ffe0e5a96..dd51bad58 100644
+index ffe0e5a96..db02db847 100644
 --- a/Telegram/gyp/telegram_linux.gypi
 +++ b/Telegram/gyp/telegram_linux.gypi
- # In order to work libxkbcommon must be linked statically,
- # PKGCONFIG links it like "-L/usr/local/lib -lxkbcommon"
 @@ -18,51 +18,35 @@
  # QApplication() -> createPlatformIntegration -> QXcbIntegrationPlugin::create
          #'xkbcommon',
@@ -305,7 +302,7 @@ index ffe0e5a96..dd51bad58 100644
  #      '<!(pkg-config 2> /dev/null --libs <@(pkgconfig_libs))',
      ],
      'cflags_cc': [
-@@ -97,9 +97,8 @@
+@@ -97,9 +81,8 @@
          ],
        }], ['not_need_gtk!="True"', {
          'cflags_cc': [

@@ -197,7 +197,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.7.1"
+                    "branch": "45a6985df"
                 },
                 {
                     "type": "patch",
@@ -226,10 +226,6 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-single-instance.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-enable-appindicator-for-notifications.patch"
                 },
                 {
                     "type": "patch",
