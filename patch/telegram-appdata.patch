@@ -1,11 +1,12 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 012de8e5a..52afee879 100644
+index 9eedae55c..04a980d39 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -34,6 +34,27 @@
+@@ -33,6 +33,29 @@
+         <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
-     <releases>
++    <releases>
 +        <release version="1.7.0" date="2019-05-09">
 +            <description>
 +                <p>Archive any chat from the right-click menu.</p>
@@ -27,6 +28,7 @@ index 012de8e5a..52afee879 100644
 +                <p>Bug fixes and other minor improvements.</p>
 +            </description>
 +        </release>
-     </releases>
++    </releases>
      <content_rating type="oars-1.1">
          <content_attribute id="violence-cartoon">none</content_attribute>
+         <content_attribute id="violence-fantasy">none</content_attribute>
