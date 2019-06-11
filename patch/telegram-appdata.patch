@@ -1,12 +1,18 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..96b53cdbb 100644
+index 9eedae55c..25e46eb48 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -33,6 +33,33 @@
+@@ -33,6 +33,31 @@
          <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
 +    <releases>
++        <release version="1.7.7" date="2019-06-10">
++            <description>
++                <p>Download video files while watching them using streaming.</p>
++                <p>Bug fixes and other minor improvements.</p>
++            </description>
++        </release>
 +        <release version="1.7.2" date="2019-05-31">
 +            <description>
 +                <p>Choose who can see your phone number with granular precision in Privacy &amp; Security settings.</p>
@@ -22,14 +28,6 @@ index 9eedae55c..96b53cdbb 100644
 +                <p>Chats with enabled notifications will pop out of the archive when a notification arrives.</p>
 +                <p>Muted chats will stay in the archive.</p>
 +                <p>Pin an unlimited number of chats in your archive.</p>
-+            </description>
-+        </release>
-+        <release version="1.6.7" date="2019-04-13">
-+            <description>
-+                <p>Replace media when editing messages with media content.</p>
-+                <p>Jump quickly to the top of your chats list.</p>
-+                <p>Get emoji suggestions for the first word you type in a message.</p>
-+                <p>Help Telegram improve emoji suggestions in your language using <a href ="https://translations.telegram.org/en/emoji">this interface.</a></p>
 +            </description>
 +        </release>
 +    </releases>
