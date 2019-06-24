@@ -1,12 +1,21 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..25e46eb48 100644
+index 9eedae55c..cc0a5b7f1 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -33,6 +33,31 @@
+@@ -33,6 +33,32 @@
          <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
 +    <releases>
++        <release version="1.7.9" date="2019-06-23">
++            <description>
++                <p>You can now add any users to your contacts, even if their phone numbers are not visible.</p>
++                <p>Transfer ownership of group chats and channels by granting full rights to another admin. Useful when switching jobs or if you just want to retire as creator.</p>
++                <p>Hide archived chats to the main menu.</p>
++                <p>See who is online straight from the chat list.</p>
++                <p>Use the MacBook Pro TouchBar to apply formatting to selected text, insert emoji, and send stickers.</p>
++            </description>
++        </release>
 +        <release version="1.7.7" date="2019-06-10">
 +            <description>
 +                <p>Download video files while watching them using streaming.</p>
@@ -20,14 +29,6 @@ index 9eedae55c..25e46eb48 100644
 +                <p>Connect a discussion group to your channel, subscribers will see a "Discuss" button.</p>
 +                <p>Integrate bots seamlessly with web services. For example, see t.me/DiscussThis/2</p>
 +                <p>Use TouchBar on MacBooks Pro to control music playback and switch between pinned chats.</p>
-+            </description>
-+        </release>
-+        <release version="1.7.0" date="2019-05-09">
-+            <description>
-+                <p>Archive any chat from the right-click menu.</p>
-+                <p>Chats with enabled notifications will pop out of the archive when a notification arrives.</p>
-+                <p>Muted chats will stay in the archive.</p>
-+                <p>Pin an unlimited number of chats in your archive.</p>
 +            </description>
 +        </release>
 +    </releases>
