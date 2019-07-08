@@ -1,12 +1,22 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..cc0a5b7f1 100644
+index 9eedae55c..0d8325bb1 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -33,6 +33,32 @@
+@@ -33,6 +33,34 @@
          <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
 +    <releases>
++        <release version="1.7.14" date="2019-07-07">
++            <description>
++                <p>Send ultra-lightweight high-quality animated stickers to express emotion with motion.</p>
++                <p>Receive animated stickers instantly on any connection at just 20-30 KB per sticker.</p>
++                <p>Enjoy smooth animations at 60 frames per second.</p>
++                <p>Create new animated sets and upload them to @stickers for everybody to use.</p>
++                <p>Try out these sample stickers: t.me/addstickers/hotcherry</p>
++                <p>Use strikethrough and underline formatting.</p>
++            </description>
++        </release>
 +        <release version="1.7.9" date="2019-06-23">
 +            <description>
 +                <p>You can now add any users to your contacts, even if their phone numbers are not visible.</p>
@@ -22,15 +32,7 @@ index 9eedae55c..cc0a5b7f1 100644
 +                <p>Bug fixes and other minor improvements.</p>
 +            </description>
 +        </release>
-+        <release version="1.7.2" date="2019-05-31">
-+            <description>
-+                <p>Choose who can see your phone number with granular precision in Privacy &amp; Security settings.</p>
-+                <p>Add group chats to "Always/Never Share" exceptions for any privacy setting. Permissions will update as users leave and join the groups.</p>
-+                <p>Connect a discussion group to your channel, subscribers will see a "Discuss" button.</p>
-+                <p>Integrate bots seamlessly with web services. For example, see t.me/DiscussThis/2</p>
-+                <p>Use TouchBar on MacBooks Pro to control music playback and switch between pinned chats.</p>
-+            </description>
-+        </release>
++
 +    </releases>
      <content_rating type="oars-1.1">
          <content_attribute id="violence-cartoon">none</content_attribute>
