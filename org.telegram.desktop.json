@@ -197,7 +197,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.7.14"
+                    "branch": "0710dde4d5526454318b2748331e887c01ecfdce"
                 },
                 {
                     "type": "patch",
@@ -234,10 +234,6 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-rlottie-static-qt.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-convertFromARGB32PM.patch"
                 },
                 {
                     "type": "file",
