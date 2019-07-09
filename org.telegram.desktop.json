@@ -232,6 +232,10 @@
                     "path": "patch/telegram-appdata.patch"
                 },
                 {
+                    "type": "patch",
+                    "path": "patch/telegram-convertFromARGB32PM.patch"
+                },
+                {
                     "type": "file",
                     "path": "patch/CMakeLists.inj"
                 },
