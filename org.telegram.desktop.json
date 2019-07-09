@@ -233,6 +233,10 @@
                 },
                 {
                     "type": "patch",
+                    "path": "patch/telegram-rlottie-static-qt.patch"
+                },
+                {
+                    "type": "patch",
                     "path": "patch/telegram-convertFromARGB32PM.patch"
                 },
                 {
