@@ -233,10 +233,6 @@
                     "path": "patch/telegram-appdata.patch"
                 },
                 {
-                    "type": "patch",
-                    "path": "patch/telegram-rlottie-static-qt.patch"
-                },
-                {
                     "type": "file",
                     "path": "patch/CMakeLists.inj"
                 },
