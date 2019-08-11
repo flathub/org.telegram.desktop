@@ -1,0 +1,27 @@
+diff --git a/Telegram/SourceFiles/platform/linux/specific_linux.h b/Telegram/SourceFiles/platform/linux/specific_linux.h
+index ef9fd2086..9edf69e63 100644
+--- a/Telegram/SourceFiles/platform/linux/specific_linux.h
++++ b/Telegram/SourceFiles/platform/linux/specific_linux.h
+@@ -36,7 +36,7 @@ QString CurrentExecutablePath(int argc, char *argv[]);
+ } // namespace Platform
+
+ inline QString psServerPrefix() {
+-    return qsl("/tmp/");
++    return QStandardPaths::writableLocation(QStandardPaths::TempLocation) + qsl("/");
+ }
+ inline void psCheckLocalSocket(const QString &serverName) {
+     QFile address(serverName);
+
+diff --git a/Telegram/SourceFiles/core/file_utilities.cpp b/Telegram/SourceFiles/core/file_utilities.cpp
+index 6be11623d..29b5c4a9e 100644
+--- a/Telegram/SourceFiles/core/file_utilities.cpp
++++ b/Telegram/SourceFiles/core/file_utilities.cpp
+@@ -146,7 +146,7 @@ void ShowInFolder(const QString &filepath) {
+
+ QString DefaultDownloadPath() {
+ 	return QStandardPaths::writableLocation(
+-		QStandardPaths::DownloadLocation)
++		QStandardPaths::TempLocation)
+ 		+ '/'
+ 		+ (Main::Session::Exists() && Auth().supportMode()
+ 			? "Tsupport Desktop"
