@@ -8,8 +8,7 @@
     "rename-desktop-file": "telegramdesktop.desktop",
     "rename-appdata-file": "telegramdesktop.appdata.xml",
     "rename-icon": "telegram-desktop",
-    "finish-args": [ "--env=QT_QPA_PLATFORM=xcb",
-                     "--share=ipc",
+    "finish-args": [ "--share=ipc",
                      "--share=network",
                      "--socket=x11",
                      "--socket=wayland",
@@ -198,7 +197,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "0710dde4d5526454318b2748331e887c01ecfdce"
+                    "branch": "v1.8.1"
                 },
                 {
                     "type": "patch",
@@ -230,6 +229,14 @@
                 },
                 {
                     "type": "patch",
+                    "path": "patch/telegram-cache-dir-for-downloads.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patch/telegram-revert-private-headers.patch"
+                },
+                {
+                    "type": "patch",
                     "path": "patch/telegram-appdata.patch"
                 },
                 {
@@ -240,6 +247,7 @@
                     "type": "script",
                     "dest-filename": "telegram-desktop",
                     "commands": [
+                        "if [ $XDG_CURRENT_DESKTOP != \"KDE\" ]; then export QT_QPA_PLATFORM=xcb; fi",
                         "exec env TMPDIR=$XDG_CACHE_HOME /app/bin/Telegram \"$@\""
                     ]
                 }

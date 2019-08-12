@@ -11,16 +11,3 @@ index 4f9ef1326..553d09471 100644
  #else // OS_MAC_STORE
  	h[4] = 0; // use only first 4 chars
  	_localServerName = psServerPrefix() + h;
-diff --git a/Telegram/SourceFiles/platform/linux/specific_linux.h b/Telegram/SourceFiles/platform/linux/specific_linux.h
-index ef9fd2086..9edf69e63 100644
---- a/Telegram/SourceFiles/platform/linux/specific_linux.h
-+++ b/Telegram/SourceFiles/platform/linux/specific_linux.h
-@@ -36,7 +36,7 @@ QString CurrentExecutablePath(int argc, char *argv[]);
- } // namespace Platform
- 
- inline QString psServerPrefix() {
--    return qsl("/tmp/");
-+    return QStandardPaths::writableLocation(QStandardPaths::TempLocation) + qsl("/");
- }
- inline void psCheckLocalSocket(const QString &serverName) {
-     QFile address(serverName);
