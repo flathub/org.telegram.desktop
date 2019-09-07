@@ -1,12 +1,17 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..3c0e4106a 100644
+index 9eedae55c..bac7aab25 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -33,6 +33,27 @@
+@@ -33,6 +33,32 @@
          <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
 +    <releases>
++        <release version="1.8.4" date="2019-09-06">
++            <description>
++                <p>Bug fixes and other minor improvements.</p>
++            </description>
++        </release>
 +        <release version="1.8.2" date="2019-08-20">
 +            <description>
 +                <p>Bug fixes and other minor improvements.</p>
