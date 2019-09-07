@@ -189,10 +189,7 @@
                 "install -d /app/share/kservices5",
                 "install -m644 lib/xdg/tg.protocol /app/share/kservices5/tg.protocol",
 
-                "for icon_size in 16 32 48 64 128 256 512; do \
-                     install -d /app/share/icons/hicolor/${icon_size}x${icon_size}/apps \
-                     install -m644 Telegram/Resources/art/icon${icon_size}.png /app/share/icons/hicolor/${icon_size}x${icon_size}/apps/telegram-desktop.png \
-                 done"
+                "for icon_size in 16 32 48 64 128 256 512; do install -d /app/share/icons/hicolor/${icon_size}x${icon_size}/apps; install -m644 Telegram/Resources/art/icon${icon_size}.png /app/share/icons/hicolor/${icon_size}x${icon_size}/apps/telegram-desktop.png; done"
             ],
             "sources": [
                 {
