@@ -9,6 +9,7 @@ index 9eedae55c..a2b3df5da 100644
 +    <releases>
 +        <release version="1.8.8" date="2019-09-10">
 +            <description>
++                <p>Custom Cloud Themes</p>
 +                <ul>
 +                    <li>Create new themes based on your color and wallpaper choices.</li>
 +                    <li>Share your themes with others users via links.</li>
