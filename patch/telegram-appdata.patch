@@ -1,8 +1,8 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..a2b3df5da 100644
+index 9eedae55c..d4c8d4977 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -33,6 +33,39 @@
+@@ -33,6 +33,42 @@
          <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
@@ -12,7 +12,7 @@ index 9eedae55c..a2b3df5da 100644
 +                <p>Custom Cloud Themes</p>
 +                <ul>
 +                    <li>Create new themes based on your color and wallpaper choices.</li>
-+                    <li>Share your themes with others users via links.</li>
++                    <li>Share your themes with other users via links.</li>
 +                    <li>Update your theme for all its users when you change something.</li>
 +                </ul>
 +            </description>
