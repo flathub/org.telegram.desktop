@@ -1,12 +1,19 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..bac7aab25 100644
+index 9eedae55c..a2b3df5da 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -33,6 +33,32 @@
+@@ -33,6 +33,39 @@
          <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
 +    <releases>
++        <release version="1.8.8" date="2019-09-10">
++            <description>
++                <p>Create new themes based on your color and wallpaper choices.</p>
++                <p>Share your themes with others users via links.</p>
++                <p>Update your theme for all its users when you change something.</p>
++            </description>
++        </release>
 +        <release version="1.8.4" date="2019-09-06">
 +            <description>
 +                <p>Bug fixes and other minor improvements.</p>
