@@ -1,23 +1,9 @@
-diff --git a/Telegram/SourceFiles/platform/linux/specific_linux.h b/Telegram/SourceFiles/platform/linux/specific_linux.h
-index ef9fd2086..9edf69e63 100644
---- a/Telegram/SourceFiles/platform/linux/specific_linux.h
-+++ b/Telegram/SourceFiles/platform/linux/specific_linux.h
-@@ -36,7 +36,7 @@ QString CurrentExecutablePath(int argc, char *argv[]);
- } // namespace Platform
-
- inline QString psServerPrefix() {
--    return qsl("/tmp/");
-+    return QStandardPaths::writableLocation(QStandardPaths::TempLocation) + qsl("/");
- }
- inline void psCheckLocalSocket(const QString &serverName) {
-     QFile address(serverName);
-
 diff --git a/Telegram/SourceFiles/core/file_utilities.cpp b/Telegram/SourceFiles/core/file_utilities.cpp
-index 6be11623d..29b5c4a9e 100644
+index dbd46ff07..86299a9bf 100644
 --- a/Telegram/SourceFiles/core/file_utilities.cpp
 +++ b/Telegram/SourceFiles/core/file_utilities.cpp
-@@ -146,7 +146,7 @@ void ShowInFolder(const QString &filepath) {
-
+@@ -151,7 +151,7 @@ void ShowInFolder(const QString &filepath) {
+ 
  QString DefaultDownloadPath() {
  	return QStandardPaths::writableLocation(
 -		QStandardPaths::DownloadLocation)
@@ -25,3 +11,25 @@ index 6be11623d..29b5c4a9e 100644
  		+ '/'
  		+ (Main::Session::Exists() && Auth().supportMode()
  			? "Tsupport Desktop"
+diff --git a/Telegram/SourceFiles/platform/linux/specific_linux.h b/Telegram/SourceFiles/platform/linux/specific_linux.h
+index 9af2a64c0..8fbedb307 100644
+--- a/Telegram/SourceFiles/platform/linux/specific_linux.h
++++ b/Telegram/SourceFiles/platform/linux/specific_linux.h
+@@ -11,6 +11,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ 
+ #include <signal.h>
+ 
++#include <QStandardPaths>
++
+ namespace Data {
+ class LocationPoint;
+ } // namespace Data
+@@ -47,7 +49,7 @@ inline constexpr bool UseMainQueueGeneric() {
+ } // namespace Platform
+ 
+ inline QString psServerPrefix() {
+-    return qsl("/tmp/");
++    return QStandardPaths::writableLocation(QStandardPaths::TempLocation) + qsl("/");
+ }
+ inline void psCheckLocalSocket(const QString &serverName) {
+     QFile address(serverName);
