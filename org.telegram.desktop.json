@@ -152,6 +152,9 @@
         {
             "name": "range-3",
             "buildsystem": "cmake",
+            "build-options": {
+                "cflags": "-Wno-error"
+            },
             "sources": [
                 {
                     "type": "archive",
