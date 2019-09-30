@@ -1,12 +1,17 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..d4c8d4977 100644
+index 9eedae55c..ca51c1200 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -33,6 +33,42 @@
+@@ -33,6 +33,28 @@
          <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
 +    <releases>
++        <release version="1.8.9" date="2019-09-30">
++            <description>
++                <p>Bug fixes and other minor improvements.</p>
++            </description>
++        </release>
 +        <release version="1.8.8" date="2019-09-10">
 +            <description>
 +                <p>Custom Cloud Themes</p>
@@ -20,25 +25,6 @@ index 9eedae55c..d4c8d4977 100644
 +        <release version="1.8.4" date="2019-09-06">
 +            <description>
 +                <p>Bug fixes and other minor improvements.</p>
-+            </description>
-+        </release>
-+        <release version="1.8.2" date="2019-08-20">
-+            <description>
-+                <p>Bug fixes and other minor improvements.</p>
-+            </description>
-+        </release>
-+        <release version="1.8.1" date="2019-08-10">
-+            <description>
-+                <p>Bug fixes and other minor improvements.</p>
-+            </description>
-+        </release>
-+        <release version="1.8" date="2019-08-09">
-+            <description>
-+                <p>Right click the Send button to send any message without sound - in case the recipient is sleeping.</p>
-+                <p>Enable Slow Mode in Group Permissions to control how frequently members can post.</p>
-+                <p>Set custom titles for group admins - like &#39;Founder&#39;, &#39;CFO&#39; or &#39;Spam Fighter&#39;.</p>
-+                <p>Toggle looped playback for animated stickers in Chat Settings.</p>
-+                <p>Send a single :heart:, :like:, :unamused:, :flushed: or :party: to add a mighty animated emoji to the chat.</p>
 +            </description>
 +        </release>
 +    </releases>
