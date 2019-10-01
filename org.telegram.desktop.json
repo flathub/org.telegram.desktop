@@ -155,12 +155,15 @@
             "build-options": {
                 "cflags": "-Wno-error"
             },
-            "config-opts": [ "-DRANGE_V3_TESTS=OFF -DRANGE_V3_EXAMPLES=OFF -DRANGE_V3_DOCS=OFF" ],
             "sources": [
                 {
                     "type": "archive",
                     "url": "https://github.com/ericniebler/range-v3/archive/0.9.1.tar.gz",
                     "sha256": "2b5b442d572b5978ea51c650adfaf0796f39f326404d09b83d846e04f571876b"
+                },
+                {
+                    "type": "patch",
+                    "path": "patch/ranges-v3-disable-tests-doc-examples.patch"
                 }
             ]
         },
