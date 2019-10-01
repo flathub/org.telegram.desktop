@@ -239,6 +239,10 @@
                 },
                 {
                     "type": "patch",
+                    "path": "patch/telegram-build-against-new-range-v3.patch"
+                },
+                {
+                    "type": "patch",
                     "path": "patch/telegram-appdata.patch"
                 },
                 {
