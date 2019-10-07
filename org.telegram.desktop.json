@@ -203,7 +203,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.8.9"
+                    "branch": "v1.8.14"
                 },
                 {
                     "type": "patch",
@@ -240,10 +240,6 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-revert-private-headers.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-build-against-new-range-v3.patch"
                 },
                 {
                     "type": "patch",

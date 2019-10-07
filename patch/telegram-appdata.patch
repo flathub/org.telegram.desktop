@@ -1,5 +1,5 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..ca51c1200 100644
+index 9eedae55c..a29e88b58 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
 @@ -33,6 +33,28 @@
@@ -7,6 +7,11 @@ index 9eedae55c..ca51c1200 100644
          <keyword>im</keyword>
      </keywords>
 +    <releases>
++        <release version="1.8.14" date="2019-10-07">
++            <description>
++                <p>Bug fixes and other minor improvements.</p>
++            </description>
++        </release>
 +        <release version="1.8.9" date="2019-09-30">
 +            <description>
 +                <p>Bug fixes and other minor improvements.</p>
@@ -20,11 +25,6 @@ index 9eedae55c..ca51c1200 100644
 +                    <li>Share your themes with other users via links.</li>
 +                    <li>Update your theme for all its users when you change something.</li>
 +                </ul>
-+            </description>
-+        </release>
-+        <release version="1.8.4" date="2019-09-06">
-+            <description>
-+                <p>Bug fixes and other minor improvements.</p>
 +            </description>
 +        </release>
 +    </releases>
