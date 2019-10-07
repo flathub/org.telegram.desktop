@@ -1,5 +1,5 @@
 diff --git a/Telegram/SourceFiles/base/basic_types.h b/Telegram/SourceFiles/base/basic_types.h
-index 08c6218fb..d64e1fdd4 100644
+index bd5ec4059..a6d3ce0e0 100644
 --- a/Telegram/SourceFiles/base/basic_types.h
 +++ b/Telegram/SourceFiles/base/basic_types.h
 @@ -7,7 +7,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
@@ -11,7 +11,7 @@ index 08c6218fb..d64e1fdd4 100644
  #include "base/unique_function.h"
  #include "base/functors.h"
 @@ -48,6 +47,20 @@ using float64 = double;
- using TimeMs = int64;
+ 
  using TimeId = int32;
  
 +#if defined(__GNUC__) || defined(__clang__)
@@ -30,25 +30,25 @@ index 08c6218fb..d64e1fdd4 100644
 +
  // Define specializations for QByteArray for Qt 5.3.2, because
  // QByteArray in Qt 5.3.2 doesn't declare "pointer" subtype.
- #ifdef OS_MAC_OLD
+ #if QT_VERSION < QT_VERSION_CHECK(5, 5, 0)
 diff --git a/Telegram/SourceFiles/config.h b/Telegram/SourceFiles/config.h
-index 863d0280e..8ed87c2c5 100644
+index d3460cc08..fb4ec685d 100644
 --- a/Telegram/SourceFiles/config.h
 +++ b/Telegram/SourceFiles/config.h
-@@ -202,7 +202,7 @@ static const char *ApiHash = "344583e45741c457fe1862106095a5eb";
- #endif
+@@ -177,7 +177,7 @@ constexpr auto ApiHash = "344583e45741c457fe1862106095a5eb";
+ #endif // TDESKTOP_API_ID && TDESKTOP_API_HASH
  
  #if Q_BYTE_ORDER == Q_BIG_ENDIAN
 -#error "Only little endian is supported!"
 +#warning "Be aware, only little endian is supported!"
  #endif // Q_BYTE_ORDER == Q_BIG_ENDIAN
  
- #ifndef ALPHA_VERSION_MACRO
-diff --git a/Telegram/SourceFiles/ui/animation.h b/Telegram/SourceFiles/ui/animation.h
-index 470e67506..c85ff1a90 100644
---- a/Telegram/SourceFiles/ui/animation.h
-+++ b/Telegram/SourceFiles/ui/animation.h
-@@ -169,9 +169,10 @@ TG_FORCE_INLINE int interpolate(int a, int b, float64 b_ratio) {
+ #if (TDESKTOP_ALPHA_VERSION != 0)
+diff --git a/Telegram/SourceFiles/ui/effects/animation_value.h b/Telegram/SourceFiles/ui/effects/animation_value.h
+index 2d822eb33..9721da61c 100644
+--- a/Telegram/SourceFiles/ui/effects/animation_value.h
++++ b/Telegram/SourceFiles/ui/effects/animation_value.h
+@@ -97,9 +97,10 @@ TG_FORCE_INLINE int interpolate(int a, int b, float64 b_ratio) {
  	return qRound(a + float64(b - a) * b_ratio);
  }
  
