@@ -253,7 +253,6 @@
                     "type": "script",
                     "dest-filename": "telegram-desktop",
                     "commands": [
-                        "if [ $XDG_CURRENT_DESKTOP != \"KDE\" ]; then export QT_QPA_PLATFORM=xcb; fi",
                         "exec env TMPDIR=$XDG_CACHE_HOME /app/bin/Telegram \"$@\""
                     ]
                 }
