@@ -53,6 +53,8 @@
             "name": "ffmpeg",
             "config-opts": [
                 "--disable-programs",
+                "--disable-static",
+                "--enable-shared",
                 "--disable-doc",
                 "--disable-pthreads",
                 "--disable-mmx",
