@@ -115,8 +115,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ffmpeg.org/releases/ffmpeg-3.4.5.tar.xz",
-                    "sha256": "741cbd6394eaed370774ca4cc089eaafbc54d0824b9aa360d4b3b0cbcbc4a92c"
+                    "url": "https://ffmpeg.org/releases/ffmpeg-4.2.1.tar.bz2",
+                    "sha256": "682a9fa3f6864d7f0dbf224f86b129e337bc60286e0d00dffcd710998d521624"
                 }
             ]
         },
