@@ -53,9 +53,10 @@
             "name": "ffmpeg",
             "config-opts": [
                 "--disable-programs",
+                "--disable-static",
+                "--enable-shared",
                 "--disable-doc",
                 "--disable-pthreads",
-                "--disable-mmx",
                 "--disable-everything",
                 "--enable-pic",
                 "--enable-libopus",
@@ -65,7 +66,6 @@
                 "--enable-decoder=flac",
                 "--enable-decoder=gif",
                 "--enable-decoder=h264",
-                "--enable-decoder=h264_vdpau",
                 "--enable-decoder=mp1",
                 "--enable-decoder=mp1float",
                 "--enable-decoder=mp2",
@@ -77,7 +77,6 @@
                 "--enable-decoder=mp3on4",
                 "--enable-decoder=mp3on4float",
                 "--enable-decoder=mpeg4",
-                "--enable-decoder=mpeg4_vdpau",
                 "--enable-decoder=msmpeg4v2",
                 "--enable-decoder=msmpeg4v3",
                 "--enable-decoder=opus",
@@ -115,8 +114,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ffmpeg.org/releases/ffmpeg-3.4.5.tar.xz",
-                    "sha256": "741cbd6394eaed370774ca4cc089eaafbc54d0824b9aa360d4b3b0cbcbc4a92c"
+                    "url": "https://ffmpeg.org/releases/ffmpeg-4.2.1.tar.bz2",
+                    "sha256": "682a9fa3f6864d7f0dbf224f86b129e337bc60286e0d00dffcd710998d521624"
                 }
             ]
         },
