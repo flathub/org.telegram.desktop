@@ -1,5 +1,5 @@
 diff --git a/Telegram/gyp/common/linux.gypi b/Telegram/gyp/common/linux.gypi
-index cdcdef1dc..de6c4b6b2 100644
+index cdcdef1dc..3355bd932 100644
 --- a/Telegram/gyp/common/linux.gypi
 +++ b/Telegram/gyp/common/linux.gypi
 @@ -11,7 +11,6 @@
@@ -10,7 +10,7 @@ index cdcdef1dc..de6c4b6b2 100644
            '-W',
            '-fPIC',
            '-Wno-unused-variable',
-@@ -26,29 +25,18 @@
+@@ -26,29 +25,19 @@
            '-Wno-error=class-memaccess',
            '-Wno-error=parentheses',
          ],
@@ -29,6 +29,7 @@ index cdcdef1dc..de6c4b6b2 100644
 -        '<(linux_path_breakpad)/include/breakpad',
 -        '<(linux_path_opus_include)',
 -        '<(linux_path_range)/include',
++      '<(libs_loc)/opus/include'
 +      '/app/include/',
 +      '/app/include/meta',
 +      '/app/include/range/',
@@ -47,7 +48,7 @@ index cdcdef1dc..de6c4b6b2 100644
        ],
        'conditions': [
          [ '"<!(uname -m)" == "x86_64" or "<!(uname -m)" == "aarch64"', {
-@@ -86,7 +74,6 @@
+@@ -86,7 +75,6 @@
        ],
        'defines': [
          '_REENTRANT',
@@ -56,7 +57,7 @@ index cdcdef1dc..de6c4b6b2 100644
        ],
        'cflags_c': [
 diff --git a/Telegram/gyp/modules/qt.gypi b/Telegram/gyp/modules/qt.gypi
-index 0b783ec21..fca4cffa3 100644
+index 0b783ec21..850e99718 100644
 --- a/Telegram/gyp/modules/qt.gypi
 +++ b/Telegram/gyp/modules/qt.gypi
 @@ -14,25 +14,23 @@
@@ -139,17 +140,17 @@ index 0b783ec21..fca4cffa3 100644
 @@ -128,10 +103,6 @@
      # where [sources] contains all your source files
      'qt_moc_list_sources_arg': '--moc-prefix SHARED_INTERMEDIATE_DIR/<(_target_name)/moc/moc_',
- 
+
 -    'linux_path_xkbcommon%': '/usr/local',
 -    'linux_lib_ssl%': '/usr/local/ssl/lib/libssl.a',
 -    'linux_lib_crypto%': '/usr/local/ssl/lib/libcrypto.a',
 -    'linux_lib_icu%': 'libicutu.a libicui18n.a libicuuc.a libicudata.a',
    },
- 
+
    'configurations': {
 @@ -180,14 +151,14 @@
    },
- 
+
    'include_dirs': [
 -    '<(qt_loc)/include',
 -    '<(qt_loc)/include/QtCore',
@@ -195,7 +196,7 @@ index 0b783ec21..fca4cffa3 100644
 +        '/app/include/meta',
 +        '/app/include/range/',
 +        '/app/include/range/v3',
-+        '/app/include/opus',
++        '/usr/include/opus',
 +        '/usr/lib/mkspecs/linux-g++',
 +        '/usr/include/QtCore'
        ],
@@ -214,10 +215,10 @@ index ebee90a15..697c1113c 100644
      'action': [
 -      '<(qt_loc)/bin/moc<(exe_ext)',
 +      '/usr/bin/moc',
- 
+
        # Silence "Note: No relevant classes found. No output generated."
        '--no-notes',
- 
+
 +      '-DTDESKTOP_DISABLE_AUTOUPDATE -DTDESKTOP_DISABLE_CRASH_REPORTS -DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME -DTDESKTOP_DISABLE_UNITY_INTEGRATION',
        '<!@(python -c "for s in \'<@(_defines)\'.split(\' \'): print(\'-D\' + s)")',
        # '<!@(python -c "for s in \'<@(_include_dirs)\'.split(\' \'): print(\'-I\' + s)")',
@@ -236,7 +237,7 @@ index f5624a82b..1129a95c5 100644
        '-no-compress',
        '<(RULE_INPUT_PATH)',
 diff --git a/Telegram/gyp/telegram/linux.gypi b/Telegram/gyp/telegram/linux.gypi
-index 385f2b89f..44294427b 100644
+index 385f2b89f..3c5f618d0 100644
 --- a/Telegram/gyp/telegram/linux.gypi
 +++ b/Telegram/gyp/telegram/linux.gypi
 @@ -19,27 +19,27 @@
@@ -267,8 +268,7 @@ index 385f2b89f..44294427b 100644
        '-lva-drm',
        '-lva',
        '-lvdpau',
--      '-ldrm',
-+      '-ldrm',
+       '-ldrm',
 +      '-lopus',
        '-lz',
 +      '-lwebp',
@@ -302,7 +302,7 @@ index c207db637..4a873a0e8 100644
 +++ b/Telegram/gyp/telegram/telegram.gypi
 @@ -85,26 +85,27 @@
      ],
- 
+
      'defines': [
 -      'AL_LIBTYPE_STATIC',
 -      'AL_ALEXT_PROTOTYPES',
@@ -320,7 +320,7 @@ index c207db637..4a873a0e8 100644
 +      'TDESKTOP_DISABLE_OPENAL_EFFECTS',
        '<!@(python -c "for s in \'<(build_defines)\'.split(\',\'): print(s)")',
      ],
- 
+
      'include_dirs': [
        '<(src_loc)',
        '<(SHARED_INTERMEDIATE_DIR)',
