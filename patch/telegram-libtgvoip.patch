@@ -6,7 +6,7 @@ index 91697a2..069f60d 100644
          'include_dirs': [
            '<(tgvoip_src_loc)/webrtc_dsp',
            '<(linux_path_opus_include)',
-+          '/app/include/opus',
++          '/usr/include/opus',
          ],
          'direct_dependent_settings': {
            'include_dirs': [
