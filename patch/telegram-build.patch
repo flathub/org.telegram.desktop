@@ -1,3 +1,16 @@
+diff --git a/Telegram/ThirdParty/libtgvoip/libtgvoip.gyp b/Telegram/ThirdParty/libtgvoip/libtgvoip.gyp
+index b5f3b81..e6b837f 100644
+--- a/Telegram/ThirdParty/libtgvoip/libtgvoip.gyp
++++ b/Telegram/ThirdParty/libtgvoip/libtgvoip.gyp
+@@ -19,6 +19,7 @@
+         'include_dirs': [
+           '<(tgvoip_src_loc)/webrtc_dsp',
+           '<(linux_path_opus_include)',
++          '/usr/include/opus',
+         ],
+         'direct_dependent_settings': {
+           'include_dirs': [
+
 diff --git a/Telegram/gyp/common/linux.gypi b/Telegram/gyp/common/linux.gypi
 index cdcdef1dc..3355bd932 100644
 --- a/Telegram/gyp/common/linux.gypi
