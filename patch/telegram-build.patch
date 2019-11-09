@@ -64,7 +64,7 @@ index 0b783ec21..fca4cffa3 100644
                  'qt_version%': '5.3.2',
                }, {
 -                'qt_version%': '5.6.2',
-+                'qt_version%': '5.13.1',
++                'qt_version%': '5.13.2',
                }]
              ],
            },
