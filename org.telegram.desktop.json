@@ -235,6 +235,10 @@
                     "path": "patch/telegram-appdata.patch"
                 },
                 {
+                    "type": "patch",
+                    "path": "patch/telegram-fontconfig-use-host-fonts.patch"
+                },
+                {
                     "type": "file",
                     "path": "patch/CMakeLists.inj"
                 },
