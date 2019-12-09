@@ -19,6 +19,18 @@
                      "--talk-name=org.freedesktop.portal.Fcitx",
                      "--filesystem=xdg-download",
                      "--device=dri" ],
+    "add-extensions": {
+        "org.freedesktop.Platform.ffmpeg-full": {
+            "directory": "lib/ffmpeg",
+            "add-ld-path": ".",
+            "version": "19.08",
+            "autodownload": true,
+            "autodelete": false
+        }
+    },
+    "cleanup-commands": [
+        "mkdir -p ${FLATPAK_DEST}/lib/ffmpeg"
+    ],
     "cleanup": [ "/cache",
                  "/man",
                  "/share/man",
@@ -36,76 +48,6 @@
                     "type": "archive",
                     "url": "https://launchpad.net/dee/1.0/1.2.7/+download/dee-1.2.7.tar.gz",
                     "sha256": "1bf0336ce684aa0f48d6eae2469628c1a9b43695a77443bc31a5790aa673bf8a"
-                }
-            ]
-        },
-        {
-            "name": "ffmpeg",
-            "config-opts": [
-                "--disable-programs",
-                "--disable-static",
-                "--enable-shared",
-                "--disable-doc",
-                "--disable-pthreads",
-                "--disable-everything",
-                "--enable-pic",
-                "--enable-libopus",
-                "--enable-decoder=aac",
-                "--enable-decoder=aac_latm",
-                "--enable-decoder=aasc",
-                "--enable-decoder=flac",
-                "--enable-decoder=gif",
-                "--enable-decoder=h264",
-                "--enable-decoder=mp1",
-                "--enable-decoder=mp1float",
-                "--enable-decoder=mp2",
-                "--enable-decoder=mp2float",
-                "--enable-decoder=mp3",
-                "--enable-decoder=mp3adu",
-                "--enable-decoder=mp3adufloat",
-                "--enable-decoder=mp3float",
-                "--enable-decoder=mp3on4",
-                "--enable-decoder=mp3on4float",
-                "--enable-decoder=mpeg4",
-                "--enable-decoder=msmpeg4v2",
-                "--enable-decoder=msmpeg4v3",
-                "--enable-decoder=opus",
-                "--enable-decoder=vorbis",
-                "--enable-decoder=wavpack",
-                "--enable-decoder=wmalossless",
-                "--enable-decoder=wmapro",
-                "--enable-decoder=wmav1",
-                "--enable-decoder=wmav2",
-                "--enable-decoder=wmavoice",
-                "--enable-encoder=libopus",
-                "--enable-hwaccel=h264_vaapi",
-                "--enable-hwaccel=h264_vdpau",
-                "--enable-hwaccel=mpeg4_vaapi",
-                "--enable-hwaccel=mpeg4_vdpau",
-                "--enable-parser=aac",
-                "--enable-parser=aac_latm",
-                "--enable-parser=flac",
-                "--enable-parser=h264",
-                "--enable-parser=mpeg4video",
-                "--enable-parser=mpegaudio",
-                "--enable-parser=opus",
-                "--enable-parser=vorbis",
-                "--enable-demuxer=aac",
-                "--enable-demuxer=flac",
-                "--enable-demuxer=gif",
-                "--enable-demuxer=h264",
-                "--enable-demuxer=mov",
-                "--enable-demuxer=mp3",
-                "--enable-demuxer=ogg",
-                "--enable-demuxer=wav",
-                "--enable-muxer=ogg",
-                "--enable-muxer=opus"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://ffmpeg.org/releases/ffmpeg-4.2.1.tar.bz2",
-                    "sha256": "682a9fa3f6864d7f0dbf224f86b129e337bc60286e0d00dffcd710998d521624"
                 }
             ]
         },
