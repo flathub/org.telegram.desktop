@@ -1,0 +1,26 @@
+From cc080dfaddcbf0d6807128839d4f99bcbb9b3038 Mon Sep 17 00:00:00 2001
+From: Andrew Hayzen <ahayzen@gmail.com>
+Date: Sun, 8 Dec 2019 00:43:46 +0000
+Subject: [PATCH] fc-custom.conf: add /run/host/fonts to fontconfig search path
+
+This resolves issues with flatpak where CJK cannot be found
+on the host.
+---
+ Telegram/Resources/fc-custom.conf | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Telegram/Resources/fc-custom.conf b/Telegram/Resources/fc-custom.conf
+index ab5c18306..5c97a73bf 100644
+--- a/Telegram/Resources/fc-custom.conf
++++ b/Telegram/Resources/fc-custom.conf
+@@ -6,6 +6,7 @@
+ 	<dir>~/.fonts</dir>
+ 	<dir>~/.local/share/fonts</dir>
+ 	<dir>/usr/X11R6/lib/X11/fonts</dir>
++	<dir>/run/host/fonts</dir>
+ 	<dir prefix="xdg">fonts</dir>
+ 	<match target="pattern">
+ 		<test qual="any" name="family">
+-- 
+2.20.1
+
