@@ -1,0 +1,1152 @@
+From 9bfd09e2dbf55caa53424ef7f73e5d29467bfd57 Mon Sep 17 00:00:00 2001
+From: Ilya Fedin <fedin-ilja2010@ya.ru>
+Date: Fri, 3 Jan 2020 08:33:52 +0400
+Subject: [PATCH] Make packaged build working
+
+---
+ external/crash_reports/CMakeLists.txt |  26 +-
+ external/ffmpeg/CMakeLists.txt        |  74 ++++--
+ external/lz4/CMakeLists.txt           |  51 ++--
+ external/openal/CMakeLists.txt        |  14 +-
+ external/openssl/CMakeLists.txt       |  85 +++---
+ external/opus/CMakeLists.txt          |  19 +-
+ external/qt/CMakeLists.txt            | 357 ++++++++++++++------------
+ external/ranges/CMakeLists.txt        |  12 +-
+ external/rlottie/CMakeLists.txt       | 208 +++++++--------
+ external/xxhash/CMakeLists.txt        |  24 +-
+ external/zlib/CMakeLists.txt          |  28 +-
+ init_target.cmake                     |   4 +-
+ options_linux.cmake                   |   7 +-
+ 13 files changed, 514 insertions(+), 395 deletions(-)
+
+diff --git a/external/crash_reports/CMakeLists.txt b/external/crash_reports/CMakeLists.txt
+index a741bcb..90eae86 100644
+--- a/external/crash_reports/CMakeLists.txt
++++ b/external/crash_reports/CMakeLists.txt
+@@ -7,16 +7,18 @@
+ add_library(external_crash_reports INTERFACE IMPORTED GLOBAL)
+ add_library(desktop-app::external_crash_reports ALIAS external_crash_reports)
+ 
+-if (WIN32 OR LINUX OR build_macstore)
+-    add_subdirectory(breakpad)
+-    target_link_libraries(external_crash_reports
+-    INTERFACE
+-        desktop-app::external_breakpad
+-    )
+-else()
+-    add_subdirectory(crashpad)
+-    target_link_libraries(external_crash_reports
+-    INTERFACE
+-        desktop-app::external_crashpad
+-    )
++if (NOT DESKTOP_APP_DISABLE_CRASH_REPORTS)
++    if (WIN32 OR LINUX OR build_macstore)
++        add_subdirectory(breakpad)
++        target_link_libraries(external_crash_reports
++        INTERFACE
++            desktop-app::external_breakpad
++        )
++    else()
++        add_subdirectory(crashpad)
++        target_link_libraries(external_crash_reports
++        INTERFACE
++            desktop-app::external_crashpad
++        )
++    endif()
+ endif()
+diff --git a/external/ffmpeg/CMakeLists.txt b/external/ffmpeg/CMakeLists.txt
+index 014fb06..843ca09 100644
+--- a/external/ffmpeg/CMakeLists.txt
++++ b/external/ffmpeg/CMakeLists.txt
+@@ -7,32 +7,58 @@
+ add_library(external_ffmpeg INTERFACE IMPORTED GLOBAL)
+ add_library(desktop-app::external_ffmpeg ALIAS external_ffmpeg)
+ 
+-target_include_directories(external_ffmpeg SYSTEM
+-INTERFACE
+-    ${libs_loc}/ffmpeg
+-)
++if (DESKTOP_APP_USE_PACKAGED)
++    find_package(PkgConfig REQUIRED)
+ 
+-set(ffmpeg_lib_loc ${libs_loc}/ffmpeg)
++    pkg_check_modules(AVCODEC REQUIRED libavcodec)
++    pkg_check_modules(AVFORMAT REQUIRED libavformat)
++    pkg_check_modules(AVUTIL REQUIRED libavutil)
++    pkg_check_modules(SWSCALE REQUIRED libswscale)
++    pkg_check_modules(SWRESAMPLE REQUIRED libswresample)
+ 
+-target_link_libraries(external_ffmpeg
+-INTERFACE
+-    ${ffmpeg_lib_loc}/libavformat/libavformat.a
+-    ${ffmpeg_lib_loc}/libavcodec/libavcodec.a
+-    ${ffmpeg_lib_loc}/libswresample/libswresample.a
+-    ${ffmpeg_lib_loc}/libswscale/libswscale.a
+-    ${ffmpeg_lib_loc}/libavutil/libavutil.a
+-)
+-if (LINUX)
+-    target_link_static_libraries(external_ffmpeg
++    target_include_directories(external_ffmpeg
+     INTERFACE
+-        va-x11
+-        va-drm
+-        va
+-        vdpau
+-        drm
+-        Xi
+-        Xext
+-        Xfixes
+-        Xrender
++        ${AVCODEC_INCLUDE_DIRS}
++        ${AVFORMAT_INCLUDE_DIRS}
++        ${AVUTIL_INCLUDE_DIRS}
++        ${SWSCALE_INCLUDE_DIRS}
++        ${SWRESAMPLE_INCLUDE_DIRS})
++
++    target_link_libraries(external_ffmpeg
++    INTERFACE
++        ${AVCODEC_LIBRARIES}
++        ${AVFORMAT_LIBRARIES}
++        ${AVUTIL_LIBRARIES}
++        ${SWSCALE_LIBRARIES}
++        ${SWRESAMPLE_LIBRARIES})
++else()
++    target_include_directories(external_ffmpeg SYSTEM
++    INTERFACE
++        ${libs_loc}/ffmpeg
++    )
++
++    set(ffmpeg_lib_loc ${libs_loc}/ffmpeg)
++
++    target_link_libraries(external_ffmpeg
++    INTERFACE
++        ${ffmpeg_lib_loc}/libavformat/libavformat.a
++        ${ffmpeg_lib_loc}/libavcodec/libavcodec.a
++        ${ffmpeg_lib_loc}/libswresample/libswresample.a
++        ${ffmpeg_lib_loc}/libswscale/libswscale.a
++        ${ffmpeg_lib_loc}/libavutil/libavutil.a
+     )
++    if (LINUX)
++        target_link_static_libraries(external_ffmpeg
++        INTERFACE
++            va-x11
++            va-drm
++            va
++            vdpau
++            drm
++            Xi
++            Xext
++            Xfixes
++            Xrender
++        )
++    endif()
+ endif()
+diff --git a/external/lz4/CMakeLists.txt b/external/lz4/CMakeLists.txt
+index 49821af..bcf308d 100644
+--- a/external/lz4/CMakeLists.txt
++++ b/external/lz4/CMakeLists.txt
+@@ -4,26 +4,37 @@
+ # For license and copyright information please follow this link:
+ # https://github.com/desktop-app/legal/blob/master/LEGAL
+ 
+-add_library(external_lz4 OBJECT)
+-add_library(desktop-app::external_lz4 ALIAS external_lz4)
+-init_target(external_lz4 "(external)")
++if (DESKTOP_APP_USE_PACKAGED)
++    add_library(external_lz4 INTERFACE IMPORTED GLOBAL)
++    add_library(desktop-app::external_lz4 ALIAS external_lz4)
+ 
+-set(lz4_loc ${third_party_loc}/lz4/lib)
++    find_package(PkgConfig REQUIRED)
++    pkg_check_modules(LZ4 REQUIRED liblz4)
+ 
+-target_sources(external_lz4
+-PRIVATE
+-    ${lz4_loc}/lz4.c
+-    ${lz4_loc}/lz4.h
+-    ${lz4_loc}/lz4frame.c
+-    ${lz4_loc}/lz4frame.h
+-    ${lz4_loc}/lz4frame_static.h
+-    ${lz4_loc}/lz4hc.c
+-    ${lz4_loc}/lz4hc.h
+-    ${lz4_loc}/xxhash.c
+-    ${lz4_loc}/xxhash.h
+-)
++    target_include_directories(external_lz4 INTERFACE ${LZ4_INCLUDE_DIRS})
++    target_link_libraries(external_lz4 INTERFACE ${LZ4_LIBRARIES})
++else()
++    add_library(external_lz4 OBJECT)
++    add_library(desktop-app::external_lz4 ALIAS external_lz4)
++    init_target(external_lz4 "(external)")
+ 
+-target_include_directories(external_lz4
+-PUBLIC
+-    ${lz4_loc}
+-)
++    set(lz4_loc ${third_party_loc}/lz4/lib)
++
++    target_sources(external_lz4
++    PRIVATE
++        ${lz4_loc}/lz4.c
++        ${lz4_loc}/lz4.h
++        ${lz4_loc}/lz4frame.c
++        ${lz4_loc}/lz4frame.h
++        ${lz4_loc}/lz4frame_static.h
++        ${lz4_loc}/lz4hc.c
++        ${lz4_loc}/lz4hc.h
++        ${lz4_loc}/xxhash.c
++        ${lz4_loc}/xxhash.h
++    )
++
++    target_include_directories(external_lz4
++    PUBLIC
++        ${lz4_loc}
++    )
++endif()
+diff --git a/external/openal/CMakeLists.txt b/external/openal/CMakeLists.txt
+index e2e4992..d20ca0c 100644
+--- a/external/openal/CMakeLists.txt
++++ b/external/openal/CMakeLists.txt
+@@ -7,7 +7,11 @@
+ add_library(external_openal INTERFACE IMPORTED GLOBAL)
+ add_library(desktop-app::external_openal ALIAS external_openal)
+ 
+-if (WIN32)
++if (DESKTOP_APP_USE_PACKAGED)
++    find_package(OpenAL REQUIRED)
++    target_include_directories(external_openal INTERFACE ${OPENAL_INCLUDE_DIR})
++    target_link_libraries(external_openal INTERFACE ${OPENAL_LIBRARY})
++elseif (WIN32)
+     target_include_directories(external_openal SYSTEM
+     INTERFACE
+         ${libs_loc}/openal-soft/include
+@@ -36,8 +40,14 @@ else()
+     )
+ endif()
+ 
++if (NOT DESKTOP_APP_USE_PACKAGED)
++    target_compile_definitions(external_openal
++    INTERFACE
++        AL_LIBTYPE_STATIC
++    )
++endif()
++
+ target_compile_definitions(external_openal
+ INTERFACE
+-    AL_LIBTYPE_STATIC
+     AL_ALEXT_PROTOTYPES
+ )
+diff --git a/external/openssl/CMakeLists.txt b/external/openssl/CMakeLists.txt
+index bcbcbfa..301e9ec 100644
+--- a/external/openssl/CMakeLists.txt
++++ b/external/openssl/CMakeLists.txt
+@@ -7,52 +7,57 @@
+ add_library(external_openssl INTERFACE IMPORTED GLOBAL)
+ add_library(desktop-app::external_openssl ALIAS external_openssl)
+ 
+-if (LINUX)
+-    target_include_directories(external_openssl SYSTEM
+-    INTERFACE
+-        /usr/local/desktop-app/openssl-1.1.1/include
+-    )
+-elseif (NOT APPLE OR NOT build_osx)
+-    target_include_directories(external_openssl SYSTEM
+-    INTERFACE
+-        ${libs_loc}/openssl_1_1_1/include
+-    )
++if (DESKTOP_APP_USE_PACKAGED)
++    find_package(OpenSSL REQUIRED)
++    target_link_libraries(external_openssl INTERFACE OpenSSL::SSL)
+ else()
+-    target_include_directories(external_openssl SYSTEM
+-    INTERFACE
+-        ${libs_loc}/openssl/include
+-    )
+-endif()
++    if (LINUX)
++        target_include_directories(external_openssl SYSTEM
++        INTERFACE
++            /usr/local/desktop-app/openssl-1.1.1/include
++        )
++    elseif (NOT APPLE OR NOT build_osx)
++        target_include_directories(external_openssl SYSTEM
++        INTERFACE
++            ${libs_loc}/openssl_1_1_1/include
++        )
++    else()
++        target_include_directories(external_openssl SYSTEM
++        INTERFACE
++            ${libs_loc}/openssl/include
++        )
++    endif()
+ 
+-if (WIN32)
+-    set(openssl_lib_ext lib)
+-    set(openssl_lib_loc ${libs_loc}/openssl_1_1_1/out32$<$<CONFIG:Debug>:.dbg>)
+-else()
+-    set(openssl_lib_ext a)
+-    if (APPLE)
+-        if (NOT build_osx)
+-            set(openssl_lib_loc ${libs_loc}/openssl_1_1_1)
++    if (WIN32)
++        set(openssl_lib_ext lib)
++        set(openssl_lib_loc ${libs_loc}/openssl_1_1_1/out32$<$<CONFIG:Debug>:.dbg>)
++    else()
++        set(openssl_lib_ext a)
++        if (APPLE)
++            if (NOT build_osx)
++                set(openssl_lib_loc ${libs_loc}/openssl_1_1_1)
++            else()
++                set(openssl_lib_loc ${libs_loc}/openssl)
++            endif()
+         else()
+-            set(openssl_lib_loc ${libs_loc}/openssl)
++            set(openssl_lib_loc /usr/local/desktop-app/openssl-1.1.1/lib)
+         endif()
+-    else()
+-        set(openssl_lib_loc /usr/local/desktop-app/openssl-1.1.1/lib)
+     endif()
+-endif()
+ 
+-target_link_libraries(external_openssl
+-INTERFACE
+-    ${openssl_lib_loc}/libssl.${openssl_lib_ext}
+-    ${openssl_lib_loc}/libcrypto.${openssl_lib_ext}
+-)
++    target_link_libraries(external_openssl
++    INTERFACE
++        ${openssl_lib_loc}/libssl.${openssl_lib_ext}
++        ${openssl_lib_loc}/libcrypto.${openssl_lib_ext}
++    )
+ 
+-if (LINUX)
+-    if (DESKTOP_APP_USE_GLIBC_WRAPS)
+-        target_link_libraries(external_openssl
+-        INTERFACE
+-            desktop-app::linux_glibc_wraps
+-            $<TARGET_FILE:desktop-app::linux_glibc_wraps>
+-        )
++    if (LINUX)
++        if (DESKTOP_APP_USE_GLIBC_WRAPS)
++            target_link_libraries(external_openssl
++            INTERFACE
++                desktop-app::linux_glibc_wraps
++                $<TARGET_FILE:desktop-app::linux_glibc_wraps>
++            )
++        endif()
++        target_link_libraries(external_openssl INTERFACE pthread)
+     endif()
+-    target_link_libraries(external_openssl INTERFACE pthread)
+ endif()
+diff --git a/external/opus/CMakeLists.txt b/external/opus/CMakeLists.txt
+index 00c2508..efbc4db 100644
+--- a/external/opus/CMakeLists.txt
++++ b/external/opus/CMakeLists.txt
+@@ -7,12 +7,21 @@
+ add_library(external_opus INTERFACE IMPORTED GLOBAL)
+ add_library(desktop-app::external_opus ALIAS external_opus)
+ 
+-target_include_directories(external_opus SYSTEM
+-INTERFACE
+-    ${libs_loc}/opus/include
+-)
++if (DESKTOP_APP_USE_PACKAGED)
++    find_package(PkgConfig REQUIRED)
++    pkg_check_modules(OPUS REQUIRED opus)
+ 
+-if (WIN32)
++    target_include_directories(external_opus INTERFACE ${OPUS_INCLUDE_DIRS})
++else()
++    target_include_directories(external_opus SYSTEM
++    INTERFACE
++        ${libs_loc}/opus/include
++    )
++endif()
++
++if (DESKTOP_APP_USE_PACKAGED)
++    target_link_libraries(external_opus INTERFACE ${OPUS_LIBRARIES})
++elseif (WIN32)
+     set(opus_lib_loc ${libs_loc}/opus/win32/VS2015/Win32/$<IF:$<CONFIG:Debug>,Debug,Release>)
+ 
+     target_link_libraries(external_opus
+diff --git a/external/qt/CMakeLists.txt b/external/qt/CMakeLists.txt
+index 1a56319..a0745b0 100644
+--- a/external/qt/CMakeLists.txt
++++ b/external/qt/CMakeLists.txt
+@@ -7,211 +7,226 @@
+ add_library(external_qt INTERFACE IMPORTED GLOBAL)
+ add_library(desktop-app::external_qt ALIAS external_qt)
+ 
+-if (LINUX)
+-    if (NOT build_linux32)
+-        target_compile_definitions(external_qt INTERFACE Q_OS_LINUX64)
+-    else()
+-        target_compile_definitions(external_qt INTERFACE Q_OS_LINUX32)
++if (DESKTOP_APP_USE_PACKAGED)
++    target_link_libraries(external_qt
++    INTERFACE
++        Qt5::Core
++        Qt5::Gui
++        Qt5::Widgets
++        Qt5::Network
++        Qt5::DBus)
++
++    target_include_directories(external_qt
++    INTERFACE
++        ${Qt5Core_PRIVATE_INCLUDE_DIRS}
++        ${Qt5Gui_PRIVATE_INCLUDE_DIRS})
++else()
++    if (LINUX)
++        if (NOT build_linux32)
++            target_compile_definitions(external_qt INTERFACE Q_OS_LINUX64)
++        else()
++            target_compile_definitions(external_qt INTERFACE Q_OS_LINUX32)
++        endif()
+     endif()
+-endif()
+ 
+-target_include_directories(external_qt SYSTEM
+-INTERFACE
+-    ${qt_loc}/include
+-    ${qt_loc}/include/QtCore
+-    ${qt_loc}/include/QtGui
+-    ${qt_loc}/include/QtDBus
+-    ${qt_loc}/include/QtCore/${qt_version}
+-    ${qt_loc}/include/QtGui/${qt_version}
+-    ${qt_loc}/include/QtCore/${qt_version}/QtCore
+-    ${qt_loc}/include/QtGui/${qt_version}/QtGui
+-)
++    target_include_directories(external_qt SYSTEM
++    INTERFACE
++        ${qt_loc}/include
++        ${qt_loc}/include/QtCore
++        ${qt_loc}/include/QtGui
++        ${qt_loc}/include/QtDBus
++        ${qt_loc}/include/QtCore/${qt_version}
++        ${qt_loc}/include/QtGui/${qt_version}
++        ${qt_loc}/include/QtCore/${qt_version}/QtCore
++        ${qt_loc}/include/QtGui/${qt_version}/QtGui
++    )
+ 
+-target_compile_definitions(external_qt
+-INTERFACE
+-    _REENTRANT
+-    QT_STATICPLUGIN
+-    QT_PLUGIN
+-    QT_WIDGETS_LIB
+-    QT_NETWORK_LIB
+-    QT_GUI_LIB
+-    QT_CORE_LIB
+-)
++    target_compile_definitions(external_qt
++    INTERFACE
++        _REENTRANT
++        QT_STATICPLUGIN
++        QT_PLUGIN
++        QT_WIDGETS_LIB
++        QT_NETWORK_LIB
++        QT_GUI_LIB
++        QT_CORE_LIB
++    )
+ 
+-if (WIN32)
+-    set(qt_lib_prefix "")
+-    set(qt_lib_suffix $<$<CONFIG:Debug>:d>.lib)
+-else()
+-    set(qt_lib_prefix lib)
+-    if (APPLE)
+-        set(qt_lib_suffix $<$<CONFIG:Debug>:_debug>.a)
++    if (WIN32)
++        set(qt_lib_prefix "")
++        set(qt_lib_suffix $<$<CONFIG:Debug>:d>.lib)
+     else()
+-        set(qt_lib_suffix .a)
++        set(qt_lib_prefix lib)
++        if (APPLE)
++            set(qt_lib_suffix $<$<CONFIG:Debug>:_debug>.a)
++        else()
++            set(qt_lib_suffix .a)
++        endif()
+     endif()
+-endif()
+ 
+-set(common_qt_libs
+-    plugins/imageformats/${qt_lib_prefix}qwebp
+-    plugins/imageformats/${qt_lib_prefix}qgif
+-    plugins/imageformats/${qt_lib_prefix}qjpeg
+-    lib/${qt_lib_prefix}Qt5PrintSupport
+-    lib/${qt_lib_prefix}Qt5AccessibilitySupport
+-    lib/${qt_lib_prefix}Qt5FontDatabaseSupport
+-    lib/${qt_lib_prefix}Qt5EventDispatcherSupport
+-    lib/${qt_lib_prefix}Qt5ThemeSupport
+-    lib/${qt_lib_prefix}Qt5Network
+-    lib/${qt_lib_prefix}Qt5Widgets
+-    lib/${qt_lib_prefix}Qt5Gui
+-    lib/${qt_lib_prefix}qtharfbuzz
+-    lib/${qt_lib_prefix}qtlibpng
+-)
+-
+-set(qt_libs_list "")
+-if (WIN32)
+-    set(qt_libs
+-        ${common_qt_libs}
+-        lib/${qt_lib_prefix}Qt5Core
+-        lib/${qt_lib_prefix}Qt5WindowsUIAutomationSupport
+-        lib/${qt_lib_prefix}qtmain
+-        lib/${qt_lib_prefix}qtfreetype
+-        lib/${qt_lib_prefix}qtpcre2
+-        plugins/platforms/${qt_lib_prefix}qwindows
++    set(common_qt_libs
++        plugins/imageformats/${qt_lib_prefix}qwebp
++        plugins/imageformats/${qt_lib_prefix}qgif
++        plugins/imageformats/${qt_lib_prefix}qjpeg
++        lib/${qt_lib_prefix}Qt5PrintSupport
++        lib/${qt_lib_prefix}Qt5AccessibilitySupport
++        lib/${qt_lib_prefix}Qt5FontDatabaseSupport
++        lib/${qt_lib_prefix}Qt5EventDispatcherSupport
++        lib/${qt_lib_prefix}Qt5ThemeSupport
++        lib/${qt_lib_prefix}Qt5Network
++        lib/${qt_lib_prefix}Qt5Widgets
++        lib/${qt_lib_prefix}Qt5Gui
++        lib/${qt_lib_prefix}qtharfbuzz
++        lib/${qt_lib_prefix}qtlibpng
+     )
+-    foreach (lib ${qt_libs})
+-        list(APPEND qt_libs_list "${qt_loc}/${lib}${qt_lib_suffix}")
+-    endforeach()
+-elseif (APPLE)
+-    if (NOT build_osx)
++
++    set(qt_libs_list "")
++    if (WIN32)
+         set(qt_libs
+             ${common_qt_libs}
+             lib/${qt_lib_prefix}Qt5Core
+-            lib/${qt_lib_prefix}Qt5GraphicsSupport
+-            lib/${qt_lib_prefix}Qt5ClipboardSupport
++            lib/${qt_lib_prefix}Qt5WindowsUIAutomationSupport
++            lib/${qt_lib_prefix}qtmain
+             lib/${qt_lib_prefix}qtfreetype
+             lib/${qt_lib_prefix}qtpcre2
+-            plugins/platforms/${qt_lib_prefix}qcocoa
+-            plugins/bearer/${qt_lib_prefix}qgenericbearer
++            plugins/platforms/${qt_lib_prefix}qwindows
++        )
++        foreach (lib ${qt_libs})
++            list(APPEND qt_libs_list "${qt_loc}/${lib}${qt_lib_suffix}")
++        endforeach()
++    elseif (APPLE)
++        if (NOT build_osx)
++            set(qt_libs
++                ${common_qt_libs}
++                lib/${qt_lib_prefix}Qt5Core
++                lib/${qt_lib_prefix}Qt5GraphicsSupport
++                lib/${qt_lib_prefix}Qt5ClipboardSupport
++                lib/${qt_lib_prefix}qtfreetype
++                lib/${qt_lib_prefix}qtpcre2
++                plugins/platforms/${qt_lib_prefix}qcocoa
++                plugins/bearer/${qt_lib_prefix}qgenericbearer
++            )
++        else()
++            set(qt_libs
++                lib/${qt_lib_prefix}Qt5PrintSupport
++                lib/${qt_lib_prefix}Qt5PlatformSupport
++                lib/${qt_lib_prefix}Qt5Network
++                lib/${qt_lib_prefix}Qt5Widgets
++                lib/${qt_lib_prefix}Qt5Gui
++                lib/${qt_lib_prefix}Qt5Core
++                lib/${qt_lib_prefix}qtharfbuzzng
++                lib/${qt_lib_prefix}qtfreetype
++                lib/${qt_lib_prefix}qtpcre
++                plugins/platforms/${qt_lib_prefix}qcocoa
++                plugins/imageformats/${qt_lib_prefix}qwebp
++                plugins/bearer/${qt_lib_prefix}qgenericbearer
++            )
++        endif()
++        foreach (lib ${qt_libs})
++            list(APPEND qt_libs_list "${qt_loc}/${lib}${qt_lib_suffix}")
++        endforeach()
++        target_link_libraries(external_qt
++        INTERFACE
++            desktop-app::external_zlib
++            cups
+         )
+     else()
+         set(qt_libs
+-            lib/${qt_lib_prefix}Qt5PrintSupport
+-            lib/${qt_lib_prefix}Qt5PlatformSupport
+-            lib/${qt_lib_prefix}Qt5Network
+-            lib/${qt_lib_prefix}Qt5Widgets
+-            lib/${qt_lib_prefix}Qt5Gui
+-            lib/${qt_lib_prefix}Qt5Core
+-            lib/${qt_lib_prefix}qtharfbuzzng
+-            lib/${qt_lib_prefix}qtfreetype
+-            lib/${qt_lib_prefix}qtpcre
+-            plugins/platforms/${qt_lib_prefix}qcocoa
+-            plugins/imageformats/${qt_lib_prefix}qwebp
++            plugins/platforminputcontexts/${qt_lib_prefix}composeplatforminputcontextplugin
++            plugins/platforminputcontexts/${qt_lib_prefix}ibusplatforminputcontextplugin
++            plugins/platforminputcontexts/${qt_lib_prefix}fcitxplatforminputcontextplugin
++            plugins/platforminputcontexts/${qt_lib_prefix}himeplatforminputcontextplugin
++            plugins/platforminputcontexts/${qt_lib_prefix}nimfplatforminputcontextplugin
++            plugins/platforms/${qt_lib_prefix}qxcb
++            lib/${qt_lib_prefix}Qt5XcbQpa
++            lib/${qt_lib_prefix}Qt5LinuxAccessibilitySupport
++            lib/${qt_lib_prefix}Qt5ServiceSupport
++            lib/${qt_lib_prefix}Qt5EdidSupport
++            plugins/bearer/${qt_lib_prefix}qconnmanbearer
+             plugins/bearer/${qt_lib_prefix}qgenericbearer
++            plugins/bearer/${qt_lib_prefix}qnmbearer
++            ${common_qt_libs}
++            lib/${qt_lib_prefix}Qt5DBus
++            lib/${qt_lib_prefix}Qt5Core
++            lib/${qt_lib_prefix}qtpcre2
++            lib/${qt_lib_prefix}xcb-static
+         )
++        foreach (lib ${qt_libs})
++            list(APPEND qt_libs_list "${qt_loc}/${lib}${qt_lib_suffix}")
++        endforeach()
+     endif()
+-    foreach (lib ${qt_libs})
+-        list(APPEND qt_libs_list "${qt_loc}/${lib}${qt_lib_suffix}")
+-    endforeach()
++
+     target_link_libraries(external_qt
+     INTERFACE
+-        desktop-app::external_zlib
+-        cups
+-    )
+-else()
+-    set(qt_libs
+-        plugins/platforminputcontexts/${qt_lib_prefix}composeplatforminputcontextplugin
+-        plugins/platforminputcontexts/${qt_lib_prefix}ibusplatforminputcontextplugin
+-        plugins/platforminputcontexts/${qt_lib_prefix}fcitxplatforminputcontextplugin
+-        plugins/platforminputcontexts/${qt_lib_prefix}himeplatforminputcontextplugin
+-        plugins/platforminputcontexts/${qt_lib_prefix}nimfplatforminputcontextplugin
+-        plugins/platforms/${qt_lib_prefix}qxcb
+-        lib/${qt_lib_prefix}Qt5XcbQpa
+-        lib/${qt_lib_prefix}Qt5LinuxAccessibilitySupport
+-        lib/${qt_lib_prefix}Qt5ServiceSupport
+-        lib/${qt_lib_prefix}Qt5EdidSupport
+-        plugins/bearer/${qt_lib_prefix}qconnmanbearer
+-        plugins/bearer/${qt_lib_prefix}qgenericbearer
+-        plugins/bearer/${qt_lib_prefix}qnmbearer
+-        ${common_qt_libs}
+-        lib/${qt_lib_prefix}Qt5DBus
+-        lib/${qt_lib_prefix}Qt5Core
+-        lib/${qt_lib_prefix}qtpcre2
+-        lib/${qt_lib_prefix}xcb-static
++        ${qt_libs_list}
+     )
+-    foreach (lib ${qt_libs})
+-        list(APPEND qt_libs_list "${qt_loc}/${lib}${qt_lib_suffix}")
+-    endforeach()
+-endif()
+-
+-target_link_libraries(external_qt
+-INTERFACE
+-    ${qt_libs_list}
+-)
+ 
+-if (LINUX)
+-    target_include_directories(external_qt SYSTEM
+-    INTERFACE
+-        ${qt_loc}/mkspecs/linux-g++
+-    )
+-    target_link_options(external_qt
+-    INTERFACE
+-        -static-libstdc++
+-        -pthread
+-        -rdynamic
+-    )
+-    if (DESKTOP_APP_USE_GLIBC_WRAPS)
++    if (LINUX)
++        target_include_directories(external_qt SYSTEM
++        INTERFACE
++            ${qt_loc}/mkspecs/linux-g++
++        )
+         target_link_options(external_qt
+         INTERFACE
+-            -Wl,-wrap,aligned_alloc
+-            -Wl,-wrap,secure_getenv
+-            -Wl,-wrap,clock_gettime
+-            -Wl,--no-as-needed,-lrt
++            -static-libstdc++
++            -pthread
++            -rdynamic
+         )
+-        if (NOT build_linux32)
++        if (DESKTOP_APP_USE_GLIBC_WRAPS)
+             target_link_options(external_qt
+             INTERFACE
+-                -Wl,-wrap,__divmodti4
++                -Wl,-wrap,aligned_alloc
++                -Wl,-wrap,secure_getenv
++                -Wl,-wrap,clock_gettime
++                -Wl,--no-as-needed,-lrt
+             )
+-        else()
+-            target_link_options(external_qt
++            if (NOT build_linux32)
++                target_link_options(external_qt
++                INTERFACE
++                    -Wl,-wrap,__divmodti4
++                )
++            else()
++                target_link_options(external_qt
++                INTERFACE
++                    -Wl,-wrap,__divmoddi4
++                )
++            endif()
++        endif()
++        target_link_static_libraries(external_qt
++        INTERFACE
++            SM
++            ICE
++            fontconfig
++            freetype
++            expat
++            z
++            xcb-shm
++            xcb-xfixes
++            xcb-render
++            xkbcommon
++            xkbcommon-x11
++            Xrender
++            icutu
++            icui18n
++            icuuc
++            icudata
++        )
++        if (DESKTOP_APP_USE_GLIBC_WRAPS)
++            target_link_libraries(external_qt
+             INTERFACE
+-                -Wl,-wrap,__divmoddi4
++                desktop-app::linux_glibc_wraps
++                $<TARGET_FILE:desktop-app::linux_glibc_wraps>
+             )
+         endif()
+-    endif()
+-    target_link_static_libraries(external_qt
+-    INTERFACE
+-        SM
+-        ICE
+-        fontconfig
+-        freetype
+-        expat
+-        z
+-        xcb-shm
+-        xcb-xfixes
+-        xcb-render
+-        xkbcommon
+-        xkbcommon-x11
+-        Xrender
+-        icutu
+-        icui18n
+-        icuuc
+-        icudata
+-    )
+-    if (DESKTOP_APP_USE_GLIBC_WRAPS)
+         target_link_libraries(external_qt
+         INTERFACE
+-            desktop-app::linux_glibc_wraps
+-            $<TARGET_FILE:desktop-app::linux_glibc_wraps>
++            xcb
++            X11
++            X11-xcb
++            dbus-1
++            dl
++            glib-2.0
++            pthread
+         )
+     endif()
+-    target_link_libraries(external_qt
+-    INTERFACE
+-        xcb
+-        X11
+-        X11-xcb
+-        dbus-1
+-        dl
+-        glib-2.0
+-        pthread
+-    )
+ endif()
+diff --git a/external/ranges/CMakeLists.txt b/external/ranges/CMakeLists.txt
+index 4c75ecb..8105361 100644
+--- a/external/ranges/CMakeLists.txt
++++ b/external/ranges/CMakeLists.txt
+@@ -7,10 +7,14 @@
+ add_library(external_ranges INTERFACE IMPORTED GLOBAL)
+ add_library(desktop-app::external_ranges ALIAS external_ranges)
+ 
+-target_include_directories(external_ranges SYSTEM
+-INTERFACE
+-    ${libs_loc}/range-v3/include
+-)
++if (DESKTOP_APP_USE_PACKAGED)
++    find_package(range-v3 REQUIRED)
++else()
++    target_include_directories(external_ranges SYSTEM
++    INTERFACE
++        ${libs_loc}/range-v3/include
++    )
++endif()
+ 
+ if (WIN32)
+     target_compile_options(external_ranges
+diff --git a/external/rlottie/CMakeLists.txt b/external/rlottie/CMakeLists.txt
+index 4fc3a54..91dc86e 100644
+--- a/external/rlottie/CMakeLists.txt
++++ b/external/rlottie/CMakeLists.txt
+@@ -4,115 +4,123 @@
+ # For license and copyright information please follow this link:
+ # https://github.com/desktop-app/legal/blob/master/LEGAL
+ 
+-add_library(external_rlottie OBJECT)
+-add_library(desktop-app::external_rlottie ALIAS external_rlottie)
+-init_target(external_rlottie "(external)")
++if (DESKTOP_APP_USE_PACKAGED)
++    add_library(external_rlottie INTERFACE IMPORTED GLOBAL)
++    add_library(desktop-app::external_rlottie ALIAS external_rlottie)
+ 
+-get_filename_component(src_loc . REALPATH)
+-set(rlottie_loc ${third_party_loc}/rlottie)
++    find_package(rlottie REQUIRED)
++    target_link_libraries(external_rlottie INTERFACE rlottie::rlottie)
++else()
++    add_library(external_rlottie OBJECT)
++    add_library(desktop-app::external_rlottie ALIAS external_rlottie)
++    init_target(external_rlottie "(external)")
+ 
+-target_sources(external_rlottie PRIVATE ${src_loc}/config/config.h)
+-nice_target_sources(external_rlottie ${rlottie_loc}
+-PRIVATE
+-    inc/rlottie.h
+-    inc/rlottie_capi.h
+-    inc/rlottiecommon.h
++    get_filename_component(src_loc . REALPATH)
++    set(rlottie_loc ${third_party_loc}/rlottie)
+ 
+-    src/lottie/lottieanimation.cpp
+-    src/lottie/lottieitem.cpp
+-    src/lottie/lottieitem.h
+-    src/lottie/lottiekeypath.cpp
+-    src/lottie/lottiekeypath.h
+-    src/lottie/lottieloader.cpp
+-    src/lottie/lottieloader.h
+-    src/lottie/lottiemodel.cpp
+-    src/lottie/lottiemodel.h
+-    src/lottie/lottieparser.cpp
+-    src/lottie/lottieparser.h
+-    src/lottie/lottieproxymodel.cpp
+-    src/lottie/lottieproxymodel.h
++    target_sources(external_rlottie PRIVATE ${src_loc}/config/config.h)
++    nice_target_sources(external_rlottie ${rlottie_loc}
++    PRIVATE
++        inc/rlottie.h
++        inc/rlottie_capi.h
++        inc/rlottiecommon.h
+ 
+-    src/vector/freetype/v_ft_math.cpp
+-    src/vector/freetype/v_ft_math.h
+-    src/vector/freetype/v_ft_raster.cpp
+-    src/vector/freetype/v_ft_raster.h
+-    src/vector/freetype/v_ft_stroker.cpp
+-    src/vector/freetype/v_ft_stroker.h
+-    src/vector/freetype/v_ft_types.h
++        src/lottie/lottieanimation.cpp
++        src/lottie/lottieitem.cpp
++        src/lottie/lottieitem.h
++        src/lottie/lottiekeypath.cpp
++        src/lottie/lottiekeypath.h
++        src/lottie/lottieloader.cpp
++        src/lottie/lottieloader.h
++        src/lottie/lottiemodel.cpp
++        src/lottie/lottiemodel.h
++        src/lottie/lottieparser.cpp
++        src/lottie/lottieparser.h
++        src/lottie/lottieproxymodel.cpp
++        src/lottie/lottieproxymodel.h
+ 
+-    # src/vector/pixman/pixman-arm-neon-asm.h
+-    # src/vector/pixman/pixman-arm-neon-asm.S
+-    src/vector/pixman/vregion.cpp
+-    src/vector/pixman/vregion.h
++        src/vector/freetype/v_ft_math.cpp
++        src/vector/freetype/v_ft_math.h
++        src/vector/freetype/v_ft_raster.cpp
++        src/vector/freetype/v_ft_raster.h
++        src/vector/freetype/v_ft_stroker.cpp
++        src/vector/freetype/v_ft_stroker.h
++        src/vector/freetype/v_ft_types.h
+ 
+-    src/vector/vbezier.cpp
+-    src/vector/vbezier.h
+-    src/vector/vbitmap.cpp
+-    src/vector/vbitmap.h
+-    src/vector/vbrush.cpp
+-    src/vector/vbrush.h
+-    src/vector/vcompositionfunctions.cpp
+-    src/vector/vcowptr.h
+-    src/vector/vdasher.cpp
+-    src/vector/vdasher.h
+-    src/vector/vdebug.cpp
+-    src/vector/vdebug.h
+-    src/vector/vdrawable.cpp
+-    src/vector/vdrawable.h
+-    src/vector/vdrawhelper.cpp
+-    src/vector/vdrawhelper.h
+-    src/vector/vdrawhelper_neon.cpp
+-    src/vector/vdrawhelper_sse2.cpp
+-    src/vector/velapsedtimer.cpp
+-    src/vector/velapsedtimer.h
+-    src/vector/vglobal.h
+-    src/vector/vimageloader.cpp
+-    src/vector/vimageloader.h
+-    src/vector/vinterpolator.cpp
+-    src/vector/vinterpolator.h
+-    src/vector/vline.h
+-    src/vector/vmatrix.cpp
+-    src/vector/vmatrix.h
+-    src/vector/vpainter.cpp
+-    src/vector/vpainter.h
+-    src/vector/vpath.cpp
+-    src/vector/vpath.h
+-    src/vector/vpathmesure.cpp
+-    src/vector/vpathmesure.h
+-    src/vector/vpoint.h
+-    src/vector/vraster.cpp
+-    src/vector/vraster.h
+-    src/vector/vrect.cpp
+-    src/vector/vrect.h
+-    src/vector/vrle.cpp
+-    src/vector/vrle.h
+-    src/vector/vstackallocator.h
+-    src/vector/vtaskqueue.h
+-)
++        # src/vector/pixman/pixman-arm-neon-asm.h
++        # src/vector/pixman/pixman-arm-neon-asm.S
++        src/vector/pixman/vregion.cpp
++        src/vector/pixman/vregion.h
+ 
+-target_compile_definitions(external_rlottie
+-PUBLIC
+-    LOT_BUILD
+-PRIVATE
+-    _USE_MATH_DEFINES
+-    "RAPIDJSON_ASSERT=(void)"
+-)
++        src/vector/vbezier.cpp
++        src/vector/vbezier.h
++        src/vector/vbitmap.cpp
++        src/vector/vbitmap.h
++        src/vector/vbrush.cpp
++        src/vector/vbrush.h
++        src/vector/vcompositionfunctions.cpp
++        src/vector/vcowptr.h
++        src/vector/vdasher.cpp
++        src/vector/vdasher.h
++        src/vector/vdebug.cpp
++        src/vector/vdebug.h
++        src/vector/vdrawable.cpp
++        src/vector/vdrawable.h
++        src/vector/vdrawhelper.cpp
++        src/vector/vdrawhelper.h
++        src/vector/vdrawhelper_neon.cpp
++        src/vector/vdrawhelper_sse2.cpp
++        src/vector/velapsedtimer.cpp
++        src/vector/velapsedtimer.h
++        src/vector/vglobal.h
++        src/vector/vimageloader.cpp
++        src/vector/vimageloader.h
++        src/vector/vinterpolator.cpp
++        src/vector/vinterpolator.h
++        src/vector/vline.h
++        src/vector/vmatrix.cpp
++        src/vector/vmatrix.h
++        src/vector/vpainter.cpp
++        src/vector/vpainter.h
++        src/vector/vpath.cpp
++        src/vector/vpath.h
++        src/vector/vpathmesure.cpp
++        src/vector/vpathmesure.h
++        src/vector/vpoint.h
++        src/vector/vraster.cpp
++        src/vector/vraster.h
++        src/vector/vrect.cpp
++        src/vector/vrect.h
++        src/vector/vrle.cpp
++        src/vector/vrle.h
++        src/vector/vstackallocator.h
++        src/vector/vtaskqueue.h
++    )
+ 
+-target_include_directories(external_rlottie
+-PUBLIC
+-    ${rlottie_loc}/inc
+-PRIVATE
+-    ${src_loc}/config
+-    ${rlottie_loc}/src/lottie
+-    ${rlottie_loc}/src/vector
+-    ${rlottie_loc}/src/vector/pixman
+-    ${rlottie_loc}/src/vector/freetype
+-)
++    target_compile_definitions(external_rlottie
++    PUBLIC
++        LOT_BUILD
++    PRIVATE
++        _USE_MATH_DEFINES
++        "RAPIDJSON_ASSERT=(void)"
++    )
+ 
+-if (WIN32)
+-    target_compile_options(external_rlottie
++    target_include_directories(external_rlottie
++    PUBLIC
++        ${rlottie_loc}/inc
+     PRIVATE
+-        /w44244 # 'initializing': conversion from 'double' to 'float'
+-        /w44251 # needs to have dll-interface to be used by clients of class
++        ${src_loc}/config
++        ${rlottie_loc}/src/lottie
++        ${rlottie_loc}/src/vector
++        ${rlottie_loc}/src/vector/pixman
++        ${rlottie_loc}/src/vector/freetype
+     )
++
++    if (WIN32)
++        target_compile_options(external_rlottie
++        PRIVATE
++            /w44244 # 'initializing': conversion from 'double' to 'float'
++            /w44251 # needs to have dll-interface to be used by clients of class
++        )
++    endif()
+ endif()
+diff --git a/external/xxhash/CMakeLists.txt b/external/xxhash/CMakeLists.txt
+index ba98eda..1219ae8 100644
+--- a/external/xxhash/CMakeLists.txt
++++ b/external/xxhash/CMakeLists.txt
+@@ -7,12 +7,20 @@
+ add_library(external_xxhash INTERFACE IMPORTED GLOBAL)
+ add_library(desktop-app::external_xxhash ALIAS external_xxhash)
+ 
+-target_include_directories(external_xxhash SYSTEM
+-INTERFACE
+-    ${third_party_loc}/xxHash
+-)
++if (DESKTOP_APP_USE_PACKAGED)
++    find_library(XXHASH_LIBRARY xxhash)
++    find_path(XXHASH_INCLUDE_DIRS xxhash.h)
+ 
+-target_compile_definitions(external_xxhash
+-INTERFACE
+-    XXH_INLINE_ALL
+-)
++     target_include_directories(external_xxhash INTERFACE ${XXHASH_INCLUDE_DIRS})
++     target_link_libraries(external_xxhash INTERFACE ${XXHASH_LIBRARY})
++else()
++    target_include_directories(external_xxhash SYSTEM
++    INTERFACE
++        ${third_party_loc}/xxHash
++    )
++
++    target_compile_definitions(external_xxhash
++    INTERFACE
++        XXH_INLINE_ALL
++    )
++endif()
+diff --git a/external/zlib/CMakeLists.txt b/external/zlib/CMakeLists.txt
+index 10386a1..515ff25 100644
+--- a/external/zlib/CMakeLists.txt
++++ b/external/zlib/CMakeLists.txt
+@@ -7,7 +7,16 @@
+ add_library(external_zlib INTERFACE IMPORTED GLOBAL)
+ add_library(desktop-app::external_zlib ALIAS external_zlib)
+ 
+-if (NOT WIN32)
++if (DESKTOP_APP_USE_PACKAGED)
++    add_library(external_minizip INTERFACE IMPORTED)
++    find_package(PkgConfig REQUIRED)
++    pkg_check_modules(MINIZIP REQUIRED minizip)
++
++    target_include_directories(external_minizip INTERFACE ${MINIZIP_INCLUDE_DIRS})
++    target_link_libraries(external_minizip INTERFACE ${MINIZIP_LIBRARIES})
++
++    target_link_libraries(external_zlib INTERFACE external_minizip)
++elseif (NOT WIN32)
+     add_library(external_minizip STATIC)
+     init_target(external_minizip "(external)")
+ 
+@@ -32,13 +41,18 @@ if (NOT WIN32)
+     target_link_libraries(external_zlib INTERFACE external_minizip)
+ endif()
+ 
+-target_include_directories(external_zlib SYSTEM
+-INTERFACE
+-    ${libs_loc}/zlib
+-    ${libs_loc}/zlib/contrib/minizip
+-)
++if (NOT DESKTOP_APP_USE_PACKAGED)
++    target_include_directories(external_zlib SYSTEM
++    INTERFACE
++        ${libs_loc}/zlib
++        ${libs_loc}/zlib/contrib/minizip
++    )
++endif()
+ 
+-if (WIN32)
++if (DESKTOP_APP_USE_PACKAGED)
++    find_package(ZLIB REQUIRED)
++    target_link_libraries(external_zlib INTERFACE ZLIB::ZLIB)
++elseif (WIN32)
+     target_compile_definitions(external_zlib INTERFACE ZLIB_WINAPI)
+ 
+     set(zlib_lib_loc ${libs_loc}/zlib/contrib/vstudio/vc14/x86/ZlibStat$<IF:$<CONFIG:Debug>,Debug,ReleaseWithoutAsm>)
+diff --git a/init_target.cmake b/init_target.cmake
+index c7a1244..484ea91 100644
+--- a/init_target.cmake
++++ b/init_target.cmake
+@@ -26,8 +26,10 @@ function(init_target target_name) # init_target(my_target folder_name)
+             MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+     endif()
+     target_link_libraries(${target_name} PUBLIC desktop-app::common_options)
++    if (NOT DESKTOP_APP_USE_PACKAGED)
++        set_target_properties(${target_name} PROPERTIES LINK_SEARCH_START_STATIC 1)
++    endif()
+     set_target_properties(${target_name} PROPERTIES
+-        LINK_SEARCH_START_STATIC 1
+         XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_WEAK YES
+         XCODE_ATTRIBUTE_GCC_INLINES_ARE_PRIVATE_EXTERN YES
+         XCODE_ATTRIBUTE_GCC_SYMBOLS_PRIVATE_EXTERN YES
+diff --git a/options_linux.cmake b/options_linux.cmake
+index a6a13c9..673defa 100644
+--- a/options_linux.cmake
++++ b/options_linux.cmake
+@@ -9,7 +9,6 @@ INTERFACE
+     $<IF:$<CONFIG:Debug>,,-Ofast -fno-strict-aliasing>
+     -pipe
+     -Wall
+-    -Werror
+     -W
+     -fPIC
+     -Wno-unused-variable
+@@ -26,6 +25,9 @@ INTERFACE
+     -Wno-maybe-uninitialized
+     -Wno-error=class-memaccess
+ )
++if (NOT DESKTOP_APP_USE_PACKAGED)
++    target_compile_options(common_options INTERFACE -Werror)
++endif()
+ target_link_options(common_options
+ INTERFACE
+     $<IF:$<CONFIG:Debug>,,-Ofast>
+@@ -33,6 +35,9 @@ INTERFACE
+ if (build_linux32)
+     target_compile_options(common_options INTERFACE -g0)
+     target_link_options(common_options INTERFACE -g0)
++elseif (DESKTOP_APP_USE_PACKAGED)
++    target_compile_options(common_options INTERFACE $<IF:$<CONFIG:Debug>,,-g>)
++    target_link_options(common_options INTERFACE $<IF:$<CONFIG:Debug>,,-g>)
+ else()
+     target_compile_options(common_options INTERFACE $<IF:$<CONFIG:Debug>,,-g -flto>)
+     target_link_options(common_options INTERFACE $<IF:$<CONFIG:Debug>,,-g -flto -fuse-linker-plugin>)

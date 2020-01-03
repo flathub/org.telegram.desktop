@@ -52,19 +52,6 @@
             ]
         },
         {
-            "name": "gyp",
-            "buildsystem": "simple",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://chromium.googlesource.com/external/gyp"
-                }
-            ],
-            "build-commands": [
-                "python2 setup.py install --prefix=/app"
-            ]
-        },
-        {
             "name": "libnotify",
             "cleanup": [ "/bin" ],
             "config-opts": [
@@ -99,66 +86,136 @@
             ]
         },
         {
+            "name": "cmake",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2.tar.gz",
+                    "sha256": "8c09786ec60ca2be354c29829072c38113de9184f29928eb9da8446a5f2ce6a9"
+                }
+            ],
+            "cleanup": [ "*" ]
+        },
+        {
+            "name": "enchant",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/AbiWord/enchant/releases/download/v2.2.7/enchant-2.2.7.tar.gz",
+                    "sha256": "1b22976135812b35cb5b8d21a53ad11d5e7c1426c93f51e7a314a2a42cab3a09"
+                }
+            ]
+        },
+        {
+            "name": "lz4",
+            "no-autogen": true,
+            "make-args": [
+                "PREFIX=$(FLATPAK_DEST)"
+            ],
+            "make-install-args": [
+                "PREFIX=$(FLATPAK_DEST)"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/lz4/lz4/archive/v1.9.2.tar.gz",
+                    "sha256": "658ba6191fa44c92280d4aa2c271b0f4fbc0e34d249578dd05e50e76d0e5efcc"
+                }
+            ]
+        },
+        {
+            "name": "rlottie",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DLIB_INSTALL_DIR=/app/lib"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/desktop-app/rlottie.git",
+                    "commit": "c490c7a098b9b3cbc3195b00e90d6fc3989e2ba2"
+                }
+            ]
+        },
+        {
+            "name": "xxHash",
+            "no-autogen": true,
+            "make-args": [
+                "prefix=$(FLATPAK_DEST)"
+            ],
+            "make-install-args": [
+                "prefix=$(FLATPAK_DEST)"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/Cyan4973/xxHash/archive/v0.7.2.tar.gz",
+                    "sha256": "7e93d28e81c3e95ff07674a400001d0cdf23b7842d49b211e5582d00d8e3ac3e"
+                }
+            ]
+        },
+        {
+            "name": "minizip",
+            "subdir": "contrib/minizip",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://zlib.net/zlib-1.2.11.tar.gz",
+                    "md5": "1c9f62f0778697a09d36121ead88e08e"
+                },
+                {
+                    "type": "script",
+                    "dest-filename": "contrib/minizip/autogen.sh",
+                    "commands": [
+                        "autoreconf -ifv"
+                    ]
+                }
+            ]
+        },
+        {
             "name": "telegram-desktop",
-            "buildsystem": "simple",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
             "build-options": {
                 "cxxflags": "-std=gnu++17",
                 "ldflags": "-Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
             },
-            "build-commands": [
-                "sed -i s/org.telegram.desktop/org.telegram.desktop.desktop/ lib/xdg/telegramdesktop.appdata.xml",
-                "gyp -Dbuild_defines=TDESKTOP_FLATPAK_BUILD,TDESKTOP_LAUNCHER_FILENAME=org.telegram.desktop.desktop -Gconfig=Release --depth=Telegram/gyp --generator-output=../.. -Goutput_dir=out Telegram/gyp/Telegram.gyp --format=cmake",
-                "NUM=$((`wc -l < out/Release/CMakeLists.txt` - 2)); sed -i \"$NUM r CMakeLists.inj\" out/Release/CMakeLists.txt",
-                "cd out/Release && cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release",
-                "cd out/Release && make -j$(nproc)"
+            "config-opts": [
+                "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
+                "-DDESKTOP_APP_DISABLE_CRASH_REPORTS:BOOL=ON",
+                "-DTDESKTOP_API_ID=611335",
+                "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
             ],
+            "no-make-install": true,
             "post-install": [
-                "strip -s out/Release/Telegram",
+                "strip -s bin/Telegram",
 
                 "install -dm755 /app/bin",
-                "install -m755 out/Release/Telegram /app/bin/Telegram",
-                "install -m755 telegram-desktop /app/bin/telegram-desktop",
+                "install -m755 bin/Telegram /app/bin/Telegram",
+                "install -m755 ../telegram-desktop /app/bin/telegram-desktop",
 
                 "install -d /app/share/applications",
-                "install -m644 lib/xdg/telegramdesktop.desktop /app/share/applications/telegramdesktop.desktop",
+                "install -m644 ../lib/xdg/telegramdesktop.desktop /app/share/applications/telegramdesktop.desktop",
 
                 "install -d /app/share/appdata",
-                "install -m644 lib/xdg/telegramdesktop.appdata.xml /app/share/appdata/telegramdesktop.appdata.xml",
+                "install -m644 ../lib/xdg/telegramdesktop.appdata.xml /app/share/appdata/telegramdesktop.appdata.xml",
 
                 "install -d /app/share/kservices5",
-                "install -m644 lib/xdg/tg.protocol /app/share/kservices5/tg.protocol",
+                "install -m644 ../lib/xdg/tg.protocol /app/share/kservices5/tg.protocol",
 
-                "for icon_size in 16 32 48 64 128 256 512; do install -d /app/share/icons/hicolor/${icon_size}x${icon_size}/apps; install -m644 Telegram/Resources/art/icon${icon_size}.png /app/share/icons/hicolor/${icon_size}x${icon_size}/apps/telegram-desktop.png; done"
+                "for icon_size in 16 32 48 64 128 256 512; do install -d /app/share/icons/hicolor/${icon_size}x${icon_size}/apps; install -m644 ../Telegram/Resources/art/icon${icon_size}.png /app/share/icons/hicolor/${icon_size}x${icon_size}/apps/telegram-desktop.png; done"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.8.15"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-build.patch"
+                    "branch": "v1.9.3"
                 },
                 {
                     "type": "patch",
                     "path": "patch/telegram-add-additional-plugin-path.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-remove-static-plugins.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-missing-function-symbols.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-libtgvoip.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-build-fixes-on-various-arches.patch"
                 },
                 {
                     "type": "patch",
@@ -170,19 +227,16 @@
                 },
                 {
                     "type": "patch",
-                    "path": "patch/telegram-revert-private-headers.patch"
-                },
-                {
-                    "type": "patch",
                     "path": "patch/telegram-appdata.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "patch/telegram-fontconfig-use-host-fonts.patch"
+                    "path": "patch/telegram-pr-6956.patch"
                 },
                 {
-                    "type": "file",
-                    "path": "patch/CMakeLists.inj"
+                    "type": "patch",
+                    "dest": "cmake",
+                    "path": "patch/cmake_helpers-pr-8.patch"
                 },
                 {
                     "type": "script",
