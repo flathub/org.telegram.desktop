@@ -35,6 +35,9 @@
                  "/man",
                  "/share/man",
                  "/lib/systemd",
+                 "/include",
+                 "/lib/pkgconfig",
+                 "/lib/cmake",
                  "*.la", "*.a"],
     "modules": [
         "shared-modules/dbus-glib/dbus-glib-0.110.json",
@@ -122,6 +125,9 @@
                     "url": "https://github.com/lz4/lz4/archive/v1.9.2.tar.gz",
                     "sha256": "658ba6191fa44c92280d4aa2c271b0f4fbc0e34d249578dd05e50e76d0e5efcc"
                 }
+            ],
+            "cleanup": [
+                "/bin"
             ]
         },
         {
@@ -154,6 +160,9 @@
                     "url": "https://github.com/Cyan4973/xxHash/archive/v0.7.2.tar.gz",
                     "sha256": "7e93d28e81c3e95ff07674a400001d0cdf23b7842d49b211e5582d00d8e3ac3e"
                 }
+            ],
+            "cleanup": [
+                "/bin"
             ]
         },
         {
