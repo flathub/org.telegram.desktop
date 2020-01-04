@@ -42,7 +42,6 @@
     "modules": [
         "shared-modules/dbus-glib/dbus-glib-0.110.json",
         "shared-modules/libappindicator/libappindicator-gtk3-12.10.json",
-        "shared-modules/python2.7/python-2.7.json",
         {
             "name": "dee",
             "config-opts": ["--enable-maintainer-flags=no"],
