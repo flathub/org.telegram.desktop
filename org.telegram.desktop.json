@@ -57,7 +57,8 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://chromium.googlesource.com/external/gyp"
+                    "url": "https://chromium.googlesource.com/external/gyp",
+                    "branch": "702ac58e47"
                 }
             ],
             "build-commands": [
@@ -99,6 +100,33 @@
             ]
         },
         {
+            "name": "enchant",
+            "cleanup": [
+                "/bin"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/AbiWord/enchant/releases/download/enchant-1-6-1/enchant-1.6.1.tar.gz",
+                    "sha256": "bef0d9c0fef2e4e8746956b68e4d6c6641f6b85bd2908d91731efb68eba9e3f5"
+                }
+            ]
+        },
+        {
+            "name": "breakpad",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://chromium.googlesource.com/breakpad/breakpad"
+                },
+                {
+                    "type": "git",
+                    "url": "https://chromium.googlesource.com/linux-syscall-support",
+                    "dest": "src/third_party/lss"
+                }
+            ]
+        },
+        {
             "name": "telegram-desktop",
             "buildsystem": "simple",
             "build-options": {
@@ -107,7 +135,7 @@
             },
             "build-commands": [
                 "sed -i s/org.telegram.desktop/org.telegram.desktop.desktop/ lib/xdg/telegramdesktop.appdata.xml",
-                "gyp -Dbuild_defines=TDESKTOP_FLATPAK_BUILD,TDESKTOP_LAUNCHER_FILENAME=org.telegram.desktop.desktop -Gconfig=Release --depth=Telegram/gyp --generator-output=../.. -Goutput_dir=out Telegram/gyp/Telegram.gyp --format=cmake",
+                "cd Telegram/gyp && gyp -Dapi_id=611335 -Dapi_hash=d524b414d21f4d37f08684c1df41ac9c -Dlinux_path_range=/app/include/range/v3 -Dlinux_path_qt=/usr -Dlinux_path_breakpad=/app -Dlinux_lib_ssl=-lssl -Dlinux_lib_crypto=-lcrypto -Dlinux_lib_icu=\"-licuuc -licutu -licui18n\" -Dbuild_defines=\"TDESKTOP_DISABLE_AUTOUPDATE,TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME,TDESKTOP_DISABLE_DESKTOP_FILE_GENERATION,TDESKTOP_DISABLE_CRASH_REPORTS,TDESKTOP_DISABLE_UNITY_INTEGRATION\" --depth=. --generator-output=.. --format=cmake -Goutput_dir=../out Telegram.gyp",
                 "NUM=$((`wc -l < out/Release/CMakeLists.txt` - 2)); sed -i \"$NUM r CMakeLists.inj\" out/Release/CMakeLists.txt",
                 "cd out/Release && cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DCMAKE_BUILD_TYPE=Release",
                 "cd out/Release && make -j$(nproc)"
@@ -134,7 +162,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.8.15"
+                    "branch": "v1.9.3"
                 },
                 {
                     "type": "patch",
@@ -151,10 +179,6 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-missing-function-symbols.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-libtgvoip.patch"
                 },
                 {
                     "type": "patch",

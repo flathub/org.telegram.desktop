@@ -1,7 +1,7 @@
-diff --git a/Telegram/SourceFiles/ui/text/text.cpp b/Telegram/SourceFiles/ui/text/text.cpp
+diff --git a/Telegram/lib_ui/ui/text/text.cpp b/Telegram/lib_ui/ui/text/text.cpp
 index 99d27b60c..ba0b4844f 100644
---- a/Telegram/SourceFiles/ui/text/text.cpp
-+++ b/Telegram/SourceFiles/ui/text/text.cpp
+--- a/Telegram/lib_ui/ui/text/text.cpp
++++ b/Telegram/lib_ui/ui/text/text.cpp
 @@ -17,7 +17,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
  #include "boxes/confirm_box.h"
  #include "mainwindow.h"
@@ -10,10 +10,10 @@ index 99d27b60c..ba0b4844f 100644
  #include <private/qharfbuzz_p.h>
  
  namespace Ui {
-diff --git a/Telegram/SourceFiles/ui/text/text.h b/Telegram/SourceFiles/ui/text/text.h
+diff --git a/Telegram/lib_ui/ui/text/text.h b/Telegram/lib_ui/ui/text/text.h
 index 537c0b60d..7906b0eee 100644
---- a/Telegram/SourceFiles/ui/text/text.h
-+++ b/Telegram/SourceFiles/ui/text/text.h
+--- a/Telegram/lib_ui/ui/text/text.h
++++ b/Telegram/lib_ui/ui/text/text.h
 @@ -11,7 +11,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
  #include "core/click_handler.h"
  #include "base/flags.h"
@@ -23,10 +23,10 @@ index 537c0b60d..7906b0eee 100644
  
  static const QChar TextCommand(0x0010);
  enum TextCommands {
-diff --git a/Telegram/SourceFiles/ui/text/text_block.cpp b/Telegram/SourceFiles/ui/text/text_block.cpp
+diff --git a/Telegram/lib_ui/ui/text/text_block.cpp b/Telegram/lib_ui/ui/text/text_block.cpp
 index c7b3fdead..9637a2e07 100644
---- a/Telegram/SourceFiles/ui/text/text_block.cpp
-+++ b/Telegram/SourceFiles/ui/text/text_block.cpp
+--- a/Telegram/lib_ui/ui/text/text_block.cpp
++++ b/Telegram/lib_ui/ui/text/text_block.cpp
 @@ -9,8 +9,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
  
  #include "core/crash_reports.h"
@@ -36,10 +36,10 @@ index c7b3fdead..9637a2e07 100644
  // COPIED FROM qtextlayout.cpp AND MODIFIED
  namespace Ui {
  namespace Text {
-diff --git a/Telegram/SourceFiles/ui/text/text_block.h b/Telegram/SourceFiles/ui/text/text_block.h
+diff --git a/Telegram/lib_ui/ui/text/text_block.h b/Telegram/lib_ui/ui/text/text_block.h
 index a20b8123c..38e1e0446 100644
---- a/Telegram/SourceFiles/ui/text/text_block.h
-+++ b/Telegram/SourceFiles/ui/text/text_block.h
+--- a/Telegram/lib_ui/ui/text/text_block.h
++++ b/Telegram/lib_ui/ui/text/text_block.h
 @@ -7,7 +7,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
  */
  #pragma once

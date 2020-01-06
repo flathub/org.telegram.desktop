@@ -1,7 +1,33 @@
-diff --git a/Telegram/gyp/common/linux.gypi b/Telegram/gyp/common/linux.gypi
-index cdcdef1dc..3355bd932 100644
---- a/Telegram/gyp/common/linux.gypi
-+++ b/Telegram/gyp/common/linux.gypi
+diff --git a/Telegram/gyp/Telegram.gyp b/Telegram/gyp/Telegram.gyp
+index cc113bdd4..da857f1f8 100644
+--- a/Telegram/gyp/Telegram.gyp
++++ b/Telegram/gyp/Telegram.gyp
+@@ -87,20 +87,16 @@
+     ],
+ 
+     'defines': [
+-      'AL_LIBTYPE_STATIC',
+-      'AL_ALEXT_PROTOTYPES',
+       'TGVOIP_USE_CXX11_LIB',
+       'TDESKTOP_API_ID=<(api_id)',
+       'TDESKTOP_API_HASH=<(api_hash)',
++      '__STDC_FORMAT_MACROS',
+       '<!@(python -c "for s in \'<(build_defines)\'.split(\',\'): print(s)")',
+     ],
+ 
+     'include_dirs': [
+       '<(src_loc)',
+       '<(SHARED_INTERMEDIATE_DIR)',
+-      '<(libs_loc)/breakpad/src',
+-      '<(libs_loc)/lzma/C',
+-      '<(libs_loc)/openal-soft/include',
+       '<(libs_loc)/opus/include',
+       '<(minizip_loc)',
+       '<(sp_media_key_tap_loc)',
+diff --git a/Telegram/gyp/helpers/common/linux.gypi b/Telegram/gyp/helpers/common/linux.gypi
+index 5ec145d..62ec58a 100644
+--- a/Telegram/gyp/helpers/common/linux.gypi
++++ b/Telegram/gyp/helpers/common/linux.gypi
 @@ -11,7 +11,6 @@
          'linux_common_flags': [
            '-pipe',
@@ -10,45 +36,7 @@ index cdcdef1dc..3355bd932 100644
            '-W',
            '-fPIC',
            '-Wno-unused-variable',
-@@ -26,29 +25,19 @@
-           '-Wno-error=class-memaccess',
-           '-Wno-error=parentheses',
-         ],
--        'linux_path_ffmpeg%': '/usr/local',
--        'linux_path_openal%': '/usr/local',
--        'linux_path_va%': '/usr/local',
--        'linux_path_vdpau%': '/usr/local',
--        'linux_path_breakpad%': '/usr/local',
--        'linux_path_opus_include%': '<(libs_loc)/opus/include',
--        'linux_path_range%': '/usr/local',
-       },
-       'include_dirs': [
-         '/usr/local/include',
--        '<(linux_path_ffmpeg)/include',
--        '<(linux_path_openal)/include',
--        '<(linux_path_breakpad)/include/breakpad',
--        '<(linux_path_opus_include)',
--        '<(linux_path_range)/include',
-+      '<(libs_loc)/opus/include'
-+      '/app/include/',
-+      '/app/include/meta',
-+      '/app/include/range/',
-+      '/app/include/range/v3',
-       ],
-       'library_dirs': [
--        '/usr/local/lib',
--        '<(linux_path_ffmpeg)/lib',
--        '<(linux_path_openal)/lib',
--        '<(linux_path_va)/lib',
--        '<(linux_path_vdpau)/lib',
--        '<(linux_path_breakpad)/lib',
-+      '/usr/local/lib',
-+      '/usr/lib',
-+      '/app/lib',
-       ],
-       'conditions': [
-         [ '"<!(uname -m)" == "x86_64" or "<!(uname -m)" == "aarch64"', {
-@@ -86,7 +75,6 @@
+@@ -85,7 +84,6 @@
        ],
        'defines': [
          '_REENTRANT',
@@ -56,52 +44,107 @@ index cdcdef1dc..3355bd932 100644
          'QT_PLUGIN',
        ],
        'cflags_c': [
-diff --git a/Telegram/gyp/modules/qt.gypi b/Telegram/gyp/modules/qt.gypi
-index 0b783ec21..850e99718 100644
---- a/Telegram/gyp/modules/qt.gypi
-+++ b/Telegram/gyp/modules/qt.gypi
-@@ -14,25 +14,23 @@
-               [ 'build_macold', {
-                 'qt_version%': '5.3.2',
+diff --git a/Telegram/gyp/telegram/sources.txt b/Telegram/gyp/telegram/sources.txt
+index 6893fc7c9..03b1737c9 100644
+--- a/Telegram/gyp/telegram/sources.txt
++++ b/Telegram/gyp/telegram/sources.txt
+@@ -314,8 +314,6 @@
+ <(src_loc)/history/view/media/history_view_sticker.cpp
+ <(src_loc)/history/view/media/history_view_theme_document.h
+ <(src_loc)/history/view/media/history_view_theme_document.cpp
+-<(src_loc)/history/view/media/history_view_video.h
+-<(src_loc)/history/view/media/history_view_video.cpp
+ <(src_loc)/history/view/media/history_view_web_page.h
+ <(src_loc)/history/view/media/history_view_web_page.cpp
+ <(src_loc)/history/view/history_view_compose_controls.cpp
+diff --git a/Telegram/gyp/utils.gyp b/Telegram/gyp/utils.gyp
+index 3669236f0..d058e67db 100644
+--- a/Telegram/gyp/utils.gyp
++++ b/Telegram/gyp/utils.gyp
+@@ -39,7 +39,6 @@
+         ],
+       }, {
+         'ldflags': [
+-          '-static-libstdc++',
+         ],
+       }],
+       [ '"<(build_mac)" != "1"', {
+diff --git a/Telegram/gyp/helpers/modules/qt.gypi b/Telegram/gyp/helpers/modules/qt.gypi
+index e329211..7c4dd38 100644
+--- a/Telegram/gyp/helpers/modules/qt.gypi
++++ b/Telegram/gyp/helpers/modules/qt.gypi
+@@ -14,15 +14,11 @@
+               [ 'build_osx', {
+                 'qt_version%': '5.6.2',
                }, {
--                'qt_version%': '5.6.2',
+-                'qt_version%': '5.12.5',
 +                'qt_version%': '5.13.2',
                }]
              ],
            },
-           'qt_libs': [
+-          'qt_libs_5_12_5': [
 -            'qwebp',
+-            'qgif',
+-            'qjpeg',
 -            'Qt5PrintSupport',
--            'Qt5PlatformSupport',
-+            'Qt5DBus',
-+            'Qt5Core',
++          'qt_libs_5_13_2': [
+             'Qt5AccessibilitySupport',
+             'Qt5FontDatabaseSupport',
+             'Qt5EventDispatcherSupport',
+@@ -30,11 +26,9 @@
              'Qt5Network',
              'Qt5Widgets',
              'Qt5Gui',
--            'qtharfbuzzng',
+-            'qtharfbuzz',
+-            'qtlibpng',
            ],
            'qt_version%': '<(qt_version)',
-           'conditions': [
-             [ 'build_macold', {
-               'linux_path_qt%': '/usr/local/macold/Qt-<(qt_version)',
-             }, {
--              'linux_path_qt%': '/usr/local/tdesktop/Qt-<(qt_version)',
-+              'linux_path_qt%': '/usr/lib/',
-             }]
-           ]
+-          'linux_path_qt%': '/usr/local/desktop-app/Qt-<(qt_version)',
++          'linux_path_qt%': '/usr/lib/',
          },
-@@ -46,10 +44,6 @@
+         'qt_version%': '<(qt_version)',
+         'qt_loc_unix': '<(linux_path_qt)',
+@@ -44,13 +38,9 @@
+             'qt_lib_debug_postfix': 'd<(ld_lib_postfix)',
+             'qt_lib_release_postfix': '<(ld_lib_postfix)',
              'qt_libs': [
-               '<@(qt_libs)',
+-              '<@(qt_libs_5_12_5)',
++              '<@(qt_libs_5_13_2)',
                'Qt5Core',
+               'Qt5WindowsUIAutomationSupport',
 -              'qtmain',
 -              'qwindows',
 -              'qtfreetype',
--              'qtpcre',
+-              'qtpcre2',
              ],
            }],
            [ 'build_mac', {
-@@ -72,32 +66,13 @@
+@@ -60,7 +50,7 @@
+           }],
+           [ 'build_mac and not build_osx', {
+             'qt_libs': [
+-              '<@(qt_libs_5_12_5)',
++              '<@(qt_libs_5_13_2)',
+               'Qt5Core',
+               'Qt5GraphicsSupport',
+               'Qt5ClipboardSupport',
+@@ -72,14 +62,11 @@
+           }],
+           [ 'build_osx', {
+             'qt_libs': [
+-              'qwebp',
+-              'Qt5PrintSupport',
+-              'Qt5PlatformSupport',
+               'Qt5Network',
+               'Qt5Widgets',
+               'Qt5Gui',
+               'Qt5Core',
+-              'qtharfbuzzng',
++              'Qt5DBus',
+               'qgenericbearer',
+               'qtfreetype',
+               'qtpcre',
+@@ -87,32 +74,16 @@
              ],
            }],
            [ 'build_linux', {
@@ -114,21 +157,22 @@ index 0b783ec21..850e99718 100644
              'qt_libs': [
 -              'qxcb',
 -              'Qt5XcbQpa',
+               'Qt5LinuxAccessibilitySupport',
+               'Qt5ServiceSupport',
+               'Qt5EdidSupport',
 -              'qconnmanbearer',
 -              'qgenericbearer',
 -              'qnmbearer',
-               '<@(qt_libs)',
+-              '<@(qt_libs_5_12_5)',
++              '<@(qt_libs_5_13_2)',
                'Qt5DBus',
                'Qt5Core',
--              'qtpcre',
--              'Xi',
--              'Xext',
--              'Xfixes',
+-              'qtpcre2',
 -              'SM',
 -              'ICE',
 -              'fontconfig',
--              'expat',
 -              'freetype',
+-              'expat',
 -              'z',
 -              'xcb-shm',
 -              'xcb-xfixes',
@@ -137,51 +181,23 @@ index 0b783ec21..850e99718 100644
              ],
            }],
          ],
-@@ -128,10 +103,6 @@
-     # where [sources] contains all your source files
-     'qt_moc_list_sources_arg': '--moc-prefix SHARED_INTERMEDIATE_DIR/<(_target_name)/moc/moc_',
-
--    'linux_path_xkbcommon%': '/usr/local',
--    'linux_lib_ssl%': '/usr/local/ssl/lib/libssl.a',
--    'linux_lib_crypto%': '/usr/local/ssl/lib/libcrypto.a',
--    'linux_lib_icu%': 'libicutu.a libicui18n.a libicuuc.a libicudata.a',
-   },
-
-   'configurations': {
-@@ -180,14 +151,14 @@
-   },
-
-   'include_dirs': [
--    '<(qt_loc)/include',
--    '<(qt_loc)/include/QtCore',
--    '<(qt_loc)/include/QtGui',
--    '<(qt_loc)/include/QtDBus',
--    '<(qt_loc)/include/QtCore/<(qt_version)',
--    '<(qt_loc)/include/QtGui/<(qt_version)',
--    '<(qt_loc)/include/QtCore/<(qt_version)/QtCore',
--    '<(qt_loc)/include/QtGui/<(qt_version)/QtGui',
-+    '/usr/include/'
-+    '/usr/include/QtCore',
-+    '/usr/include/QtGui',
-+    '/usr/include/QtDBus',
-+    '/usr/include/QtCore/<(qt_version)/',
-+    '/usr/include/QtGui/<(qt_version)/',
-+    '/usr/include/QtCore/<(qt_version)/QtCore',
-+    '/usr/include/QtGui/<(qt_version)/QtGui',
-   ],
-   'library_dirs': [
-     '<(qt_loc)/lib',
-@@ -212,25 +183,23 @@
+@@ -236,32 +207,17 @@
+         '<(DEPTH)/helpers/platform/linux/linux_glibc_wraps.gyp:linux_glibc_wraps',
        ],
        'libraries': [
-         '<(PRODUCT_DIR)/obj.target/liblinux_glibc_wraps.a',
--        '<(linux_path_xkbcommon)/lib/libxkbcommon.a',
+-        '-lcomposeplatforminputcontextplugin',
+-        '-libusplatforminputcontextplugin',
+-        '-lfcitxplatforminputcontextplugin',
+-        '-lhimeplatforminputcontextplugin',
+-        '-lnimfplatforminputcontextplugin',
          '<@(qt_libs_release)',
--        '<(linux_lib_ssl)',
--        '<(linux_lib_crypto)',
+-        '<(linux_path_xkbcommon)/lib/libxkbcommon.a',
+-        '<(linux_path_xkbcommon)/lib/libxkbcommon-x11.a',
+         '<(PRODUCT_DIR)/obj.target/helpers/platform/linux/liblinux_glibc_wraps.a',
+-        #'<(linux_lib_ssl)', # added in lib_ton
+-        #'<(linux_lib_crypto)', # added in lib_ton
 -        '<!@(python -c "for s in \'<(linux_lib_icu)\'.split(\' \'): print(s)")',
 -        '-lxcb',
-+        '-lcrypto',
          '-lX11',
 -        '-lX11-xcb',
 -        '-ldbus-1',
@@ -192,42 +208,31 @@ index 0b783ec21..850e99718 100644
        ],
        'include_dirs': [
 -        '<(qt_loc)/mkspecs/linux-g++',
-+        '/app/include/',
-+        '/app/include/meta',
-+        '/app/include/range/',
-+        '/app/include/range/v3',
-+        '/usr/include/opus',
 +        '/usr/lib/mkspecs/linux-g++',
-+        '/usr/include/QtCore'
        ],
        'ldflags': [
 -        '-static-libstdc++',
          '-pthread',
          '-rdynamic',
        ],
-diff --git a/Telegram/gyp/modules/qt_moc.gypi b/Telegram/gyp/modules/qt_moc.gypi
-index ebee90a15..697c1113c 100644
---- a/Telegram/gyp/modules/qt_moc.gypi
-+++ b/Telegram/gyp/modules/qt_moc.gypi
-@@ -15,11 +15,12 @@
+diff --git a/Telegram/gyp/helpers/modules/qt_moc.gypi b/Telegram/gyp/helpers/modules/qt_moc.gypi
+index 33cc236..b47ff9e 100644
+--- a/Telegram/gyp/helpers/modules/qt_moc.gypi
++++ b/Telegram/gyp/helpers/modules/qt_moc.gypi
+@@ -15,7 +15,7 @@
        '<(SHARED_INTERMEDIATE_DIR)/<(_target_name)/moc/moc_<(RULE_INPUT_ROOT).cpp',
      ],
      'action': [
 -      '<(qt_loc)/bin/moc<(exe_ext)',
 +      '/usr/bin/moc',
-
+ 
        # Silence "Note: No relevant classes found. No output generated."
        '--no-notes',
-
-+      '-DTDESKTOP_DISABLE_AUTOUPDATE -DTDESKTOP_DISABLE_CRASH_REPORTS -DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME -DTDESKTOP_DISABLE_UNITY_INTEGRATION',
-       '<!@(python -c "for s in \'<@(_defines)\'.split(\' \'): print(\'-D\' + s)")',
-       # '<!@(python -c "for s in \'<@(_include_dirs)\'.split(\' \'): print(\'-I\' + s)")',
-       '<(RULE_INPUT_PATH)',
-diff --git a/Telegram/gyp/modules/qt_rcc.gypi b/Telegram/gyp/modules/qt_rcc.gypi
-index f5624a82b..1129a95c5 100644
---- a/Telegram/gyp/modules/qt_rcc.gypi
-+++ b/Telegram/gyp/modules/qt_rcc.gypi
-@@ -15,7 +15,7 @@
+diff --git a/Telegram/lib_ui/gyp/qrc_rule.gypi b/Telegram/lib_ui/gyp/qrc_rule.gypi
+index eb4654c..22419d2 100644
+--- a/Telegram/lib_ui/gyp/qrc_rule.gypi
++++ b/Telegram/lib_ui/gyp/qrc_rule.gypi
+@@ -60,7 +60,7 @@
        '<(SHARED_INTERMEDIATE_DIR)/<(_target_name)/qrc/qrc_<(RULE_INPUT_ROOT).cpp',
      ],
      'action': [
@@ -237,104 +242,17 @@ index f5624a82b..1129a95c5 100644
        '-no-compress',
        '<(RULE_INPUT_PATH)',
 diff --git a/Telegram/gyp/telegram/linux.gypi b/Telegram/gyp/telegram/linux.gypi
-index 385f2b89f..3c5f618d0 100644
+index 59f6acc93..c102131c9 100644
 --- a/Telegram/gyp/telegram/linux.gypi
 +++ b/Telegram/gyp/telegram/linux.gypi
-@@ -19,27 +19,27 @@
-         #'xkbcommon',
-       ],
-     },
-+    'library_dirs': [
-+      '/usr/local/lib',
-+      '/usr/lib',
-+      '/app/lib',
-+    ],
-     'libraries': [
--      '-lbreakpad_client',
--      '-lcomposeplatforminputcontextplugin',
--      '-libusplatforminputcontextplugin',
--      '-lfcitxplatforminputcontextplugin',
--      '-lhimeplatforminputcontextplugin',
--      '-lnimfplatforminputcontextplugin',
--      '-llzma',
-       '-lopenal',
-       '-lavformat',
-       '-lavcodec',
-       '-lswresample',
-       '-lswscale',
-       '-lavutil',
--      '-lopus',
-       '-lva-x11',
-       '-lva-drm',
-       '-lva',
-       '-lvdpau',
-       '-ldrm',
-+      '-lopus',
-       '-lz',
-+      '-lwebp',
-+      '-llzma',
- #      '<!(pkg-config 2> /dev/null --libs <@(pkgconfig_libs))',
-     ],
-     'cflags_cc': [
-@@ -51,7 +51,6 @@
-       '-Wl,-wrap,secure_getenv',
-       '-Wl,-wrap,clock_gettime',
-       '-Wl,--no-as-needed,-lrt',
--      '-Wl,-Bstatic',
-     ],
-     'configurations': {
-       'Release': {
-@@ -75,9 +74,8 @@
+@@ -81,8 +81,8 @@
          ],
        }], ['not_need_gtk!="True"', {
          'cflags_cc': [
 -          '<!(pkg-config 2> /dev/null --cflags gtk+-2.0)',
 -          '<!(pkg-config 2> /dev/null --cflags glib-2.0)',
--          '<!(pkg-config 2> /dev/null --cflags dee-1.0)',
 +          '<!(pkg-config 2> /dev/null --cflags appindicator3-0.1)',
 +          '<!(pkg-config 2> /dev/null --cflags gtk+-3.0)',
          ],
        }], ['<!(pkg-config ayatana-appindicator3-0.1; echo $?) == 0', {
          'cflags_cc': [ '<!(pkg-config --cflags ayatana-appindicator3-0.1)' ],
-diff --git a/Telegram/gyp/telegram/telegram.gypi b/Telegram/gyp/telegram/telegram.gypi
-index c207db637..4a873a0e8 100644
---- a/Telegram/gyp/telegram/telegram.gypi
-+++ b/Telegram/gyp/telegram/telegram.gypi
-@@ -85,26 +85,27 @@
-     ],
-
-     'defines': [
--      'AL_LIBTYPE_STATIC',
--      'AL_ALEXT_PROTOTYPES',
-       'TGVOIP_USE_CXX11_LIB',
-       'XXH_INLINE_ALL',
--      'TDESKTOP_API_ID=<(api_id)',
--      'TDESKTOP_API_HASH=<(api_hash)',
-+      'TDESKTOP_API_ID=611335',
-+      'TDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c',
-+      '__STDC_FORMAT_MACROS',
-+      'TDESKTOP_DISABLE_AUTOUPDATE',
-+      'TDESKTOP_DISABLE_CRASH_REPORTS',
-+      'TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME',
-+      'TDESKTOP_DISABLE_UNITY_INTEGRATION',
-+      'TDESKTOP_DISABLE_OPENAL_EFFECTS',
-       '<!@(python -c "for s in \'<(build_defines)\'.split(\',\'): print(s)")',
-     ],
-
-     'include_dirs': [
-       '<(src_loc)',
-       '<(SHARED_INTERMEDIATE_DIR)',
--      '<(libs_loc)/breakpad/src',
--      '<(libs_loc)/lzma/C',
--      '<(libs_loc)/zlib',
--      '<(libs_loc)/ffmpeg',
--      '<(libs_loc)/openal-soft/include',
-       '<(libs_loc)/opus/include',
--      '<(libs_loc)/range-v3/include',
-       '<(minizip_loc)',
-+      '/app/include/meta',
-+      '/app/include/range/',
-+      '/app/include/range/v3',
-       '<(sp_media_key_tap_loc)',
-       '<(emoji_suggestions_loc)',
-       '<(submodules_loc)/GSL/include',

@@ -9,10 +9,10 @@ on the host.
  Telegram/Resources/fc-custom.conf | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Telegram/Resources/fc-custom.conf b/Telegram/Resources/fc-custom.conf
+diff --git a/Telegram/lib_ui/qt_conf/fc-custom.conf b/Telegram/lib_ui/qt_conf/fc-custom.conf
 index ab5c18306..5c97a73bf 100644
---- a/Telegram/Resources/fc-custom.conf
-+++ b/Telegram/Resources/fc-custom.conf
+--- a/Telegram/lib_ui/qt_conf/fc-custom.conf
++++ b/Telegram/lib_ui/qt_conf/fc-custom.conf
 @@ -6,6 +6,7 @@
  	<dir>~/.fonts</dir>
  	<dir>~/.local/share/fonts</dir>

@@ -1,19 +1,20 @@
-diff --git a/Telegram/SourceFiles/base/basic_types.h b/Telegram/SourceFiles/base/basic_types.h
+diff --git a/Telegram/lib_base/base/basic_types.h b/Telegram/SourceFiles/base/basic_types.h
 index bd5ec4059..a6d3ce0e0 100644
---- a/Telegram/SourceFiles/base/basic_types.h
-+++ b/Telegram/SourceFiles/base/basic_types.h
-@@ -7,7 +7,6 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
- */
+--- a/Telegram/lib_base/base/basic_types.h
++++ b/Telegram/lib_base/base/basic_types.h
+@@ -6,7 +6,6 @@
+ //
  #pragma once
- 
+
 -#include "base/build_config.h"
  #include "base/ordered_set.h"
  #include "base/unique_function.h"
  #include "base/functors.h"
-@@ -48,6 +47,20 @@ using float64 = double;
- 
+@@ -46,3 +45,17 @@ using float32 = float;
+ using float64 = double;
+
  using TimeId = int32;
- 
++
 +#if defined(__GNUC__) || defined(__clang__)
 +#define WARN_UNUSED_RESULT __attribute__((warn_unused_result))
 +#else
@@ -27,10 +28,6 @@ index bd5ec4059..a6d3ce0e0 100644
 +#else
 +#define FORCE_INLINE inline
 +#endif
-+
- // Define specializations for QByteArray for Qt 5.3.2, because
- // QByteArray in Qt 5.3.2 doesn't declare "pointer" subtype.
- #if QT_VERSION < QT_VERSION_CHECK(5, 5, 0)
 diff --git a/Telegram/SourceFiles/config.h b/Telegram/SourceFiles/config.h
 index d3460cc08..fb4ec685d 100644
 --- a/Telegram/SourceFiles/config.h
@@ -44,10 +41,10 @@ index d3460cc08..fb4ec685d 100644
  #endif // Q_BYTE_ORDER == Q_BIG_ENDIAN
  
  #if (TDESKTOP_ALPHA_VERSION != 0)
-diff --git a/Telegram/SourceFiles/ui/effects/animation_value.h b/Telegram/SourceFiles/ui/effects/animation_value.h
+diff --git a/Telegram/lib_ui/ui/effects/animation_value.h b/Telegram/lib_ui/ui/effects/animation_value.h
 index 2d822eb33..9721da61c 100644
---- a/Telegram/SourceFiles/ui/effects/animation_value.h
-+++ b/Telegram/SourceFiles/ui/effects/animation_value.h
+--- a/Telegram/lib_ui/ui/effects/animation_value.h
++++ b/Telegram/lib_ui/ui/effects/animation_value.h
 @@ -97,9 +97,10 @@ TG_FORCE_INLINE int interpolate(int a, int b, float64 b_ratio) {
  	return qRound(a + float64(b - a) * b_ratio);
  }

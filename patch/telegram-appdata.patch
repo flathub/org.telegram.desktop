@@ -1,12 +1,20 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..99bf48feb 100644
+index 9eedae55c..4a52af63a 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -33,6 +33,33 @@
+@@ -33,6 +33,26 @@
          <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
 +    <releases>
++        <release version="1.9.3" date="2019-12-31">
++            <description>
++                <p>Videos in chats start playing automatically.</p>
++                <p>Resume playback from where you left off when watching long videos and listening to long audio tracks.</p>
++                <p>Control automatic playback for videos, GIFs and round video messages in Settings > Advanced > Automatic media download.</p>
++                <p>Enjoy system spell checker support on all modern systems.</p>
++            </description>
++        </release>
 +        <release version="1.8.15" date="2019-10-07">
 +            <description>
 +                <p>Bug fixes and other minor improvements.</p>
@@ -15,21 +23,6 @@ index 9eedae55c..99bf48feb 100644
 +        <release version="1.8.14" date="2019-10-07">
 +            <description>
 +                <p>Bug fixes and other minor improvements.</p>
-+            </description>
-+        </release>
-+        <release version="1.8.9" date="2019-09-30">
-+            <description>
-+                <p>Bug fixes and other minor improvements.</p>
-+            </description>
-+        </release>
-+        <release version="1.8.8" date="2019-09-10">
-+            <description>
-+                <p>Custom Cloud Themes</p>
-+                <ul>
-+                    <li>Create new themes based on your color and wallpaper choices.</li>
-+                    <li>Share your themes with other users via links.</li>
-+                    <li>Update your theme for all its users when you change something.</li>
-+                </ul>
 +            </description>
 +        </release>
 +    </releases>
