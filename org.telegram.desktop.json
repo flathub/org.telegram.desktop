@@ -247,6 +247,10 @@
                     "path": "patch/cmake_helpers-pr-8.patch"
                 },
                 {
+                    "type": "patch",
+                    "path": "patch/telegram-pr-6945.patch"
+                },
+                {
                     "type": "script",
                     "dest-filename": "telegram-desktop",
                     "commands": [
