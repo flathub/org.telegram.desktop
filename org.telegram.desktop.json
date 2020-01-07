@@ -248,6 +248,11 @@
                 },
                 {
                     "type": "patch",
+                    "dest": "Telegram/lib_ui",
+                    "path": "patch/lib_ui-flatpak-fonts.conf.patch"
+                },
+                {
+                    "type": "patch",
                     "path": "patch/telegram-pr-6945.patch"
                 },
                 {
