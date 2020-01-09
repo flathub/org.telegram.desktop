@@ -226,10 +226,6 @@
                 },
                 {
                     "type": "patch",
-                    "path": "patch/telegram-add-additional-plugin-path.patch"
-                },
-                {
-                    "type": "patch",
                     "path": "patch/telegram-single-instance.patch"
                 },
                 {
