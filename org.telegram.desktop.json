@@ -130,21 +130,6 @@
             ]
         },
         {
-            "name": "rlottie",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "config-opts": [
-                "-DLIB_INSTALL_DIR=/app/lib"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/desktop-app/rlottie.git",
-                    "commit": "c490c7a098b9b3cbc3195b00e90d6fc3989e2ba2"
-                }
-            ]
-        },
-        {
             "name": "xxHash",
             "no-autogen": true,
             "make-args": [
@@ -196,6 +181,8 @@
                 "-DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME:BOOL=ON",
                 "-DTDESKTOP_DISABLE_DESKTOP_FILE_GENERATION:BOOL=ON",
                 "-DDESKTOP_APP_DISABLE_CRASH_REPORTS:BOOL=ON",
+                "-DTDESKTOP_USE_PACKAGED_TGVOIP:BOOL=OFF",
+                "-DDESKTOP_APP_USE_PACKAGED_RLOTTIE:BOOL=OFF",
                 "-DTDESKTOP_API_ID=611335",
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
             ],
@@ -226,10 +213,6 @@
                 },
                 {
                     "type": "patch",
-                    "path": "patch/telegram-add-additional-plugin-path.patch"
-                },
-                {
-                    "type": "patch",
                     "path": "patch/telegram-single-instance.patch"
                 },
                 {
@@ -239,6 +222,10 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-appdata.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patch/telegram-100fed3.patch"
                 },
                 {
                     "type": "patch",
@@ -256,7 +243,12 @@
                 },
                 {
                     "type": "patch",
-                    "path": "patch/telegram-pr-6945.patch"
+                    "dest": "Telegram/ThirdParty/libtgvoip",
+                    "path": "patch/libtgvoip-pr-6.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patch/telegram-pr-6945-rebased.patch"
                 },
                 {
                     "type": "script",
