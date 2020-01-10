@@ -1,0 +1,30 @@
+From 100fed362271ada828fdaeb27e52f660a5a05d18 Mon Sep 17 00:00:00 2001
+From: John Preston <johnprestonmail@gmail.com>
+Date: Tue, 31 Dec 2019 20:20:55 +0300
+Subject: [PATCH] Fix build for Linux 32 bit.
+
+Fixes #6921.
+---
+ Telegram/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Telegram/CMakeLists.txt b/Telegram/CMakeLists.txt
+index d8c623a632..8e6f8648db 100644
+--- a/Telegram/CMakeLists.txt
++++ b/Telegram/CMakeLists.txt
+@@ -70,7 +70,6 @@ PRIVATE
+     tdesktop::lib_mtproto
+     tdesktop::lib_scheme
+     tdesktop::lib_export
+-    tdesktop::lib_tgvoip
+     desktop-app::lib_base
+     desktop-app::lib_crl
+     desktop-app::lib_ui
+@@ -85,6 +84,7 @@ PRIVATE
+     desktop-app::external_qt
+     desktop-app::external_qr_code_generator
+     desktop-app::external_auto_updates
++    tdesktop::lib_tgvoip
+     desktop-app::external_openssl
+     desktop-app::external_opus
+     desktop-app::external_openal
