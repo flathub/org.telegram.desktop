@@ -87,15 +87,17 @@
             "build-options": {
                 "cflags": "-Wno-error"
             },
+            "config-opts": [
+                "-DRANGE_V3_TESTS:BOOL=OFF",
+                "-DRANGE_V3_EXAMPLES:BOOL=OFF",
+                "-DRANGE_V3_PERF:BOOL=OFF",
+                "-DRANGE_V3_DOCS:BOOL=OFF"
+            ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/ericniebler/range-v3/archive/0.9.1.tar.gz",
-                    "sha256": "2b5b442d572b5978ea51c650adfaf0796f39f326404d09b83d846e04f571876b"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/ranges-v3-disable-tests-doc-examples.patch"
+                    "url": "https://github.com/ericniebler/range-v3/archive/0.10.0.tar.gz",
+                    "sha256": "5a1cd44e7315d0e8dcb1eee4df6802221456a9d1dbeac53da02ac7bd4ea150cd"
                 }
             ]
         },
@@ -222,12 +224,6 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-appdata.patch"
-                },
-                {
-                    "type": "patch",
-                    "dest": "cmake",
-                    "path": "patch/cmake_helpers-204c3fec.patch",
-                    "options": [ "-R" ]
                 },
                 {
                     "type": "script",
