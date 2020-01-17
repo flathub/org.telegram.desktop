@@ -209,7 +209,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.9.3"
+                    "commit": "f1b0e81b606f304259ab22e2735758e9fdb69ce4"
                 },
                 {
                     "type": "patch",
@@ -222,33 +222,6 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-appdata.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-100fed3.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-pr-6956.patch"
-                },
-                {
-                    "type": "patch",
-                    "dest": "cmake",
-                    "path": "patch/cmake_helpers-pr-8.patch"
-                },
-                {
-                    "type": "patch",
-                    "dest": "Telegram/lib_ui",
-                    "path": "patch/lib_ui-remove-configs.patch"
-                },
-                {
-                    "type": "patch",
-                    "dest": "Telegram/ThirdParty/libtgvoip",
-                    "path": "patch/libtgvoip-pr-6.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-pr-6945-rebased.patch"
                 },
                 {
                     "type": "script",
