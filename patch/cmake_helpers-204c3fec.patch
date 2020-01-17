@@ -1,0 +1,21 @@
+From 204c3fec5c9f5cd72c493c3d4fc76bb8acb628b9 Mon Sep 17 00:00:00 2001
+From: John Preston <johnprestonmail@gmail.com>
+Date: Fri, 17 Jan 2020 12:48:50 +0300
+Subject: [PATCH] Fix build with packaged range-v3.
+
+---
+ external/ranges/CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/external/ranges/CMakeLists.txt b/external/ranges/CMakeLists.txt
+index 8105361..adb878c 100644
+--- a/external/ranges/CMakeLists.txt
++++ b/external/ranges/CMakeLists.txt
+@@ -9,6 +9,7 @@ add_library(desktop-app::external_ranges ALIAS external_ranges)
+ 
+ if (DESKTOP_APP_USE_PACKAGED)
+     find_package(range-v3 REQUIRED)
++    target_link_libraries(external_ranges INTERFACE range-v3::range-v3)
+ else()
+     target_include_directories(external_ranges SYSTEM
+     INTERFACE

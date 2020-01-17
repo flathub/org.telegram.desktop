@@ -224,6 +224,12 @@
                     "path": "patch/telegram-appdata.patch"
                 },
                 {
+                    "type": "patch",
+                    "dest": "cmake",
+                    "path": "patch/cmake_helpers-204c3fec.patch",
+                    "options": [ "-R" ]
+                },
+                {
                     "type": "script",
                     "dest-filename": "telegram-desktop",
                     "commands": [
