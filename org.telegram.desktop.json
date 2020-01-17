@@ -152,12 +152,12 @@
             },
             "config-opts": [
                 "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
-                "-DTDESKTOP_DISABLE_AUTOUPDATE:BOOL=ON",
                 "-DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME:BOOL=ON",
                 "-DTDESKTOP_DISABLE_DESKTOP_FILE_GENERATION:BOOL=ON",
                 "-DDESKTOP_APP_DISABLE_CRASH_REPORTS:BOOL=ON",
                 "-DTDESKTOP_USE_PACKAGED_TGVOIP:BOOL=OFF",
                 "-DDESKTOP_APP_USE_PACKAGED_RLOTTIE:BOOL=OFF",
+                "-DTDESKTOP_LAUNCHER_FILENAME=org.telegram.desktop.desktop",
                 "-DTDESKTOP_API_ID=611335",
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
             ],
