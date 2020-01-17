@@ -43,33 +43,6 @@
         "shared-modules/dbus-glib/dbus-glib-0.110.json",
         "shared-modules/libappindicator/libappindicator-gtk3-12.10.json",
         {
-            "name": "dee",
-            "config-opts": ["--enable-maintainer-flags=no"],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://launchpad.net/dee/1.0/1.2.7/+download/dee-1.2.7.tar.gz",
-                    "sha256": "1bf0336ce684aa0f48d6eae2469628c1a9b43695a77443bc31a5790aa673bf8a"
-                }
-            ]
-        },
-        {
-            "name": "libnotify",
-            "cleanup": [ "/bin" ],
-            "config-opts": [
-                "--disable-static",
-                "--disable-tests",
-                "--disable-introspection"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/libnotify/0.7/libnotify-0.7.7.tar.xz",
-                    "sha256": "9cb4ce315b2655860c524d46b56010874214ec27e854086c1a1d0260137efc04"
-                }
-            ]
-        },
-        {
             "name": "cmake",
             "buildsystem": "cmake-ninja",
             "sources": [
