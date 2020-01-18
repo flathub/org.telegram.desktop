@@ -43,51 +43,6 @@
         "shared-modules/dbus-glib/dbus-glib-0.110.json",
         "shared-modules/libappindicator/libappindicator-gtk3-12.10.json",
         {
-            "name": "dee",
-            "config-opts": ["--enable-maintainer-flags=no"],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://launchpad.net/dee/1.0/1.2.7/+download/dee-1.2.7.tar.gz",
-                    "sha256": "1bf0336ce684aa0f48d6eae2469628c1a9b43695a77443bc31a5790aa673bf8a"
-                }
-            ]
-        },
-        {
-            "name": "libnotify",
-            "cleanup": [ "/bin" ],
-            "config-opts": [
-                "--disable-static",
-                "--disable-tests",
-                "--disable-introspection"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/libnotify/0.7/libnotify-0.7.7.tar.xz",
-                    "sha256": "9cb4ce315b2655860c524d46b56010874214ec27e854086c1a1d0260137efc04"
-                }
-            ]
-        },
-        {
-            "name": "range-3",
-            "buildsystem": "cmake",
-            "build-options": {
-                "cflags": "-Wno-error"
-            },
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/ericniebler/range-v3/archive/0.9.1.tar.gz",
-                    "sha256": "2b5b442d572b5978ea51c650adfaf0796f39f326404d09b83d846e04f571876b"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/ranges-v3-disable-tests-doc-examples.patch"
-                }
-            ]
-        },
-        {
             "name": "cmake",
             "buildsystem": "cmake-ninja",
             "sources": [
@@ -98,6 +53,26 @@
                 }
             ],
             "cleanup": [ "*" ]
+        },
+        {
+            "name": "range-3",
+            "buildsystem": "cmake",
+            "build-options": {
+                "cflags": "-Wno-error"
+            },
+            "config-opts": [
+                "-DRANGE_V3_TESTS:BOOL=OFF",
+                "-DRANGE_V3_EXAMPLES:BOOL=OFF",
+                "-DRANGE_V3_PERF:BOOL=OFF",
+                "-DRANGE_V3_DOCS:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/ericniebler/range-v3/archive/0.10.0.tar.gz",
+                    "sha256": "5a1cd44e7315d0e8dcb1eee4df6802221456a9d1dbeac53da02ac7bd4ea150cd"
+                }
+            ]
         },
         {
             "name": "enchant",
@@ -177,12 +152,12 @@
             },
             "config-opts": [
                 "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
-                "-DTDESKTOP_DISABLE_AUTOUPDATE:BOOL=ON",
                 "-DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME:BOOL=ON",
                 "-DTDESKTOP_DISABLE_DESKTOP_FILE_GENERATION:BOOL=ON",
                 "-DDESKTOP_APP_DISABLE_CRASH_REPORTS:BOOL=ON",
                 "-DTDESKTOP_USE_PACKAGED_TGVOIP:BOOL=OFF",
                 "-DDESKTOP_APP_USE_PACKAGED_RLOTTIE:BOOL=OFF",
+                "-DTDESKTOP_LAUNCHER_FILENAME=org.telegram.desktop.desktop",
                 "-DTDESKTOP_API_ID=611335",
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
             ],
@@ -209,7 +184,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "branch": "v1.9.3"
+                    "tag": "v1.9.4",
+                    "commit": "431521a8f5f87fee71c1497130360d4ebbad48cf"
                 },
                 {
                     "type": "patch",
@@ -222,33 +198,6 @@
                 {
                     "type": "patch",
                     "path": "patch/telegram-appdata.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-100fed3.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-pr-6956.patch"
-                },
-                {
-                    "type": "patch",
-                    "dest": "cmake",
-                    "path": "patch/cmake_helpers-pr-8.patch"
-                },
-                {
-                    "type": "patch",
-                    "dest": "Telegram/lib_ui",
-                    "path": "patch/lib_ui-remove-configs.patch"
-                },
-                {
-                    "type": "patch",
-                    "dest": "Telegram/ThirdParty/libtgvoip",
-                    "path": "patch/libtgvoip-pr-6.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-pr-6945-rebased.patch"
                 },
                 {
                     "type": "script",

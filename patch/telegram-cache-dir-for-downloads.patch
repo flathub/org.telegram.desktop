@@ -28,8 +28,8 @@ index 9af2a64c0..8fbedb307 100644
  } // namespace Platform
  
  inline QString psServerPrefix() {
--    return qsl("/tmp/");
-+    return QStandardPaths::writableLocation(QStandardPaths::TempLocation) + qsl("/");
+-	return qsl("/tmp/");
++	return QStandardPaths::writableLocation(QStandardPaths::TempLocation) + qsl("/");
  }
  inline void psCheckLocalSocket(const QString &serverName) {
-     QFile address(serverName);
+ 	QFile address(serverName);
