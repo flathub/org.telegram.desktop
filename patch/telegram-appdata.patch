@@ -1,12 +1,26 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..99bf48feb 100644
+index 9eedae55c..8a602cc3d 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -33,6 +33,33 @@
+@@ -33,6 +33,47 @@
          <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
 +    <releases>
++        <release version="1.9.7" date="2020-01-23">
++            <description>
++                <ul>
++                    <li>Create three new kinds of polls.</li>
++                    <li>See who voted for what in polls with visible votes.</li>
++                    <li>Vote for several options in polls that allow multiple answers.</li>
++                    <li>Guess the correct answer in quiz-style polls.</li>
++                    <li>Explore various ways of combining the different poll options.</li>
++                    <li>Add polls from the ... menu in any group or channel.</li>
++                    <li>Use bots like @QuizBot to create quizzes with several questions and media attachments.</li>
++                    <li>Schedule messages to be sent when your recipient comes online (only works if you know their online status).</li>
++                </ul>
++            </description>
++        </release>
 +        <release version="1.8.15" date="2019-10-07">
 +            <description>
 +                <p>Bug fixes and other minor improvements.</p>

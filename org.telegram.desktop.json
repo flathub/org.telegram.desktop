@@ -5,9 +5,7 @@
     "sdk": "org.kde.Sdk",
     "default-branch": "stable",
     "command": "telegram-desktop",
-    "rename-desktop-file": "telegramdesktop.desktop",
-    "rename-appdata-file": "telegramdesktop.appdata.xml",
-    "rename-icon": "telegram-desktop",
+    "rename-icon": "telegram",
     "finish-args": [ "--share=ipc",
                      "--share=network",
                      "--socket=x11",
@@ -147,7 +145,6 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "build-options": {
-                "cxxflags": "-std=gnu++17",
                 "ldflags": "-Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
             },
             "config-opts": [
@@ -157,38 +154,16 @@
                 "-DDESKTOP_APP_DISABLE_CRASH_REPORTS:BOOL=ON",
                 "-DTDESKTOP_USE_PACKAGED_TGVOIP:BOOL=OFF",
                 "-DDESKTOP_APP_USE_PACKAGED_RLOTTIE:BOOL=OFF",
-                "-DTDESKTOP_LAUNCHER_FILENAME=org.telegram.desktop.desktop",
+                "-DTDESKTOP_LAUNCHER_BASENAME=org.telegram.desktop",
                 "-DTDESKTOP_API_ID=611335",
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
-            ],
-            "no-make-install": true,
-            "post-install": [
-                "strip -s bin/Telegram",
-
-                "install -dm755 /app/bin",
-                "install -m755 bin/Telegram /app/bin/telegram-desktop",
-
-                "install -d /app/share/applications",
-                "install -m644 ../lib/xdg/telegramdesktop.desktop /app/share/applications/telegramdesktop.desktop",
-
-                "install -d /app/share/appdata",
-                "install -m644 ../lib/xdg/telegramdesktop.appdata.xml /app/share/appdata/telegramdesktop.appdata.xml",
-
-                "install -d /app/share/kservices5",
-                "install -m644 ../lib/xdg/tg.protocol /app/share/kservices5/tg.protocol",
-
-                "for icon_size in 16 32 48 64 128 256 512; do install -d /app/share/icons/hicolor/${icon_size}x${icon_size}/apps; install -m644 ../Telegram/Resources/art/icon${icon_size}.png /app/share/icons/hicolor/${icon_size}x${icon_size}/apps/telegram-desktop.png; done"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v1.9.4",
-                    "commit": "431521a8f5f87fee71c1497130360d4ebbad48cf"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/telegram-single-instance.patch"
+                    "tag": "v1.9.7",
+                    "commit": "2699af5d5ac5714c4dbd5d0211cd078caa3a4097"
                 },
                 {
                     "type": "patch",
