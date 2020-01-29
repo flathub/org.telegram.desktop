@@ -1,12 +1,17 @@
 diff --git a/lib/xdg/telegramdesktop.appdata.xml b/lib/xdg/telegramdesktop.appdata.xml
-index 9eedae55c..8a602cc3d 100644
+index 9eedae55c..a3ac4ddc7 100644
 --- a/lib/xdg/telegramdesktop.appdata.xml
 +++ b/lib/xdg/telegramdesktop.appdata.xml
-@@ -33,6 +33,52 @@
+@@ -33,6 +33,32 @@
          <keyword>sms</keyword>
          <keyword>im</keyword>
      </keywords>
 +    <releases>
++        <release version="1.9.9" date="2020-01-28">
++            <description>
++                <p>Bug fixes and other minor improvements.</p>
++            </description>
++        </release>
 +        <release version="1.9.8" date="2020-01-24">
 +            <description>
 +                <p>Bug fixes and other minor improvements.</p>
@@ -23,31 +28,6 @@ index 9eedae55c..8a602cc3d 100644
 +                    <li>Add polls from the ... menu in any group or channel.</li>
 +                    <li>Use bots like @QuizBot to create quizzes with several questions and media attachments.</li>
 +                    <li>Schedule messages to be sent when your recipient comes online (only works if you know their online status).</li>
-+                </ul>
-+            </description>
-+        </release>
-+        <release version="1.8.15" date="2019-10-07">
-+            <description>
-+                <p>Bug fixes and other minor improvements.</p>
-+            </description>
-+        </release>
-+        <release version="1.8.14" date="2019-10-07">
-+            <description>
-+                <p>Bug fixes and other minor improvements.</p>
-+            </description>
-+        </release>
-+        <release version="1.8.9" date="2019-09-30">
-+            <description>
-+                <p>Bug fixes and other minor improvements.</p>
-+            </description>
-+        </release>
-+        <release version="1.8.8" date="2019-09-10">
-+            <description>
-+                <p>Custom Cloud Themes</p>
-+                <ul>
-+                    <li>Create new themes based on your color and wallpaper choices.</li>
-+                    <li>Share your themes with other users via links.</li>
-+                    <li>Update your theme for all its users when you change something.</li>
 +                </ul>
 +            </description>
 +        </release>
