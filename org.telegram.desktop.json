@@ -157,6 +157,9 @@
                 "-DTDESKTOP_API_ID=611335",
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
             ],
+            "post-install": [
+                "../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
+            ],
             "sources": [
                 {
                     "type": "git",
@@ -165,8 +168,8 @@
                     "commit": "9b19cba1613146e4fef2cc3265de8257590ea022"
                 },
                 {
-                    "type": "patch",
-                    "path": "patch/telegram-appdata.patch"
+                    "type": "file",
+                    "path": "changelog2appdata.py"
                 }
             ]
         }
