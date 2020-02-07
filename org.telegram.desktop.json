@@ -16,7 +16,8 @@
                      "--talk-name=com.canonical.Unity",
                      "--talk-name=org.freedesktop.portal.Fcitx",
                      "--filesystem=xdg-download",
-                     "--device=dri" ],
+                     "--device=dri",
+                     "--env=QT_QPA_PLATFORM=xcb"],
     "add-extensions": {
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
@@ -141,6 +142,20 @@
             ]
         },
         {
+            "name": "guidelines-support-library",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DGSL_TEST:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/microsoft/GSL/archive/v2.1.0.tar.gz",
+                    "sha256": "ef73814657b073e1be86c8f7353718771bf4149b482b6cb54f99e79b23ff899d"
+                }
+            ]
+        },
+        {
             "name": "telegram-desktop",
             "buildsystem": "cmake-ninja",
             "builddir": true,
@@ -149,25 +164,28 @@
             },
             "config-opts": [
                 "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
-                "-DTDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME:BOOL=ON",
-                "-DTDESKTOP_DISABLE_DESKTOP_FILE_GENERATION:BOOL=ON",
-                "-DDESKTOP_APP_DISABLE_CRASH_REPORTS:BOOL=ON",
-                "-DTDESKTOP_USE_PACKAGED_TGVOIP:BOOL=OFF",
+                "-DDESKTOP_APP_USE_PACKAGED_FONTS:BOOL=OFF",
                 "-DDESKTOP_APP_USE_PACKAGED_RLOTTIE:BOOL=OFF",
+                "-DDESKTOP_APP_USE_PACKAGED_EXPECTED:BOOL=OFF",
+                "-DDESKTOP_APP_USE_PACKAGED_VARIANT:BOOL=OFF",
+                "-DTDESKTOP_USE_PACKAGED_TGVOIP:BOOL=OFF",
                 "-DTDESKTOP_LAUNCHER_BASENAME=org.telegram.desktop",
                 "-DTDESKTOP_API_ID=611335",
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
+            ],
+            "post-install": [
+                "../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v1.9.7",
-                    "commit": "2699af5d5ac5714c4dbd5d0211cd078caa3a4097"
+                    "tag": "v1.9.10",
+                    "commit": "cc71bdce8f5a26bc1228425bb84e595772d457b2"
                 },
                 {
-                    "type": "patch",
-                    "path": "patch/telegram-appdata.patch"
+                    "type": "file",
+                    "path": "changelog2appdata.py"
                 }
             ]
         }
