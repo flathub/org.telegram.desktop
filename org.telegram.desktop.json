@@ -39,8 +39,6 @@
                  "/lib/cmake",
                  "*.la", "*.a"],
     "modules": [
-        "shared-modules/dbus-glib/dbus-glib-0.110.json",
-        "shared-modules/libappindicator/libappindicator-gtk3-12.10.json",
         {
             "name": "cmake",
             "buildsystem": "cmake-ninja",
