@@ -1,7 +1,7 @@
 {
     "id": "org.telegram.desktop",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.13",
+    "runtime-version": "5.14",
     "sdk": "org.kde.Sdk",
     "default-branch": "stable",
     "command": "telegram-desktop",
