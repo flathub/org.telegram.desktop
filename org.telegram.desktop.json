@@ -39,8 +39,6 @@
                  "/lib/cmake",
                  "*.la", "*.a"],
     "modules": [
-        "shared-modules/dbus-glib/dbus-glib-0.110.json",
-        "shared-modules/libappindicator/libappindicator-gtk3-12.10.json",
         {
             "name": "cmake",
             "buildsystem": "cmake-ninja",
@@ -142,6 +140,20 @@
             ]
         },
         {
+            "name": "guidelines-support-library",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DGSL_TEST:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/microsoft/GSL/archive/v2.1.0.tar.gz",
+                    "sha256": "ef73814657b073e1be86c8f7353718771bf4149b482b6cb54f99e79b23ff899d"
+                }
+            ]
+        },
+        {
             "name": "telegram-desktop",
             "buildsystem": "cmake-ninja",
             "builddir": true,
@@ -152,6 +164,8 @@
                 "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
                 "-DDESKTOP_APP_USE_PACKAGED_FONTS:BOOL=OFF",
                 "-DDESKTOP_APP_USE_PACKAGED_RLOTTIE:BOOL=OFF",
+                "-DDESKTOP_APP_USE_PACKAGED_EXPECTED:BOOL=OFF",
+                "-DDESKTOP_APP_USE_PACKAGED_VARIANT:BOOL=OFF",
                 "-DTDESKTOP_USE_PACKAGED_TGVOIP:BOOL=OFF",
                 "-DTDESKTOP_LAUNCHER_BASENAME=org.telegram.desktop",
                 "-DTDESKTOP_API_ID=611335",
@@ -164,8 +178,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v1.9.9",
-                    "commit": "9b19cba1613146e4fef2cc3265de8257590ea022"
+                    "tag": "v1.9.13",
+                    "commit": "23bab2aeb9c17e5489f822497ca370ed6f3b1647"
                 },
                 {
                     "type": "file",
