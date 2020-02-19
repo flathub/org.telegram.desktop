@@ -182,6 +182,10 @@
                     "commit": "742de6282f329424fabf54c3579f71c361452c04"
                 },
                 {
+                    "type": "patch",
+                    "path": "patch/telegram-appdata-launchable.patch"
+                },
+                {
                     "type": "file",
                     "path": "changelog2appdata.py"
                 }
