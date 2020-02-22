@@ -1,7 +1,7 @@
 {
     "id": "org.telegram.desktop",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.13",
+    "runtime-version": "5.14",
     "sdk": "org.kde.Sdk",
     "default-branch": "stable",
     "command": "telegram-desktop",
@@ -178,8 +178,12 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v1.9.10",
-                    "commit": "cc71bdce8f5a26bc1228425bb84e595772d457b2"
+                    "tag": "v1.9.15",
+                    "commit": "0743e71ab6b928d2ee5bae1aed991849b1e2b291"
+                },
+                {
+                    "type": "patch",
+                    "path": "patch/telegram-appdata-launchable.patch"
                 },
                 {
                     "type": "file",
