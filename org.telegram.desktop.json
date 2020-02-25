@@ -72,16 +72,6 @@
             ]
         },
         {
-            "name": "enchant",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/AbiWord/enchant/releases/download/v2.2.7/enchant-2.2.7.tar.gz",
-                    "sha256": "1b22976135812b35cb5b8d21a53ad11d5e7c1426c93f51e7a314a2a42cab3a09"
-                }
-            ]
-        },
-        {
             "name": "lz4",
             "no-autogen": true,
             "make-args": [
@@ -178,7 +168,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "commit": "d27dd512c58262ce9a480075709de4768f927696"
+                    "tag": "v1.9.19",
+                    "commit": "cc95117e9bf15318c99b8d016ccb064b6327d057"
                 },
                 {
                     "type": "patch",
