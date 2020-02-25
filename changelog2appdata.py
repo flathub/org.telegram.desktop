@@ -17,17 +17,24 @@ def parse_changelog(changelog_path):
         version_match = version_re.match(l)
         entry_match = entry_re.match(l)
         if version_match is not None:
-            v, _, d = version_match.groups()
-            release = (v, datetime.datetime.strptime(d, '%d.%m.%y').date(), [])
+            version, prerelease, date = version_match.groups()
+            release = (version,
+                       prerelease,
+                       datetime.datetime.strptime(date, '%d.%m.%y').date(),
+                       [])
             releases.append(release)
         elif entry_match is not None:
-            release[2].append(entry_match.groups()[0])
+            release[3].append(entry_match.group(1))
 
     return releases
 
-def get_release_xml(version, date, changes):
+def get_release_xml(version, prerelease, date, changes):
     release = ET.Element("release")
-    release.set("version", version)
+    if prerelease is None:
+        ver_str = version
+    else:
+        ver_str = f"{version}~{prerelease}"
+    release.set("version", ver_str)
     release.set("date", date.isoformat())
     description = ET.SubElement(release, "description")
     changelist = ET.SubElement(description, "ul")
@@ -40,8 +47,8 @@ def get_changelog_xml(changelog, max_items=None):
     releases = ET.Element("releases")
     if max_items is not None:
         changelog = changelog[:max_items]
-    for version, date, changes in changelog:
-        release = get_release_xml(version, date, changes)
+    for rel in changelog:
+        release = get_release_xml(*rel)
         releases.append(release)
     return releases
 
