@@ -20,6 +20,7 @@
                      "--talk-name=org.freedesktop.ScreenSaver",
                      "--filesystem=xdg-download",
                      "--device=dri",
+                     "--env=FLATPAK_ID=org.telegram.desktop",
                      "--env=QT_QPA_PLATFORM=xcb"],
     "add-extensions": {
         "org.freedesktop.Platform.ffmpeg-full": {
