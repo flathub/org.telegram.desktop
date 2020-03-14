@@ -15,6 +15,7 @@
                      "--talk-name=org.freedesktop.Notifications",
                      "--talk-name=com.canonical.Unity",
                      "--talk-name=org.freedesktop.portal.Fcitx",
+                     "--talk-name=org.freedesktop.ScreenSaver",
                      "--filesystem=xdg-download",
                      "--device=dri",
                      "--env=QT_QPA_PLATFORM=xcb"],
@@ -168,8 +169,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v1.9.19",
-                    "commit": "cc95117e9bf15318c99b8d016ccb064b6327d057"
+                    "tag": "v1.9.20",
+                    "commit": "fec6a8dd962bb0cc4f96521149733f658f9488b2"
                 },
                 {
                     "type": "patch",
