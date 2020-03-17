@@ -176,10 +176,6 @@
                     "commit": "0bd2d951fb74488ee23ae160d49eba977398fffb"
                 },
                 {
-                    "type": "patch",
-                    "path": "patch/fix-build-gcc9.patch"
-                },
-                {
                     "type": "file",
                     "path": "changelog2appdata.py"
                 }
