@@ -20,7 +20,6 @@
                      "--talk-name=org.freedesktop.ScreenSaver",
                      "--filesystem=xdg-download",
                      "--device=dri",
-                     "--env=FLATPAK_ID=org.telegram.desktop",
                      "--env=QT_QPA_PLATFORM=xcb"],
     "add-extensions": {
         "org.freedesktop.Platform.ffmpeg-full": {
@@ -172,12 +171,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v1.9.20",
-                    "commit": "fec6a8dd962bb0cc4f96521149733f658f9488b2"
-                },
-                {
-                    "type": "patch",
-                    "path": "patch/fix-build-gcc9.patch"
+                    "tag": "v1.9.22",
+                    "commit": "deb76f38d7362a28c2ae42bd766041e55adc903c"
                 },
                 {
                     "type": "file",
