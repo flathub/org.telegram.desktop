@@ -191,6 +191,10 @@
                     "commit": "07c8aae225e2f04600a7d5411047d30f4ca5f51c"
                 },
                 {
+                    "type": "patch",
+                    "path": "patches/fix-decoration-update.patch"
+                },
+                {
                     "type": "file",
                     "path": "changelog2appdata.py"
                 }
