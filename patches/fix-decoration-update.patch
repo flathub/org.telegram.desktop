@@ -1,13 +1,14 @@
 diff --git a/Telegram/SourceFiles/platform/linux/main_window_linux.cpp b/Telegram/SourceFiles/platform/linux/main_window_linux.cpp
-index 3faded572..0e0a4f595 100644
+index 3faded572..06d7ba1c4 100644
 --- a/Telegram/SourceFiles/platform/linux/main_window_linux.cpp
 +++ b/Telegram/SourceFiles/platform/linux/main_window_linux.cpp
-@@ -686,6 +686,8 @@ void MainWindow::updateWaylandDecorationColors() {
+@@ -686,6 +686,9 @@ void MainWindow::updateWaylandDecorationColors() {
  	windowHandle()->setProperty("__material_decoration_foregroundColor", st::titleFgActive->c);
  	windowHandle()->setProperty("__material_decoration_backgroundInactiveColor", st::titleBg->c);
  	windowHandle()->setProperty("__material_decoration_foregroundInactiveColor", st::titleFg->c);
 +
-+	Ui::ForceFullRepaint(this);
++	// Trigger a QtWayland client-side decoration update
++	windowHandle()->resize(windowHandle()->size());
  }
  
  void MainWindow::LibsLoaded() {
