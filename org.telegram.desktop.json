@@ -44,6 +44,10 @@
     "modules": [
         {
             "name": "cmake",
+            "build-options": {
+                "cflags": "-g0",
+                "cxxflags": "-g0"
+            },
             "buildsystem": "cmake-ninja",
             "sources": [
                 {
