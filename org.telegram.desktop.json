@@ -192,7 +192,7 @@
                 },
                 {
                     "type": "patch",
-                    "path": "patches/fix-decoration-update.patch"
+                    "path": "patches/Fix-decoration-applying.patch"
                 },
                 {
                     "type": "file",
