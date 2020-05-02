@@ -4,7 +4,7 @@
     "runtime-version": "5.14",
     "sdk": "org.kde.Sdk",
     "default-branch": "stable",
-    "command": "telegram-wrapper",
+    "command": "telegram-desktop",
     "rename-icon": "telegram",
     "finish-args": [ "--share=ipc",
                      "--share=network",
@@ -180,8 +180,8 @@
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
             ],
             "post-install": [
-                "install -Dm755 ../telegram-wrapper.sh /app/bin/telegram-wrapper",
-                "desktop-file-edit --set-key=Exec --set-value=telegram-wrapper /app/share/applications/${FLATPAK_ID}.desktop",
+                "mv /app/bin/telegram-desktop{,.bin}",
+                "install -Dm755 ../telegram-wrapper.sh /app/bin/telegram-desktop",
                 "../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
             ],
             "sources": [

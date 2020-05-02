@@ -6,4 +6,4 @@ if [ "${XDG_CURRENT_DESKTOP,,}" == "gnome" ] | [ "${XDG_SESSION_DESKTOP,,}" == "
     fi
 fi
 
-exec telegram-desktop "$@"
+exec telegram-desktop.bin "$@"
