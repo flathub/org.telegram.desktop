@@ -1,0 +1,33 @@
+From 52bdfc002a7943b2cd8d7b72b49189a85aeef889 Mon Sep 17 00:00:00 2001
+From: Ilya Fedin <fedin-ilja2010@ya.ru>
+Date: Sat, 2 May 2020 14:00:13 +0400
+Subject: [PATCH] Fix decoration applying and trigger repainting on update
+
+For some reason this is needed for newer Qt in flatpak
+---
+ Telegram/SourceFiles/platform/linux/main_window_linux.cpp | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Telegram/SourceFiles/platform/linux/main_window_linux.cpp b/Telegram/SourceFiles/platform/linux/main_window_linux.cpp
+index 3faded5724..720d7456bf 100644
+--- a/Telegram/SourceFiles/platform/linux/main_window_linux.cpp
++++ b/Telegram/SourceFiles/platform/linux/main_window_linux.cpp
+@@ -457,6 +457,8 @@ void MainWindow::initHook() {
+ 	}
+ #endif // !TDESKTOP_DISABLE_DBUS_INTEGRATION
+ 
++	updateWaylandDecorationColors();
++
+ 	style::PaletteChanged(
+ 	) | rpl::start_with_next([=] {
+ 		updateWaylandDecorationColors();
+@@ -686,6 +688,9 @@ void MainWindow::updateWaylandDecorationColors() {
+ 	windowHandle()->setProperty("__material_decoration_foregroundColor", st::titleFgActive->c);
+ 	windowHandle()->setProperty("__material_decoration_backgroundInactiveColor", st::titleBg->c);
+ 	windowHandle()->setProperty("__material_decoration_foregroundInactiveColor", st::titleFg->c);
++
++	// Trigger a QtWayland client-side decoration update
++	windowHandle()->resize(windowHandle()->size());
+ }
+ 
+ void MainWindow::LibsLoaded() {
