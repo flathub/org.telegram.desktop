@@ -58,109 +58,6 @@
             "cleanup": [ "*" ]
         },
         {
-            "name": "range-3",
-            "buildsystem": "cmake",
-            "build-options": {
-                "cflags": "-Wno-error"
-            },
-            "config-opts": [
-                "-DRANGE_V3_TESTS:BOOL=OFF",
-                "-DRANGE_V3_EXAMPLES:BOOL=OFF",
-                "-DRANGE_V3_PERF:BOOL=OFF",
-                "-DRANGE_V3_DOCS:BOOL=OFF"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/ericniebler/range-v3/archive/0.10.0.tar.gz",
-                    "sha256": "5a1cd44e7315d0e8dcb1eee4df6802221456a9d1dbeac53da02ac7bd4ea150cd"
-                }
-            ]
-        },
-        {
-            "name": "lz4",
-            "no-autogen": true,
-            "make-args": [
-                "PREFIX=$(FLATPAK_DEST)"
-            ],
-            "make-install-args": [
-                "PREFIX=$(FLATPAK_DEST)"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/lz4/lz4/archive/v1.9.2.tar.gz",
-                    "sha256": "658ba6191fa44c92280d4aa2c271b0f4fbc0e34d249578dd05e50e76d0e5efcc"
-                }
-            ],
-            "cleanup": [
-                "/bin"
-            ]
-        },
-        {
-            "name": "xxHash",
-            "no-autogen": true,
-            "make-args": [
-                "prefix=$(FLATPAK_DEST)"
-            ],
-            "make-install-args": [
-                "prefix=$(FLATPAK_DEST)"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/Cyan4973/xxHash/archive/v0.7.2.tar.gz",
-                    "sha256": "7e93d28e81c3e95ff07674a400001d0cdf23b7842d49b211e5582d00d8e3ac3e"
-                }
-            ],
-            "cleanup": [
-                "/bin"
-            ]
-        },
-        {
-            "name": "minizip",
-            "subdir": "contrib/minizip",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://zlib.net/zlib-1.2.11.tar.gz",
-                    "md5": "1c9f62f0778697a09d36121ead88e08e"
-                },
-                {
-                    "type": "script",
-                    "dest-filename": "contrib/minizip/autogen.sh",
-                    "commands": [
-                        "autoreconf -ifv"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "materialdecoration",
-            "buildsystem": "cmake-ninja",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/desktop-app/materialdecoration.git",
-                    "commit": "e58c870f2365178b0553664d762a7a2aeae99bd4"
-                }
-            ],
-            "modules": [
-                {
-                    "name": "liri-cmake-shared",
-                    "buildsystem": "cmake-ninja",
-                    "sources": [
-                        {
-                            "type": "archive",
-                            "url": "https://github.com/lirios/cmake-shared/releases/download/v1.1.0/liri-cmake-shared-1.1.0.tar.xz",
-                            "sha256": "f549cc4741e20df6f097960eef809c3119ef08b33194efee957b0c44ab9a1b79"
-                        }
-                    ],
-                    "cleanup": [ "*" ]
-                }
-            ]
-        },
-        {
             "name": "telegram-desktop",
             "buildsystem": "cmake-ninja",
             "builddir": true,
@@ -169,12 +66,9 @@
             },
             "config-opts": [
                 "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
+                "-DDESKTOP_APP_USE_PACKAGED_LAZY:BOOL=ON",
+                "-DDESKTOP_APP_USE_PACKAGED_LAZY_PLATFORMTHEMES:BOOL=OFF",
                 "-DDESKTOP_APP_USE_PACKAGED_FONTS:BOOL=OFF",
-                "-DDESKTOP_APP_USE_PACKAGED_RLOTTIE:BOOL=OFF",
-                "-DDESKTOP_APP_USE_PACKAGED_EXPECTED:BOOL=OFF",
-                "-DDESKTOP_APP_USE_PACKAGED_VARIANT:BOOL=OFF",
-                "-DDESKTOP_APP_USE_PACKAGED_GSL:BOOL=OFF",
-                "-DTDESKTOP_USE_PACKAGED_TGVOIP:BOOL=OFF",
                 "-DTDESKTOP_LAUNCHER_BASENAME=org.telegram.desktop",
                 "-DTDESKTOP_API_ID=611335",
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
