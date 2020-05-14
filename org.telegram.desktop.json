@@ -82,8 +82,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.1.5",
-                    "commit": "66a3e3602445a7b999ebfa353835891f555dc0db"
+                    "tag": "v2.1.6",
+                    "commit": "d679703bbffa08c936739d01644d05772966d0b1"
                 },
                 {
                     "type": "file",
