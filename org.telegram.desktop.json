@@ -10,6 +10,7 @@
                      "--share=network",
                      "--socket=x11",
                      "--socket=wayland",
+                     "--device=dri",
                      "--socket=pulseaudio",
                      "--talk-name=org.kde.StatusNotifierWatcher",
                      "--talk-name=org.freedesktop.Notifications",
@@ -18,9 +19,7 @@
                      "--talk-name=org.ayatana.indicator.application",
                      "--talk-name=org.freedesktop.portal.Fcitx",
                      "--talk-name=org.freedesktop.ScreenSaver",
-                     "--filesystem=xdg-download",
-                     "--device=dri",
-                     "--env=QT_QPA_PLATFORM=xcb"],
+                     "--filesystem=xdg-download"],
     "add-extensions": {
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
@@ -44,6 +43,10 @@
     "modules": [
         {
             "name": "cmake",
+            "build-options": {
+                "cflags": "-g0",
+                "cxxflags": "-g0"
+            },
             "buildsystem": "cmake-ninja",
             "sources": [
                 {
@@ -55,98 +58,6 @@
             "cleanup": [ "*" ]
         },
         {
-            "name": "range-3",
-            "buildsystem": "cmake",
-            "build-options": {
-                "cflags": "-Wno-error"
-            },
-            "config-opts": [
-                "-DRANGE_V3_TESTS:BOOL=OFF",
-                "-DRANGE_V3_EXAMPLES:BOOL=OFF",
-                "-DRANGE_V3_PERF:BOOL=OFF",
-                "-DRANGE_V3_DOCS:BOOL=OFF"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/ericniebler/range-v3/archive/0.10.0.tar.gz",
-                    "sha256": "5a1cd44e7315d0e8dcb1eee4df6802221456a9d1dbeac53da02ac7bd4ea150cd"
-                }
-            ]
-        },
-        {
-            "name": "lz4",
-            "no-autogen": true,
-            "make-args": [
-                "PREFIX=$(FLATPAK_DEST)"
-            ],
-            "make-install-args": [
-                "PREFIX=$(FLATPAK_DEST)"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/lz4/lz4/archive/v1.9.2.tar.gz",
-                    "sha256": "658ba6191fa44c92280d4aa2c271b0f4fbc0e34d249578dd05e50e76d0e5efcc"
-                }
-            ],
-            "cleanup": [
-                "/bin"
-            ]
-        },
-        {
-            "name": "xxHash",
-            "no-autogen": true,
-            "make-args": [
-                "prefix=$(FLATPAK_DEST)"
-            ],
-            "make-install-args": [
-                "prefix=$(FLATPAK_DEST)"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/Cyan4973/xxHash/archive/v0.7.2.tar.gz",
-                    "sha256": "7e93d28e81c3e95ff07674a400001d0cdf23b7842d49b211e5582d00d8e3ac3e"
-                }
-            ],
-            "cleanup": [
-                "/bin"
-            ]
-        },
-        {
-            "name": "minizip",
-            "subdir": "contrib/minizip",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://zlib.net/zlib-1.2.11.tar.gz",
-                    "md5": "1c9f62f0778697a09d36121ead88e08e"
-                },
-                {
-                    "type": "script",
-                    "dest-filename": "contrib/minizip/autogen.sh",
-                    "commands": [
-                        "autoreconf -ifv"
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "guidelines-support-library",
-            "buildsystem": "cmake-ninja",
-            "config-opts": [
-                "-DGSL_TEST:BOOL=OFF"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/microsoft/GSL/archive/v2.1.0.tar.gz",
-                    "sha256": "ef73814657b073e1be86c8f7353718771bf4149b482b6cb54f99e79b23ff899d"
-                }
-            ]
-        },
-        {
             "name": "telegram-desktop",
             "buildsystem": "cmake-ninja",
             "builddir": true,
@@ -155,24 +66,28 @@
             },
             "config-opts": [
                 "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
+                "-DDESKTOP_APP_USE_PACKAGED_LAZY:BOOL=ON",
+                "-DDESKTOP_APP_USE_PACKAGED_LAZY_PLATFORMTHEMES:BOOL=OFF",
                 "-DDESKTOP_APP_USE_PACKAGED_FONTS:BOOL=OFF",
-                "-DDESKTOP_APP_USE_PACKAGED_RLOTTIE:BOOL=OFF",
-                "-DDESKTOP_APP_USE_PACKAGED_EXPECTED:BOOL=OFF",
-                "-DDESKTOP_APP_USE_PACKAGED_VARIANT:BOOL=OFF",
-                "-DTDESKTOP_USE_PACKAGED_TGVOIP:BOOL=OFF",
                 "-DTDESKTOP_LAUNCHER_BASENAME=org.telegram.desktop",
                 "-DTDESKTOP_API_ID=611335",
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
             ],
             "post-install": [
+                "mv /app/bin/telegram-desktop{,.bin}",
+                "install -Dm755 ../telegram-wrapper.sh /app/bin/telegram-desktop",
                 "../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v1.9.22",
-                    "commit": "deb76f38d7362a28c2ae42bd766041e55adc903c"
+                    "tag": "v2.1.9",
+                    "commit": "d0994019cac5265e9f74b259b6903698031b8dfc"
+                },
+                {
+                    "type": "file",
+                    "path": "telegram-wrapper.sh"
                 },
                 {
                     "type": "file",
