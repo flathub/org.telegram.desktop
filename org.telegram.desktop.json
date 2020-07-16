@@ -19,6 +19,7 @@
                      "--talk-name=org.ayatana.indicator.application",
                      "--talk-name=org.freedesktop.portal.Fcitx",
                      "--talk-name=org.freedesktop.ScreenSaver",
+                     "--talk-name=org.gnome.Mutter.IdleMonitor",
                      "--filesystem=xdg-download"],
     "add-extensions": {
         "org.freedesktop.Platform.ffmpeg-full": {
@@ -82,8 +83,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.1.17",
-                    "commit": "f887bf3b6aebbf0c1fe40a509386fe5ed3e09508"
+                    "tag": "v2.1.19",
+                    "commit": "55bd469b2d1ebcd597975b739f1859ca86dfaf72"
                 },
                 {
                     "type": "file",
