@@ -87,6 +87,11 @@
                     "commit": "55bd469b2d1ebcd597975b739f1859ca86dfaf72"
                 },
                 {
+                    "type": "patch",
+                    "path": "patches/0001-QtWaylandClient-contains-QtXkbCommonSupport-includes.patch",
+                    "dest": "cmake"
+                },
+                {
                     "type": "file",
                     "path": "telegram-wrapper.sh"
                 },
