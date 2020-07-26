@@ -19,6 +19,7 @@
                      "--talk-name=org.ayatana.indicator.application",
                      "--talk-name=org.freedesktop.portal.Fcitx",
                      "--talk-name=org.freedesktop.ScreenSaver",
+                     "--talk-name=org.gnome.Mutter.IdleMonitor",
                      "--filesystem=xdg-download"],
     "add-extensions": {
         "org.freedesktop.Platform.ffmpeg-full": {
