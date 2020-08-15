@@ -85,31 +85,44 @@
         },
         {
             "name": "telegram-desktop",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
+            "buildsystem": "simple",
+            "build-commands": [
+                "../build.sh"
+            ],
             "build-options": {
                 "ldflags": "-Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
             },
-            "config-opts": [
-                "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
-                "-DDESKTOP_APP_USE_PACKAGED_LAZY:BOOL=ON",
-                "-DDESKTOP_APP_USE_PACKAGED_LAZY_PLATFORMTHEMES:BOOL=OFF",
-                "-DDESKTOP_APP_USE_PACKAGED_FONTS:BOOL=OFF",
-                "-DTDESKTOP_LAUNCHER_BASENAME=org.telegram.desktop",
-                "-DTDESKTOP_API_ID=611335",
-                "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
-            ],
             "post-install": [
                 "mv /app/bin/telegram-desktop{,.bin}",
                 "install -Dm755 ../telegram-wrapper.sh /app/bin/telegram-desktop",
-                "../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
+                "../changelog2appdata.py -c changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
             ],
+            "subdir": "tdesktop",
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
                     "tag": "v2.3.0",
-                    "commit": "887b6629f66e3e15786938f3bf7593bca39eaa31"
+                    "commit": "887b6629f66e3e15786938f3bf7593bca39eaa31",
+                    "dest": "tdesktop"
+                },
+                {
+                    "type": "git",
+                    "url": "https://github.com/open-webrtc-toolkit/owt-deps-webrtc.git",
+                    "branch": "83-sdk",
+                    "commit": "18721dffbee8b3d946ddbccabb8d636de7e8f197",
+                    "dest": "Libraries/webrtc/src"
+                },
+                "generated-sources.json",
+                {
+                    "type": "git",
+                    "url": "https://github.com/desktop-app/patches.git",
+                    "commit": "08351e38c339ff9763af70d5236e3908b99f1659",
+                    "dest": "patches"
+                },
+                {
+                    "type": "file",
+                    "path": "build.sh"
                 },
                 {
                     "type": "file",

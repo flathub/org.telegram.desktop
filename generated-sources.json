@@ -1,0 +1,290 @@
+[
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/base",
+        "url": "https://chromium.googlesource.com/chromium/src/base",
+        "commit": "a5f2765fd085a35030d74628e0e3cc9823d44b02"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/build",
+        "url": "https://chromium.googlesource.com/chromium/src/build",
+        "commit": "6c78d6d61b5f8d289732b32669e16b1492bbc110"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/buildtools",
+        "url": "https://chromium.googlesource.com/chromium/src/buildtools",
+        "commit": "2c41dfb19abe40908834803b6fed797b0f341fe1"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/examples/androidtests/third_party/gradle",
+        "url": "https://chromium.googlesource.com/external/github.com/gradle/gradle.git",
+        "commit": "89af43c4d0506f69980f00dde78c97b2f81437f8"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/ios",
+        "url": "https://chromium.googlesource.com/chromium/src/ios",
+        "commit": "e00cecf398c500050b29cac29c17da21688e70dc"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/testing",
+        "url": "https://chromium.googlesource.com/chromium/src/testing",
+        "commit": "7de0cb8411d4bb6aa9bf3a219e0ce32986cd635a"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party",
+        "url": "https://chromium.googlesource.com/chromium/src/third_party",
+        "commit": "c74a355b7874d5931571475fa66c2a7420cea092"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/buildtools/clang_format/script",
+        "url": "https://chromium.googlesource.com/chromium/llvm-project/cfe/tools/clang-format.git",
+        "commit": "96636aa0e9f047f17447f2d45a094d0b59ed7917"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/buildtools/third_party/libc++/trunk",
+        "url": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxx.git",
+        "commit": "d9040c75cfea5928c804ab7c235fed06a63f743a"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/buildtools/third_party/libc++abi/trunk",
+        "url": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxxabi.git",
+        "commit": "196ba1aaa8ac285d94f4ea8d9836390a45360533"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/buildtools/third_party/libunwind/trunk",
+        "url": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libunwind.git",
+        "commit": "43bb9f872232f531bac80093ceb4de61c64b9ab7"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/boringssl/src",
+        "url": "https://boringssl.googlesource.com/boringssl.git",
+        "commit": "5298ef99bf2b2d77600b3bb74dd572027bf495be"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/breakpad/breakpad",
+        "url": "https://chromium.googlesource.com/breakpad/breakpad.git",
+        "commit": "f32b83eb08e9ee158d3037b2114357187fd45a05"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/catapult",
+        "url": "https://chromium.googlesource.com/catapult.git",
+        "commit": "395a627b8ad8b48dc4119fb6d309d29ec5d5fda0"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/ced/src",
+        "url": "https://chromium.googlesource.com/external/github.com/google/compact_enc_det.git",
+        "commit": "ba412eaaacd3186085babcd901679a48863c7dd5"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/colorama/src",
+        "url": "https://chromium.googlesource.com/external/colorama.git",
+        "commit": "799604a1041e9b3bc5d2789ecbd7e8db2e18e6b8"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/depot_tools",
+        "url": "https://chromium.googlesource.com/chromium/tools/depot_tools.git",
+        "commit": "cd454025b331ae93e83270fcb53db532c6731228"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/ffmpeg",
+        "url": "https://chromium.googlesource.com/chromium/third_party/ffmpeg.git",
+        "commit": "31886e8f39a47a9d7107d4c937bb053dcf5699ce"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/findbugs",
+        "url": "https://chromium.googlesource.com/chromium/deps/findbugs.git",
+        "commit": "4275d9ac8610db6b1bc9a5e887f97e41b33fac67"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/fontconfig/src",
+        "url": "https://chromium.googlesource.com/external/fontconfig.git",
+        "commit": "452be8125f0e2a18a7dfef469e05d19374d36307"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/freetype/src",
+        "url": "https://chromium.googlesource.com/chromium/src/third_party/freetype2.git",
+        "commit": "13c0df80dca59ce2ef3ec125b08c5b6ea485535c"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/harfbuzz-ng/src",
+        "url": "https://chromium.googlesource.com/external/github.com/harfbuzz/harfbuzz.git",
+        "commit": "014e038b2c2fd55e0bffbe5c5adc893c07df187a"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/gtest-parallel",
+        "url": "https://chromium.googlesource.com/external/github.com/google/gtest-parallel",
+        "commit": "df0b4e476f98516cea7d593e5dbb0fca44f6ee7f"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/googletest/src",
+        "url": "https://chromium.googlesource.com/external/github.com/google/googletest.git",
+        "commit": "10b1902d893ea8cc43c69541d70868f91af3646b"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/icu",
+        "url": "https://chromium.googlesource.com/chromium/deps/icu.git",
+        "commit": "13cfcd5874f6c39c34ec57fa5295e7910ae90b8d"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/jsr-305/src",
+        "url": "https://chromium.googlesource.com/external/jsr-305.git",
+        "commit": "642c508235471f7220af6d5df2d3210e3bfc0919"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/jsoncpp/source",
+        "url": "https://chromium.googlesource.com/external/github.com/open-source-parsers/jsoncpp.git",
+        "commit": "645250b6690785be60ab6780ce4b58698d884d11"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/junit/src",
+        "url": "https://chromium.googlesource.com/external/junit.git",
+        "commit": "64155f8a9babcfcf4263cf4d08253a1556e75481"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/libFuzzer/src",
+        "url": "https://chromium.googlesource.com/chromium/llvm-project/compiler-rt/lib/fuzzer.git",
+        "commit": "debe7d2d1982e540fbd6bd78604bf001753f9e74"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/libjpeg_turbo",
+        "url": "https://chromium.googlesource.com/chromium/deps/libjpeg_turbo.git",
+        "commit": "7e3ad79800a7945fb37173149842b494ab8982b2"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/libsrtp",
+        "url": "https://chromium.googlesource.com/chromium/deps/libsrtp.git",
+        "commit": "650611720ecc23e0e6b32b0e3100f8b4df91696c"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/libaom/source/libaom",
+        "url": "https://aomedia.googlesource.com/aom.git",
+        "commit": "c25910f6d213ec5ec45ae53caa5e40bd7ebd218f"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/libvpx/source/libvpx",
+        "url": "https://chromium.googlesource.com/webm/libvpx.git",
+        "commit": "667138e1f0581772de2b990e144bcd6c49a6adb8"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/libyuv",
+        "url": "https://chromium.googlesource.com/libyuv/libyuv.git",
+        "commit": "6afd9becdf58822b1da6770598d8597c583ccfad"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/lss",
+        "url": "https://chromium.googlesource.com/linux-syscall-support.git",
+        "commit": "f70e2f1641e280e777edfdad7f73a2cfa38139c7"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/mockito/src",
+        "url": "https://chromium.googlesource.com/external/mockito/mockito.git",
+        "commit": "04a2a289a4222f80ad20717c25144981210d2eac"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/nasm",
+        "url": "https://chromium.googlesource.com/chromium/deps/nasm.git",
+        "commit": "21eb595319746a669a742d210eaa413c728e7fad"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/openh264/src",
+        "url": "https://chromium.googlesource.com/external/github.com/cisco/openh264",
+        "commit": "6f26bce0b1c4e8ce0e13332f7c0083788def5fdf"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/requests/src",
+        "url": "https://chromium.googlesource.com/external/github.com/kennethreitz/requests.git",
+        "commit": "f172b30356d821d180fa4ecfa3e71c7274a32de4"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/robolectric/robolectric",
+        "url": "https://chromium.googlesource.com/external/robolectric.git",
+        "commit": "f2df0efb033bb402399ebfb9bf58aefee5cced05"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/ub-uiautomator/lib",
+        "url": "https://chromium.googlesource.com/chromium/third_party/ub-uiautomator.git",
+        "commit": "00270549ce3161ae72ceb24712618ea28b4f9434"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/usrsctp/usrsctplib",
+        "url": "https://chromium.googlesource.com/external/github.com/sctplab/usrsctp",
+        "commit": "bee946a606752a443bd70bca1cb296527fed706d"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/yasm/binaries",
+        "url": "https://chromium.googlesource.com/chromium/deps/yasm/binaries.git",
+        "commit": "52f9b3f4b0aa06da24ef8b123058bb61ee468881"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/yasm/source/patched-yasm",
+        "url": "https://chromium.googlesource.com/chromium/deps/yasm/patched-yasm.git",
+        "commit": "720b70524a4424b15fc57e82263568c8ba0496ad"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/tools",
+        "url": "https://chromium.googlesource.com/chromium/src/tools",
+        "commit": "5ababc8f331d80e195b114e9d6dc91729757fb76"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/tools/swarming_client",
+        "url": "https://chromium.googlesource.com/infra/luci/client-py.git",
+        "commit": "cc958279ffd6853e0a1b227a7e957ca334fe56af"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/android_ndk",
+        "url": "https://chromium.googlesource.com/android_ndk.git",
+        "commit": "27c0a8d090c666a50e40fceb4ee5b40b1a2d3f87"
+    },
+    {
+        "type": "git",
+        "dest": "Libraries/webrtc/src/third_party/turbine/src",
+        "url": "https://chromium.googlesource.com/external/github.com/google/turbine.git",
+        "commit": "95f6fb6f1e962e8b6ec672905b0b04233f002dc2"
+    }
+]
