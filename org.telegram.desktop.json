@@ -58,6 +58,31 @@
             ],
             "cleanup": [ "*" ]
         },
+        "shared-modules/python2.7/python-2.7.json",
+        {
+            "name": "gn",
+            "build-options": {
+                "env": {
+                    "CC": "ccache clang",
+                    "CXX": "ccache clang++"
+                }
+            },
+            "buildsystem": "simple",
+            "build-commands": [
+                "python2 build/gen.py",
+                "ninja -C out -j $FLATPAK_BUILDER_N_JOBS",
+                "install -Dm755 out/gn{,_unittests} -t /app/bin/"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gn.googlesource.com/gn",
+                    "commit": "5ed3c9cc67b090d5e311e4bd2aba072173e82db9",
+                    "disable-shallow-clone": true
+                }
+            ],
+            "cleanup": [ "*" ]
+        },
         {
             "name": "telegram-desktop",
             "buildsystem": "cmake-ninja",
