@@ -19,18 +19,6 @@
     },
     {
         "type": "git",
-        "dest": "Libraries/webrtc/src/examples/androidtests/third_party/gradle",
-        "url": "https://chromium.googlesource.com/external/github.com/gradle/gradle.git",
-        "commit": "89af43c4d0506f69980f00dde78c97b2f81437f8"
-    },
-    {
-        "type": "git",
-        "dest": "Libraries/webrtc/src/ios",
-        "url": "https://chromium.googlesource.com/chromium/src/ios",
-        "commit": "e00cecf398c500050b29cac29c17da21688e70dc"
-    },
-    {
-        "type": "git",
         "dest": "Libraries/webrtc/src/testing",
         "url": "https://chromium.googlesource.com/chromium/src/testing",
         "commit": "7de0cb8411d4bb6aa9bf3a219e0ce32986cd635a"
@@ -109,12 +97,6 @@
     },
     {
         "type": "git",
-        "dest": "Libraries/webrtc/src/third_party/findbugs",
-        "url": "https://chromium.googlesource.com/chromium/deps/findbugs.git",
-        "commit": "4275d9ac8610db6b1bc9a5e887f97e41b33fac67"
-    },
-    {
-        "type": "git",
         "dest": "Libraries/webrtc/src/third_party/fontconfig/src",
         "url": "https://chromium.googlesource.com/external/fontconfig.git",
         "commit": "452be8125f0e2a18a7dfef469e05d19374d36307"
@@ -151,21 +133,9 @@
     },
     {
         "type": "git",
-        "dest": "Libraries/webrtc/src/third_party/jsr-305/src",
-        "url": "https://chromium.googlesource.com/external/jsr-305.git",
-        "commit": "642c508235471f7220af6d5df2d3210e3bfc0919"
-    },
-    {
-        "type": "git",
         "dest": "Libraries/webrtc/src/third_party/jsoncpp/source",
         "url": "https://chromium.googlesource.com/external/github.com/open-source-parsers/jsoncpp.git",
         "commit": "645250b6690785be60ab6780ce4b58698d884d11"
-    },
-    {
-        "type": "git",
-        "dest": "Libraries/webrtc/src/third_party/junit/src",
-        "url": "https://chromium.googlesource.com/external/junit.git",
-        "commit": "64155f8a9babcfcf4263cf4d08253a1556e75481"
     },
     {
         "type": "git",
@@ -211,12 +181,6 @@
     },
     {
         "type": "git",
-        "dest": "Libraries/webrtc/src/third_party/mockito/src",
-        "url": "https://chromium.googlesource.com/external/mockito/mockito.git",
-        "commit": "04a2a289a4222f80ad20717c25144981210d2eac"
-    },
-    {
-        "type": "git",
         "dest": "Libraries/webrtc/src/third_party/nasm",
         "url": "https://chromium.googlesource.com/chromium/deps/nasm.git",
         "commit": "21eb595319746a669a742d210eaa413c728e7fad"
@@ -229,33 +193,9 @@
     },
     {
         "type": "git",
-        "dest": "Libraries/webrtc/src/third_party/requests/src",
-        "url": "https://chromium.googlesource.com/external/github.com/kennethreitz/requests.git",
-        "commit": "f172b30356d821d180fa4ecfa3e71c7274a32de4"
-    },
-    {
-        "type": "git",
-        "dest": "Libraries/webrtc/src/third_party/robolectric/robolectric",
-        "url": "https://chromium.googlesource.com/external/robolectric.git",
-        "commit": "f2df0efb033bb402399ebfb9bf58aefee5cced05"
-    },
-    {
-        "type": "git",
-        "dest": "Libraries/webrtc/src/third_party/ub-uiautomator/lib",
-        "url": "https://chromium.googlesource.com/chromium/third_party/ub-uiautomator.git",
-        "commit": "00270549ce3161ae72ceb24712618ea28b4f9434"
-    },
-    {
-        "type": "git",
         "dest": "Libraries/webrtc/src/third_party/usrsctp/usrsctplib",
         "url": "https://chromium.googlesource.com/external/github.com/sctplab/usrsctp",
         "commit": "bee946a606752a443bd70bca1cb296527fed706d"
-    },
-    {
-        "type": "git",
-        "dest": "Libraries/webrtc/src/third_party/yasm/binaries",
-        "url": "https://chromium.googlesource.com/chromium/deps/yasm/binaries.git",
-        "commit": "52f9b3f4b0aa06da24ef8b123058bb61ee468881"
     },
     {
         "type": "git",
@@ -274,17 +214,5 @@
         "dest": "Libraries/webrtc/src/tools/swarming_client",
         "url": "https://chromium.googlesource.com/infra/luci/client-py.git",
         "commit": "cc958279ffd6853e0a1b227a7e957ca334fe56af"
-    },
-    {
-        "type": "git",
-        "dest": "Libraries/webrtc/src/third_party/android_ndk",
-        "url": "https://chromium.googlesource.com/android_ndk.git",
-        "commit": "27c0a8d090c666a50e40fceb4ee5b40b1a2d3f87"
-    },
-    {
-        "type": "git",
-        "dest": "Libraries/webrtc/src/third_party/turbine/src",
-        "url": "https://chromium.googlesource.com/external/github.com/google/turbine.git",
-        "commit": "95f6fb6f1e962e8b6ec672905b0b04233f002dc2"
     }
 ]
