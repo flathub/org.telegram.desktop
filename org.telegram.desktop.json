@@ -71,18 +71,51 @@
             "cleanup": [ "*" ]
         },
         {
-            "name": "telegram-desktop",
-            "buildsystem": "simple",
-            "build-commands": [
-                "../build.sh"
+            "name": "tg_owt",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
             ],
+            "no-make-install": true,
+            "build-commands": [
+                "install -D libtg_owt.a -t /app/src/tg_owt/out/RelWithDebInfo/",
+                "cp -a ../{cmake,src,CMakeLists.txt} /app/src/tg_owt/"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/desktop-app/tg_owt.git",
+                    "commit": "be4aebd51da64d25d0c7865350f8d5522f738e85"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/0001-Find-deps-for-packaged-build.patch"
+                }
+            ],
+            "cleanup": [ "*" ]
+        },
+        {
+            "name": "telegram-desktop",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
             "build-options": {
                 "ldflags": "-Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
             },
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
+                "-DDESKTOP_APP_USE_PACKAGED_LAZY:BOOL=ON",
+                "-DDESKTOP_APP_USE_PACKAGED_LAZY_PLATFORMTHEMES:BOOL=OFF",
+                "-DDESKTOP_APP_USE_PACKAGED_FONTS:BOOL=OFF",
+                "-DTDESKTOP_LAUNCHER_BASENAME=org.telegram.desktop",
+                "-DTDESKTOP_API_ID=611335",
+                "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
+            ],
             "post-install": [
                 "mv /app/bin/telegram-desktop{,.bin}",
-                "install -Dm755 ../telegram-wrapper.sh /app/bin/telegram-desktop",
-                "../changelog2appdata.py -c changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
+                "install -Dm755 ../../telegram-wrapper.sh /app/bin/telegram-desktop",
+                "../../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
             ],
             "subdir": "tdesktop",
             "sources": [
@@ -99,19 +132,11 @@
                     "dest": "tdesktop/cmake"
                 },
                 {
-                    "type": "git",
-                    "url": "https://github.com/desktop-app/tg_owt.git",
-                    "commit": "be4aebd51da64d25d0c7865350f8d5522f738e85",
-                    "dest": "Libraries/tg_owt"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/0001-Find-deps-for-packaged-build.patch",
-                    "dest": "Libraries/tg_owt"
-                },
-                {
-                    "type": "file",
-                    "path": "build.sh"
+                    "type": "shell",
+                    "commands": [
+                        "ln -s /app/src/tg_owt tg_owt"
+                    ],
+                    "dest": "Libraries"
                 },
                 {
                     "type": "file",
