@@ -43,17 +43,41 @@
                  "*.la", "*.a"],
     "modules": [
         {
-            "name": "cmake",
-            "build-options": {
-                "cflags": "-g0",
-                "cxxflags": "-g0"
-            },
+            "name": "yasm",
             "buildsystem": "cmake-ninja",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/Kitware/CMake/releases/download/v3.16.2/cmake-3.16.2.tar.gz",
-                    "sha256": "8c09786ec60ca2be354c29829072c38113de9184f29928eb9da8446a5f2ce6a9"
+                    "url": "http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz",
+                    "sha256": "3dce6601b495f5b3d45b59f7d2492a340ee7e84b5beca17e48f862502bd5603f"
+                }
+            ],
+            "cleanup": [ "*" ]
+        },
+        {
+            "name": "tg_owt",
+            "only-arches": [
+                "x86_64"
+            ],
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "no-make-install": true,
+            "build-commands": [
+                "install -D libtg_owt.a -t /app/src/tg_owt/out/RelWithDebInfo/",
+                "cp -a ../{cmake,src,CMakeLists.txt} /app/src/tg_owt/"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/desktop-app/tg_owt.git",
+                    "commit": "be4aebd51da64d25d0c7865350f8d5522f738e85"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/0001-Find-deps-for-packaged-build.patch"
                 }
             ],
             "cleanup": [ "*" ]
@@ -63,9 +87,22 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "build-options": {
+                "arch": {
+                    "aarch64": {
+                        "config-opts": [
+                            "-DDESKTOP_APP_DISABLE_WEBRTC_INTEGRATION:BOOL=ON"
+                        ]
+                    },
+                    "arm": {
+                        "config-opts": [
+                            "-DDESKTOP_APP_DISABLE_WEBRTC_INTEGRATION:BOOL=ON"
+                        ]
+                    }
+                },
                 "ldflags": "-Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
             },
             "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
                 "-DDESKTOP_APP_USE_PACKAGED_LAZY:BOOL=ON",
                 "-DDESKTOP_APP_USE_PACKAGED_LAZY_PLATFORMTHEMES:BOOL=OFF",
@@ -76,15 +113,32 @@
             ],
             "post-install": [
                 "mv /app/bin/telegram-desktop{,.bin}",
-                "install -Dm755 ../telegram-wrapper.sh /app/bin/telegram-desktop",
-                "../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
+                "install -Dm755 ../../telegram-wrapper.sh /app/bin/telegram-desktop",
+                "../../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
             ],
+            "subdir": "tdesktop",
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.2.0",
-                    "commit": "e5434ea4915a93eb90b4c75ae79cb571001f7e3b"
+                    "tag": "v2.3.1",
+                    "commit": "7b1c47ff2e824c5443f45ccf5811e4d106170599",
+                    "dest": "tdesktop"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/cmake-webrtc-jpeg.patch",
+                    "dest": "tdesktop/cmake"
+                },
+                {
+                    "type": "shell",
+                    "only-arches": [
+                        "x86_64"
+                    ],
+                    "commands": [
+                        "ln -s /app/src/tg_owt tg_owt"
+                    ],
+                    "dest": "Libraries"
                 },
                 {
                     "type": "file",
