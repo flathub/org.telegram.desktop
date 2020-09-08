@@ -73,11 +73,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/desktop-app/tg_owt.git",
-                    "commit": "be4aebd51da64d25d0c7865350f8d5522f738e85"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/0001-Find-deps-for-packaged-build.patch"
+                    "commit": "b77bc3a727cb24969eafa4d69a2f396f322f4f6f"
                 }
             ],
             "cleanup": [ "*" ]
