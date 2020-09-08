@@ -25,7 +25,7 @@
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
             "add-ld-path": ".",
-            "version": "19.08",
+            "version": "20.08",
             "autodownload": true,
             "autodelete": false
         }
