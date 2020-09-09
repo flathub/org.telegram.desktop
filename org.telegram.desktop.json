@@ -1,7 +1,7 @@
 {
     "id": "org.telegram.desktop",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.14",
+    "runtime-version": "5.15",
     "sdk": "org.kde.Sdk",
     "default-branch": "stable",
     "command": "telegram-desktop",
@@ -25,7 +25,7 @@
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
             "add-ld-path": ".",
-            "version": "19.08",
+            "version": "20.08",
             "autodownload": true,
             "autodelete": false
         }
