@@ -71,7 +71,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/desktop-app/tg_owt.git",
-                    "commit": "a80383535367dd8961f55f960938d943d6975808"
+                    "commit": "7a9d4bd6d9a147d15e3c8fa818a716c31f65606a"
                 }
             ],
             "cleanup": [ "*" ]
@@ -104,14 +104,9 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.3.2",
-                    "commit": "ae59de7652f8e85c1dab839f4efd694b531448f2",
+                    "tag": "v2.4.0",
+                    "commit": "11e03a181d267447694c39e39df9c30ec5f9b52e",
                     "dest": "tdesktop"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/cmake_helpers-webrtc-packaged.patch",
-                    "dest": "tdesktop/cmake"
                 },
                 {
                     "type": "file",
