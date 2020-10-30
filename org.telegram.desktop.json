@@ -57,21 +57,15 @@
         {
             "name": "tg_owt",
             "buildsystem": "cmake-ninja",
-            "builddir": false,
+            "builddir": true,
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
-            ],
-            "no-make-install": true,
-            "build-commands": [
-                "mkdir -p /app/src",
-                "cp -a . /app/src/tg_owt",
-                "sed 's|/run/build/|/app/src/|g' -i /app/src/tg_owt/tg_owtTargets.cmake"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/desktop-app/tg_owt.git",
-                    "commit": "7a9d4bd6d9a147d15e3c8fa818a716c31f65606a"
+                    "commit": "1d4f7d74ff1a627db6e45682efd0e3b85738e426"
                 }
             ],
             "cleanup": [ "*" ]
@@ -85,7 +79,6 @@
             },
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-Dtg_owt_DIR=/app/src/tg_owt",
                 "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
                 "-DDESKTOP_APP_USE_PACKAGED_LAZY:BOOL=ON",
                 "-DDESKTOP_APP_USE_PACKAGED_LAZY_PLATFORMTHEMES:BOOL=OFF",
@@ -95,16 +88,14 @@
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
             ],
             "post-install": [
-                "../../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
+                "../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
             ],
-            "subdir": "tdesktop",
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
                     "tag": "v2.4.4",
-                    "commit": "9717a8b5fa67e6e3afcc8a741a5a9e050d7b3966",
-                    "dest": "tdesktop"
+                    "commit": "9717a8b5fa67e6e3afcc8a741a5a9e050d7b3966"
                 },
                 {
                     "type": "file",
