@@ -57,15 +57,9 @@
         {
             "name": "tg_owt",
             "buildsystem": "cmake-ninja",
-            "builddir": false,
+            "builddir": true,
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
-            ],
-            "no-make-install": true,
-            "build-commands": [
-                "mkdir -p /app/src",
-                "cp -a . /app/src/tg_owt",
-                "sed 's|/run/build/|/app/src/|g' -i /app/src/tg_owt/tg_owtTargets.cmake"
             ],
             "sources": [
                 {
@@ -85,7 +79,6 @@
             },
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-Dtg_owt_DIR=/app/src/tg_owt",
                 "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
                 "-DDESKTOP_APP_USE_PACKAGED_LAZY:BOOL=ON",
                 "-DDESKTOP_APP_USE_PACKAGED_LAZY_PLATFORMTHEMES:BOOL=OFF",
