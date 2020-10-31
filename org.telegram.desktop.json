@@ -20,6 +20,8 @@
                      "--talk-name=org.freedesktop.portal.Fcitx",
                      "--talk-name=org.freedesktop.ScreenSaver",
                      "--talk-name=org.gnome.Mutter.IdleMonitor",
+                     "--talk-name=org.freedesktop.FileManager1",
+                     "--system-talk-name=org.freedesktop.NetworkManager",
                      "--filesystem=xdg-download"],
     "add-extensions": {
         "org.freedesktop.Platform.ffmpeg-full": {
