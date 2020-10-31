@@ -55,6 +55,22 @@
             "cleanup": [ "*" ]
         },
         {
+            "name": "mozjpeg",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_INSTALL_DEFAULT_LIBDIR=lib",
+                "-DENABLE_STATIC:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/mozilla/mozjpeg/archive/v4.0.1-rc2.tar.gz",
+                    "sha256": "3dbcfd1345315169996d9ba1b71145db04d1fae2b005a9cd828a984957504df0"
+                }
+            ]
+        },
+        {
             "name": "tg_owt",
             "buildsystem": "cmake-ninja",
             "builddir": true,
