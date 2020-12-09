@@ -77,13 +77,14 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_SHARED_LIBS=OFF"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/desktop-app/tg_owt.git",
-                    "commit": "1d4f7d74ff1a627db6e45682efd0e3b85738e426"
+                    "commit": "75ac66937341d8a9207375aaee79b4bdc500146c"
                 }
             ],
             "cleanup": [ "*" ]
@@ -112,8 +113,15 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.4.11",
-                    "commit": "cc48afac1cf70bf98daf79fa2b5c4626329cd378"
+                    "tag": "v2.4.13",
+                    "commit": "43564d1850494887066f0e3203e7ceab69c0cb94"
+                },
+                {
+                    "type": "patch",
+                    "dest": "cmake",
+                    "paths": [
+                        "patches/cmake-find-system-xcb.patch"
+                    ]
                 },
                 {
                     "type": "file",

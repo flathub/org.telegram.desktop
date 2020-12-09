@@ -1,0 +1,15 @@
+diff --git a/external/xcb/CMakeLists.txt b/external/xcb/CMakeLists.txt
+index d413d1e..af3467e 100644
+--- a/external/xcb/CMakeLists.txt
++++ b/external/xcb/CMakeLists.txt
+@@ -13,6 +13,10 @@ if (DESKTOP_APP_USE_PACKAGED)
+     find_package(PkgConfig REQUIRED)
+     pkg_check_modules(XCB REQUIRED IMPORTED_TARGET xcb)
+     target_link_libraries(external_xcb INTERFACE PkgConfig::XCB)
++    pkg_check_modules(XCB-KEYSYMS REQUIRED IMPORTED_TARGET xcb-keysyms)
++    target_link_libraries(external_xcb INTERFACE PkgConfig::XCB-KEYSYMS)
++    pkg_check_modules(XCB-RECORD REQUIRED IMPORTED_TARGET xcb-record)
++    target_link_libraries(external_xcb INTERFACE PkgConfig::XCB-RECORD)
+ else()
+     target_link_libraries(external_xcb INTERFACE xcb)
+ endif()
