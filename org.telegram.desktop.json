@@ -117,6 +117,13 @@
                     "commit": "43564d1850494887066f0e3203e7ceab69c0cb94"
                 },
                 {
+                    "type": "patch",
+                    "dest": "cmake",
+                    "paths": [
+                        "patches/cmake-find-system-xcb.patch"
+                    ]
+                },
+                {
                     "type": "file",
                     "path": "changelog2appdata.py"
                 }
