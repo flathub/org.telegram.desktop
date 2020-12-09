@@ -83,7 +83,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/desktop-app/tg_owt.git",
-                    "commit": "1d4f7d74ff1a627db6e45682efd0e3b85738e426"
+                    "commit": "75ac66937341d8a9207375aaee79b4bdc500146c"
                 }
             ],
             "cleanup": [ "*" ]
