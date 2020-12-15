@@ -113,8 +113,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.4.13",
-                    "commit": "43564d1850494887066f0e3203e7ceab69c0cb94"
+                    "tag": "v2.4.14",
+                    "commit": "cb6db82809e99505f19b421c664bfedba0c1dd1b"
                 },
                 {
                     "type": "patch",
