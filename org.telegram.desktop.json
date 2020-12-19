@@ -22,7 +22,11 @@
                      "--talk-name=org.gnome.Mutter.IdleMonitor",
                      "--talk-name=org.freedesktop.FileManager1",
                      "--system-talk-name=org.freedesktop.NetworkManager",
-                     "--filesystem=xdg-download"],
+                     "--filesystem=xdg-documents",
+                     "--filesystem=xdg-download",
+                     "--filesystem=xdg-music",
+                     "--filesystem=xdg-pictures",
+                     "--filesystem=xdg-videos"],
     "add-extensions": {
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
