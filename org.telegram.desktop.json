@@ -77,13 +77,14 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_SHARED_LIBS=OFF"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/desktop-app/tg_owt.git",
-                    "commit": "1d4f7d74ff1a627db6e45682efd0e3b85738e426"
+                    "commit": "75ac66937341d8a9207375aaee79b4bdc500146c"
                 }
             ],
             "cleanup": [ "*" ]
@@ -105,19 +106,12 @@
                 "-DTDESKTOP_API_ID=611335",
                 "-DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c"
             ],
-            "post-install": [
-                "../changelog2appdata.py -c ../changelog.txt -a /app/share/metainfo/${FLATPAK_ID}.appdata.xml -n 10"
-            ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.4.7",
-                    "commit": "620639ef83023285e844a4a2305fc1e0634d1a0b"
-                },
-                {
-                    "type": "file",
-                    "path": "changelog2appdata.py"
+                    "tag": "v2.5.1",
+                    "commit": "b1b25b0df9d285400cee786fb22639e2ff7fc4d5"
                 }
             ]
         }
