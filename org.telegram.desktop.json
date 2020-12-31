@@ -17,6 +17,7 @@
                      "--talk-name=org.freedesktop.ScreenSaver",
                      "--talk-name=org.freedesktop.portal.Fcitx",
                      "--talk-name=org.gnome.Mutter.IdleMonitor",
+                     "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
                      "--talk-name=org.kde.StatusNotifierWatcher",
                      "--talk-name=com.canonical.Unity",
                      "--talk-name=com.canonical.indicator.application",
