@@ -1,4 +1,3 @@
 {
-    "publish-delay-hours": 1,
-    "skip-arches": ["aarch64"]
+    "publish-delay-hours": 1
 }
