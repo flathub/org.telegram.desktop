@@ -86,6 +86,12 @@
                     "type": "git",
                     "url": "https://github.com/desktop-app/tg_owt.git",
                     "commit": "d91d618889cc743aafd809151449012de62e5327"
+                },
+                {
+                    "type": "patch",
+                    "paths": [
+                        "patches/tg_owt-add-missing-arm-sources.patch"
+                    ]
                 }
             ],
             "cleanup": [ "*" ]
