@@ -118,7 +118,13 @@
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
                     "tag": "v2.5.5",
-                    "commit": "838a3b23c768beefe73d4ca6b0018e4961e34429"
+                    "commit": "838a3b23c768beefe73d4ca6b0018e4961e34429",
+                    "x-checker-data": {
+                        "type": "json",
+                        "url": "https://api.github.com/repos/telegramdesktop/tdesktop/releases",
+                        "tag-query": "first | .tag_name",
+                        "version-query": "$tag | sub(\"^[vV]\"; \"\")"
+                    }
                 }
             ]
         }
