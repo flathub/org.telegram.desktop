@@ -6,24 +6,26 @@
     "default-branch": "stable",
     "command": "telegram-desktop",
     "rename-icon": "telegram",
-    "finish-args": [ "--share=ipc",
-                     "--share=network",
-                     "--socket=x11",
-                     "--socket=wayland",
-                     "--socket=pulseaudio",
-                     "--device=all",
-                     "--talk-name=org.freedesktop.FileManager1",
-                     "--talk-name=org.freedesktop.Notifications",
-                     "--talk-name=org.freedesktop.ScreenSaver",
-                     "--talk-name=org.freedesktop.portal.Fcitx",
-                     "--talk-name=org.gnome.Mutter.IdleMonitor",
-                     "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
-                     "--talk-name=org.kde.StatusNotifierWatcher",
-                     "--talk-name=com.canonical.Unity",
-                     "--talk-name=com.canonical.indicator.application",
-                     "--talk-name=org.ayatana.indicator.application",
-                     "--system-talk-name=org.freedesktop.NetworkManager",
-                     "--filesystem=xdg-download"],
+    "finish-args": [
+        "--share=ipc",
+        "--share=network",
+        "--socket=x11",
+        "--socket=wayland",
+        "--socket=pulseaudio",
+        "--device=all",
+        "--talk-name=org.freedesktop.FileManager1",
+        "--talk-name=org.freedesktop.Notifications",
+        "--talk-name=org.freedesktop.ScreenSaver",
+        "--talk-name=org.freedesktop.portal.Fcitx",
+        "--talk-name=org.gnome.Mutter.IdleMonitor",
+        "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
+        "--talk-name=org.kde.StatusNotifierWatcher",
+        "--talk-name=com.canonical.Unity",
+        "--talk-name=com.canonical.indicator.application",
+        "--talk-name=org.ayatana.indicator.application",
+        "--system-talk-name=org.freedesktop.NetworkManager",
+        "--filesystem=xdg-download"
+    ],
     "add-extensions": {
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
@@ -36,14 +38,17 @@
     "cleanup-commands": [
         "mkdir -p ${FLATPAK_DEST}/lib/ffmpeg"
     ],
-    "cleanup": [ "/cache",
-                 "/man",
-                 "/share/man",
-                 "/lib/systemd",
-                 "/include",
-                 "/lib/pkgconfig",
-                 "/lib/cmake",
-                 "*.la", "*.a"],
+    "cleanup": [
+        "/cache",
+        "/man",
+        "/share/man",
+        "/lib/systemd",
+        "/include",
+        "/lib/pkgconfig",
+        "/lib/cmake",
+        "*.la",
+        "*.a"
+    ],
     "modules": [
         {
             "name": "yasm",
@@ -55,7 +60,9 @@
                     "sha256": "3dce6601b495f5b3d45b59f7d2492a340ee7e84b5beca17e48f862502bd5603f"
                 }
             ],
-            "cleanup": [ "*" ]
+            "cleanup": [
+                "*"
+            ]
         },
         {
             "name": "mozjpeg",
@@ -94,7 +101,9 @@
                     ]
                 }
             ],
-            "cleanup": [ "*" ]
+            "cleanup": [
+                "*"
+            ]
         },
         {
             "name": "telegram-desktop",
@@ -117,8 +126,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.5.5",
-                    "commit": "838a3b23c768beefe73d4ca6b0018e4961e34429",
+                    "tag": "v2.5.6",
+                    "commit": "8ed56bb4e4d9783154d05b8110082ee9272ddc18",
                     "x-checker-data": {
                         "type": "json",
                         "url": "https://api.github.com/repos/telegramdesktop/tdesktop/releases",
