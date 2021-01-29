@@ -128,12 +128,6 @@
                         "tag-query": "first | .tag_name",
                         "version-query": "$tag | sub(\"^[vV]\"; \"\")"
                     }
-                },
-                {
-                    "type": "patch",
-                    "paths": [
-                        "patches/tdesktop-depend-on-xxhash.patch"
-                    ]
                 }
             ]
         }
