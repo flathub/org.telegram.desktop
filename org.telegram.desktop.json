@@ -38,6 +38,14 @@
     "cleanup-commands": [
         "mkdir -p ${FLATPAK_DEST}/lib/ffmpeg"
     ],
+    "build-options": {
+        "cflags": "",
+        "cflags-override": true,
+        "cxxflags": "",
+        "cxxflags-override": true,
+        "ldflags": "",
+        "ldflags-override": true
+    },
     "cleanup": [
         "/cache",
         "/man",
@@ -53,6 +61,9 @@
         {
             "name": "yasm",
             "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=Release"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -69,6 +80,7 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DCMAKE_INSTALL_DEFAULT_LIBDIR=lib",
                 "-DENABLE_STATIC:BOOL=OFF"
             ],
@@ -103,9 +115,6 @@
             "name": "telegram-desktop",
             "buildsystem": "cmake-ninja",
             "builddir": true,
-            "build-options": {
-                "ldflags": "-Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
-            },
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DDESKTOP_APP_USE_PACKAGED:BOOL=ON",
