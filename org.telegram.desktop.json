@@ -168,6 +168,12 @@
                         "tag-query": "first | .tag_name",
                         "version-query": "$tag | sub(\"^[vV]\"; \"\")"
                     }
+                },
+                {
+                    "type": "patch",
+                    "paths": [
+                        "fix-streaming-part.patch"
+                    ]
                 }
             ]
         }
