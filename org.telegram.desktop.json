@@ -166,6 +166,7 @@
                         "type": "json",
                         "url": "https://api.github.com/repos/telegramdesktop/tdesktop/releases",
                         "tag-query": "first | .tag_name",
+                        "timestamp-query": "first | .published_at",
                         "version-query": "$tag | sub(\"^[vV]\"; \"\")"
                     }
                 },
