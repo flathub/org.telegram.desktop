@@ -160,8 +160,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.6.2",
-                    "commit": "9a73c999355bff5c3452a3ba91e5d5d4d3bc5d62",
+                    "tag": "v2.6.3",
+                    "commit": "1db1328a9102badda3c8a74bd77b4cbee2061407",
                     "x-checker-data": {
                         "type": "json",
                         "url": "https://api.github.com/repos/telegramdesktop/tdesktop/releases",
