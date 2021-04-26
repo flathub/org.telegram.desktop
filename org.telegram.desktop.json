@@ -261,6 +261,48 @@
             ]
         },
         {
+            "name": "webkitgtk",
+            "buildsystem": "cmake-ninja",
+            "build-options": {
+                "arch" : {
+                    "x86_64" : {
+                        "cflags": "-g1",
+                        "cxxflags": "-g1",
+                        "config-opts" : [
+                            "-DCMAKE_BUILD_TYPE=Release"
+                        ]
+                    },
+                    "aarch64" : {
+                        "config-opts" : [
+                            "-DCMAKE_BUILD_TYPE=MinSizeRel"
+                        ]
+                    }
+                }
+            },
+            "config-opts": [
+                "-DPORT=GTK",
+                "-DUSE_LIBNOTIFY=OFF",
+                "-DUSE_LIBSECRET=OFF",
+                "-DUSE_WOFF2=OFF",
+                "-DUSE_WPE_RENDERER=OFF",
+                "-DENABLE_GAMEPAD=OFF",
+                "-DENABLE_SPELLCHECK=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://webkitgtk.org/releases/webkitgtk-2.32.0.tar.xz",
+                    "sha256": "9d7df4dae9ada2394257565acc2a68ace9308c4c61c3fcc00111dc1f11076bf0",
+                    "x-checker-data": {
+                        "type": "html",
+                        "url": "https://webkitgtk.org/releases/",
+                        "version-pattern": "LATEST-STABLE-(\\d[\\.\\d]+\\d)",
+                        "url-template": "https://webkitgtk.org/releases/webkitgtk-$version.tar.xz"
+                    }
+                }
+            ]
+        },
+        {
             "name": "tg_owt",
             "buildsystem": "cmake-ninja",
             "builddir": true,
