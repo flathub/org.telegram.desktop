@@ -170,12 +170,6 @@
                         "timestamp-query": "first | .published_at",
                         "version-query": "$tag | sub(\"^[vV]\"; \"\")"
                     }
-                },
-                {
-                    "type": "patch",
-                    "paths": [
-                        "fix-streaming-part.patch"
-                    ]
                 }
             ]
         }
