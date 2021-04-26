@@ -1,8 +1,8 @@
 {
     "id": "org.telegram.desktop",
-    "runtime": "org.kde.Platform",
-    "runtime-version": "5.15",
-    "sdk": "org.kde.Sdk",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "20.08",
+    "sdk": "org.freedesktop.Sdk",
     "default-branch": "stable",
     "command": "telegram-desktop",
     "rename-icon": "telegram",
@@ -50,11 +50,14 @@
     "cleanup": [
         "/cache",
         "/man",
+        "/doc",
         "/share/man",
         "/lib/systemd",
         "/include",
         "/lib/pkgconfig",
         "/lib/cmake",
+        "/lib/mkspecs",
+        "/lib/*.prl",
         "*.la",
         "*.a"
     ],
@@ -121,6 +124,137 @@
                     "type": "archive",
                     "url": "https://github.com/mozilla/mozjpeg/archive/v4.0.1-rc2.tar.gz",
                     "sha256": "3dbcfd1345315169996d9ba1b71145db04d1fae2b005a9cd828a984957504df0"
+                }
+            ]
+        },
+        {
+            "name": "qtbase",
+            "build-options" : {
+                "arch" : {
+                    "x86_64" : {
+                        "config-opts" : [
+                            "-reduce-relocations", "-force-debug-info"
+                        ]
+                    },
+                    "aarch64" : {
+                        "config-opts" : [
+                            "-no-reduce-relocations", "-optimize-size", "-opengl", "es2"
+                        ]
+                    }
+                }
+            },
+            "config-opts": [
+                "-archdatadir", "/app/lib/",
+                "-release",
+                "-opensource",
+                "-confirm-license",
+                "-shared",
+                "-no-separate-debug-info",
+                "-no-strip",
+                "-no-rpath",
+                "-optimized-qmake",
+                "-nomake", "examples",
+                "-nomake", "tests",
+                "-system-harfbuzz",
+                "-system-libjpeg",
+                "-system-libpng",
+                "-system-sqlite",
+                "-system-zlib",
+                "-system-proxies",
+                "-dbus-linked",
+                "-openssl-linked",
+                "-fontconfig",
+                "-accessibility",
+                "-glib",
+                "-icu",
+                "-no-directfb",
+                "-no-linuxfb",
+                "-no-kms",
+                "-no-feature-getentropy",
+                "-no-feature-renameat2",
+                "-no-feature-statx"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.qt.io/archive/qt/5.15/5.15.2/submodules/qtbase-everywhere-src-5.15.2.tar.xz",
+                    "sha256": "909fad2591ee367993a75d7e2ea50ad4db332f05e1c38dd7a5a274e156a4e0f8"
+                }
+            ],
+            "cleanup": [ "/bin" ]
+        },
+        {
+            "name": "qtwayland",
+            "buildsystem": "qmake",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.qt.io/archive/qt/5.15/5.15.2/submodules/qtwayland-everywhere-src-5.15.2.tar.xz",
+                    "sha256": "193732229ff816f3aaab9a5e2f6bed71ddddbf1988ce003fe8dd84a92ce9aeb5"
+                }
+            ]
+        },
+        {
+            "name": "qtimageformats",
+            "buildsystem": "qmake",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.qt.io/archive/qt/5.15/5.15.2/submodules/qtimageformats-everywhere-src-5.15.2.tar.xz",
+                    "sha256": "bf8285c7ce04284527ab823ddc7cf48a1bb79131db3a7127342167f4814253d7"
+                }
+            ]
+        },
+        {
+            "name": "qtsvg",
+            "buildsystem": "qmake",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.qt.io/archive/qt/5.15/5.15.2/submodules/qtsvg-everywhere-src-5.15.2.tar.xz",
+                    "sha256": "8bc3c2c1bc2671e9c67d4205589a8309b57903721ad14c60ea21a5d06acb585e"
+                }
+            ]
+        },
+        {
+            "name": "extra-cmake-modules",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.kde.org/stable/frameworks/5.81/extra-cmake-modules-5.81.0.tar.xz",
+                    "sha256": "5f57e4b843069b6098d955051bb2913558d1623fead3f3b95b7017d7e1e35b83"
+                }
+            ],
+            "cleanup": [
+                "*"
+            ]
+        },
+        {
+            "name": "plasma-wayland-protocols",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.kde.org/stable/plasma-wayland-protocols/plasma-wayland-protocols-v1.2.1.tar.xz",
+                    "sha256": "287b90903f9a7f394c75e75cb187426862eaf64a92f1be7e2ef68e99fd8cbaaa"
+                }
+            ],
+            "cleanup": [
+                "*"
+            ]
+        },
+        {
+            "name": "kwayland",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.kde.org/stable/frameworks/5.81/kwayland-5.81.0.tar.xz",
+                    "sha256": "de22cad7b4ddaebbfc9a9b60cbd7e41c5de5a943c89b46b077a12b651cfb43a8"
                 }
             ]
         },
