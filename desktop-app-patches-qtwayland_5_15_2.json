@@ -1,0 +1,8 @@
+{
+    "type": "patch",
+    "paths": [
+        "desktop-app-patches/qtwayland_5_15_2/0001-Make-setting-QT_SCALE_FACTOR-work-on-Wayland.patch",
+        "desktop-app-patches/qtwayland_5_15_2/0002-custom-margins.patch",
+        "desktop-app-patches/qtwayland_5_15_2/0003-set-fullscreen-screen.patch"
+    ]
+}
