@@ -127,22 +127,27 @@
         },
         {
             "name": "qtbase",
-            "build-options" : {
-                "arch" : {
-                    "x86_64" : {
-                        "config-opts" : [
-                            "-reduce-relocations", "-force-debug-info"
+            "build-options": {
+                "arch": {
+                    "x86_64": {
+                        "config-opts": [
+                            "-reduce-relocations",
+                            "-force-debug-info"
                         ]
                     },
-                    "aarch64" : {
-                        "config-opts" : [
-                            "-no-reduce-relocations", "-optimize-size", "-opengl", "es2"
+                    "aarch64": {
+                        "config-opts": [
+                            "-no-reduce-relocations",
+                            "-optimize-size",
+                            "-opengl",
+                            "es2"
                         ]
                     }
                 }
             },
             "config-opts": [
-                "-archdatadir", "/app/lib/",
+                "-archdatadir",
+                "/app/lib/",
                 "-release",
                 "-opensource",
                 "-confirm-license",
@@ -151,8 +156,10 @@
                 "-no-strip",
                 "-no-rpath",
                 "-optimized-qmake",
-                "-nomake", "examples",
-                "-nomake", "tests",
+                "-nomake",
+                "examples",
+                "-nomake",
+                "tests",
                 "-system-harfbuzz",
                 "-system-libjpeg",
                 "-system-libpng",
@@ -180,7 +187,9 @@
                 },
                 "desktop-app-patches-qtbase_5_15_2.json"
             ],
-            "cleanup": [ "/bin" ]
+            "cleanup": [
+                "/bin"
+            ]
         },
         {
             "name": "qtwayland",
@@ -262,16 +271,16 @@
             "name": "webkitgtk",
             "buildsystem": "cmake-ninja",
             "build-options": {
-                "arch" : {
-                    "x86_64" : {
+                "arch": {
+                    "x86_64": {
                         "cflags": "-g1",
                         "cxxflags": "-g1",
-                        "config-opts" : [
+                        "config-opts": [
                             "-DCMAKE_BUILD_TYPE=Release"
                         ]
                     },
-                    "aarch64" : {
-                        "config-opts" : [
+                    "aarch64": {
+                        "config-opts": [
                             "-DCMAKE_BUILD_TYPE=MinSizeRel"
                         ]
                     }
@@ -337,8 +346,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.7.2",
-                    "commit": "ffdcda5a90aa96d015c426d8f4098be3a1ae2b11",
+                    "tag": "v2.7.3",
+                    "commit": "3808874da05998ebc0c58febbf00f13bae948a4f",
                     "x-checker-data": {
                         "type": "json",
                         "url": "https://api.github.com/repos/telegramdesktop/tdesktop/releases",
