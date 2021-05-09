@@ -346,8 +346,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/telegramdesktop/tdesktop.git",
-                    "tag": "v2.7.4",
-                    "commit": "9c9fc9e881ec14e407015a33a5504d28ec3bace4",
+                    "tag": "v2.7.5",
+                    "commit": "f1a9884011ca3684afd36469ba0c439b17fc0927",
                     "x-checker-data": {
                         "type": "json",
                         "url": "https://api.github.com/repos/telegramdesktop/tdesktop/releases",
