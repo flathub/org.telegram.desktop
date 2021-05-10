@@ -298,8 +298,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://webkitgtk.org/releases/webkitgtk-2.32.0.tar.xz",
-                    "sha256": "9d7df4dae9ada2394257565acc2a68ace9308c4c61c3fcc00111dc1f11076bf0",
+                    "url": "https://webkitgtk.org/releases/webkitgtk-2.32.1.tar.xz",
+                    "sha256": "136117317f70f66486f71b8edf5e46f8776403c5d8a296e914b11a36ef836917",
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://webkitgtk.org/releases/",
