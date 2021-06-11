@@ -336,7 +336,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/desktop-app/tg_owt.git",
-                    "commit": "7f965710b93c4dadd7e6f1ac739e708694df7929"
+                    "commit": "e6b6f1c52f4ca7e7111f44fc5d1ded0197f1c72d"
                 }
             ],
             "cleanup": [
