@@ -126,6 +126,21 @@
             ]
         },
         {
+            "name": "rnnoise",
+            "config-opts": [
+                "--disable-static",
+                "--disable-examples",
+                "--disable-doc"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.xiph.org/xiph/rnnoise.git",
+                    "commit": "7f449bf8bd3b933891d12c30112268c4090e4d59"
+                }
+            ]
+        },
+        {
             "name": "qtbase",
             "build-options": {
                 "arch": {
