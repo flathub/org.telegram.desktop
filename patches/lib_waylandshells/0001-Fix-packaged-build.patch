@@ -1,0 +1,41 @@
+From f492c2f43d13d71ceb797828829323b02d9db8c1 Mon Sep 17 00:00:00 2001
+From: Ilya Fedin <fedin-ilja2010@ya.ru>
+Date: Fri, 11 Jun 2021 22:28:08 +0400
+Subject: [PATCH] Fix packaged build
+
+---
+ CMakeLists.txt                         | 2 +-
+ waylandshells/xdg-shell/CMakeLists.txt | 7 +++++++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 7e93cd9..d794159 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -17,7 +17,7 @@ PRIVATE
+     waylandshells/xdg_shell.h
+ )
+ 
+-target_include_directories(lib_waylandshells_xdg_shell
++target_include_directories(lib_waylandshells
+ PUBLIC
+     ${src_loc}
+ )
+diff --git a/waylandshells/xdg-shell/CMakeLists.txt b/waylandshells/xdg-shell/CMakeLists.txt
+index 58611ed..8442187 100644
+--- a/waylandshells/xdg-shell/CMakeLists.txt
++++ b/waylandshells/xdg-shell/CMakeLists.txt
+@@ -62,3 +62,10 @@ target_link_libraries(lib_waylandshells_xdg_shell
+ PRIVATE
+     desktop-app::external_qt
+ )
++
++if (DESKTOP_APP_USE_PACKAGED)
++    target_link_libraries(lib_waylandshells_xdg_shell
++    PRIVATE
++        wayland-client
++    )
++endif()
+-- 
+2.31.1
+

@@ -370,6 +370,11 @@
                         "timestamp-query": "first | .published_at",
                         "version-query": "$tag | sub(\"^[vV]\"; \"\")"
                     }
+                },
+                {
+                    "type": "patch",
+                    "dest": "Telegram/lib_waylandshells",
+                    "path": "patches/lib_waylandshells/0001-Fix-packaged-build.patch"
                 }
             ]
         }
