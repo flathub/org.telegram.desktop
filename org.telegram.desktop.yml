@@ -275,8 +275,3 @@ modules:
           tag-query: first | .tag_name
           timestamp-query: first | .published_at
           version-query: $tag | sub("^[vV]"; "")
-      - type: patch
-        dest: Telegram/lib_spellcheck
-        paths:
-          - patches/0001-Don-t-use-private-Hunspell-headers.patch
-          - patches/0002-Don-t-use-resources-for-Hunspell-helpers.patch
