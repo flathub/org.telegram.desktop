@@ -277,7 +277,6 @@ modules:
           timestamp-query: first | .published_at
           version-query: $tag | sub("^[vV]"; "")
       - type: patch
-        dest: Telegram/lib_spellcheck
         paths:
           - patches/1261c775d4ca6fb78277ec213794da7c15e304e2.patch
           - patches/b335741f99f530156cd64fde5a5517f4561089f7.patch
