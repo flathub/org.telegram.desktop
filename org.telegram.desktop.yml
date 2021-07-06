@@ -20,6 +20,7 @@ finish-args:
   - --talk-name=org.gnome.Mutter.IdleMonitor
   - --talk-name=org.gnome.SettingsDaemon.MediaKeys
   - --talk-name=org.kde.StatusNotifierWatcher
+  - --talk-name=com.canonical.AppMenu.Registrar
   - --talk-name=com.canonical.Unity
   - --talk-name=com.canonical.indicator.application
   - --talk-name=org.ayatana.indicator.application
