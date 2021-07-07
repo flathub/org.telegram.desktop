@@ -183,6 +183,8 @@ modules:
         url: https://download.qt.io/archive/qt/5.15/5.15.2/submodules/qtwayland-everywhere-src-5.15.2.tar.xz
         sha256: 193732229ff816f3aaab9a5e2f6bed71ddddbf1988ce003fe8dd84a92ce9aeb5
       - desktop-app-patches-qtwayland_5_15_2.json
+    cleanup:
+      - /bin
 
   - name: qtimageformats
     buildsystem: qmake
