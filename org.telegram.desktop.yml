@@ -226,6 +226,8 @@ modules:
       - type: archive
         url: https://download.kde.org/stable/frameworks/5.81/kwayland-5.81.0.tar.xz
         sha256: de22cad7b4ddaebbfc9a9b60cbd7e41c5de5a943c89b46b077a12b651cfb43a8
+    cleanup:
+      - /lib/libexec
 
   - name: webkitgtk
     buildsystem: cmake-ninja
