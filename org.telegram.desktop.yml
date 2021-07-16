@@ -11,8 +11,6 @@ finish-args:
   - --socket=wayland
   - --socket=pulseaudio
   - --device=all
-  - --own-name=org.telegram.desktop.*
-  - --own-name=org.desktop-app.*
   - --own-name=org.mpris.MediaPlayer2.tdesktop
   - --talk-name=org.freedesktop.FileManager1
   - --talk-name=org.freedesktop.Notifications
