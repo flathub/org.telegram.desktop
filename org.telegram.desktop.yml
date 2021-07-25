@@ -16,7 +16,6 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.freedesktop.ScreenSaver
   - --talk-name=org.gnome.Mutter.IdleMonitor
-  - --talk-name=org.gnome.SettingsDaemon.MediaKeys
   - --talk-name=org.kde.StatusNotifierWatcher
   - --talk-name=com.canonical.AppMenu.Registrar
   - --talk-name=com.canonical.Unity
