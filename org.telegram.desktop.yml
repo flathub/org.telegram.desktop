@@ -261,7 +261,7 @@ modules:
       - '*'
 
   - name: telegram-desktop
-    buildsystem: cmake-ninja
+    buildsystem: cmake
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
