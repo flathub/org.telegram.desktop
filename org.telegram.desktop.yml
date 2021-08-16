@@ -23,6 +23,7 @@ finish-args:
   - --talk-name=org.ayatana.indicator.application
   - --filesystem=xdg-download
   - --filesystem=xdg-run/pipewire-0
+  - --filesystem=host:ro
 add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     directory: lib/ffmpeg
