@@ -44,6 +44,8 @@
         "desktop-app-patches/qtbase_5_15_2/0041-fix-open-macos-window-ghost-focused-after-popup.patch",
         "desktop-app-patches/qtbase_5_15_2/0042-fix-race-in-windows-timers.patch",
         "desktop-app-patches/qtbase_5_15_2/0043-fix-xcb-clipboard-pasting.patch",
-        "desktop-app-patches/qtbase_5_15_2/0044-use-bgra-texture-format-for-angle.patch"
+        "desktop-app-patches/qtbase_5_15_2/0044-use-bgra-texture-format-for-angle.patch",
+        "desktop-app-patches/qtbase_5_15_2/0045-handle-amd_switchable-in-gpu-bugs-list.patch",
+        "desktop-app-patches/qtbase_5_15_2/0046-gtk-as-last-resort.patch"
     ]
 }
