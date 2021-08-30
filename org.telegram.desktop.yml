@@ -24,6 +24,7 @@ finish-args:
   - --filesystem=xdg-download
   - --filesystem=xdg-run/pipewire-0
   - --filesystem=host:ro
+  - --nofilesystem=~/.TelegramDesktop
   - --env=QT_PLUGIN_PATH=/app/lib64/plugins:/app/lib/plugins
 add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
