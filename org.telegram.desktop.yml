@@ -1,6 +1,6 @@
 id: org.telegram.desktop
 runtime: org.freedesktop.Platform
-runtime-version: '20.08'
+runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 command: telegram-desktop
 rename-icon: telegram
