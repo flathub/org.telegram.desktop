@@ -30,7 +30,7 @@ add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     directory: lib/ffmpeg
     add-ld-path: .
-    version: '20.08'
+    version: '21.08'
     autodownload: true
     autodelete: false
 cleanup-commands:
