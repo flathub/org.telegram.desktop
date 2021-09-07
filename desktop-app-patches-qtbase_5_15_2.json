@@ -47,6 +47,10 @@
         "desktop-app-patches/qtbase_5_15_2/0044-use-bgra-texture-format-for-angle.patch",
         "desktop-app-patches/qtbase_5_15_2/0045-handle-amd_switchable-in-gpu-bugs-list.patch",
         "desktop-app-patches/qtbase_5_15_2/0046-gtk-as-last-resort.patch",
-        "desktop-app-patches/qtbase_5_15_2/0046-reset-current-context-on-error.patch"
+        "desktop-app-patches/qtbase_5_15_2/0047-reset-current-context-on-error.patch",
+        "desktop-app-patches/qtbase_5_15_2/0048-reset-opengl-widget-on-context-loss.patch",
+        "desktop-app-patches/qtbase_5_15_2/0049-fallback-in-qxcbglxwindow-createvisual.patch",
+        "desktop-app-patches/qtbase_5_15_2/0050-fix-build-with-gcc-11-limits.patch",
+        "desktop-app-patches/qtbase_5_15_2/0051-fix-build-with-gcc-11.patch"
     ]
 }
