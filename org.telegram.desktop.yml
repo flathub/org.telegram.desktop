@@ -26,6 +26,8 @@ finish-args:
   - --filesystem=host:ro
   - --nofilesystem=~/.TelegramDesktop
   - --env=QT_PLUGIN_PATH=/app/lib64/plugins:/app/lib/plugins
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.llvm12
 add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     directory: lib/ffmpeg
@@ -42,6 +44,7 @@ build-options:
   cxxflags-override: true
   ldflags: -L/app/lib
   ldflags-override: true
+  append-path: /usr/lib/sdk/llvm12/bin
 cleanup:
   - /cache
   - /man
