@@ -248,8 +248,8 @@ modules:
       - -DENABLE_SPELLCHECK=OFF
     sources:
       - type: archive
-        url: https://webkitgtk.org/releases/webkitgtk-2.32.3.tar.xz
-        sha256: c1f496f5ac654efe4cef62fbd4f2fbeeef265a07c5e7419e5d2900bfeea52cbc
+        url: https://webkitgtk.org/releases/webkitgtk-2.32.4.tar.xz
+        sha256: 00ce2d3f798d7bc5e9039d9059f0c3c974d51de38c8b716f00e94452a177d3fd
         x-checker-data:
           type: html
           url: https://webkitgtk.org/releases/
