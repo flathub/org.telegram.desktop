@@ -242,14 +242,15 @@ modules:
       - -DPORT=GTK
       - -DUSE_LIBNOTIFY=OFF
       - -DUSE_LIBSECRET=OFF
+      - -DUSE_SOUP2=ON
       - -DUSE_WOFF2=OFF
       - -DUSE_WPE_RENDERER=OFF
       - -DENABLE_GAMEPAD=OFF
       - -DENABLE_SPELLCHECK=OFF
     sources:
       - type: archive
-        url: https://webkitgtk.org/releases/webkitgtk-2.32.4.tar.xz
-        sha256: 00ce2d3f798d7bc5e9039d9059f0c3c974d51de38c8b716f00e94452a177d3fd
+        url: https://webkitgtk.org/releases/webkitgtk-2.34.0.tar.xz
+        sha256: 880c8ee626f67019f67557ca09e59a23ecf245e60f6173215f1a8823cb09af34
         x-checker-data:
           type: html
           url: https://webkitgtk.org/releases/
