@@ -53,6 +53,7 @@
         "desktop-app-patches/qtbase_5_15_2/0050-fix-build-with-gcc-11-limits.patch",
         "desktop-app-patches/qtbase_5_15_2/0051-fix-build-with-gcc-11.patch",
         "desktop-app-patches/qtbase_5_15_2/0052-epoxy.patch",
-        "desktop-app-patches/qtbase_5_15_2/0053-optional-glib.patch"
+        "desktop-app-patches/qtbase_5_15_2/0053-optional-glib.patch",
+        "desktop-app-patches/qtbase_5_15_2/0054-no-gl-in-qtgui.patch"
     ]
 }
