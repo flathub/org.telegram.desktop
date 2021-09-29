@@ -257,6 +257,7 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DBUILD_SHARED_LIBS=OFF
+      - -DTG_OWT_BUILD_AUDIO_BACKENDS=OFF
     sources:
       - type: git
         url: https://github.com/desktop-app/tg_owt.git
