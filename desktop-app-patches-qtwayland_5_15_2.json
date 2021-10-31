@@ -1,8 +1,0 @@
-{
-    "type": "patch",
-    "paths": [
-        "desktop-app-patches/qtwayland_5_15_2/0001-client-Allow-QWaylandInputContext-to-accept-composed.patch",
-        "desktop-app-patches/qtwayland_5_15_2/0002-clipboard-fix-non-bmp.patch",
-        "desktop-app-patches/qtwayland_5_15_2/0003-epoxy.patch"
-    ]
-}

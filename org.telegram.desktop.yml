@@ -132,6 +132,7 @@ modules:
       - -opensource
       - -confirm-license
       - -shared
+      - -cmake-use-default-generator
       - -no-separate-debug-info
       - -no-strip
       - -no-rpath
@@ -160,43 +161,59 @@ modules:
       - -no-feature-statx
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/5.15/5.15.2/submodules/qtbase-everywhere-src-5.15.2.tar.xz
-        sha256: 909fad2591ee367993a75d7e2ea50ad4db332f05e1c38dd7a5a274e156a4e0f8
-      - desktop-app-patches-qtbase_5_15_2.json
+        url: https://download.qt.io/archive/qt/6.2/6.2.0/submodules/qtbase-everywhere-src-6.2.0.tar.xz
+        sha256: fdfff0716d093bcb6bcd53746ce1d3c9701a6bf3326d47813866d43949b47769
+      - desktop-app-patches-qtbase_6_2_0.json
     cleanup:
       - /bin
       - /lib/plugins/platformthemes/libqxdgdesktopportal.so
 
   - name: qtwayland
-    buildsystem: qmake
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/5.15/5.15.2/submodules/qtwayland-everywhere-src-5.15.2.tar.xz
-        sha256: 193732229ff816f3aaab9a5e2f6bed71ddddbf1988ce003fe8dd84a92ce9aeb5
-      - desktop-app-patches-qtwayland_5_15_2.json
+        url: https://download.qt.io/archive/qt/6.2/6.2.0/submodules/qtwayland-everywhere-src-6.2.0.tar.xz
+        sha256: d6787fce74bde1a3386bcbe43c078c712471bab09f1946c40fc2327232d27d4c
+      - desktop-app-patches-qtwayland_6_2_0.json
     cleanup:
       - /bin
 
   - name: qtimageformats
-    buildsystem: qmake
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/5.15/5.15.2/submodules/qtimageformats-everywhere-src-5.15.2.tar.xz
-        sha256: bf8285c7ce04284527ab823ddc7cf48a1bb79131db3a7127342167f4814253d7
+        url: https://download.qt.io/archive/qt/6.2/6.2.0/submodules/qtimageformats-everywhere-src-6.2.0.tar.xz
+        sha256: fdaa35536c3d0f8f5f313d0d52dedfbf6d8fcd81a82d6a56f473253f135072ad
 
   - name: qtsvg
-    buildsystem: qmake
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/5.15/5.15.2/submodules/qtsvg-everywhere-src-5.15.2.tar.xz
-        sha256: 8bc3c2c1bc2671e9c67d4205589a8309b57903721ad14c60ea21a5d06acb585e
+        url: https://download.qt.io/archive/qt/6.2/6.2.0/submodules/qtsvg-everywhere-src-6.2.0.tar.xz
+        sha256: af9eabefbb0dcb772f18fae4d2c39bcc23579a5dfff569c35ea7e497591db3d4
+
+  - name: qt5compat
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    sources:
+      - type: archive
+        url: https://download.qt.io/archive/qt/6.2/6.2.0/submodules/qt5compat-everywhere-src-6.2.0.tar.xz
+        sha256: c2e2f058ecee36a96c1b15937badeda9b7b03eb5278fa01af4ff386c4f1854fb
+      - desktop-app-patches-qt5compat_6_2_0.json
 
   - name: extra-cmake-modules
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://download.kde.org/stable/frameworks/5.81/extra-cmake-modules-5.81.0.tar.xz
-        sha256: 5f57e4b843069b6098d955051bb2913558d1623fead3f3b95b7017d7e1e35b83
+        url: https://download.kde.org/stable/frameworks/5.87/extra-cmake-modules-5.87.0.tar.xz
+        sha256: 541ca70d8e270614d19d8fd9e55f97b55fa1dc78d6538c6f6757be372ef8bcab
     cleanup:
       - '*'
 
@@ -204,8 +221,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://download.kde.org/stable/plasma-wayland-protocols/plasma-wayland-protocols-v1.2.1.tar.xz
-        sha256: 287b90903f9a7f394c75e75cb187426862eaf64a92f1be7e2ef68e99fd8cbaaa
+        url: https://download.kde.org/stable/plasma-wayland-protocols/plasma-wayland-protocols-1.4.0.tar.xz
+        sha256: 38b0431d931a83393770abb8294206936b63b89ceee3f0c63f0f086f3d2b1ba9
     cleanup:
       - '*'
 
@@ -213,10 +230,13 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_TESTING=OFF
     sources:
       - type: archive
-        url: https://download.kde.org/stable/frameworks/5.81/kwayland-5.81.0.tar.xz
-        sha256: de22cad7b4ddaebbfc9a9b60cbd7e41c5de5a943c89b46b077a12b651cfb43a8
+        url: https://download.kde.org/stable/frameworks/5.87/kwayland-5.87.0.tar.xz
+        sha256: ac3aab3018e0910213c44a2ad219fd551d3ad2cbb1010adc20720db6f3a5990e
+      - type: patch
+        path: desktop-app-patches/kwayland-qt6.patch
     cleanup:
       - /lib/libexec
 
