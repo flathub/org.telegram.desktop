@@ -97,8 +97,8 @@ modules:
       - -DENABLE_STATIC:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/mozilla/mozjpeg/archive/v4.0.1-rc2.tar.gz
-        sha256: 3dbcfd1345315169996d9ba1b71145db04d1fae2b005a9cd828a984957504df0
+        url: https://github.com/mozilla/mozjpeg/archive/v4.0.3.tar.gz
+        sha256: 4f22731db2afa14531a5bf2633d8af79ca5cb697a550f678bf43f24e5e409ef0
     cleanup:
       - /bin
 
