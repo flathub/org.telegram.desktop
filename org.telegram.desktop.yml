@@ -159,6 +159,7 @@ modules:
       - -no-feature-getentropy
       - -no-feature-renameat2
       - -no-feature-statx
+      - -no-feature-highdpiscaling
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.2/6.2.0/submodules/qtbase-everywhere-src-6.2.0.tar.xz
