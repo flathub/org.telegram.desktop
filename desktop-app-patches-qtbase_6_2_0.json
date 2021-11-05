@@ -45,6 +45,8 @@
         "desktop-app-patches/qtbase_6_2_0/0042-fix-qcocoawindow-for-10-12.patch",
         "desktop-app-patches/qtbase_6_2_0/0043-fix-escape-in-qtextedit-macos.patch",
         "desktop-app-patches/qtbase_6_2_0/0044-disable-qdatetime-assert.patch",
-        "desktop-app-patches/qtbase_6_2_0/0045-fix-frameless-translucent-macos.patch"
+        "desktop-app-patches/qtbase_6_2_0/0045-fix-frameless-translucent-macos.patch",
+        "desktop-app-patches/qtbase_6_2_0/0046-workaround-clang-optimizer.patch",
+        "desktop-app-patches/qtbase_6_2_0/0047-fix-pageup-pagedown-qscrollarea-scroll.patch"
     ]
 }

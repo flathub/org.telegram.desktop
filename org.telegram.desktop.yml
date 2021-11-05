@@ -65,6 +65,20 @@ modules:
     cleanup:
       - '*'
 
+  - name: libepoxy
+    buildsystem: meson
+    builddir: true
+    config-opts:
+      - --buildtype=debugoptimized
+      - --default-library=static
+      - -Dtests=false
+    sources:
+      - type: archive
+        url: https://github.com/anholt/libepoxy/archive/refs/tags/1.5.9.tar.gz
+        sha256: ee8048d20179a2e86156ac842ddb6428732d9cd7a2cfc2eca905165bf24887a2
+      - type: patch
+        path: desktop-app-patches/libepoxy.patch
+
   - name: libsigc++
     buildsystem: meson
     builddir: true
