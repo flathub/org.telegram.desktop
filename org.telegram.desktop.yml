@@ -134,7 +134,6 @@ modules:
             - -reduce-relocations
             - -force-debug-info
         aarch64:
-          ldflags: -ldl
           config-opts:
             - -no-reduce-relocations
             - -optimize-size
