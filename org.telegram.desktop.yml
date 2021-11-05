@@ -42,8 +42,6 @@ build-options:
   cflags-override: true
   cxxflags: ''
   cxxflags-override: true
-  ldflags: -L/app/lib
-  ldflags-override: true
   append-path: /usr/lib/sdk/llvm12/bin
   append-ld-library-path: /usr/lib/sdk/llvm12/lib
 cleanup:
