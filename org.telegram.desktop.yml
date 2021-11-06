@@ -69,6 +69,26 @@ modules:
     cleanup:
       - '*'
 
+  - name: jinja2
+    buildsystem: simple
+    build-commands:
+      - "pip3 install --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"Jinja2\" --no-build-isolation"
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/bf/10/ff66fea6d1788c458663a84d88787bae15d45daa16f6b3ef33322a51fc7e/MarkupSafe-2.0.1.tar.gz
+        sha256: 594c67807fb16238b30c44bdf74f36c02cdf22d1c8cda91ef8a0ed8dabf5620a
+        x-checker-data:
+          type: pypi
+          name: MarkupSafe
+      - type: archive
+        url: https://files.pythonhosted.org/packages/f8/86/7c0eb6e8b05385d1ce682abc0f994abd1668e148fb52603fa86e15d4c110/Jinja2-3.0.2.tar.gz
+        sha256: 827a0e32839ab1600d4eb1c4c33ec5a8edfbc5cb42dafa13b81f182f97784b45
+        x-checker-data:
+          type: pypi
+          name: Jinja2
+    cleanup:
+      - '*'
+
   - name: systemd
     buildsystem: meson
     builddir: true
@@ -84,6 +104,12 @@ modules:
       - type: archive
         url: https://github.com/systemd/systemd/archive/refs/tags/v249.tar.gz
         sha256: 174091ce5f2c02123f76d546622b14078097af105870086d18d55c1c2667d855
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/systemd/systemd/releases
+          tag-query: first | .tag_name
+          timestamp-query: first | .published_at
+          version-query: $tag | sub("^[vV]"; "")
       - type: patch
         path: systemd.patch
 
