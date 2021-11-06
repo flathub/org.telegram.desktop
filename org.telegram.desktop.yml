@@ -74,6 +74,7 @@ modules:
     builddir: true
     config-opts:
       - --buildtype=debugoptimized
+      - -Drootprefix=/app
     make-args:
       - systemd-detect-virt
     no-make-install: true
