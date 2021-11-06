@@ -102,7 +102,7 @@ modules:
       - install -D systemd-detect-virt "$FLATPAK_DEST/bin"
     sources:
       - type: archive
-        url: https://github.com/systemd/systemd/archive/refs/tags/v249.tar.gz
+        url: https://github.com/systemd/systemd/archive/v249/systemd-249.tar.gz
         sha256: 174091ce5f2c02123f76d546622b14078097af105870086d18d55c1c2667d855
         x-checker-data:
           type: json
@@ -110,6 +110,7 @@ modules:
           tag-query: first | .tag_name
           timestamp-query: first | .published_at
           version-query: $tag | sub("^[vV]"; "")
+          url-query: '"https://github.com/systemd/systemd/archive/\($tag)/systemd-\($version).tar.gz"'
       - type: patch
         path: systemd.patch
 
