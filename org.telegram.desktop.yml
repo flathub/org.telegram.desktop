@@ -99,7 +99,7 @@ modules:
       - systemd-detect-virt
     no-make-install: true
     post-install:
-      - install -D "$FLATPAK_BUILDER_BUILDDIR/systemd-detect-virt" "$FLATPAK_DEST/bin"
+      - install -D systemd-detect-virt "$FLATPAK_DEST/bin"
     sources:
       - type: archive
         url: https://github.com/systemd/systemd/archive/refs/tags/v249.tar.gz
