@@ -26,6 +26,7 @@ finish-args:
   - --filesystem=host:ro
   - --nofilesystem=~/.TelegramDesktop
   - --env=QT_PLUGIN_PATH=/app/lib64/plugins:/app/lib/plugins
+  - --env=PATH=/app/lib/webview/bin:/app/bin:/usr/bin
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.llvm12
 add-extensions:
@@ -35,13 +36,16 @@ add-extensions:
     version: '21.08'
     autodownload: true
     autodelete: false
+  org.telegram.desktop.webview:
+    directory: lib/webview
+    add-ld-path: lib
+    version: stable
+    autodownload: true
+    autodelete: true
 cleanup-commands:
   - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+  - mkdir -p ${FLATPAK_DEST}/lib/webview
 build-options:
-  cflags: ''
-  cflags-override: true
-  cxxflags: ''
-  cxxflags-override: true
   append-path: /usr/lib/sdk/llvm12/bin
   append-ld-library-path: /usr/lib/sdk/llvm12/lib
 cleanup:
@@ -183,6 +187,10 @@ modules:
             - -reduce-relocations
             - -force-debug-info
         aarch64:
+          cflags: ''
+          cflags-override: true
+          cxxflags: ''
+          cxxflags-override: true
           config-opts:
             - -no-reduce-relocations
             - -optimize-size
@@ -304,37 +312,6 @@ modules:
     cleanup:
       - /lib/libexec
 
-  - name: webkitgtk
-    buildsystem: cmake-ninja
-    build-options:
-      arch:
-        x86_64:
-          cflags: -g1
-          cxxflags: -g1
-          config-opts:
-            - -DCMAKE_BUILD_TYPE=Release
-        aarch64:
-          config-opts:
-            - -DCMAKE_BUILD_TYPE=MinSizeRel
-    config-opts:
-      - -DPORT=GTK
-      - -DUSE_LIBNOTIFY=OFF
-      - -DUSE_LIBSECRET=OFF
-      - -DUSE_SOUP2=ON
-      - -DUSE_WOFF2=OFF
-      - -DUSE_WPE_RENDERER=OFF
-      - -DENABLE_GAMEPAD=OFF
-      - -DENABLE_SPELLCHECK=OFF
-    sources:
-      - type: archive
-        url: https://webkitgtk.org/releases/webkitgtk-2.34.1.tar.xz
-        sha256: 443c1316705de024741748e85fe32324d299d9ee68e6feb340b89e4a04073dee
-        x-checker-data:
-          type: html
-          url: https://webkitgtk.org/releases/
-          version-pattern: LATEST-STABLE-(\d[\.\d]+\d)
-          url-template: https://webkitgtk.org/releases/webkitgtk-$version.tar.xz
-
   - name: tg_owt
     buildsystem: cmake-ninja
     builddir: true
@@ -369,3 +346,7 @@ modules:
           tag-query: first | .tag_name
           timestamp-query: first | .published_at
           version-query: $tag | sub("^[vV]"; "")
+      - type: patch
+        dest: Telegram/lib_webview
+        paths:
+          - patches/lib_webview/0001-Use-webkitgtk-without-its-headers.patch
