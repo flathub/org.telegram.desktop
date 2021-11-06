@@ -112,7 +112,7 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/systemd/systemd/archive/\($tag)/systemd-\($version).tar.gz"'
       - type: patch
-        path: systemd.patch
+        path: desktop-app-patches/systemd.patch
 
   - name: libepoxy
     buildsystem: meson
