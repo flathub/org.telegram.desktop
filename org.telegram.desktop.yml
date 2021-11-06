@@ -69,6 +69,23 @@ modules:
     cleanup:
       - '*'
 
+  - name: systemd
+    buildsystem: meson
+    builddir: true
+    config-opts:
+      - --buildtype=debugoptimized
+    make-args:
+      - systemd-detect-virt
+    no-make-install: true
+    post-install:
+      - install -D "$FLATPAK_BUILDER_BUILDDIR/systemd-detect-virt" "$FLATPAK_DEST/bin"
+    sources:
+      - type: archive
+        url: https://github.com/systemd/systemd/archive/refs/tags/v249.tar.gz
+        sha256: 174091ce5f2c02123f76d546622b14078097af105870086d18d55c1c2667d855
+      - type: patch
+        path: systemd.patch
+
   - name: libepoxy
     buildsystem: meson
     builddir: true
