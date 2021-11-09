@@ -347,7 +347,3 @@ modules:
           tag-query: first | .tag_name
           timestamp-query: first | .published_at
           version-query: $tag | sub("^[vV]"; "")
-      - type: patch
-        dest: Telegram/lib_webview
-        paths:
-          - patches/lib_webview/0001-Use-webkitgtk-without-its-headers.patch
