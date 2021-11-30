@@ -48,6 +48,11 @@
         "desktop-app-patches/qtbase_6_2_0/0045-fix-frameless-translucent-macos.patch",
         "desktop-app-patches/qtbase_6_2_0/0046-workaround-clang-optimizer.patch",
         "desktop-app-patches/qtbase_6_2_0/0047-fix-pageup-pagedown-qscrollarea-scroll.patch",
-        "desktop-app-patches/qtbase_6_2_0/0048-qtgui-dlopen.patch"
+        "desktop-app-patches/qtbase_6_2_0/0048-qtgui-dlopen.patch",
+        "desktop-app-patches/qtbase_6_2_0/0049-fix-imes-on-macos.patch",
+        "desktop-app-patches/qtbase_6_2_0/0050-fix-search-in-finder-macos.patch",
+        "desktop-app-patches/qtbase_6_2_0/0051-add-scroll-wheel-logs.patch",
+        "desktop-app-patches/qtbase_6_2_0/0052-cherry-pick-Tidy-up-QPixmapCache-to-prevent-potential-segfault.patch",
+        "desktop-app-patches/qtbase_6_2_0/0053-gtk-dlopen.patch"
     ]
 }
