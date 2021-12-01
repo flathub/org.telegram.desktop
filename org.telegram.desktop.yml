@@ -185,53 +185,28 @@ modules:
       arch:
         x86_64:
           config-opts:
-            - -reduce-relocations
             - -force-debug-info
         aarch64:
           cflags: ''
           cflags-override: true
           cxxflags: ''
           cxxflags-override: true
-          config-opts:
-            - -no-reduce-relocations
-            - -optimize-size
-            - -opengl
-            - es2
     config-opts:
       - -archdatadir
       - /app/lib/
       - -release
       - -opensource
       - -confirm-license
-      - -shared
       - -cmake-use-default-generator
-      - -no-separate-debug-info
-      - -no-strip
-      - -no-rpath
-      - -optimized-qmake
-      - -nomake
-      - examples
-      - -nomake
-      - tests
-      - -system-harfbuzz
-      - -system-libjpeg
-      - -system-libpng
-      - -system-sqlite
-      - -system-zlib
-      - -system-proxies
-      - -dbus-linked
       - -openssl-linked
-      - -fontconfig
-      - -accessibility
-      - -glib
-      - -icu
-      - -no-directfb
-      - -no-linuxfb
-      - -no-kms
       - -no-feature-getentropy
       - -no-feature-renameat2
       - -no-feature-statx
       - -no-feature-highdpiscaling
+      - -nomake
+      - examples
+      - -nomake
+      - tests
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.2/6.2.0/submodules/qtbase-everywhere-src-6.2.0.tar.xz
