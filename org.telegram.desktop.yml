@@ -153,8 +153,8 @@ modules:
       - -Dbuild-examples=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/libsigc%2B%2B/2.10/libsigc%2B%2B-2.10.6.tar.xz
-        sha256: dda176dc4681bda9d5a2ac1bc55273bdd381662b7a6d49e918267d13e8774e1b
+        url: https://download.gnome.org/sources/libsigc++/2.10/libsigc++-2.10.7.tar.xz
+        sha256: d082a2ce72c750f66b1a415abe3e852df2eae1e8af53010f4ac2ea261a478832
         x-checker-data:
           type: gnome
           name: libsigc++
@@ -289,8 +289,8 @@ modules:
     sources:
       - type: git
         url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-        tag: v5.87.0
-        commit: 63bec5521d245e3a1ea50109b86a2b716966938e
+        tag: v5.88.0
+        commit: 8f7831c83f11f38c060fd0717b925b1fa28cd3d8
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -302,8 +302,8 @@ modules:
     sources:
       - type: git
         url: https://invent.kde.org/libraries/plasma-wayland-protocols.git
-        tag: v1.4.0
-        commit: 26d31d8c6f83e437a5da19e07a1aad80a8e3d614
+        tag: v1.5.0
+        commit: 490895c66b364ce5741b854ee4343af21547fee5
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -318,8 +318,8 @@ modules:
     sources:
       - type: git
         url: https://invent.kde.org/frameworks/kwayland.git
-        tag: v5.87.0
-        commit: 6061c5584178a7611370ca67c4eed05a92074920
+        tag: v5.88.0
+        commit: 31e2e6cb59eb4b72392caa703909ef22cf06bcb7
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
