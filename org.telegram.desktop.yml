@@ -115,9 +115,9 @@ modules:
         sha256: 174091ce5f2c02123f76d546622b14078097af105870086d18d55c1c2667d855
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/systemd/systemd/releases
-          tag-query: first | .tag_name
-          timestamp-query: first | .published_at
+          url: https://api.github.com/repos/systemd/systemd/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/systemd/systemd/archive/\($tag)/systemd-\($version).tar.gz"'
       - type: patch
@@ -136,9 +136,9 @@ modules:
         sha256: ee8048d20179a2e86156ac842ddb6428732d9cd7a2cfc2eca905165bf24887a2
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/anholt/libepoxy/releases
-          tag-query: first | .tag_name
-          timestamp-query: first | .published_at
+          url: https://api.github.com/repos/anholt/libepoxy/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
           version-query: $tag
           url-query: '"https://github.com/anholt/libepoxy/archive/\($tag)/libepoxy-\($version).tar.gz"'
       - type: patch
@@ -190,9 +190,9 @@ modules:
         sha256: 4f22731db2afa14531a5bf2633d8af79ca5cb697a550f678bf43f24e5e409ef0
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/mozilla/mozjpeg/releases
-          tag-query: first | .tag_name
-          timestamp-query: first | .published_at
+          url: https://api.github.com/repos/mozilla/mozjpeg/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/mozilla/mozjpeg/archive/\($tag)/mozjpeg-\($version).tar.gz"'
     cleanup:
@@ -293,7 +293,7 @@ modules:
         commit: 63bec5521d245e3a1ea50109b86a2b716966938e
         x-checker-data:
           type: git
-          tag-pattern: ^v([\\d.]+)$
+          tag-pattern: ^v([\d.]+)$
     cleanup:
       - '*'
 
@@ -306,7 +306,7 @@ modules:
         commit: 26d31d8c6f83e437a5da19e07a1aad80a8e3d614
         x-checker-data:
           type: git
-          tag-pattern: ^v([\\d.]+)$
+          tag-pattern: ^v([\d.]+)$
     cleanup:
       - '*'
 
@@ -322,7 +322,7 @@ modules:
         commit: 6061c5584178a7611370ca67c4eed05a92074920
         x-checker-data:
           type: git
-          tag-pattern: ^v([\\d.]+)$
+          tag-pattern: ^v([\d.]+)$
       - type: patch
         path: desktop-app-patches/kwayland-qt6.patch
     cleanup:
