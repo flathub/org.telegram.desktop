@@ -128,8 +128,15 @@ modules:
       - -Dtests=false
     sources:
       - type: archive
-        url: https://github.com/anholt/libepoxy/archive/refs/tags/1.5.9.tar.gz
+        url: https://github.com/anholt/libepoxy/archive/1.5.9/libepoxy-1.5.9.tar.gz
         sha256: ee8048d20179a2e86156ac842ddb6428732d9cd7a2cfc2eca905165bf24887a2
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/anholt/libepoxy/releases
+          tag-query: first | .tag_name
+          timestamp-query: first | .published_at
+          version-query: $tag
+          url-query: '"https://github.com/anholt/libepoxy/archive/\($tag)/libepoxy-\($version).tar.gz"'
       - type: patch
         path: desktop-app-patches/libepoxy.patch
 
@@ -144,6 +151,11 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/libsigc%2B%2B/2.10/libsigc%2B%2B-2.10.6.tar.xz
         sha256: dda176dc4681bda9d5a2ac1bc55273bdd381662b7a6d49e918267d13e8774e1b
+        x-checker-data:
+          type: gnome
+          name: libsigc++
+          versions:
+            <: 3.0.0
 
   - name: glibmm
     buildsystem: meson
@@ -155,6 +167,11 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/glibmm/2.66/glibmm-2.66.2.tar.xz
         sha256: b2a4cd7b9ae987794cbb5a1becc10cecb65182b9bb841868625d6bbb123edb1d
+        x-checker-data:
+          type: gnome
+          name: glibmm
+          versions:
+            <: 2.67.0
 
   - name: mozjpeg
     buildsystem: cmake-ninja
@@ -165,8 +182,15 @@ modules:
       - -DENABLE_STATIC:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/mozilla/mozjpeg/archive/v4.0.3.tar.gz
+        url: https://github.com/mozilla/mozjpeg/archive/v4.0.3/mozjpeg-4.0.3.tar.gz
         sha256: 4f22731db2afa14531a5bf2633d8af79ca5cb697a550f678bf43f24e5e409ef0
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/mozilla/mozjpeg/releases
+          tag-query: first | .tag_name
+          timestamp-query: first | .published_at
+          version-query: $tag | sub("^[vV]"; "")
+          url-query: '"https://github.com/mozilla/mozjpeg/archive/\($tag)/mozjpeg-\($version).tar.gz"'
     cleanup:
       - /bin
 
