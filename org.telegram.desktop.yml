@@ -289,8 +289,8 @@ modules:
     sources:
       - type: git
         url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-        tag: v5.88.0
-        commit: 8f7831c83f11f38c060fd0717b925b1fa28cd3d8
+        tag: v5.89.0
+        commit: 4047638680ab6c31618798cb20f26eac76dee20a
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -318,8 +318,8 @@ modules:
     sources:
       - type: git
         url: https://invent.kde.org/frameworks/kwayland.git
-        tag: v5.88.0
-        commit: 31e2e6cb59eb4b72392caa703909ef22cf06bcb7
+        tag: v5.89.0
+        commit: bc0d375055c20b43495a84bb5f90d530fc98be74
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
