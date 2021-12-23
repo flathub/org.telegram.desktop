@@ -310,24 +310,6 @@ modules:
     cleanup:
       - '*'
 
-  - name: kwayland
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DBUILD_TESTING=OFF
-    sources:
-      - type: git
-        url: https://invent.kde.org/frameworks/kwayland.git
-        tag: v5.89.0
-        commit: bc0d375055c20b43495a84bb5f90d530fc98be74
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
-      - type: patch
-        path: desktop-app-patches/kwayland-qt6.patch
-    cleanup:
-      - /lib/libexec
-
   - name: tg_owt
     buildsystem: cmake-ninja
     builddir: true
