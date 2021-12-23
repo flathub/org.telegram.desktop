@@ -344,3 +344,5 @@ modules:
           tag-query: first | .tag_name
           timestamp-query: first | .published_at
           version-query: $tag | sub("^[vV]"; "")
+      - type: patch
+        path: dispatch-no-werror.patch
