@@ -47,6 +47,7 @@
         "desktop-app-patches/qtbase_6_2_2/0044-fix-imes-on-macos.patch",
         "desktop-app-patches/qtbase_6_2_2/0045-fix-search-in-finder-macos.patch",
         "desktop-app-patches/qtbase_6_2_2/0046-add-scroll-wheel-logs.patch",
-        "desktop-app-patches/qtbase_6_2_2/0047-gtk-dlopen.patch"
+        "desktop-app-patches/qtbase_6_2_2/0047-optional-gtk.patch",
+        "desktop-app-patches/qtbase_6_2_2/0048-fix-glitching-emoji-cursor.patch"
     ]
 }
