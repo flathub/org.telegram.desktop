@@ -215,10 +215,8 @@ modules:
           config-opts:
             - -force-debug-info
         aarch64:
-          cflags: ''
-          cflags-override: true
-          cxxflags: ''
-          cxxflags-override: true
+          cflags: '-g0'
+          cxxflags: '-g0'
     config-opts:
       - -archdatadir
       - /app/lib/
