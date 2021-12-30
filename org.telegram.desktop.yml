@@ -215,8 +215,8 @@ modules:
           config-opts:
             - -force-debug-info
         aarch64:
-          cflags: '-g0'
-          cxxflags: '-g0'
+          cflags: -g0
+          cxxflags: -g0
     config-opts:
       - -archdatadir
       - /app/lib/
@@ -334,8 +334,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        tag: v3.3.2
-        commit: 2c20e7bb0223e01a1e4f10c1e4c3e65d3be1ff4f
+        tag: v3.4.0
+        commit: 2f48bbd31787af1941e5968a1ca79de741f6526f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
