@@ -287,8 +287,8 @@ modules:
     sources:
       - type: git
         url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-        tag: v5.89.0
-        commit: 4047638680ab6c31618798cb20f26eac76dee20a
+        tag: v5.90.0
+        commit: 29a243a9c12e1f9fdcabcae7fb8c4ab091d1ed68
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
