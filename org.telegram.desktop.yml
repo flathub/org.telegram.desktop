@@ -300,8 +300,8 @@ modules:
     sources:
       - type: git
         url: https://invent.kde.org/libraries/plasma-wayland-protocols.git
-        tag: v1.5.0
-        commit: 490895c66b364ce5741b854ee4343af21547fee5
+        tag: v1.6.0
+        commit: 64b9d6adb1472360f2ee492193f6df6a37bcf036
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
