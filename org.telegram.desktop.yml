@@ -282,32 +282,6 @@ modules:
         sha256: a5bb33d9df1d99e5afc21b0d0a36b79aa98829e2b1bee03c811ad69b79276bad
       - desktop-app-patches-qt5compat_6_2_2.json
 
-  - name: extra-cmake-modules
-    buildsystem: cmake-ninja
-    sources:
-      - type: git
-        url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-        tag: v5.90.0
-        commit: 29a243a9c12e1f9fdcabcae7fb8c4ab091d1ed68
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
-    cleanup:
-      - '*'
-
-  - name: plasma-wayland-protocols
-    buildsystem: cmake-ninja
-    sources:
-      - type: git
-        url: https://invent.kde.org/libraries/plasma-wayland-protocols.git
-        tag: v1.6.0
-        commit: 64b9d6adb1472360f2ee492193f6df6a37bcf036
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
-    cleanup:
-      - '*'
-
   - name: tg_owt
     buildsystem: cmake-ninja
     builddir: true
