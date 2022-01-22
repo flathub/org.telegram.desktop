@@ -245,6 +245,7 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DINPUT_egl_extension_platform_wayland=no
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.2/6.2.2/submodules/qtwayland-everywhere-src-6.2.2.tar.xz
