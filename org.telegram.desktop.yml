@@ -287,12 +287,10 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DBUILD_SHARED_LIBS=OFF
-      - -DTG_OWT_BUILD_AUDIO_BACKENDS=OFF
     sources:
       - type: git
         url: https://github.com/desktop-app/tg_owt.git
-        commit: b02478677baac6d563589f216800ff9cea0fd65c
+        commit: 25c8637f5975db830cc5d74477641a8b609e248d
     cleanup:
       - '*'
 
