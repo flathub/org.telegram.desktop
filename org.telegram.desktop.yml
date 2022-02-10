@@ -234,9 +234,9 @@ modules:
       - tests
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.2/6.2.2/submodules/qtbase-everywhere-src-6.2.2.tar.xz
-        sha256: 85ab9180180c2eaf84cd11ae4c6d5a6a69f2f8fd7260aaccfd91a3e7e7232c1a
-      - desktop-app-patches-qtbase_6_2_2.json
+        url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtbase-everywhere-src-6.2.3.tar.xz
+        sha256: 34d6d0072e197241463c417ad72610c3d44e2efd6062868e9a95283103d75df4
+      - desktop-app-patches-qtbase_6_2_3.json
     cleanup:
       - /bin
       - /lib/plugins/platformthemes/libqxdgdesktopportal.so
@@ -248,9 +248,9 @@ modules:
       - -DINPUT_egl_extension_platform_wayland=no
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.2/6.2.2/submodules/qtwayland-everywhere-src-6.2.2.tar.xz
-        sha256: 2d3652b3ecb5d8c9493c938b3d379dd700800859bb19033e8024e29d8deb3618
-      - desktop-app-patches-qtwayland_6_2_2.json
+        url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtwayland-everywhere-src-6.2.3.tar.xz
+        sha256: 48fdc52b1241d35532a24beebf5856d78eadc0f1f88a0a48b51a51e279c4ce72
+      - desktop-app-patches-qtwayland_6_2_3.json
     cleanup:
       - /bin
 
@@ -260,8 +260,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.2/6.2.2/submodules/qtimageformats-everywhere-src-6.2.2.tar.xz
-        sha256: 214f6d552391a70d72ff534295ef06c59dba756b6323762967820963a15bd267
+        url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtimageformats-everywhere-src-6.2.3.tar.xz
+        sha256: 9150bce23e6002e3c08229222142374b24db91132e1ff5c05bce028fc8fc0af6
 
   - name: qtsvg
     buildsystem: cmake-ninja
@@ -269,8 +269,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.2/6.2.2/submodules/qtsvg-everywhere-src-6.2.2.tar.xz
-        sha256: e1bd63932fa16468bc737a38b0060431f67a6073f4101ede188eb47a191abd75
+        url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtsvg-everywhere-src-6.2.3.tar.xz
+        sha256: 4a6bc9eeafa231ee9516f0fe84ddb0fbe8fba94844f4e7bd34c381e01610e2ee
 
   - name: qt5compat
     buildsystem: cmake-ninja
@@ -278,9 +278,9 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.2/6.2.2/submodules/qt5compat-everywhere-src-6.2.2.tar.xz
-        sha256: a5bb33d9df1d99e5afc21b0d0a36b79aa98829e2b1bee03c811ad69b79276bad
-      - desktop-app-patches-qt5compat_6_2_2.json
+        url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qt5compat-everywhere-src-6.2.3.tar.xz
+        sha256: 1cf89198cf2cf8a5c15336ccd69fa1f39b779feb64117d6bbf5509c21c123f53
+      - desktop-app-patches-qt5compat_6_2_3.json
 
   - name: tg_owt
     buildsystem: cmake-ninja

@@ -1,6 +1,0 @@
-{
-    "type": "patch",
-    "paths": [
-        "desktop-app-patches/qt5compat_6_2_2/0001-dont-require-qtdeclarative.patch"
-    ]
-}
