@@ -131,8 +131,8 @@ modules:
       - -Dtests=false
     sources:
       - type: archive
-        url: https://github.com/anholt/libepoxy/archive/1.5.9/libepoxy-1.5.9.tar.gz
-        sha256: ee8048d20179a2e86156ac842ddb6428732d9cd7a2cfc2eca905165bf24887a2
+        url: https://github.com/anholt/libepoxy/archive/1.5.10/libepoxy-1.5.10.tar.gz
+        sha256: a7ced37f4102b745ac86d6a70a9da399cc139ff168ba6b8002b4d8d43c900c15
         x-checker-data:
           type: json
           url: https://api.github.com/repos/anholt/libepoxy/releases/latest
