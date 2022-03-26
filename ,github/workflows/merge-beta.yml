@@ -6,7 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: master
           fetch-depth: 0
       - name: Merge beta branch
         run: |
@@ -17,5 +16,6 @@ jobs:
           fi
           git config --global user.name 'Stable merger'
           git config --global user.email 'tdesktop-flatpak-merger@users.noreply.github.com'
+          git checkout master
           git merge beta
           git push
