@@ -1,0 +1,17 @@
+name: Update tg_owt
+on: pull_request
+jobs:
+  update-tg_owt:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'flathubbot'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update tg_owt
+        run: |
+          version=$(yq '.modules[-1].sources[0].tag' org.telegram.desktop.yml)
+          commit=$(curl -sSL "https://raw.githubusercontent.com/telegramdesktop/tdesktop/$version/snap/snapcraft.yaml" | yq '.parts.webrtc."source-commit"')
+          yq -i --arg commit "$commit" '.modules[-2].sources[0].commit = $commit' org.telegram.desktop.yml
+          git config --global user.name 'tg_owt updater'
+          git config --global user.email 'tdesktop-flatpak-updater@users.noreply.github.com'
+          git commit -am "Update tg_owt to $commit"
+          git push
