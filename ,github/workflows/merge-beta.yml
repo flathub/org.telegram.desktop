@@ -1,0 +1,21 @@
+name: Merge beta branch
+on: push
+jobs:
+  merge-beta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: master
+          fetch-depth: 0
+      - name: Merge beta branch
+        run: |
+          version=$(yq '.modules | .[] | select(.name == "telegram-desktop") | .sources | .[] | select(.url == "https://github.com/telegramdesktop/tdesktop.git") | .tag' org.telegram.desktop.yml)
+          prerelease=$(curl -sSL https://api.github.com/repos/telegramdesktop/tdesktop/releases | jq ".[] | select(.tag_name == $version) | .prerelease")
+          if [ "$prerelease" != false ]; then
+            exit
+          fi
+          git config --global user.name 'Stable merger'
+          git config --global user.email 'tdesktop-flatpak-merger@users.noreply.github.com'
+          git merge beta
+          git push
