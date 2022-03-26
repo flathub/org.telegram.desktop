@@ -9,8 +9,9 @@ jobs:
           fetch-depth: 0
       - name: Merge beta branch
         run: |
-          version=$(yq '.modules | .[] | select(.name == "telegram-desktop") | .sources | .[] | select(.url == "https://github.com/telegramdesktop/tdesktop.git") | .tag' org.telegram.desktop.yml)
-          prerelease=$(curl -sSL https://api.github.com/repos/telegramdesktop/tdesktop/releases | jq --arg version "$version" '.[] | select(.tag_name == $version) | .prerelease')
+          url=$(yq '.modules[-1].sources[0]."x-checker-data".url' org.telegram.desktop.yml)
+          version=$(yq '.modules[-1].sources[0].tag' org.telegram.desktop.yml)
+          prerelease=$(curl -sSL "$url" | jq --arg version "$version" '.[] | select(.tag_name == $version) | .prerelease')
           if [ "$prerelease" != false ]; then
             exit
           fi
