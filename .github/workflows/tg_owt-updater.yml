@@ -6,7 +6,8 @@ jobs:
     if: github.event.pull_request.user.login == 'flathubbot'
     steps:
       - uses: actions/checkout@v3
-        ref: ${{ github.event.pull_request.head.ref }}
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: Update tg_owt
         run: |
           version=$(yq '.modules[-1].sources[0].tag' org.telegram.desktop.yml)
