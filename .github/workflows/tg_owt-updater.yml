@@ -6,6 +6,7 @@ jobs:
     if: github.event.pull_request.user.login == 'flathubbot'
     steps:
       - uses: actions/checkout@v3
+        ref: ${{ github.event.pull_request.head.ref }}
       - name: Update tg_owt
         run: |
           version=$(yq '.modules[-1].sources[0].tag' org.telegram.desktop.yml)
@@ -14,4 +15,4 @@ jobs:
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git commit -am "Update tg_owt to $commit"
-          git push origin ${{ github.event.pull_request.head.ref }}
+          git push
