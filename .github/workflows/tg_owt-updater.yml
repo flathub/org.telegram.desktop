@@ -10,7 +10,7 @@ jobs:
         run: |
           version=$(yq '.modules[-1].sources[0].tag' org.telegram.desktop.yml)
           commit=$(curl -sSL "https://raw.githubusercontent.com/telegramdesktop/tdesktop/$version/snap/snapcraft.yaml" | yq '.parts.webrtc."source-commit"')
-          yq -i --arg commit "$commit" '.modules[-2].sources[0].commit = $commit' org.telegram.desktop.yml
+          yq -i ".modules[-2].sources[0].commit = \"$commit\"" org.telegram.desktop.yml
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git commit -am "Update tg_owt to $commit"
