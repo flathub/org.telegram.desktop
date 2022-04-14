@@ -288,9 +288,7 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
-      - type: git
-        url: https://github.com/desktop-app/tg_owt.git
-        commit: db7d4697aba4aeb51369e25cc9f8f4b3a2bbb8e7
+      - tg_owt.yml
     cleanup:
       - '*'
 
