@@ -14,4 +14,4 @@ jobs:
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git commit -am "Update tg_owt to $commit"
-          git push
+          git push origin ${{ github.event.pull_request.head.ref }}
