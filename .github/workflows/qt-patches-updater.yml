@@ -11,7 +11,7 @@ jobs:
           submodules: true
       - name: Update Qt patches
         run: |
-          QT=$(yq '.modules[] | select(.name == "qtbase").sources[0].url' org.telegram.desktop.yml) | sed -r 's/.*([0-9]+)\.([0-9]+)\.([0-9]+).*/\1_\2_\3/'
+          QT=$(yq '.modules[] | select(.name == "qtbase").sources[0].url' org.telegram.desktop.yml | sed -r 's/.*([0-9]+)\.([0-9]+)\.([0-9]+).*/\1_\2_\3/')
           pushd desktop-app-patches > /dev/null
           git fetch
           git checkout origin/master
