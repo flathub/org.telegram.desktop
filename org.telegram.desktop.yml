@@ -122,27 +122,6 @@ modules:
       - type: patch
         path: desktop-app-patches/systemd.patch
 
-  - name: libepoxy
-    buildsystem: meson
-    builddir: true
-    config-opts:
-      - --buildtype=debugoptimized
-      - --default-library=static
-      - -Dtests=false
-    sources:
-      - type: archive
-        url: https://github.com/anholt/libepoxy/archive/1.5.10/libepoxy-1.5.10.tar.gz
-        sha256: a7ced37f4102b745ac86d6a70a9da399cc139ff168ba6b8002b4d8d43c900c15
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/anholt/libepoxy/releases/latest
-          tag-query: .tag_name
-          timestamp-query: .published_at
-          version-query: $tag
-          url-query: '"https://github.com/anholt/libepoxy/archive/\($tag)/libepoxy-\($version).tar.gz"'
-      - type: patch
-        path: desktop-app-patches/libepoxy.patch
-
   - name: libsigc++
     buildsystem: meson
     builddir: true
