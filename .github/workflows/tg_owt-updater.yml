@@ -15,5 +15,5 @@ jobs:
           yq -i ".commit = \"$commit\"" tg_owt.yml
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
-          git commit -am "Update tg_owt to $commit"
-          git push
+          git add .
+          git diff --staged --quiet || (git commit -m "Update tg_owt to $commit" && git push)

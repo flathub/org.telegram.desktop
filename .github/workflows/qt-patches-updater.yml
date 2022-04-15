@@ -22,5 +22,5 @@ jobs:
           done
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
-          git commit -am "Update Qt patches to $commit"
-          git push
+          git add .
+          git diff --staged --quiet || (git commit -m "Update Qt patches to $commit" && git push)
