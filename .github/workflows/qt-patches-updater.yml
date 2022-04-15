@@ -1,0 +1,25 @@
+name: Update Qt patches
+on: pull_request
+jobs:
+  update-qt-patches:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'flathubbot'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Update Qt patches
+        run: |
+          QT=$(yq '.modules[] | select(.name == "qtbase").sources[0].url' org.telegram.desktop.yml) | sed -r 's/.*([0-9]+)\.([0-9]+)\.([0-9]+).*/\1_\2_\3/'
+          pushd desktop-app-patches > /dev/null
+          git fetch
+          git checkout origin/master
+          commit=$(git rev-parse HEAD)
+          popd > /dev/null
+          for i in desktop-app-patches/*_${QT}; do
+            ./gen-patchset.py -o $(basename $i | sed -r "s/_${QT}//").json $i
+          done
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git commit -am "Update Qt patches to $commit"
+          git push
