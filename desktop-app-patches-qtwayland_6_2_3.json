@@ -1,8 +1,0 @@
-{
-    "type": "patch",
-    "paths": [
-        "desktop-app-patches/qtwayland_6_2_3/0001-clipboard-fix-non-bmp.patch",
-        "desktop-app-patches/qtwayland_6_2_3/0002-epoxy.patch",
-        "desktop-app-patches/qtwayland_6_2_3/0003-check-shellintegration.patch"
-    ]
-}
