@@ -11,7 +11,7 @@ jobs:
         run: |
           url=$(yq '.modules[-1].sources[0]."x-checker-data".url' org.telegram.desktop.yml)
           version=$(yq '.modules[-1].sources[0].tag' org.telegram.desktop.yml)
-          prerelease=$(curl -sSL "$url" | jq --arg version "$version" '.[] | select(.tag_name == $version) | .prerelease')
+          prerelease=$(curl -sSL "$url" | jq --arg version "$version" '.[] | select(.tag_name == $version).prerelease')
           if [ "$prerelease" != false ]; then
             exit
           fi
