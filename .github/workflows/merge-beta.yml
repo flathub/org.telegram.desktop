@@ -1,5 +1,8 @@
 name: Merge beta branch
-on: push
+on:
+  push:
+    branches:
+      - beta
 jobs:
   merge-beta:
     runs-on: ubuntu-latest
