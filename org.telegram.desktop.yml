@@ -236,6 +236,10 @@ modules:
       - type: archive
         url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtbase-everywhere-src-6.2.3.tar.xz
         sha256: 34d6d0072e197241463c417ad72610c3d44e2efd6062868e9a95283103d75df4
+        x-checker-data:
+          type: anitya
+          project-id: 7927
+          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtbase-everywhere-src-$version.tar.xz
       - desktop-app-patches-qtbase_6_2_3.json
     cleanup:
       - /bin
@@ -250,6 +254,10 @@ modules:
       - type: archive
         url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtwayland-everywhere-src-6.2.3.tar.xz
         sha256: 48fdc52b1241d35532a24beebf5856d78eadc0f1f88a0a48b51a51e279c4ce72
+        x-checker-data:
+          type: anitya
+          project-id: 7927
+          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtwayland-everywhere-src-$version.tar.xz
       - desktop-app-patches-qtwayland_6_2_3.json
     cleanup:
       - /bin
@@ -262,6 +270,10 @@ modules:
       - type: archive
         url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtimageformats-everywhere-src-6.2.3.tar.xz
         sha256: 9150bce23e6002e3c08229222142374b24db91132e1ff5c05bce028fc8fc0af6
+        x-checker-data:
+          type: anitya
+          project-id: 7927
+          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtimageformats-everywhere-src-$version.tar.xz
 
   - name: qtsvg
     buildsystem: cmake-ninja
@@ -271,6 +283,10 @@ modules:
       - type: archive
         url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qtsvg-everywhere-src-6.2.3.tar.xz
         sha256: 4a6bc9eeafa231ee9516f0fe84ddb0fbe8fba94844f4e7bd34c381e01610e2ee
+        x-checker-data:
+          type: anitya
+          project-id: 7927
+          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtsvg-everywhere-src-$version.tar.xz
 
   - name: qt5compat
     buildsystem: cmake-ninja
@@ -280,6 +296,10 @@ modules:
       - type: archive
         url: https://download.qt.io/archive/qt/6.2/6.2.3/submodules/qt5compat-everywhere-src-6.2.3.tar.xz
         sha256: 1cf89198cf2cf8a5c15336ccd69fa1f39b779feb64117d6bbf5509c21c123f53
+        x-checker-data:
+          type: anitya
+          project-id: 7927
+          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qt5compat-everywhere-src-$version.tar.xz
       - desktop-app-patches-qt5compat_6_2_3.json
 
   - name: tg_owt
