@@ -240,7 +240,7 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtbase-everywhere-src-$version.tar.xz
-      - desktop-app-patches-qtbase_6_2_3.json
+      - qtbase.json
     cleanup:
       - /bin
       - /lib/plugins/platformthemes/libqxdgdesktopportal.so
@@ -258,7 +258,6 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtwayland-everywhere-src-$version.tar.xz
-      - desktop-app-patches-qtwayland_6_2_3.json
     cleanup:
       - /bin
 
@@ -300,7 +299,6 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qt5compat-everywhere-src-$version.tar.xz
-      - desktop-app-patches-qt5compat_6_2_3.json
 
   - name: tg_owt
     buildsystem: cmake-ninja
