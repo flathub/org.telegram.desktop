@@ -37,6 +37,9 @@
         "desktop-app-patches/qtbase_6_3_0/0034-optional-gtk.patch",
         "desktop-app-patches/qtbase_6_3_0/0035-fix-glitching-emoji-cursor.patch",
         "desktop-app-patches/qtbase_6_3_0/0036-fix-opengl-crash-on-context-loss.patch",
-        "desktop-app-patches/qtbase_6_3_0/0037-fix-build-on-centos-7.patch"
+        "desktop-app-patches/qtbase_6_3_0/0037-fix-build-on-centos-7.patch",
+        "desktop-app-patches/qtbase_6_3_0/0038-fix-screen-orientation-with-xcb.patch",
+        "desktop-app-patches/qtbase_6_3_0/0039-fix-layout-switching-with-xcb.patch",
+        "desktop-app-patches/qtbase_6_3_0/0040-fix-abort-without-xrandr.patch"
     ]
 }
