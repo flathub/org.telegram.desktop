@@ -147,8 +147,8 @@ modules:
       - -Dbuild-examples=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.66/glibmm-2.66.3.tar.xz
-        sha256: afb96202491485d3f44102d98219a172da2d3f9eb78fce3cfb92559ba496e499
+        url: https://download.gnome.org/sources/glibmm/2.66/glibmm-2.66.4.tar.xz
+        sha256: 199ace5682d81b15a1d565480b4a950682f2db6402c8aa5dd7217d71edff81d5
         x-checker-data:
           type: gnome
           name: glibmm
@@ -310,8 +310,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        tag: v3.7.3
-        commit: 075ab20e5b15b46a03d05cf27eea9749f69ee1ea
+        tag: v3.7.4
+        commit: e206f42e4e5c8ff798d8fb5e59d1784e445995a7
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
