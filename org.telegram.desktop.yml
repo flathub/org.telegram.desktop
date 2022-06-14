@@ -229,6 +229,7 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DINPUT_egl_extension_platform_wayland=no
+      - -DINPUT_wayland_server=no
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.3/6.3.1/submodules/qtwayland-everywhere-src-6.3.1.tar.xz
