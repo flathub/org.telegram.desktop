@@ -285,7 +285,24 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
-      - tg_owt.yml
+      - type: git
+        url: https://github.com/desktop-app/tg_owt.git
+        commit: 10d5f4bf77333ef6b43516f90d2ce13273255f41
+        x-checker-data:
+          type: json
+          parent-id: telegram-desktop-git-0
+          commit-data-url: >-
+            "https://github.com/telegramdesktop/tdesktop/raw/\($parent.new.tag//$parent.current.tag)/snap/snapcraft.yaml"
+          commit-query: >-
+            .parts.webrtc."source-commit"
+          version-data-url: >-
+            "https://api.github.com/repos/desktop-app/tg_owt/commits/\($commit)"
+          version-query: >-
+            "desktop-app/tg_owt@\(.sha[0:7])"
+          timestamp-data-url: >-
+            "https://api.github.com/repos/desktop-app/tg_owt/commits/\($commit)"
+          timestamp-query: >-
+            .commit.committer.date
     cleanup:
       - '*'
 
