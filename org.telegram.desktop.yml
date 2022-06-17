@@ -222,7 +222,6 @@ modules:
       - qtbase.json
     cleanup:
       - /bin
-      - /lib/plugins/platformthemes/libqxdgdesktopportal.so
 
   - name: qtwayland
     buildsystem: cmake-ninja
