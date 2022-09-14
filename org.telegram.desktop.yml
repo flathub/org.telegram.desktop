@@ -213,8 +213,8 @@ modules:
       - tests
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.3/6.3.1/submodules/qtbase-everywhere-src-6.3.1.tar.xz
-        sha256: 0a64421d9c2469c2c48490a032ab91d547017c9cc171f3f8070bc31888f24e03
+        url: https://download.qt.io/development_releases/qt/6.4/6.4.0-beta4/submodules/qtbase-everywhere-src-6.4.0-beta4.tar.xz
+        sha256: 3c04ad125f1040f47be2bb0d9c0fef716f79b45821a6a59b29836886074f99d0
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -231,8 +231,8 @@ modules:
       - -DINPUT_wayland_server=no
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.3/6.3.1/submodules/qtwayland-everywhere-src-6.3.1.tar.xz
-        sha256: 6f14fea2d172a5b4170be3efcb0e58535f6605b61bcd823f6d5c9d165bb8c0f0
+        url: https://download.qt.io/development_releases/qt/6.4/6.4.0-beta4/submodules/qtwayland-everywhere-src-6.4.0-beta4.tar.xz
+        sha256: 0fdacc48704fa075afb3fa29cde38604dc23cfa9524a35a460c789fedb49dd07
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -246,8 +246,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.3/6.3.1/submodules/qtimageformats-everywhere-src-6.3.1.tar.xz
-        sha256: ad0312b8dfbbb67f729bfadbfcd47246ee4a128b717731ba158c41d01fde212f
+        url: https://download.qt.io/development_releases/qt/6.4/6.4.0-beta4/submodules/qtimageformats-everywhere-src-6.4.0-beta4.tar.xz
+        sha256: e1f62af8e4db79b79e1067a83ed354a0cb2d87af501a312710c6b8fe1bc2ffb9
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -259,8 +259,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.3/6.3.1/submodules/qtsvg-everywhere-src-6.3.1.tar.xz
-        sha256: 7b19f418e6f7b8e23344082dd04440aacf5da23c5a73980ba22ae4eba4f87df7
+        url: https://download.qt.io/development_releases/qt/6.4/6.4.0-beta4/submodules/qtsvg-everywhere-src-6.4.0-beta4.tar.xz
+        sha256: fda0a10dabb1a50716055e156920235c430f2abd421c0c3f663a6f2da0d6a3d0
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -272,8 +272,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.3/6.3.1/submodules/qt5compat-everywhere-src-6.3.1.tar.xz
-        sha256: a43ec62bd778eaecf88ad7847118d1c2a471b0fcb820f93beb311d7ab9566cfd
+        url: https://download.qt.io/archive/qt/6.3/6.3.2/submodules/qt5compat-everywhere-src-6.3.2.tar.xz
+        sha256: 91a3ac0f3f87e4103afa5834ccbecff9374daf716fab362d0c5e2d6ab98560cc
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -327,8 +327,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        tag: v4.1.1
-        commit: c793537d963efe96d0ae7ab30a8b6b262f039151
+        tag: v4.1.2
+        commit: 9923cc9b312bcd0808c1db821a1254faabe03e3d
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
@@ -337,3 +337,5 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
       - type: patch
         path: dispatch-no-werror.patch
+      - type: patch
+        path: fix-build.patch
