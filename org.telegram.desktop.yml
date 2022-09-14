@@ -272,12 +272,56 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.3/6.3.2/submodules/qt5compat-everywhere-src-6.3.2.tar.xz
-        sha256: 91a3ac0f3f87e4103afa5834ccbecff9374daf716fab362d0c5e2d6ab98560cc
+        url: https://download.qt.io/development_releases/qt/6.4/6.4.0-beta4/submodules/qt5compat-everywhere-src-6.4.0-beta4.tar.xz
+        sha256: 1e20400d579823e278cae7b301cd1089b8f132095efdcd2a5709fd0c5e72b997
         x-checker-data:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qt5compat-everywhere-src-$version.tar.xz
+
+  - name: qttools
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    sources:
+      - type: archive
+        url: https://download.qt.io/development_releases/qt/6.4/6.4.0-beta4/submodules/qttools-everywhere-src-6.4.0-beta4.tar.xz
+        sha256: 86d954659511ae27636adbf94c279d0856c30f5ac0ef9a3fc2810a76070cf90d
+        x-checker-data:
+          type: anitya
+          project-id: 7927
+          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qttools-everywhere-src-$version.tar.xz
+    cleanup:
+      - '*'
+
+  - name: extra-cmake-modules
+    buildsystem: cmake-ninja
+    sources:
+      - type: git
+        url: https://invent.kde.org/frameworks/extra-cmake-modules.git
+        tag: v5.97.0
+        commit: ce726d388a59b941e2e6f6f487132532511af03d
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+    cleanup:
+      - '*'
+
+  - name: kcoreaddons
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_TESTING=OFF
+      - -DBUILD_WITH_QT6=ON
+      - -DEXCLUDE_DEPRECATED_BEFORE_AND_AT=5.78.0
+    sources:
+      - type: git
+        url: https://invent.kde.org/frameworks/kcoreaddons.git
+        tag: v5.97.0
+        commit: 6307c22bb48238354010da6db1fb854401263a1a
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
   - name: tg_owt
     buildsystem: cmake-ninja
