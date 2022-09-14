@@ -7,8 +7,8 @@ rename-icon: telegram
 finish-args:
   - --share=ipc
   - --share=network
-  - --socket=x11
   - --socket=wayland
+  - --socket=fallback-x11
   - --socket=pulseaudio
   - --device=all
   - --own-name=org.mpris.MediaPlayer2.tdesktop
@@ -22,8 +22,6 @@ finish-args:
   - --talk-name=org.ayatana.indicator.application
   - --filesystem=xdg-download
   - --filesystem=xdg-run/pipewire-0
-  - --filesystem=host:ro
-  - --nofilesystem=~/.TelegramDesktop
   - --env=QT_PLUGIN_PATH=/app/lib64/plugins:/app/lib/plugins
   - --env=PATH=/app/lib/webview/bin:/app/bin:/usr/bin
 sdk-extensions:
