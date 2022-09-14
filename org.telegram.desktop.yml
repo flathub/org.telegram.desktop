@@ -297,8 +297,8 @@ modules:
     sources:
       - type: git
         url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-        tag: v5.97.0
-        commit: ce726d388a59b941e2e6f6f487132532511af03d
+        tag: v5.98.0
+        commit: 479fe1a4051dc8cdd2a4e235a86c7dd41126ccbf
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -315,8 +315,8 @@ modules:
     sources:
       - type: git
         url: https://invent.kde.org/frameworks/kcoreaddons.git
-        tag: v5.97.0
-        commit: 6307c22bb48238354010da6db1fb854401263a1a
+        tag: v5.98.0
+        commit: 48db27967a08f1721b3f9788c4da95ca05b4b713
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
