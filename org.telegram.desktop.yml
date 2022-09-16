@@ -369,8 +369,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        tag: v4.1.2
-        commit: 9923cc9b312bcd0808c1db821a1254faabe03e3d
+        tag: v4.2.0
+        commit: 645ae69220fd0c0ef23e198499197b67099c5d13
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
@@ -379,5 +379,3 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
       - type: patch
         path: dispatch-no-werror.patch
-      - type: patch
-        path: fix-build.patch
