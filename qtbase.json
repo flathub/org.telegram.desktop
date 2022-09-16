@@ -35,7 +35,6 @@
         "desktop-app-patches/qtbase_6_4_0/0032-fix-glitching-emoji-cursor.patch",
         "desktop-app-patches/qtbase_6_4_0/0033-fix-opengl-crash-on-context-loss.patch",
         "desktop-app-patches/qtbase_6_4_0/0034-ignore-qt-font-dpi.patch",
-        "desktop-app-patches/qtbase_6_4_0/0035-tray-wayland-activation.patch",
-        "desktop-app-patches/qtbase_6_4_0/0036-fix-xdg-desktop-portal-save-with-gnome.patch"
+        "desktop-app-patches/qtbase_6_4_0/0035-fix-xdg-desktop-portal-save-with-gnome.patch"
     ]
 }
