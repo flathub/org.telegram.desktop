@@ -212,7 +212,7 @@ modules:
     sources:
       - type: archive
         url: https://download.qt.io/development_releases/qt/6.4/6.4.0-rc/submodules/qtbase-everywhere-src-6.4.0-rc.tar.xz
-        sha256: a4092ef4118d03387be805327326138b9e9edc4219000730ff69b4cddad0cd51
+        sha256: e83edbee532d71488f1647fcadc24007ef8652c8072805b47c9892728e5b355c
         x-checker-data:
           type: anitya
           project-id: 7927
