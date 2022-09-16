@@ -320,6 +320,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+      - type: patch
+        path: kcoreaddons-258.patch
 
   - name: tg_owt
     buildsystem: cmake-ninja
