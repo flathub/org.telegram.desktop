@@ -277,21 +277,6 @@ modules:
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qt5compat-everywhere-src-$version.tar.xz
 
-  - name: qttools
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-    sources:
-      - type: archive
-        url: https://download.qt.io/development_releases/qt/6.4/6.4.0-rc/submodules/qttools-everywhere-src-6.4.0-rc.tar.xz
-        sha256: 6924f0e3570be8536d98937a76fd81d62ad9d09d7bb5100f7f16459c617b108c
-        x-checker-data:
-          type: anitya
-          project-id: 7927
-          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qttools-everywhere-src-$version.tar.xz
-    cleanup:
-      - '*'
-
   - name: extra-cmake-modules
     buildsystem: cmake-ninja
     sources:
@@ -322,6 +307,9 @@ modules:
           tag-pattern: ^v([\d.]+)$
       - type: patch
         path: kcoreaddons-258.patch
+      - type: shell
+        commands:
+          - rm -rf po
 
   - name: tg_owt
     buildsystem: cmake-ninja
