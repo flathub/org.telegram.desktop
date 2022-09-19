@@ -145,8 +145,8 @@ modules:
       - -Dbuild-examples=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.66/glibmm-2.66.4.tar.xz
-        sha256: 199ace5682d81b15a1d565480b4a950682f2db6402c8aa5dd7217d71edff81d5
+        url: https://download.gnome.org/sources/glibmm/2.66/glibmm-2.66.5.tar.xz
+        sha256: 7b384662dd6ec3b86c0570331d32af05db2bd99a791602b767b4a0b2566ec149
         x-checker-data:
           type: gnome
           name: glibmm
