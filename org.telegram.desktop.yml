@@ -215,6 +215,36 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/strukturag/libheif/archive/\($tag)/libheif-\($version).tar.gz"'
 
+  - name: libjxl
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_LIBRARY_PATH=/app/lib
+      - -DCMAKE_INCLUDE_PATH=/app/include
+      - -DBUILD_TESTING=OFF
+      - -DJPEGXL_ENABLE_DEVTOOLS=OFF
+      - -DJPEGXL_ENABLE_TOOLS=OFF
+      - -DJPEGXL_ENABLE_DOXYGEN=OFF
+      - -DJPEGXL_ENABLE_MANPAGES=OFF
+      - -DJPEGXL_ENABLE_BENCHMARK=OFF
+      - -DJPEGXL_ENABLE_EXAMPLES=OFF
+      - -DJPEGXL_ENABLE_JNI=OFF
+      - -DJPEGXL_ENABLE_SJPEG=OFF
+      - -DJPEGXL_ENABLE_OPENEXR=OFF
+      - -DJPEGXL_ENABLE_SKCMS=OFF
+    sources:
+      - type: archive
+        url: https://github.com/libjxl/libjxl/archive/v0.7.0.tar.gz
+        sha256: 3114bba1fabb36f6f4adc2632717209aa6f84077bc4e93b420e0d63fa0455c5e
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/libjxl/libjxl/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
+          version-query: $tag | sub("^[vV]"; "")
+          url-query: '"https://github.com/libjxl/libjxl/archive/\($tag).tar.gz"'
+
   - name: libsigc++
     buildsystem: meson
     builddir: true
