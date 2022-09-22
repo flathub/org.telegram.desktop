@@ -54,8 +54,8 @@ cleanup:
   - /include
   - /lib/pkgconfig
   - /lib/cmake
-  - /lib/mkspecs
-  - /lib/*.prl
+  - /mkspecs
+  - /modules
   - '*.la'
   - '*.a'
 modules:
