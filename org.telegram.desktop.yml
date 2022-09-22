@@ -193,6 +193,28 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/AOMediaCodec/libavif/archive/\$(tag).tar.gz"'
 
+  - name: libheif
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DWITH_X265=OFF
+      - -DWITH_AOM=OFF
+      - -DWITH_RAV1E=OFF
+      - -DWITH_DAV1D=OFF
+      - -DWITH_EXAMPLES=OFF
+    sources:
+      - type: archive
+        url: https://github.com/strukturag/libheif/archive/v1.13.0/libheif-1.13.0.tar.gz
+        sha256: 50def171af4bc8991211d6027f3cee4200a86bbe60fddb537799205bf216ddca
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/strukturag/libheif/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
+          version-query: $tag | sub("^[vV]"; "")
+          url-query: '"https://github.com/strukturag/libheif/archive/\($tag)/libheif-\($version).tar.gz"'
+
   - name: libsigc++
     buildsystem: meson
     builddir: true
