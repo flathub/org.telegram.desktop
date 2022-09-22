@@ -310,6 +310,8 @@ modules:
       - type: shell
         commands:
           - rm -rf po
+    cleanup:
+      - /bin
 
   - name: tg_owt
     buildsystem: cmake-ninja
