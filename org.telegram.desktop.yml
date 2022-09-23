@@ -46,16 +46,14 @@ build-options:
   append-path: /usr/lib/sdk/llvm12/bin
   append-ld-library-path: /usr/lib/sdk/llvm12/lib
 cleanup:
-  - /cache
-  - /man
-  - /doc
-  - /share/man
-  - /lib/systemd
   - /include
-  - /lib/pkgconfig
   - /lib/cmake
+  - /lib/pkgconfig
+  - /lib/systemd
   - /mkspecs
   - /modules
+  - /share/doc
+  - /share/man
   - '*.prl'
   - '*.la'
   - '*.a'
