@@ -405,42 +405,6 @@ modules:
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qt5compat-everywhere-src-$version.tar.xz
 
-  - name: extra-cmake-modules
-    buildsystem: cmake-ninja
-    sources:
-      - type: git
-        url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-        tag: v5.98.0
-        commit: 479fe1a4051dc8cdd2a4e235a86c7dd41126ccbf
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
-    cleanup:
-      - '*'
-
-  - name: kcoreaddons
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DBUILD_TESTING=OFF
-      - -DBUILD_WITH_QT6=ON
-      - -DEXCLUDE_DEPRECATED_BEFORE_AND_AT=5.78.0
-    sources:
-      - type: git
-        url: https://invent.kde.org/frameworks/kcoreaddons.git
-        tag: v5.98.0
-        commit: 48db27967a08f1721b3f9788c4da95ca05b4b713
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
-      - type: patch
-        path: kcoreaddons-258.patch
-      - type: shell
-        commands:
-          - rm -rf po
-    cleanup:
-      - /bin
-
   - name: tg_owt
     buildsystem: cmake-ninja
     builddir: true
