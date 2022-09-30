@@ -54,7 +54,6 @@ cleanup:
   - /mkspecs
   - /modules
   - /share/doc
-  - /share/kf6/licenses
   - /share/man
   - '*.prl'
   - '*.la'
