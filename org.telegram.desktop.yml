@@ -167,8 +167,8 @@ modules:
       - -DENABLE_SDL=OFF
     sources:
       - type: archive
-        url: https://github.com/strukturag/libde265/archive/v1.0.8/libde265-1.0.8.tar.gz
-        sha256: c5ab61185f283f46388c700c43dc08606b0e260cd53f06b967ec0ad7a809ff11
+        url: https://github.com/strukturag/libde265/archive/v1.0.9/libde265-1.0.9.tar.gz
+        sha256: 153554f407718a75f1e0ae197d35b43147ce282118a54f894554dbe27c32163d
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libde265/releases/latest
@@ -187,8 +187,8 @@ modules:
       - -DAVIF_CODEC_DAV1D=ON
     sources:
       - type: archive
-        url: https://github.com/AOMediaCodec/libavif/archive/v0.11.0.tar.gz
-        sha256: 0c34937f5a1f2e105734dba2fc6dc4d9b12636e17964df705d3d96c5aa52667c
+        url: https://github.com/AOMediaCodec/libavif/archive/v0.11.1.tar.gz
+        sha256: 0eb49965562a0e5e5de58389650d434cff32af84c34185b6c9b7b2fccae06d4e
         x-checker-data:
           type: json
           url: https://api.github.com/repos/AOMediaCodec/libavif/releases
