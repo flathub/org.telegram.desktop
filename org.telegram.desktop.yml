@@ -22,7 +22,7 @@ finish-args:
   - --talk-name=org.ayatana.indicator.application
   - --filesystem=xdg-download
   - --filesystem=xdg-run/pipewire-0
-  - --env=QT_PLUGIN_PATH=/app/lib64/plugins:/app/lib/plugins
+  - --env=QT_PLUGIN_PATH=/app/lib/plugins
   - --env=PATH=/app/lib/webview/bin:/app/bin:/usr/bin
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.llvm12
