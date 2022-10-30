@@ -76,17 +76,33 @@ modules:
     cleanup:
       - '*'
 
-  - name: adwaita-icon-theme
-    build-commands:
-      - mkdir -p "$FLATPAK_DEST/share/icons"
-      - ln -s Adwaita "$FLATPAK_DEST/share/icons/default"
+  - name: xcursorgen
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/adwaita-icon-theme/43/adwaita-icon-theme-43.tar.xz
-        sha256: 2e3ac77d32a6aa5554155df37e8f0a0dd54fc5a65fd721e88d505f970da32ec6
+        url: https://xorg.freedesktop.org/archive/individual/app/xcursorgen-1.0.7.tar.bz2
+        sha256: 35b6f844b24f1776e9006c880a745728800764dbe3b327a128772b4610d8eb3d
         x-checker-data:
-          type: gnome
-          name: adwaita-icon-theme
+          type: anitya
+          project-id: 21210
+          url-template: https://xorg.freedesktop.org/archive/individual/app/xcursorgen-$version.tar.bz2
+    cleanup:
+      - '*'
+
+  - name: dmz-cursor-theme
+    buildsystem: simple
+    build-commands:
+      - (cd DMZ-Black/pngs ; ./make.sh)
+      - install -d "$FLATPAK_DEST/share/icons/default/cursors"
+      - cp -a DMZ-Black/xcursors/* "$FLATPAK_DEST/share/icons/default/cursors"
+      - install -Dm644 DMZ-Black/index.theme "$FLATPAK_DEST/share/icons/default/index.theme"
+    sources:
+      - type: archive
+        url: http://ftp.de.debian.org/debian/pool/main/d/dmz-cursor-theme/dmz-cursor-theme_0.4.5.tar.xz
+        sha256: b719a64ed9c51905743105e5a50b15492695929ab2d6fca2cea760d52ccd1f5c
+        x-checker-data:
+          type: anitya
+          project-id: 15904
+          url-template: http://ftp.de.debian.org/debian/pool/main/d/dmz-cursor-theme/dmz-cursor-theme_$version.tar.xz
 
   - name: jinja2
     buildsystem: simple
