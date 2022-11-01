@@ -138,8 +138,8 @@ modules:
       - install -D systemd-detect-virt "$FLATPAK_DEST/bin"
     sources:
       - type: archive
-        url: https://github.com/systemd/systemd/archive/v251/systemd-251.tar.gz
-        sha256: 0ecc8bb28d3062c8e58a64699a9b16534554bb6a01efb8d5507c893db39f8d51
+        url: https://github.com/systemd/systemd/archive/v252/systemd-252.tar.gz
+        sha256: 113a9342ddf89618a17c4056c2dd72c4b20b28af8da135786d7e9b4f1d18acfb
         x-checker-data:
           type: json
           url: https://api.github.com/repos/systemd/systemd/releases/latest
@@ -157,8 +157,8 @@ modules:
       - --buildtype=plain
     sources:
       - type: archive
-        url: https://github.com/mm2/Little-CMS/archive/lcms2.13.1/lcms2-2.13.1.tar.gz
-        sha256: 6f84c942ecde1b4852b5a051894502ac8c98d010acb3400dec958c6db1bc94ef
+        url: https://github.com/mm2/Little-CMS/archive/lcms2.14/lcms2-2.14.tar.gz
+        sha256: 05869269f14e589b0b6d05a76f510c68c67fabb304904d16c6bd818abec80a83
         x-checker-data:
           type: json
           url: https://api.github.com/repos/mm2/Little-CMS/releases/latest
