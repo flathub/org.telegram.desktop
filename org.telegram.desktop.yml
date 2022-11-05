@@ -50,8 +50,11 @@ cleanup:
   - /doc
   - /include
   - /lib/cmake
+  - /lib/libexec
+  - /lib/metatypes
   - /lib/pkgconfig
   - /lib/systemd
+  - /lib/*.so
   - /mkspecs
   - /modules
   - /share/doc
