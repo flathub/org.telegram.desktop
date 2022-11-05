@@ -54,7 +54,6 @@ cleanup:
   - /lib/metatypes
   - /lib/pkgconfig
   - /lib/systemd
-  - /lib/*.so
   - /mkspecs
   - /modules
   - /share/doc
