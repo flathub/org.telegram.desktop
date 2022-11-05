@@ -281,17 +281,15 @@ modules:
     builddir: true
     config-opts:
       - --buildtype=plain
-      - -Dvalidation=false
       - -Dbuild-examples=false
+      - -Dvalidation=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/libsigc++/2.10/libsigc++-2.10.8.tar.xz
-        sha256: 235a40bec7346c7b82b6a8caae0456353dc06e71f14bc414bcc858af1838719a
+        url: https://download.gnome.org/sources/libsigc++/3.2/libsigc%2B%2B-3.2.0.tar.xz
+        sha256: 8cdcb986e3f0a7c5b4474aa3c833d676e62469509f4899110ddf118f04082651
         x-checker-data:
           type: gnome
           name: libsigc++
-          versions:
-            <: 3.0.0
 
   - name: glibmm
     buildsystem: meson
@@ -301,13 +299,13 @@ modules:
       - -Dbuild-examples=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.66/glibmm-2.66.5.tar.xz
-        sha256: 7b384662dd6ec3b86c0570331d32af05db2bd99a791602b767b4a0b2566ec149
+        url: https://download.gnome.org/sources/glibmm/2.68/glibmm-2.68.2.tar.xz
+        sha256: 91e0a8618f7b82db4aaf2648932ea2bcfe626ad030068c18fa2d106fd838d8ad
         x-checker-data:
           type: gnome
           name: glibmm
           versions:
-            <: 2.67.0
+            <: 2.69.0
 
   - name: mozjpeg
     buildsystem: cmake-ninja
