@@ -1,0 +1,10 @@
+diff --git a/lib/xdg/org.telegram.desktop.metainfo.xml b/lib/xdg/org.telegram.desktop.metainfo.xml
+index 40675e7..4beea90 100644
+--- a/lib/xdg/org.telegram.desktop.metainfo.xml
++++ b/lib/xdg/org.telegram.desktop.metainfo.xml
+@@ -76,4 +76,5 @@
+     <provides>
+         <binary>telegram-desktop</binary>
+     </provides>
++    <launchable type="desktop-id">org.telegram.desktop.desktop</launchable>
+ </component>

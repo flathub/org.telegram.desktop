@@ -544,3 +544,4 @@ modules:
       - type: patch
         paths:
           - patches/tdesktop/dispatch-no-werror.patch
+          - patches/tdesktop/metainfo-add-launchable.patch
