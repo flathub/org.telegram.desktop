@@ -3,8 +3,6 @@ runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 command: telegram-desktop
-rename-desktop-file: telegramdesktop.desktop
-rename-appdata-file: telegramdesktop.metainfo.xml
 rename-icon: telegram
 finish-args:
   - --share=ipc
