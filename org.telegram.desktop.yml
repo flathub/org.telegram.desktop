@@ -541,5 +541,6 @@ modules:
           tag-query: first | .tag_name
           timestamp-query: first | .published_at
           version-query: $tag | sub("^[vV]"; "")
-      - type: patch
-        path: dispatch-no-werror.patch
+      - type: shell
+        commands:
+          - sed -i '/-Werror/d' Telegram/ThirdParty/dispatch/cmake/modules/DispatchCompilerWarnings.cmake
