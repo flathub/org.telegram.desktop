@@ -296,6 +296,24 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/libjxl/libjxl/archive/\($tag).tar.gz"'
 
+  - name: glib
+    buildsystem: meson
+    builddir: true
+    config-opts:
+      - --buildtype=plain
+      - -Dtests=false
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/glib/2.72/glib-2.72.4.tar.xz
+        sha256: 8848aba518ba2f4217d144307a1d6cb9afcc92b54e5c13ac1f8c4d4608e96f0e
+        x-checker-data:
+          type: gnome
+          name: glib
+          versions:
+            <: 2.73.0
+    cleanup:
+      - /bin
+
   - name: libsigc++
     buildsystem: meson
     builddir: true
@@ -319,13 +337,13 @@ modules:
       - -Dbuild-examples=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/glibmm/2.68/glibmm-2.68.2.tar.xz
-        sha256: 91e0a8618f7b82db4aaf2648932ea2bcfe626ad030068c18fa2d106fd838d8ad
+        url: https://download.gnome.org/sources/glibmm/2.72/glibmm-2.72.1.tar.xz
+        sha256: 2a7649a28ab5dc53ac4dabb76c9f61599fbc628923ab6a7dd74bf675d9155cd8
         x-checker-data:
           type: gnome
           name: glibmm
           versions:
-            <: 2.69.0
+            <: 2.73.0
 
   - name: mozjpeg
     buildsystem: cmake-ninja
