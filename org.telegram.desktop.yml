@@ -157,8 +157,8 @@ modules:
       - -Dprotobuf_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protobuf-all-21.9.tar.gz
-        sha256: c00f05e19e89b04ea72e92a3c204eedda91f871cd29b0bbe5188550d783c73c7
+        url: https://github.com/protocolbuffers/protobuf/releases/download/v21.10/protobuf-all-21.10.tar.gz
+        sha256: 6fc9b6efc18acb2fd5fb3bcf981572539c3432600042b662a162c1226b362426
         x-checker-data:
           type: json
           url: https://api.github.com/repos/protocolbuffers/protobuf/releases/latest
