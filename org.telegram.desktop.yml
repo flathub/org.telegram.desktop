@@ -214,8 +214,8 @@ modules:
       - -DENABLE_SDL=OFF
     sources:
       - type: archive
-        url: https://github.com/strukturag/libde265/archive/v1.0.9/libde265-1.0.9.tar.gz
-        sha256: 153554f407718a75f1e0ae197d35b43147ce282118a54f894554dbe27c32163d
+        url: https://github.com/strukturag/libde265/archive/v1.0.8/libde265-1.0.8.tar.gz
+        sha256: c5ab61185f283f46388c700c43dc08606b0e260cd53f06b967ec0ad7a809ff11
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libde265/releases/latest
@@ -323,8 +323,8 @@ modules:
       - -Dvalidation=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/libsigc++/3.2/libsigc++-3.2.0.tar.xz
-        sha256: 8cdcb986e3f0a7c5b4474aa3c833d676e62469509f4899110ddf118f04082651
+        url: https://download.gnome.org/sources/libsigc++/3.4/libsigc++-3.4.0.tar.xz
+        sha256: 02e2630ffb5ce93cd52c38423521dfe7063328863a6e96d41d765a6116b8707e
         x-checker-data:
           type: gnome
           name: libsigc++
