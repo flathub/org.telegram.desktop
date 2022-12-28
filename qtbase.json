@@ -35,6 +35,9 @@
         "desktop-app-patches/qtbase_6_4_1/0032-fix-glitching-emoji-cursor.patch",
         "desktop-app-patches/qtbase_6_4_1/0033-fix-opengl-crash-on-context-loss.patch",
         "desktop-app-patches/qtbase_6_4_1/0034-ignore-qt-font-dpi.patch",
-        "desktop-app-patches/qtbase_6_4_1/0035-Revert-Do-not-use-client-side-data-pointers-in-qopen.patch"
+        "desktop-app-patches/qtbase_6_4_1/0035-Revert-Do-not-use-client-side-data-pointers-in-qopen.patch",
+        "desktop-app-patches/qtbase_6_4_1/0036-no-jpeg-chroma-subsampling.patch",
+        "desktop-app-patches/qtbase_6_4_1/0037-convert-qimage-to-srgb.patch",
+        "desktop-app-patches/qtbase_6_4_1/0038-lcms2.patch"
     ]
 }
