@@ -144,8 +144,9 @@ modules:
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/systemd/systemd/archive/\($tag)/systemd-\($version).tar.gz"'
-      - type: patch
-        path: desktop-app-patches/systemd.patch
+      - type: shell
+        commands:
+          - 'sed -i "/systemd-detect-virt/,/link_with/ s/link_with : \\[libshared\\]/link_with : [libshared_static, libsystemd_static, libbasic]/" meson.build'
 
   - name: protobuf
     buildsystem: cmake-ninja
