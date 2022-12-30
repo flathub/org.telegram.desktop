@@ -146,7 +146,8 @@ modules:
           url-query: '"https://github.com/systemd/systemd/archive/\($tag)/systemd-\($version).tar.gz"'
       - type: shell
         commands:
-          - 'sed -i "/systemd-detect-virt/,/link_with/ s/link_with : \\[libshared\\]/link_with : [libshared_static, libsystemd_static, libbasic]/" meson.build'
+          - 'sed -i "/systemd-detect-virt/,/link_with/ s/link_with : \\[libshared\\]/link_with
+            : [libshared_static, libsystemd_static, libbasic]/" meson.build'
 
   - name: protobuf
     buildsystem: cmake-ninja
@@ -533,8 +534,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: ef5e39f6802939247ea8b19a07912eea6d49e5bf
-        tag: v4.4.3
+        commit: bc71a2619a3e9e180bc22db1c87e82651eea4588
+        tag: v4.5.0
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
