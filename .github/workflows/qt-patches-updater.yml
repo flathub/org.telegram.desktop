@@ -13,9 +13,10 @@ jobs:
         run: |
           QT=$(yq '.modules[] | select(.name == "qtbase").sources[0].url' org.telegram.desktop.yml | sed -r 's/.*([0-9]+)\.([0-9]+)\.([0-9]+).*/\1_\2_\3/')
           pushd desktop-app-patches > /dev/null
+          repo=$(git remote get-url origin | sed -r 's@^https://github.com/(.*)\.git$@\1@')
           git fetch
           git checkout origin/master
-          commit=$(git rev-parse HEAD)
+          commit=$(git rev-parse --short HEAD)
           popd > /dev/null
           for i in desktop-app-patches/*_${QT}; do
             ./gen-patchset.py -o $(basename $i | sed -r "s/_${QT}//").json $i
@@ -23,4 +24,4 @@ jobs:
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add .
-          git diff --staged --quiet || (git commit -m "Update Qt patches to $commit" && git push)
+          git diff --staged --quiet || (git commit -m "Update Qt patches to $repo@$commit" && git push)
