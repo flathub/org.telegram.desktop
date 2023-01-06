@@ -239,9 +239,9 @@ modules:
         sha256: 0eb49965562a0e5e5de58389650d434cff32af84c34185b6c9b7b2fccae06d4e
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/AOMediaCodec/libavif/releases
-          tag-query: first | .tag_name
-          timestamp-query: first | .published_at
+          url: https://api.github.com/repos/AOMediaCodec/libavif/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/AOMediaCodec/libavif/archive/\($tag).tar.gz"'
 
