@@ -499,7 +499,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/desktop-app/tg_owt.git
-        commit: cc8edd5719556e1711f50da9a3f7a4c59bba574d
+        commit: 5098730b9eb6173f0b52068fe2555b7c1015123a
         x-checker-data:
           type: json
           parent-id: telegram-desktop-git-0
@@ -534,8 +534,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: eb0642f569f82370f5cb49a339f64f6be2c1bc0c
-        tag: v4.5.2
+        commit: 08fa6a981578034a078b20eb6775521288fc129a
+        tag: v4.5.3
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
