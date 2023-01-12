@@ -389,7 +389,6 @@ modules:
       - -no-feature-getentropy
       - -no-feature-renameat2
       - -no-feature-statx
-      - -no-feature-highdpiscaling
       - -nomake
       - examples
       - -nomake
