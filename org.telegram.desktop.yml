@@ -166,7 +166,7 @@ modules:
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
-          url-query: '"https://github.com/protocolbuffers/protobuf/releases/download/\($tag)/protobuf-all-\($version).tar.gz"'
+          url-query: '"https://github.com/protocolbuffers/protobuf/releases/download/\($tag)/protobuf-\($version).tar.gz"'
     cleanup:
       - /bin
 
