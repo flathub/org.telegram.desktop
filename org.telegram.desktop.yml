@@ -158,8 +158,8 @@ modules:
       - -Dprotobuf_BUILD_TESTS=OFF
     sources:
       - type: archive
-        url: https://github.com/protocolbuffers/protobuf/releases/download/v21.12/protobuf-all-21.12.tar.gz
-        sha256: 2c6a36c7b5a55accae063667ef3c55f2642e67476d96d355ff0acb13dbb47f09
+        url: https://github.com/protocolbuffers/protobuf/releases/download/v22.0/protobuf-22.0.tar.gz
+        sha256: e340f39fad1e35d9237540bcd6a2592ccac353e5d21d0f0521f6ab77370e0142
         x-checker-data:
           type: json
           url: https://api.github.com/repos/protocolbuffers/protobuf/releases/latest
@@ -513,8 +513,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 4247fd0c0f86f0cd07cdbd1bc85ec7fea9399722
-        tag: v4.6.3
+        commit: 78467b18f7a72aac410ce3ac540f59c2debcb739
+        tag: v4.6.4
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
