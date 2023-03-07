@@ -1,5 +1,4 @@
 {
     "skip-appstream-check": true,
-    "automerge-flathubbot-prs": true,
-    "skip-arches": ["aarch64"]
+    "automerge-flathubbot-prs": true
 }
