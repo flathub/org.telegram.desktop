@@ -5,6 +5,7 @@ sdk: org.freedesktop.Sdk
 command: telegram-desktop
 rename-icon: telegram
 finish-args:
+  - --require-version=1.11.1
   - --share=ipc
   - --share=network
   - --socket=wayland
