@@ -5,7 +5,6 @@ sdk: org.freedesktop.Sdk
 command: telegram-desktop
 rename-icon: telegram
 finish-args:
-  - --require-version=1.11.1
   - --share=ipc
   - --share=network
   - --socket=wayland
@@ -528,8 +527,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: e368de008d0bfd5b3d4632a762c388c2dda5c34e
-        tag: v4.7.1
+        commit: 07791aa2eb62fdb0ab6e8c314934cf7b68a1619e
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
