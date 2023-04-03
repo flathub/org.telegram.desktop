@@ -373,21 +373,15 @@ modules:
           url-template: https://www.openssl.org/source/openssl-$version.tar.gz
 
   - name: qtbase
+    buildsystem: cmake-ninja
+    builddir: true
     config-opts:
-      - -archdatadir
-      - /app/lib/
-      - CMAKE_BUILD_TYPE=None
-      - -opensource
-      - -confirm-license
-      - -cmake-use-default-generator
-      - -openssl-linked
-      - -no-feature-getentropy
-      - -no-feature-renameat2
-      - -no-feature-statx
-      - -nomake
-      - examples
-      - -nomake
-      - tests
+      - -DCMAKE_BUILD_TYPE=None
+      - -DINSTALL_ARCHDATADIR=/app/lib
+      - -DINPUT_openssl=linked
+      - -DINPUT_getentropy=no
+      - -DINPUT_renameat2=no
+      - -DINPUT_statx=no
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.5/6.5.0/submodules/qtbase-everywhere-src-6.5.0.tar.xz
@@ -402,6 +396,7 @@ modules:
 
   - name: qtshadertools
     buildsystem: cmake-ninja
+    builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=None
     sources:
@@ -417,6 +412,7 @@ modules:
 
   - name: qtdeclarative
     buildsystem: cmake-ninja
+    builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=None
     sources:
@@ -432,6 +428,7 @@ modules:
 
   - name: qtwayland
     buildsystem: cmake-ninja
+    builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=None
       - -DINPUT_egl_extension_platform_wayland=no
@@ -448,6 +445,7 @@ modules:
 
   - name: qtimageformats
     buildsystem: cmake-ninja
+    builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=None
     sources:
@@ -461,6 +459,7 @@ modules:
 
   - name: qtsvg
     buildsystem: cmake-ninja
+    builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=None
     sources:
@@ -474,6 +473,7 @@ modules:
 
   - name: qt5compat
     buildsystem: cmake-ninja
+    builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=None
     sources:
