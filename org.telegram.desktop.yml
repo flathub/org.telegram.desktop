@@ -303,8 +303,8 @@ modules:
       - -Dtests=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/glib/2.76/glib-2.76.1.tar.xz
-        sha256: 43dc0f6a126958f5b454136c4398eab420249c16171a769784486e25f2fda19f
+        url: https://download.gnome.org/sources/glib/2.76/glib-2.76.2.tar.xz
+        sha256: 24f3847857b1d8674cdb0389a36edec0f13c666cd3ce727ecd340eb9da8aca9e
         x-checker-data:
           type: gnome
           name: glib
@@ -527,13 +527,14 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: a6e5e7ab84a4c89fda3e571f5d3322cf0aeac306
+        commit: e368de008d0bfd5b3d4632a762c388c2dda5c34e
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
           tag-query: first | .tag_name
           timestamp-query: first | .published_at
           version-query: $tag | sub("^[vV]"; "")
+        tag: v4.7.1
       - type: shell
         commands:
           - sed -i '/-Werror/d' Telegram/ThirdParty/dispatch/cmake/modules/DispatchCompilerWarnings.cmake
