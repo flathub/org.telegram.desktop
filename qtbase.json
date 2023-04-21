@@ -29,6 +29,7 @@
         "desktop-app-patches/qtbase_6.5.0/0026-fix-qt-screen-scale-factors-env.patch",
         "desktop-app-patches/qtbase_6.5.0/0027-Revert-D-Bus-system-tray-properly-check-whether-Stat.patch",
         "desktop-app-patches/qtbase_6.5.0/0028-fix-startsystemmoveresize-on-x11.patch",
-        "desktop-app-patches/qtbase_6.5.0/0029-fix-scrolling-on-x11.patch"
+        "desktop-app-patches/qtbase_6.5.0/0029-fix-scrolling-on-x11.patch",
+        "desktop-app-patches/qtbase_6.5.0/0030-fix-qwidget-api-guarantees.patch"
     ]
 }
