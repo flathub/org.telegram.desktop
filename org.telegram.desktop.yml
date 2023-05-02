@@ -240,8 +240,8 @@ modules:
       - -DWITH_EXAMPLES=OFF
     sources:
       - type: archive
-        url: https://github.com/strukturag/libheif/archive/v1.15.2/libheif-1.15.2.tar.gz
-        sha256: 30a2736ae0247389aaa43ec70357221500c49a68db39fda94da8d5bdc786fe3b
+        url: https://github.com/strukturag/libheif/archive/v1.16.0/libheif-1.16.0.tar.gz
+        sha256: b3de23246936e656debf2f5fccf0810fedaf634c4ffe152782e92ec34c430c64
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libheif/releases/latest
