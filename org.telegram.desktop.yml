@@ -149,6 +149,41 @@ modules:
           - 'sed -i "/systemd-detect-virt/,/link_with/ s/link_with : \\[libshared\\]/link_with
             : [libshared_static, libsystemd_static, libbasic]/" meson.build'
 
+  - name: boost
+    buildsystem: simple
+    build-commands:
+      - ./bootstrap.sh --prefix=${FLATPAK_DEST} --with-libraries=program_options
+      - ./b2 variant=release link=shared runtime-link=shared cxxflags="$CXXFLAGS"
+        linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS install
+    sources:
+      - type: archive
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
+        sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
+        x-checker-data:
+          type: anitya
+          project-id: 6845
+          stable-only: true
+          url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
+
+  - name: fmt
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=None
+      - -DFMT_DOC=OFF
+      - -DFMT_TEST=OFF
+    sources:
+      - type: archive
+        url: https://github.com/fmtlib/fmt/releases/download/10.0.0/fmt-10.0.0.zip
+        sha256: 4943cb165f3f587f26da834d3056ee8733c397e024145ca7d2a8a96bb71ac281
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/fmtlib/fmt/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
+          version-query: $tag
+          url-query: '"https://github.com/fmtlib/fmt/releases/download/\($tag)/fmt-\($version).zip"'
+
   - name: protobuf
     buildsystem: cmake-ninja
     builddir: true
