@@ -108,8 +108,8 @@ modules:
         "Jinja2" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/95/7e/68018b70268fb4a2a605e2be44ab7b4dd7ce7808adae6c5ef32e34f4b55a/MarkupSafe-2.1.2.tar.gz
-        sha256: abcabc8c2b26036d62d4c746381a6f7cf60aafcc653198ad678306986b09450d
+        url: https://files.pythonhosted.org/packages/6d/7c/59a3248f411813f8ccba92a55feaac4bf360d29e2ff05ee7d8e1ef2d7dbf/MarkupSafe-2.1.3.tar.gz
+        sha256: af598ed32d6ae86f1b747b82783958b1a4ab8f617b06fe68795c7f026abbdcad
         x-checker-data:
           type: pypi
           name: MarkupSafe
@@ -492,7 +492,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/desktop-app/tg_owt.git
-        commit: 5098730b9eb6173f0b52068fe2555b7c1015123a
+        commit: dcb5069ff76bd293e86928804208737e6cee2ccc
         x-checker-data:
           type: json
           parent-id: telegram-desktop-git-0
@@ -527,8 +527,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 3da787791f6d227f69b32bf4003bc6071d05e2ac
-        tag: v4.8.1
+        commit: bcf91e2f2cefaa4819badc209811e14b60b7aefe
+        tag: v4.8.3
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
