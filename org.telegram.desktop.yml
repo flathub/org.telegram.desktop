@@ -356,21 +356,6 @@ modules:
         url: https://gitlab.xiph.org/xiph/rnnoise.git
         commit: 7f449bf8bd3b933891d12c30112268c4090e4d59
 
-  - name: openssl11
-    buildsystem: simple
-    build-commands:
-      - ./config shared --prefix=${FLATPAK_DEST} --openssldir=/etc/ssl no-tests
-      - make -j ${FLATPAK_BUILDER_N_JOBS} all
-      - make install_sw
-    sources:
-      - type: archive
-        url: https://www.openssl.org/source/openssl-1.1.1u.tar.gz
-        sha256: e2f8d84b523eecd06c7be7626830370300fbcc15386bf5142d72758f6963ebc6
-        x-checker-data:
-          type: anitya
-          project-id: 20333
-          url-template: https://www.openssl.org/source/openssl-$version.tar.gz
-
   - name: qtbase
     buildsystem: cmake-ninja
     builddir: true
