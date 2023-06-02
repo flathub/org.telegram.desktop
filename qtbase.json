@@ -26,7 +26,6 @@
         "desktop-app-patches/qtbase_6.5.1/0023-convert-qimage-to-srgb.patch",
         "desktop-app-patches/qtbase_6.5.1/0024-lcms2.patch",
         "desktop-app-patches/qtbase_6.5.1/0025-no-quality-loss-when-scaling-images.patch",
-        "desktop-app-patches/qtbase_6.5.1/0026-fix-qt-screen-scale-factors-env.patch",
-        "desktop-app-patches/qtbase_6.5.1/0027-fix-startsystemmoveresize-on-x11.patch"
+        "desktop-app-patches/qtbase_6.5.1/0026-fix-qt-screen-scale-factors-env.patch"
     ]
 }
