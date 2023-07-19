@@ -490,20 +490,6 @@ modules:
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtsvg-everywhere-src-$version.tar.xz
 
-  - name: qt5compat
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
-    sources:
-      - type: archive
-        url: https://download.qt.io/archive/qt/6.5/6.5.2/submodules/qt5compat-everywhere-src-6.5.2.tar.xz
-        sha256: b9abe42ee2055c27a8e7579c7816069e91aae1f9b10649bf572db8ba96fa91c4
-        x-checker-data:
-          type: anitya
-          project-id: 7927
-          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qt5compat-everywhere-src-$version.tar.xz
-
   - name: tg_owt
     buildsystem: cmake-ninja
     builddir: true
