@@ -135,8 +135,8 @@ modules:
       - install -D systemd-detect-virt "$FLATPAK_DEST/bin"
     sources:
       - type: archive
-        url: https://github.com/systemd/systemd/archive/v253/systemd-253.tar.gz
-        sha256: acbd86d42ebc2b443722cb469ad215a140f504689c7a9133ecf91b235275a491
+        url: https://github.com/systemd/systemd/archive/v254/systemd-254.tar.gz
+        sha256: 244da7605800a358915e4b45d079b0b89364be35da4bc8d849821e67bac0ce62
         x-checker-data:
           type: json
           url: https://api.github.com/repos/systemd/systemd/releases/latest
