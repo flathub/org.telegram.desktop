@@ -343,6 +343,8 @@ modules:
         x-checker-data:
           type: gnome
           name: glib
+          versions:
+            '>=': 2.77.0
     cleanup:
       - /bin
 
@@ -359,6 +361,8 @@ modules:
         x-checker-data:
           type: gnome
           name: glibmm
+          versions:
+            '>=': 2.77.0
 
   - name: mozjpeg
     buildsystem: cmake-ninja
