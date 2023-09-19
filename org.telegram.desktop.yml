@@ -290,8 +290,6 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=None
-      - -DCMAKE_LIBRARY_PATH=/app/lib
-      - -DCMAKE_INCLUDE_PATH=/app/include
       - -DBUILD_TESTING=OFF
       - -DJPEGXL_ENABLE_DEVTOOLS=OFF
       - -DJPEGXL_ENABLE_TOOLS=OFF
