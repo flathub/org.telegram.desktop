@@ -22,7 +22,6 @@
         "desktop-app-patches/qtbase_6.5.2/0019-no-quality-loss-when-scaling-images.patch",
         "desktop-app-patches/qtbase_6.5.2/0020-fix-qt-screen-scale-factors-env.patch",
         "desktop-app-patches/qtbase_6.5.2/0021-better-color-scheme-support.patch",
-        "desktop-app-patches/qtbase_6.5.2/0022-translucent-captioned-window-on-windows.patch",
         "desktop-app-patches/qtbase_6.5.2/0023-allow-bordered-translucent-macos.patch",
         "desktop-app-patches/qtbase_6.5.2/0024-better-open-url-linux.patch"
     ]
