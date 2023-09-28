@@ -545,8 +545,4 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
       - type: shell
         commands:
-          - sed -ri 's@experimental(/|::)@@' cmake/external/glib/cppgir/tools/{cppgir,genns}.cpp
-          - sed -i 's/stdc++fs//' cmake/external/glib/cppgir/CMakeLists.txt
-          - sed -i 's/set_property(TARGET cppgir PROPERTY CXX_STANDARD 14)/set_property(TARGET
-            cppgir PROPERTY CXX_STANDARD 17)/' cmake/external/glib/cppgir/CMakeLists.txt
           - sed -i '/-Werror/d' Telegram/ThirdParty/dispatch/cmake/modules/DispatchCompilerWarnings.cmake
