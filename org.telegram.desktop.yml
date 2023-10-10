@@ -407,6 +407,8 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtbase-everywhere-src-$version.tar.xz
+          versions:
+            '<': 6.6.0
       - qtbase.json
     cleanup:
       - /bin
@@ -424,6 +426,8 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtshadertools-everywhere-src-$version.tar.xz
+          versions:
+            '<': 6.6.0
     cleanup:
       - '*'
 
@@ -440,6 +444,8 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtdeclarative-everywhere-src-$version.tar.xz
+          versions:
+            '<': 6.6.0
     cleanup:
       - /bin
 
@@ -457,6 +463,8 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtwayland-everywhere-src-$version.tar.xz
+          versions:
+            '<': 6.6.0
     cleanup:
       - /bin
 
@@ -473,6 +481,8 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtimageformats-everywhere-src-$version.tar.xz
+          versions:
+            '<': 6.6.0
 
   - name: qtsvg
     buildsystem: cmake-ninja
@@ -487,6 +497,8 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtsvg-everywhere-src-$version.tar.xz
+          versions:
+            '<': 6.6.0
 
   - name: tg_owt
     buildsystem: cmake-ninja
