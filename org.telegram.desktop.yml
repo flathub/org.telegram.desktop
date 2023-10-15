@@ -275,8 +275,8 @@ modules:
       - -DWITH_EXAMPLES=OFF
     sources:
       - type: archive
-        url: https://github.com/strukturag/libheif/archive/v1.16.2/libheif-1.16.2.tar.gz
-        sha256: d207f2ff5c86e6af3621c237f186130b985b7a9ff657875944b58ac5d27ba71c
+        url: https://github.com/strukturag/libheif/archive/v1.17.0/libheif-1.17.0.tar.gz
+        sha256: 80185d9e7319ab2ae622a131eea11b4d573e2ece38f5a1586cf4d1ffd66bb4d7
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libheif/releases/latest
@@ -408,7 +408,7 @@ modules:
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtbase-everywhere-src-$version.tar.xz
           versions:
-            '<': 6.6.0
+            <: 6.6.0
       - qtbase.json
     cleanup:
       - /bin
@@ -427,7 +427,7 @@ modules:
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtshadertools-everywhere-src-$version.tar.xz
           versions:
-            '<': 6.6.0
+            <: 6.6.0
     cleanup:
       - '*'
 
@@ -445,7 +445,7 @@ modules:
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtdeclarative-everywhere-src-$version.tar.xz
           versions:
-            '<': 6.6.0
+            <: 6.6.0
     cleanup:
       - /bin
 
@@ -464,7 +464,7 @@ modules:
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtwayland-everywhere-src-$version.tar.xz
           versions:
-            '<': 6.6.0
+            <: 6.6.0
     cleanup:
       - /bin
 
@@ -482,7 +482,7 @@ modules:
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtimageformats-everywhere-src-$version.tar.xz
           versions:
-            '<': 6.6.0
+            <: 6.6.0
 
   - name: qtsvg
     buildsystem: cmake-ninja
@@ -498,7 +498,7 @@ modules:
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtsvg-everywhere-src-$version.tar.xz
           versions:
-            '<': 6.6.0
+            <: 6.6.0
 
   - name: tg_owt
     buildsystem: cmake-ninja
