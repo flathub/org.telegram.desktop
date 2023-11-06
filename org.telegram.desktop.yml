@@ -275,8 +275,8 @@ modules:
       - -DWITH_EXAMPLES=OFF
     sources:
       - type: archive
-        url: https://github.com/strukturag/libheif/archive/v1.17.1/libheif-1.17.1.tar.gz
-        sha256: 4909f40505f2661fbb77203438add7910cbc3fb0e42e276c1b8e1c680e43497f
+        url: https://github.com/strukturag/libheif/archive/v1.17.3/libheif-1.17.3.tar.gz
+        sha256: b0ea7af2c25adc2abda675caceae04f9fc76d39f07533abb4b8ca05b6a851b3f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libheif/releases/latest
@@ -543,8 +543,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 9e10a80e00b3c08d998c62b0023cab30301d90ae
-        tag: v4.11.3
+        commit: 4e915e9d1ae058054559e97e12987b9651d33904
+        tag: v4.11.4
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
