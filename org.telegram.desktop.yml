@@ -233,8 +233,8 @@ modules:
       - -DENABLE_SDL=OFF
     sources:
       - type: archive
-        url: https://github.com/strukturag/libde265/archive/v1.0.12/libde265-1.0.12.tar.gz
-        sha256: c7e5443c9387ef2ee7bd3a25b4cfeb1a66d038584cf0ab21a4a28db64f224584
+        url: https://github.com/strukturag/libde265/archive/v1.0.13/libde265-1.0.13.tar.gz
+        sha256: c220c8bbdf9f2df3bf2db7ac90476e28253807885b6262cd1fe7449c694ef537
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libde265/releases/latest
@@ -275,8 +275,8 @@ modules:
       - -DWITH_EXAMPLES=OFF
     sources:
       - type: archive
-        url: https://github.com/strukturag/libheif/archive/v1.17.3/libheif-1.17.3.tar.gz
-        sha256: b0ea7af2c25adc2abda675caceae04f9fc76d39f07533abb4b8ca05b6a851b3f
+        url: https://github.com/strukturag/libheif/archive/v1.17.4/libheif-1.17.4.tar.gz
+        sha256: 08e7de307549ce61ec15a0a584e195181943d4ce0a6146f7aaaf6659e626fdc5
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libheif/releases/latest
