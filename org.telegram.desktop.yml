@@ -457,6 +457,7 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtwayland-everywhere-src-$version.tar.xz
+      - qtwayland.json
     cleanup:
       - /bin
 
