@@ -58,6 +58,14 @@ cleanup:
   - '*.la'
   - '*.a'
 modules:
+  - name: flathub-json
+    buildsystem: simple
+    build-commands:
+      - cp flathub.json ${FLATPAK_DEST}/flathub.json
+    sources:
+    - type: file
+      path: flathub.json
+
   - name: yasm
     buildsystem: cmake-ninja
     config-opts:
