@@ -490,8 +490,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.5/6.5.3/submodules/qtsvg-everywhere-src-6.5.3.tar.xz
-        sha256: fc41c47b69ca1f80473cd4b11996394155781105345392961d064d04f95d5bef
+        url: https://download.qt.io/archive/qt/6.6/6.6.1/submodules/qtsvg-everywhere-src-6.6.1.tar.xz
+        sha256: 248deb56d26a463cf3162f530358ccf90cfb654bbf518bb35ddf81b205e09228
         x-checker-data:
           type: anitya
           project-id: 7927
