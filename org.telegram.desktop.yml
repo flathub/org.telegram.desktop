@@ -496,8 +496,6 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtsvg-everywhere-src-$version.tar.xz
-          versions:
-            <: 6.6.0
 
   - name: tg_owt
     buildsystem: cmake-ninja
