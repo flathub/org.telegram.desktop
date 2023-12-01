@@ -2,7 +2,6 @@
     "type": "patch",
     "paths": [
         "desktop-app-patches/qtwayland_6.6.1/0001-Client-Move-topmost-grabbing-popup-tracking-to-QWayl.patch",
-        "desktop-app-patches/qtwayland_6.6.1/0002-force-enable-fractional-scale.patch",
-        "desktop-app-patches/qtwayland_6.6.1/0003-popup-reposition.patch"
+        "desktop-app-patches/qtwayland_6.6.1/0002-force-enable-fractional-scale.patch"
     ]
 }
