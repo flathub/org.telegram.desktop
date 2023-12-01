@@ -24,9 +24,9 @@
         "desktop-app-patches/qtbase_6.6.1/0021-allow-bordered-translucent-macos.patch",
         "desktop-app-patches/qtbase_6.6.1/0022-better-open-url-linux.patch",
         "desktop-app-patches/qtbase_6.6.1/0023-follow-highdpi-rounding-policy-for-platform-dpr.patch",
-        "desktop-app-patches/qtbase_6.6.1/0024-update-window-geometry-on-scale-change.patch",
-        "desktop-app-patches/qtbase_6.6.1/0025-highdpi-downscale-property.patch",
-        "desktop-app-patches/qtbase_6.6.1/0026-highdpi-downscale-wayland.patch",
+        "desktop-app-patches/qtbase_6.6.1/0024-highdpi-downscale-property.patch",
+        "desktop-app-patches/qtbase_6.6.1/0025-highdpi-downscale-wayland.patch",
+        "desktop-app-patches/qtbase_6.6.1/0026-highdpi-downscale-opengl.patch",
         "desktop-app-patches/qtbase_6.6.1/0027-qt-patched-define.patch"
     ]
 }
