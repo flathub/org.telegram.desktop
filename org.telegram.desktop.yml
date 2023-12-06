@@ -143,8 +143,8 @@ modules:
       - install -D systemd-detect-virt "$FLATPAK_DEST/bin"
     sources:
       - type: archive
-        url: https://github.com/systemd/systemd/archive/v254/systemd-254.tar.gz
-        sha256: 244da7605800a358915e4b45d079b0b89364be35da4bc8d849821e67bac0ce62
+        url: https://github.com/systemd/systemd/archive/v255/systemd-255.tar.gz
+        sha256: 28854ffb2cb5f9e07fcbdbaf1e03a80b3462a12edeef84893ca2f37b22e4491e
         x-checker-data:
           type: json
           url: https://api.github.com/repos/systemd/systemd/releases/latest
@@ -344,8 +344,8 @@ modules:
       - -Dtests=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/glib/2.78/glib-2.78.2.tar.xz
-        sha256: 4409eb63f7711a45e70c3b5ff5b42214ef2df056c254228bef4e45f4b6b74b12
+        url: https://download.gnome.org/sources/glib/2.78/glib-2.78.3.tar.xz
+        sha256: 609801dd373796e515972bf95fc0b2daa44545481ee2f465c4f204d224b2bc21
         x-checker-data:
           type: gnome
           name: glib
