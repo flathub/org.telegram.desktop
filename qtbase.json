@@ -27,7 +27,7 @@
         "desktop-app-patches/qtbase_6.6.1/0024-highdpi-downscale-property.patch",
         "desktop-app-patches/qtbase_6.6.1/0025-highdpi-downscale-wayland.patch",
         "desktop-app-patches/qtbase_6.6.1/0026-highdpi-downscale-opengl.patch",
-        "desktop-app-patches/qtbase_6.6.1/0027-qt-patched-define.patch",
-        "desktop-app-patches/qtbase_6.6.1/0028-fill-transparent-hidpi-backing-store.patch"
+        "desktop-app-patches/qtbase_6.6.1/0027-fill-transparent-hidpi-backing-store.patch",
+        "desktop-app-patches/qtbase_6.6.1/0028-update-window-geometry-on-scale-change.patch"
     ]
 }
