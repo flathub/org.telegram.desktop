@@ -4,6 +4,8 @@
         "desktop-app-patches/qtwayland_6.6.1/0001-Client-Move-topmost-grabbing-popup-tracking-to-QWayl.patch",
         "desktop-app-patches/qtwayland_6.6.1/0002-force-enable-fractional-scale.patch",
         "desktop-app-patches/qtwayland_6.6.1/0003-use-native-coordinates-cursor-pos.patch",
-        "desktop-app-patches/qtwayland_6.6.1/0004-offload-transparency-filling-to-hidpi.patch"
+        "desktop-app-patches/qtwayland_6.6.1/0004-offload-transparency-filling-to-hidpi.patch",
+        "desktop-app-patches/qtwayland_6.6.1/0005-popup-reposition.patch",
+        "desktop-app-patches/qtwayland_6.6.1/0006-fix-gtk4-embedding.patch"
     ]
 }
