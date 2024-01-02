@@ -552,3 +552,5 @@ modules:
       - type: shell
         commands:
           - sed -i '/-Werror/d' Telegram/ThirdParty/dispatch/cmake/modules/DispatchCompilerWarnings.cmake
+      - type: patch
+        path: test.patch
