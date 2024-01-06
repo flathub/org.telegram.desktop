@@ -26,8 +26,11 @@
         "desktop-app-patches/qtbase_6.6.1/0023-follow-highdpi-rounding-policy-for-platform-dpr.patch",
         "desktop-app-patches/qtbase_6.6.1/0024-highdpi-downscale-property.patch",
         "desktop-app-patches/qtbase_6.6.1/0025-highdpi-downscale-wayland.patch",
-        "desktop-app-patches/qtbase_6.6.1/0026-highdpi-downscale-opengl.patch",
+        "desktop-app-patches/qtbase_6.6.1/0026-highdpi-downscale-rhi.patch",
         "desktop-app-patches/qtbase_6.6.1/0027-fill-transparent-hidpi-backing-store.patch",
-        "desktop-app-patches/qtbase_6.6.1/0028-update-window-geometry-on-scale-change.patch"
+        "desktop-app-patches/qtbase_6.6.1/0028-update-window-geometry-on-scale-change.patch",
+        "desktop-app-patches/qtbase_6.6.1/0029-fix-backing-store-rhi-unneeded-copy.patch",
+        "desktop-app-patches/qtbase_6.6.1/0030-fix-backing-store-rhi-xcb-unneeded-copy.patch",
+        "desktop-app-patches/qtbase_6.6.1/0031-fix-backing-store-opengl-subimage-unneeded-copy.patch"
     ]
 }
