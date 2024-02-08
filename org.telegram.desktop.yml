@@ -261,8 +261,8 @@ modules:
       - -DAVIF_CODEC_DAV1D=ON
     sources:
       - type: archive
-        url: https://github.com/AOMediaCodec/libavif/archive/v1.0.3/libavif-1.0.3.tar.gz
-        sha256: 35e3cb3cd7158209dcc31d3bf222036de5b9597e368a90e18449ecc89bb86a19
+        url: https://github.com/AOMediaCodec/libavif/archive/v1.0.4/libavif-1.0.4.tar.gz
+        sha256: dc56708c83a4b934a8af2b78f67f866ba2fb568605c7cf94312acf51ee57d146
         x-checker-data:
           type: json
           url: https://api.github.com/repos/AOMediaCodec/libavif/releases/latest
