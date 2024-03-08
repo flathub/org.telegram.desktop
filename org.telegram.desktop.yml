@@ -337,6 +337,29 @@ modules:
           type: gnome
           name: libsigc++
 
+  - name: packaging
+    buildsystem: simple
+    build-commands:
+      - pip3 install --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST}
+        flit-core --no-build-isolation
+      - pip3 install --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST}
+        packaging --no-build-isolation
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/c4/e6/c1ac50fe3eebb38a155155711e6e864e254ce4b6e17fe2429b4c4d5b9e80/flit_core-3.9.0.tar.gz
+        sha256: 72ad266176c4a3fcfab5f2930d76896059851240570ce9a98733b658cb786eba
+        x-checker-data:
+          type: pypi
+          name: flit-core
+      - type: file
+        url: https://files.pythonhosted.org/packages/fb/2b/9b9c33ffed44ee921d0967086d653047286054117d584f1b1a7c22ceaf7b/packaging-23.2.tar.gz
+        sha256: 048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5
+        x-checker-data:
+          type: pypi
+          name: packaging
+    cleanup:
+      - '*'
+
   - name: glib
     buildsystem: meson
     builddir: true
