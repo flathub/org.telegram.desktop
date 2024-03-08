@@ -312,8 +312,8 @@ modules:
       - -DJPEGXL_ENABLE_SKCMS=OFF
     sources:
       - type: archive
-        url: https://github.com/libjxl/libjxl/archive/v0.10.1/libjxl-0.10.1.tar.gz
-        sha256: 91b9a83a230d608b5d35d2ab5068bd0ec7028797575e3013211be5928028c8cd
+        url: https://github.com/libjxl/libjxl/archive/v0.10.2/libjxl-0.10.2.tar.gz
+        sha256: 95e807f63143856dc4d161c071cca01115d2c6405b3d3209854ac6989dc6bb91
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libjxl/libjxl/releases/latest
@@ -345,8 +345,8 @@ modules:
       - -Dtests=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/glib/2.78/glib-2.78.4.tar.xz
-        sha256: 24b8e0672dca120cc32d394bccb85844e732e04fe75d18bb0573b2dbc7548f63
+        url: https://download.gnome.org/sources/glib/2.80/glib-2.80.0.tar.xz
+        sha256: 8228a92f92a412160b139ae68b6345bd28f24434a7b5af150ebe21ff587a561d
         x-checker-data:
           type: gnome
           name: glib
@@ -541,8 +541,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: cb065146c2377a16c287d667e35f014956069953
-        tag: v4.15.0
+        commit: 990ae11f6291aa0a9d71007c0cee5e28b68c0c0a
+        tag: v4.15.1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
