@@ -202,8 +202,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        commit: 4a2aef570deb2bfb8927426558701e8bfc26f2a4
-        tag: v25.3
+        commit: d6511091a0cab1ad13f676a02676ad2a0e5eb9ae
+        tag: v26.0
         x-checker-data:
           type: json
           url: https://api.github.com/repos/protocolbuffers/protobuf/releases/latest
@@ -564,8 +564,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: bf1b3dc8f6a8b638e4735b07c08bcef30ad13819
-        tag: v4.15.2
+        commit: 0410d05913cc69ef189f817c33d8cecc8337f13d
+        tag: v4.15.3
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
