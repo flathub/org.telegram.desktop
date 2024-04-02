@@ -360,9 +360,6 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
       - -DINSTALL_ARCHDATADIR=/app/lib
       - -DINPUT_openssl=linked
-      - -DINPUT_getentropy=no
-      - -DINPUT_renameat2=no
-      - -DINPUT_statx=no
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtbase-everywhere-src-6.7.0.tar.xz
