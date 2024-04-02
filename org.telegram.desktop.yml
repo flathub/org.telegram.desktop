@@ -202,8 +202,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        commit: d6511091a0cab1ad13f676a02676ad2a0e5eb9ae
-        tag: v26.0
+        commit: 2434ef2adf0c74149b9d547ac5fb545a1ff8b6b5
+        tag: v26.1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/protocolbuffers/protobuf/releases/latest
@@ -365,8 +365,8 @@ modules:
       - -DINPUT_statx=no
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.6/6.6.2/submodules/qtbase-everywhere-src-6.6.2.tar.xz
-        sha256: b89b426b9852a17d3e96230ab0871346574d635c7914480a2a27f98ff942677b
+        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtbase-everywhere-src-6.7.0.tar.xz
+        sha256: 11b2e29e2e52fb0e3b453ea13bbe51a10fdff36e1c192d8868c5a40233b8b254
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -382,8 +382,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.6/6.6.2/submodules/qtshadertools-everywhere-src-6.6.2.tar.xz
-        sha256: 628bead7ff4e7f42cb910f47d2adefbdea0d8c71a0234baef8ca709bf467b92f
+        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtshadertools-everywhere-src-6.7.0.tar.xz
+        sha256: 3e13f967c62f0815c901e754cbc472a2e19170da0c7a505230d559615f7998af
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -398,8 +398,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.6/6.6.2/submodules/qtdeclarative-everywhere-src-6.6.2.tar.xz
-        sha256: c39ce9a7c4468f7399c9ced0fbe6ef9c8d6550efc4b893297aa3cfb965b3d84c
+        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtdeclarative-everywhere-src-6.7.0.tar.xz
+        sha256: 5a0c39579a74d7cca581162c866ed0887287d4f8d5abff7ab9492d4a58fa9e2c
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -415,8 +415,8 @@ modules:
       - -DINPUT_egl_extension_platform_wayland=no
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.6/6.6.2/submodules/qtwayland-everywhere-src-6.6.2.tar.xz
-        sha256: 9bcdd5cef7ae304e3e0435dac495367ccfb010d09f664b596ba330361941dd78
+        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtwayland-everywhere-src-6.7.0.tar.xz
+        sha256: d73470e4217da388d8cd2a517ee8bb373853f33c569306e80f04397845157aea
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -432,8 +432,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.6/6.6.2/submodules/qtimageformats-everywhere-src-6.6.2.tar.xz
-        sha256: 71584c9136d4983ad19fa2d017abbae57b055eb90c62a36bf3f45d6d21a87cb3
+        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtimageformats-everywhere-src-6.7.0.tar.xz
+        sha256: 516ce07ec8dd5a11c59816fe33ddb71d4f691d0ebbc1798ac338f23b86c029a7
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -446,8 +446,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.6/6.6.2/submodules/qtsvg-everywhere-src-6.6.2.tar.xz
-        sha256: 5a231d59ef1b42bfbaa5174d4ff39f8e1b4ba070ef984a70b069b4b2576d8181
+        url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtsvg-everywhere-src-6.7.0.tar.xz
+        sha256: 1518f40e08ff5e6153a6e26e5b95b033413ac143b70795dc1317e7f73ebf922d
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -496,8 +496,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 8830fb70a48122cd7239a73c30875806ce008f33
-        tag: v4.15.6
+        commit: 707146daed9cb62687520e914dba02e6447c8257
+        tag: v4.16.0
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
