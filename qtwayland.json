@@ -8,6 +8,7 @@
         "desktop-app-patches/qtwayland_6.7.0/0005-QWaylandShmBackingStore-Preserve-buffer-contents-bet.patch",
         "desktop-app-patches/qtwayland_6.7.0/0006-avoid-needlessly-initiailizing-opengl.patch",
         "desktop-app-patches/qtwayland_6.7.0/0007-fix-media-viewer-on-gnome.patch",
-        "desktop-app-patches/qtwayland_6.7.0/0008-owning-rhi-backing-store.patch"
+        "desktop-app-patches/qtwayland_6.7.0/0008-owning-rhi-backing-store.patch",
+        "textinput-v3-disable.patch"
     ]
 }

@@ -1,0 +1,73 @@
+From: Markus Göllnitz <camelcasenick@bewares.it>
+Date: Sun, 7 Apr 2024 18:02:10 +0200
+Subject: [PATCH] TextInputv3: disable when no text field is focussed
+
+Currently, the text input method v3 is always enabled
+when a the client has a surface with focus, regardless of
+whether the input method is supposed to be enabled. That
+should depend on text field focus and is exposed by Qt as
+a flag to the IM state.
+
+As updateState is run everytime any relevant state change
+happens, this results in the IM being activated the
+moment a text field gains focus, and is deactived
+following losing said focus.
+
+Signed-off-by: Markus Göllnitz <camelcasenick@bewares.it>
+---
+diff --git a/src/client/qwaylandtextinputv3.cpp b/src/client/qwaylandtextinputv3.cpp
+--- a/src/client/qwaylandtextinputv3_p.h
++++ b/src/client/qwaylandtextinputv3_p.h
+@@ -96,6 +96,7 @@
+     uint m_currentSerial = 0;
+ 
+     bool m_condReselection = false;
++    bool m_enabled = false;
+ };
+ 
+ }
+diff --git a/src/client/qwaylandtextinputv3.cpp b/src/client/qwaylandtextinputv3.cpp
+--- a/src/client/qwaylandtextinputv3.cpp
++++ b/src/client/qwaylandtextinputv3.cpp
+@@ -51,7 +51,6 @@
+     m_pendingDeleteBeforeText = 0;
+     m_pendingDeleteAfterText = 0;
+ 
+-    enable();
+     updateState(supportedQueries3, update_state_enter);
+ }
+ 
+@@ -69,6 +68,7 @@
+     m_surface = nullptr;
+ 
+     disable();
++    m_enabled = false;
+     qCDebug(qLcQpaWaylandTextInput) << Q_FUNC_INFO << "Done";
+ }
+ 
+@@ -207,13 +207,24 @@
+         return;
+ 
+     queries &= supportedQueries3;
++    bool update_enabled = m_enabled == !(queries & Qt::ImEnabled);
+-    bool needsCommit = false;
++    bool needsCommit = update_enabled;
++
++    if (update_enabled) {
++        if (m_enabled)
++            disable();
++        else
++            enable();
++        m_enabled = !m_enabled;
++    }
+ 
+     QInputMethodQueryEvent event(queries);
+     QCoreApplication::sendEvent(QGuiApplication::focusObject(), &event);
+ 
+     // For some reason, a query for Qt::ImSurroundingText gives an empty string even though it is not.
+     if (!(queries & Qt::ImSurroundingText) && event.value(Qt::ImSurroundingText).toString().isEmpty()) {
++        if (needsCommit)
++            commit();
+         return;
+     }
+ 
