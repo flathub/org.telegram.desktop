@@ -301,7 +301,7 @@ modules:
       - -DBUILD_TESTING=OFF
       - -DJPEGXL_ENABLE_DEVTOOLS=OFF
       - -DJPEGXL_ENABLE_TOOLS=OFF
-      - -DJPEGXL_ENABLE_JPEGLI=OFF
+      - -DJPEGXL_INSTALL_JPEGLI_LIBJPEG=ON
       - -DJPEGXL_ENABLE_DOXYGEN=OFF
       - -DJPEGXL_ENABLE_MANPAGES=OFF
       - -DJPEGXL_ENABLE_BENCHMARK=OFF
@@ -321,27 +321,20 @@ modules:
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/libjxl/libjxl/archive/\($tag)/libjxl-\($version).tar.gz"'
-
-  - name: mozjpeg
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
-      - -DCMAKE_INSTALL_DEFAULT_LIBDIR=lib
-      - -DENABLE_STATIC:BOOL=OFF
-    sources:
       - type: archive
-        url: https://github.com/mozilla/mozjpeg/archive/v4.1.1/mozjpeg-4.1.1.tar.gz
-        sha256: 66b1b8d6b55d263f35f27f55acaaa3234df2a401232de99b6d099e2bb0a9d196
+        url: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/3.0.2/libjpeg-turbo-3.0.2.tar.gz
+        sha256: 29f2197345aafe1dcaadc8b055e4cbec9f35aad2a318d61ea081f835af2eebe9
+        strip-components: 0
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/mozilla/mozjpeg/releases/latest
+          url: https://api.github.com/repos/libjpeg-turbo/libjpeg-turbo/releases/latest
           tag-query: .tag_name
           timestamp-query: .published_at
-          version-query: $tag | sub("^[vV]"; "")
-          url-query: '"https://github.com/mozilla/mozjpeg/archive/\($tag)/mozjpeg-\($version).tar.gz"'
-    cleanup:
-      - /bin
+          version-query: $tag
+          url-query: '"https://github.com/libjpeg-turbo/libjpeg-turbo/archive/\($tag)/libjpeg-turbo-\($version).tar.gz"'
+      - type: shell
+        commands:
+          - mv libjpeg-turbo-*/* third_party/libjpeg-turbo
 
   - name: rnnoise
     config-opts:
