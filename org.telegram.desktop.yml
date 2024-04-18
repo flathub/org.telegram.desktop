@@ -335,6 +335,9 @@ modules:
       - type: shell
         commands:
           - mv libjpeg-turbo-*/* third_party/libjpeg-turbo
+      - type: patch
+        paths:
+          - desktop-app-patches/libjxl.patch
 
   - name: rnnoise
     config-opts:
