@@ -405,7 +405,6 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE=None
-      - -DINPUT_egl_extension_platform_wayland=no
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.7/6.7.0/submodules/qtwayland-everywhere-src-6.7.0.tar.xz
