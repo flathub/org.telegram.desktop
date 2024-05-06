@@ -145,25 +145,6 @@ modules:
           stable-only: true
           url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
 
-  - name: fmt
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
-      - -DFMT_DOC=OFF
-      - -DFMT_TEST=OFF
-    sources:
-      - type: archive
-        url: https://github.com/fmtlib/fmt/releases/download/10.2.1/fmt-10.2.1.zip
-        sha256: 312151a2d13c8327f5c9c586ac6cf7cddc1658e8f53edae0ec56509c8fa516c9
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/fmtlib/fmt/releases/latest
-          tag-query: .tag_name
-          timestamp-query: .published_at
-          version-query: $tag
-          url-query: '"https://github.com/fmtlib/fmt/releases/download/\($tag)/fmt-\($version).zip"'
-
   - name: protobuf
     buildsystem: cmake-ninja
     builddir: true
