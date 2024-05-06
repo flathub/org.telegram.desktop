@@ -73,34 +73,6 @@ modules:
     cleanup:
       - '*'
 
-  - name: xcursorgen
-    sources:
-      - type: archive
-        url: https://xorg.freedesktop.org/archive/individual/app/xcursorgen-1.0.8.tar.gz
-        sha256: b8bb2756918343b8bc15a4ce875e9efb6c4e7777adba088280e53dd09753b6ac
-        x-checker-data:
-          type: anitya
-          project-id: 21210
-          url-template: https://xorg.freedesktop.org/archive/individual/app/xcursorgen-$version.tar.gz
-    cleanup:
-      - '*'
-
-  - name: dmz-cursor-theme
-    buildsystem: simple
-    build-commands:
-      - (cd DMZ-Black/pngs ; ./make.sh)
-      - install -d "$FLATPAK_DEST/share/icons/default/cursors"
-      - cp -a DMZ-Black/xcursors/* "$FLATPAK_DEST/share/icons/default/cursors"
-      - install -Dm644 DMZ-Black/index.theme "$FLATPAK_DEST/share/icons/default/index.theme"
-    sources:
-      - type: archive
-        url: http://ftp.de.debian.org/debian/pool/main/d/dmz-cursor-theme/dmz-cursor-theme_0.4.5.tar.xz
-        sha256: b719a64ed9c51905743105e5a50b15492695929ab2d6fca2cea760d52ccd1f5c
-        x-checker-data:
-          type: anitya
-          project-id: 15904
-          url-template: http://ftp.de.debian.org/debian/pool/main/d/dmz-cursor-theme/dmz-cursor-theme_$version.tar.xz
-
   - name: jinja2
     buildsystem: simple
     build-commands:
