@@ -275,8 +275,8 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/libjxl/libjxl/archive/\($tag)/libjxl-\($version).tar.gz"'
       - type: archive
-        url: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/3.0.2/libjpeg-turbo-3.0.2.tar.gz
-        sha256: 29f2197345aafe1dcaadc8b055e4cbec9f35aad2a318d61ea081f835af2eebe9
+        url: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/3.0.3/libjpeg-turbo-3.0.3.tar.gz
+        sha256: a649205a90e39a548863a3614a9576a3fb4465f8e8e66d54999f127957c25b21
         strip-components: 0
         x-checker-data:
           type: json
