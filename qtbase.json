@@ -29,6 +29,8 @@
         "desktop-app-patches/qtbase_6.7.0/0026-fix-backing-store-rhi-unneeded-copy.patch",
         "desktop-app-patches/qtbase_6.7.0/0027-fix-backing-store-opengl-subimage-unneeded-copy.patch",
         "desktop-app-patches/qtbase_6.7.0/0028-portal-proxy-resolver.patch",
-        "desktop-app-patches/qtbase_6.7.0/0029-fix-crash-opengl-drivers.patch"
+        "desktop-app-patches/qtbase_6.7.0/0029-fix-crash-opengl-drivers.patch",
+        "desktop-app-patches/qtbase_6.7.0/0030-fix-focus-in-hidden-window.patch",
+        "desktop-app-patches/qtbase_6.7.0/0031-fix-only-emoji-line.patch"
     ]
 }
