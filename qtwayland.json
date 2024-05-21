@@ -1,13 +1,13 @@
 {
     "type": "patch",
     "paths": [
-        "desktop-app-patches/qtwayland_6.7.0/0001-always-fractional-scale.patch",
-        "desktop-app-patches/qtwayland_6.7.0/0002-offload-transparency-filling-to-hidpi.patch",
-        "desktop-app-patches/qtwayland_6.7.0/0003-popup-reposition.patch",
-        "desktop-app-patches/qtwayland_6.7.0/0004-fix-gtk4-embedding.patch",
-        "desktop-app-patches/qtwayland_6.7.0/0005-QWaylandShmBackingStore-Preserve-buffer-contents-bet.patch",
-        "desktop-app-patches/qtwayland_6.7.0/0006-avoid-needlessly-initiailizing-opengl.patch",
-        "desktop-app-patches/qtwayland_6.7.0/0007-fix-media-viewer-on-gnome.patch",
-        "desktop-app-patches/qtwayland_6.7.0/0008-owning-rhi-backing-store.patch"
+        "desktop-app-patches/qtwayland_6.7.1/0001-always-fractional-scale.patch",
+        "desktop-app-patches/qtwayland_6.7.1/0002-offload-transparency-filling-to-hidpi.patch",
+        "desktop-app-patches/qtwayland_6.7.1/0003-popup-reposition.patch",
+        "desktop-app-patches/qtwayland_6.7.1/0004-fix-gtk4-embedding.patch",
+        "desktop-app-patches/qtwayland_6.7.1/0005-QWaylandShmBackingStore-Preserve-buffer-contents-bet.patch",
+        "desktop-app-patches/qtwayland_6.7.1/0006-avoid-needlessly-initiailizing-opengl.patch",
+        "desktop-app-patches/qtwayland_6.7.1/0007-fix-media-viewer-on-gnome.patch",
+        "desktop-app-patches/qtwayland_6.7.1/0008-owning-rhi-backing-store.patch"
     ]
 }
