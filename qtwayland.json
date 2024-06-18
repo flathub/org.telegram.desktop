@@ -1,12 +1,12 @@
 {
     "type": "patch",
     "paths": [
-        "desktop-app-patches/qtwayland_6.7.1/0001-always-fractional-scale.patch",
-        "desktop-app-patches/qtwayland_6.7.1/0002-offload-transparency-filling-to-hidpi.patch",
-        "desktop-app-patches/qtwayland_6.7.1/0003-fix-gtk4-embedding.patch",
-        "desktop-app-patches/qtwayland_6.7.1/0004-QWaylandShmBackingStore-Preserve-buffer-contents-bet.patch",
-        "desktop-app-patches/qtwayland_6.7.1/0005-avoid-needlessly-initiailizing-opengl.patch",
-        "desktop-app-patches/qtwayland_6.7.1/0006-fix-media-viewer-on-gnome.patch",
-        "desktop-app-patches/qtwayland_6.7.1/0007-owning-rhi-backing-store.patch"
+        "desktop-app-patches/qtwayland_6.7.2/0001-always-fractional-scale.patch",
+        "desktop-app-patches/qtwayland_6.7.2/0002-offload-transparency-filling-to-hidpi.patch",
+        "desktop-app-patches/qtwayland_6.7.2/0003-fix-gtk4-embedding.patch",
+        "desktop-app-patches/qtwayland_6.7.2/0004-QWaylandShmBackingStore-Preserve-buffer-contents-bet.patch",
+        "desktop-app-patches/qtwayland_6.7.2/0005-avoid-needlessly-initiailizing-opengl.patch",
+        "desktop-app-patches/qtwayland_6.7.2/0006-fix-media-viewer-on-gnome.patch",
+        "desktop-app-patches/qtwayland_6.7.2/0007-owning-rhi-backing-store.patch"
     ]
 }
