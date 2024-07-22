@@ -21,12 +21,13 @@
         "desktop-app-patches/qtbase_6.7.2/0018-allow-bordered-translucent-macos.patch",
         "desktop-app-patches/qtbase_6.7.2/0019-better-open-url-linux.patch",
         "desktop-app-patches/qtbase_6.7.2/0020-follow-highdpi-rounding-policy-for-platform-dpr.patch",
-        "desktop-app-patches/qtbase_6.7.2/0021-fill-transparent-hidpi-backing-store.patch",
+        "desktop-app-patches/qtbase_6.7.2/0021-let-platform-backing-store-scale-transparency-filling.patch",
         "desktop-app-patches/qtbase_6.7.2/0022-fix-backing-store-rhi-unneeded-copy.patch",
         "desktop-app-patches/qtbase_6.7.2/0023-fix-backing-store-opengl-subimage-unneeded-copy.patch",
         "desktop-app-patches/qtbase_6.7.2/0024-portal-proxy-resolver.patch",
         "desktop-app-patches/qtbase_6.7.2/0025-fix-focus-in-hidden-window.patch",
         "desktop-app-patches/qtbase_6.7.2/0026-fix-only-emoji-line.patch",
-        "desktop-app-patches/qtbase_6.7.2/0027-fix-rtl-cursor-move-up.patch"
+        "desktop-app-patches/qtbase_6.7.2/0027-fix-rtl-cursor-move-up.patch",
+        "desktop-app-patches/qtbase_6.7.2/0028-xcb-provide-xkb-state.patch"
     ]
 }
