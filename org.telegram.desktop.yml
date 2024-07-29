@@ -38,8 +38,6 @@ cleanup-commands:
   - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
   - mkdir -p ${FLATPAK_DEST}/lib/webview
 build-options:
-  cflags: -DNDEBUG
-  cxxflags: -DNDEBUG
   append-path: /usr/lib/sdk/llvm16/bin
   append-ld-library-path: /usr/lib/sdk/llvm16/lib
 cleanup:
