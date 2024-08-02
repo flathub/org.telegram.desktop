@@ -144,6 +144,26 @@ modules:
           project-id: 6845
           stable-only: true
           url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
+          url-query: '"https://github.com/strukturag/libheif/archive/\($tag)/libheif-\($version).tar.gz"'
+
+  - name: ada
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=None
+      - -DBUILD_TESTING=OFF
+      - -DADA_TOOLS=OFF
+    sources:
+      - type: git
+        url: https://github.com/ada-url/ada.git
+        commit: 4358bcc6156e730eaff0681330ac74d187e881c1
+        tag: v2.9.0
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/ada-url/ada/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
+          version-query: $tag | sub("^[vV]"; "")
 
   - name: protobuf
     buildsystem: cmake-ninja
