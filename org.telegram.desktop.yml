@@ -113,8 +113,8 @@ modules:
       - install -D systemd-detect-virt "$FLATPAK_DEST/bin"
     sources:
       - type: archive
-        url: https://github.com/systemd/systemd/archive/v256.5/systemd-256.5.tar.gz
-        sha256: 41bb91861ab9f2f2b6cadad558ea1f8764d701452b018852146d642a850c8a8b
+        url: https://github.com/systemd/systemd/archive/v256.6/systemd-256.6.tar.gz
+        sha256: c085f162dec001407dd32f00abbf20b7e6ed7043dcfaf8ed954787d86707f409
         x-checker-data:
           type: json
           url: https://api.github.com/repos/systemd/systemd/releases/latest
@@ -460,8 +460,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: f05191e668c0b6742b695558530cc2eb86887f9a
-        tag: v5.5.2
+        commit: dab107cf9004315bb87c96f4142195cab1ae46ae
+        tag: v5.5.3
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
