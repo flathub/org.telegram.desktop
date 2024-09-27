@@ -1,7 +1,6 @@
 {
     "type": "patch",
     "paths": [
-        "desktop-app-patches/qtwayland_6.7.2/0001-always-fractional-scale.patch",
         "desktop-app-patches/qtwayland_6.7.2/0002-scale-transparency-filling.patch",
         "desktop-app-patches/qtwayland_6.7.2/0003-fix-gtk4-embedding.patch",
         "desktop-app-patches/qtwayland_6.7.2/0004-QWaylandShmBackingStore-Preserve-buffer-contents-bet.patch",
