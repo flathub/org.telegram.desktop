@@ -28,8 +28,7 @@
         "desktop-app-patches/qtbase_6.8.0/0025-fix-only-emoji-line.patch",
         "desktop-app-patches/qtbase_6.8.0/0026-fix-rtl-cursor-move-up.patch",
         "desktop-app-patches/qtbase_6.8.0/0027-xcb-provide-xkb-state.patch",
-        "desktop-app-patches/qtbase_6.8.0/0028-implicit-qchar-construction.patch",
-        "desktop-app-patches/qtbase_6.8.0/0029-windows-fullscreen-with-mask.patch",
-        "desktop-app-patches/qtbase_6.8.0/0030-accept-only-cf_hdrop-as-uri-list.patch"
+        "desktop-app-patches/qtbase_6.8.0/0028-windows-fullscreen-with-mask.patch",
+        "desktop-app-patches/qtbase_6.8.0/0029-accept-only-cf_hdrop-as-uri-list.patch"
     ]
 }
