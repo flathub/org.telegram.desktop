@@ -6,6 +6,7 @@
         "desktop-app-patches/qtwayland_6.8.0/0003-fix-gtk4-embedding.patch",
         "desktop-app-patches/qtwayland_6.8.0/0004-owning-rhi-backing-store.patch",
         "desktop-app-patches/qtwayland_6.8.0/0005-fix-egl-compositor-shutdown.patch",
-        "desktop-app-patches/qtwayland_6.8.0/0006-compositor-xkb-state-from-platform.patch"
+        "desktop-app-patches/qtwayland_6.8.0/0006-compositor-xkb-state-from-platform.patch",
+        "desktop-app-patches/qtwayland_6.8.0/0007-always-resize-after-swap.patch"
     ]
 }
