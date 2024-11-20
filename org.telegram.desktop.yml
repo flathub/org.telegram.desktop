@@ -281,17 +281,20 @@ modules:
       - -DJPEGXL_ENABLE_SJPEG=OFF
       - -DJPEGXL_ENABLE_OPENEXR=OFF
       - -DJPEGXL_ENABLE_SKCMS=OFF
+      - -DJPEGXL_FORCE_SYSTEM_BROTLI=ON
+      - -DJPEGXL_FORCE_SYSTEM_LCMS=ON
+      - -DJPEGXL_FORCE_SYSTEM_HWY=ON
     sources:
-      - type: archive
-        url: https://github.com/libjxl/libjxl/archive/v0.11.0/libjxl-0.11.0.tar.gz
-        sha256: 7ce4ec8bb37a435a73ac18c4c9ff56c2dc6c98892bf3f53a328e3eca42efb9cf
+      - type: git
+        url: https://github.com/libjxl/libjxl.git
+        commit: 4df1e9eccdf86b8df4c0c7c08f529263906f9c4f
+        tag: v0.11.0
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libjxl/libjxl/releases/latest
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
-          url-query: '"https://github.com/libjxl/libjxl/archive/\($tag)/libjxl-\($version).tar.gz"'
 
   - name: rnnoise
     config-opts:
