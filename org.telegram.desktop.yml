@@ -183,27 +183,6 @@ modules:
     cleanup:
       - /bin
 
-  - name: highway
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
-      - -DBUILD_SHARED_LIBS=ON
-      - -DBUILD_TESTING=OFF
-      - -DHWY_ENABLE_CONTRIB=OFF
-      - -DHWY_ENABLE_EXAMPLES=OFF
-    sources:
-      - type: archive
-        url: https://github.com/google/highway/archive/1.2.0/highway-1.2.0.tar.gz
-        sha256: 7e0be78b8318e8bdbf6fa545d2ecb4c90f947df03f7aadc42c1967f019e63343
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/google/highway/releases/latest
-          tag-query: .tag_name
-          timestamp-query: .published_at
-          version-query: $tag
-          url-query: '"https://github.com/google/highway/archive/\($tag)/highway-\($version).tar.gz"'
-
   - name: libde265
     buildsystem: cmake-ninja
     config-opts:
@@ -222,25 +201,6 @@ modules:
           url-query: '"https://github.com/strukturag/libde265/archive/\($tag)/libde265-\($version).tar.gz"'
     cleanup:
       - /bin
-
-  - name: libavif
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
-      - -DAVIF_CODEC_DAV1D=SYSTEM
-      - -DAVIF_LIBYUV=OFF
-    sources:
-      - type: archive
-        url: https://github.com/AOMediaCodec/libavif/archive/v1.1.1/libavif-1.1.1.tar.gz
-        sha256: 914662e16245e062ed73f90112fbb4548241300843a7772d8d441bb6859de45b
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/AOMediaCodec/libavif/releases/latest
-          tag-query: .tag_name
-          timestamp-query: .published_at
-          version-query: $tag | sub("^[vV]"; "")
-          url-query: '"https://github.com/AOMediaCodec/libavif/archive/\($tag)/libavif-\($version).tar.gz"'
 
   - name: libheif
     buildsystem: cmake-ninja
@@ -264,7 +224,7 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/strukturag/libheif/archive/\($tag)/libheif-\($version).tar.gz"'
 
-  - name: libjxl
+  - name: jpegli
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
@@ -284,6 +244,8 @@ modules:
       - -DJPEGXL_FORCE_SYSTEM_BROTLI=ON
       - -DJPEGXL_FORCE_SYSTEM_LCMS=ON
       - -DJPEGXL_FORCE_SYSTEM_HWY=ON
+    post-install:
+      - rm "$FLATPAK_DEST"/lib/libjxl*
     sources:
       - type: git
         url: https://github.com/libjxl/libjxl.git
