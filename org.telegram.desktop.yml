@@ -129,7 +129,7 @@ modules:
   - name: boost
     buildsystem: simple
     build-commands:
-      - ./bootstrap.sh --prefix=${FLATPAK_DEST} --with-libraries=program_options,regex
+      - ./bootstrap.sh --prefix=${FLATPAK_DEST} --with-libraries=regex
       - ./b2 variant=release link=shared runtime-link=shared cxxflags="$CXXFLAGS"
         linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS install
     sources:
