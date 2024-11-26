@@ -249,8 +249,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/libjxl/libjxl.git
-        commit: 4df1e9eccdf86b8df4c0c7c08f529263906f9c4f
-        tag: v0.11.0
+        commit: 794a5dcf0d54f9f0b20d288a12e87afb91d20dfc
+        tag: v0.11.1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/libjxl/libjxl/releases/latest
