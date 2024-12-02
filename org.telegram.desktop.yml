@@ -277,8 +277,8 @@ modules:
       - -DINPUT_openssl=linked
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.8/6.8.0/submodules/qtbase-everywhere-src-6.8.0.tar.xz
-        sha256: 1bad481710aa27f872de6c9f72651f89a6107f0077003d0ebfcc9fd15cba3c75
+        url: https://download.qt.io/archive/qt/6.8/6.8.1/submodules/qtbase-everywhere-src-6.8.1.tar.xz
+        sha256: 40b14562ef3bd779bc0e0418ea2ae08fa28235f8ea6e8c0cb3bce1d6ad58dcaf
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -294,8 +294,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.8/6.8.0/submodules/qtshadertools-everywhere-src-6.8.0.tar.xz
-        sha256: 44692dc93482374bf3b39e96c881fa08275f0bf82958b68a7e3c796b76d4c4cb
+        url: https://download.qt.io/archive/qt/6.8/6.8.1/submodules/qtshadertools-everywhere-src-6.8.1.tar.xz
+        sha256: 55b70cd632473a8043c74ba89310f7ba9c5041d253bc60e7ae1fa789169c4846
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -310,8 +310,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.8/6.8.0/submodules/qtdeclarative-everywhere-src-6.8.0.tar.xz
-        sha256: 3b41a36b42e919a3aa0da1f71107591504200f41707bee2ad8e8d4f99b5644c2
+        url: https://download.qt.io/archive/qt/6.8/6.8.1/submodules/qtdeclarative-everywhere-src-6.8.1.tar.xz
+        sha256: 95d15d5c1b6adcedb1df6485219ad13b8dc1bb5168b5151f2f1f7246a4c039fc
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -326,8 +326,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.8/6.8.0/submodules/qtwayland-everywhere-src-6.8.0.tar.xz
-        sha256: 175758591638ebf1c6fbb66ac11c7fa0eb8d4ed52e9243cc59075d06a6a2060a
+        url: https://download.qt.io/archive/qt/6.8/6.8.1/submodules/qtwayland-everywhere-src-6.8.1.tar.xz
+        sha256: 2226fbde4e2ddd12f8bf4b239c8f38fd706a54e789e63467dfddc77129eca203
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -343,8 +343,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.8/6.8.0/submodules/qtimageformats-everywhere-src-6.8.0.tar.xz
-        sha256: 595bf8557b91e1f8ebc726f1e09868a3c7e610ff5045068f2d4ea2428c49a5d4
+        url: https://download.qt.io/archive/qt/6.8/6.8.1/submodules/qtimageformats-everywhere-src-6.8.1.tar.xz
+        sha256: 138cc2909aa98f5ff7283e36eb3936eb5e625d3ca3b4febae2ca21d8903dd237
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -357,8 +357,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.8/6.8.0/submodules/qtsvg-everywhere-src-6.8.0.tar.xz
-        sha256: cf7a593d5e520f8177240610d9e55d5b75b0887fe5f385554ff64377f1646199
+        url: https://download.qt.io/archive/qt/6.8/6.8.1/submodules/qtsvg-everywhere-src-6.8.1.tar.xz
+        sha256: 3d0de73596e36b2daa7c48d77c4426bb091752856912fba720215f756c560dd0
         x-checker-data:
           type: anitya
           project-id: 7927
