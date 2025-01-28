@@ -16,6 +16,7 @@ finish-args:
   - --talk-name=com.canonical.AppMenu.Registrar
   - --talk-name=com.canonical.indicator.application
   - --talk-name=org.ayatana.indicator.application
+  - --talk-name=org.sigxcpu.Feedback
   - --unset-env=QT_PLUGIN_PATH
   - --env=PATH=/app/lib/webview/bin:/app/bin:/usr/bin
 sdk-extensions:
