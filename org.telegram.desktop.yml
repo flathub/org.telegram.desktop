@@ -154,8 +154,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ada-url/ada.git
-        commit: d44402b86cde54cc18db46301e30b718f10f8541
-        tag: v3.0.0
+        commit: 1492acb8a5911eadc0d1adf7f82140c3c2b536cf
+        tag: v3.0.1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/ada-url/ada/releases/latest
