@@ -3,7 +3,6 @@ runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: telegram-desktop
-rename-icon: telegram
 finish-args:
   - --share=ipc
   - --share=network
