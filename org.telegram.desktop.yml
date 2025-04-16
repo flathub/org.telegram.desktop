@@ -277,8 +277,8 @@ modules:
       - -DINPUT_openssl=linked
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.8/6.8.3/submodules/qtbase-everywhere-src-6.8.3.tar.xz
-        sha256: 56001b905601bb9023d399f3ba780d7fa940f3e4861e496a7c490331f49e0b80
+        url: https://download.qt.io/archive/qt/6.9/6.9.0/submodules/qtbase-everywhere-src-6.9.0.tar.xz
+        sha256: c1800c2ea835801af04a05d4a32321d79a93954ee3ae2172bbeacf13d1f0598c
         x-checker-data:
           type: anitya
           project-id: 7927
@@ -343,8 +343,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.8/6.8.3/submodules/qtimageformats-everywhere-src-6.8.3.tar.xz
-        sha256: 049bfb99845e4801672aca07c3c4fc4c140f932a3a33faa899419579e33ef1c8
+        url: https://download.qt.io/archive/qt/6.9/6.9.0/submodules/qtimageformats-everywhere-src-6.9.0.tar.xz
+        sha256: 2047c6242a57bf97cf40079fa9f91752c137cd9ae84760faa9a2e5e8a440606f
         x-checker-data:
           type: anitya
           project-id: 7927
