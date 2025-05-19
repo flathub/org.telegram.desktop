@@ -391,6 +391,34 @@ modules:
     cleanup:
       - '*'
 
+  - name: tde2e
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=None
+      - -DTD_E2E_ONLY=ON
+    sources:
+      - type: git
+        url: https://github.com/tdlib/td.git
+        commit: 51743dfd01dff6179e2d8f7095729caa4e2222e9
+        x-checker-data:
+          type: json
+          parent-id: telegram-desktop-git-0
+          commit-data-url: >-
+            "https://github.com/telegramdesktop/tdesktop/raw/\($parent.new.tag//$parent.current.tag)/snap/snapcraft.yaml"
+          commit-query: >-
+            .parts.tde2e."source-commit"
+          version-data-url: >-
+            "https://api.github.com/repos/tdlib/td/commits/\($commit)"
+          version-query: >-
+            "tdlib/td@\(.sha[0:7])"
+          timestamp-data-url: >-
+            "https://api.github.com/repos/tdlib/td/commits/\($commit)"
+          timestamp-query: >-
+            .commit.committer.date
+    cleanup:
+      - '*'
+
   - name: telegram-desktop
     buildsystem: cmake-ninja
     builddir: true
