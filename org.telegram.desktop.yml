@@ -374,6 +374,9 @@ modules:
             "https://api.github.com/repos/desktop-app/tg_owt/commits/\($commit)"
           timestamp-query: >-
             .commit.committer.date
+      - type: shell
+        commands:
+          - sed -i '/pkg_check_modules(SRTP libsrtp2)/d' cmake/external.cmake
     cleanup:
       - '*'
 
