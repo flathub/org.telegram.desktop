@@ -45,10 +45,11 @@ cleanup:
   - /lib/cmake
   - /lib/libexec
   - /lib/metatypes
+  - /lib/modules
   - /lib/pkgconfig
+  - /lib/sbom
   - /lib/systemd
   - /mkspecs
-  - /modules
   - /share/doc
   - /share/man
   - '*.prl'
