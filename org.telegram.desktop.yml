@@ -39,6 +39,8 @@ cleanup-commands:
 build-options:
   append-path: /usr/lib/sdk/llvm19/bin
   append-ld-library-path: /usr/lib/sdk/llvm19/lib
+  env:
+    CMAKE_BUILD_TYPE: None
 cleanup:
   - /doc
   - /include
@@ -134,7 +136,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_BUILD_TYPE=None
       - -DBUILD_TESTING=OFF
       - -DADA_TOOLS=OFF
     sources:
@@ -153,7 +154,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_BUILD_TYPE=None
       - -DBUILD_SHARED_LIBS=ON
       - -Dprotobuf_BUILD_TESTS=OFF
     sources:
@@ -173,7 +173,6 @@ modules:
   - name: libde265
     buildsystem: cmake-ninja
     config-opts:
-      - -DCMAKE_BUILD_TYPE=None
       - -DENABLE_SDL=OFF
     sources:
       - type: archive
@@ -193,7 +192,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_BUILD_TYPE=None
       - -DCMAKE_COMPILE_WARNING_AS_ERROR=OFF
       - -DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=ON
       - -DBUILD_TESTING=OFF
@@ -215,7 +213,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_BUILD_TYPE=None
       - -DBUILD_TESTING=OFF
       - -DJPEGXL_ENABLE_DEVTOOLS=OFF
       - -DJPEGXL_ENABLE_TOOLS=OFF
@@ -259,7 +256,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_BUILD_TYPE=None
       - -DINSTALL_ARCHDATADIR=/app/lib
       - -DINPUT_openssl=linked
     sources:
@@ -277,8 +273,6 @@ modules:
   - name: qtshadertools
     buildsystem: cmake-ninja
     builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.9/6.9.0/submodules/qtshadertools-everywhere-src-6.9.0.tar.xz
@@ -293,8 +287,6 @@ modules:
   - name: qtdeclarative
     buildsystem: cmake-ninja
     builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.9/6.9.0/submodules/qtdeclarative-everywhere-src-6.9.0.tar.xz
@@ -309,8 +301,6 @@ modules:
   - name: qtimageformats
     buildsystem: cmake-ninja
     builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.9/6.9.0/submodules/qtimageformats-everywhere-src-6.9.0.tar.xz
@@ -323,8 +313,6 @@ modules:
   - name: qtsvg
     buildsystem: cmake-ninja
     builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.9/6.9.0/submodules/qtsvg-everywhere-src-6.9.0.tar.xz
@@ -337,8 +325,6 @@ modules:
   - name: qtwayland
     buildsystem: cmake-ninja
     builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.9/6.9.0/submodules/qtwayland-everywhere-src-6.9.0.tar.xz
@@ -354,8 +340,6 @@ modules:
   - name: tg_owt
     buildsystem: cmake-ninja
     builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=None
     sources:
       - type: git
         url: https://github.com/desktop-app/tg_owt.git
@@ -385,7 +369,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_BUILD_TYPE=None
       - -DTD_E2E_ONLY=ON
     sources:
       - type: git
@@ -418,7 +401,6 @@ modules:
           cflags: -g1
           cxxflags: -g1
     config-opts:
-      - -DCMAKE_BUILD_TYPE=None
       - -DTDESKTOP_API_ID=611335
       - -DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c
       - -DDESKTOP_APP_USE_PACKAGED_LAZY=ON
