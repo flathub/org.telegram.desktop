@@ -39,23 +39,10 @@ cleanup-commands:
 build-options:
   append-path: /usr/lib/sdk/llvm20/bin
   append-ld-library-path: /usr/lib/sdk/llvm20/lib
+  ldflags: -fuse-ld=lld -lhwy
   env:
     CMAKE_BUILD_TYPE: None
     CMAKE_PREFIX_PATH: /app
-cleanup:
-  - /doc
-  - /include
-  - /lib/cmake
-  - /lib/pkgconfig
-  - /libexec
-  - /metatypes
-  - /mkspecs
-  - /modules
-  - /sbom
-  - /share/doc
-  - '*.prl'
-  - '*.la'
-  - '*.a'
 modules:
   - name: jinja2
     buildsystem: simple
@@ -118,7 +105,7 @@ modules:
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=${FLATPAK_DEST} --with-libraries=regex
-      - ./b2 variant=release link=shared runtime-link=shared cxxflags="$CXXFLAGS"
+      - ./b2 variant=release link=static runtime-link=shared cxxflags="$CXXFLAGS"
         linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS install
     sources:
       - type: archive
@@ -130,6 +117,8 @@ modules:
           stable-only: true
           url-template: https://archives.boost.io/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
           url-query: '"https://github.com/strukturag/libheif/archive/\($tag)/libheif-\($version).tar.gz"'
+    cleanup:
+      - '*'
 
   - name: ada
     buildsystem: cmake-ninja
@@ -155,7 +144,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DBUILD_SHARED_LIBS=ON
       - -Dprotobuf_BUILD_TESTS=OFF
     sources:
       - type: git
@@ -169,11 +157,12 @@ modules:
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
     cleanup:
-      - /bin
+      - '*'
 
   - name: jpegli
     buildsystem: cmake-ninja
     builddir: true
+    no-make-install: true
     config-opts:
       - -DBUILD_TESTING=OFF
       - -DJPEGXL_ENABLE_DEVTOOLS=OFF
@@ -191,7 +180,8 @@ modules:
       - -DJPEGXL_FORCE_SYSTEM_LCMS2=ON
       - -DJPEGXL_FORCE_SYSTEM_HWY=ON
     post-install:
-      - rm "$FLATPAK_DEST"/lib/libjxl*
+      - cp "$FLATPAK_BUILDER_BUILDDIR"/_flatpak_build/lib/libjpegli-static.a "$FLATPAK_DEST"/lib/libjpeg.a
+      - ar rcs "$FLATPAK_DEST"/lib/libjpeg.a "$FLATPAK_BUILDER_BUILDDIR"/_flatpak_build/lib/CMakeFiles/jpegli-libjpeg-obj.dir/jpegli/libjpeg_wrapper.cc.o
     sources:
       - type: git
         url: https://github.com/libjxl/libjxl.git
@@ -203,10 +193,13 @@ modules:
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
+    cleanup:
+      - '*'
 
   - name: libde265
     buildsystem: cmake-ninja
     config-opts:
+      - -DBUILD_SHARED_LIBS=OFF
       - -DENABLE_SDL=OFF
     sources:
       - type: archive
@@ -220,7 +213,7 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/strukturag/libde265/archive/\($tag)/libde265-\($version).tar.gz"'
     cleanup:
-      - /bin
+      - '*'
 
   - name: libheif
     buildsystem: cmake-ninja
@@ -228,6 +221,7 @@ modules:
     config-opts:
       - -DCMAKE_COMPILE_WARNING_AS_ERROR=OFF
       - -DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=ON
+      - -DBUILD_SHARED_LIBS=OFF
       - -DBUILD_TESTING=OFF
       - -DWITH_FFMPEG_DECODER=ON
       - -DWITH_EXAMPLES=OFF
@@ -242,21 +236,27 @@ modules:
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/strukturag/libheif/archive/\($tag)/libheif-\($version).tar.gz"'
+    cleanup:
+      - '*'
 
   - name: rnnoise
     config-opts:
-      - --disable-static
+      - --disable-shared
       - --disable-examples
       - --disable-doc
     sources:
       - type: git
         url: https://gitlab.xiph.org/xiph/rnnoise.git
         commit: 7f449bf8bd3b933891d12c30112268c4090e4d59
+    cleanup:
+      - '*'
 
   - name: qtbase
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
+      - -DBUILD_SHARED_LIBS=OFF
+      - -DQT_QPA_PLATFORMS=wayland;xcb
       - -DINPUT_openssl=linked
     sources:
       - type: archive
@@ -268,7 +268,7 @@ modules:
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtbase-everywhere-src-$version.tar.xz
       - qtbase.json
     cleanup:
-      - /bin
+      - '*'
 
   - name: qtshadertools
     buildsystem: cmake-ninja
@@ -296,7 +296,7 @@ modules:
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtdeclarative-everywhere-src-$version.tar.xz
     cleanup:
-      - /bin
+      - '*'
 
   - name: qtimageformats
     buildsystem: cmake-ninja
@@ -309,6 +309,8 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtimageformats-everywhere-src-$version.tar.xz
+    cleanup:
+      - '*'
 
   - name: qtsvg
     buildsystem: cmake-ninja
@@ -321,6 +323,8 @@ modules:
           type: anitya
           project-id: 7927
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtsvg-everywhere-src-$version.tar.xz
+    cleanup:
+      - '*'
 
   - name: qtwayland
     buildsystem: cmake-ninja
@@ -335,7 +339,7 @@ modules:
           url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtwayland-everywhere-src-$version.tar.xz
       - qtwayland.json
     cleanup:
-      - /bin
+      - '*'
 
   - name: tg_owt
     buildsystem: cmake-ninja
