@@ -39,13 +39,10 @@ cleanup-commands:
 build-options:
   append-path: /usr/lib/sdk/llvm20/bin
   append-ld-library-path: /usr/lib/sdk/llvm20/lib
-  ldflags: -fuse-ld=lld
+  ldflags: -fuse-ld=lld -lhwy
   env:
     CMAKE_BUILD_TYPE: None
-cleanup:
-  - /include
-  - /lib/cmake
-  - /lib/pkgconfig
+    CMAKE_PREFIX_PATH: /app
 modules:
   - name: jinja2
     buildsystem: simple
@@ -165,6 +162,7 @@ modules:
   - name: jpegli
     buildsystem: cmake-ninja
     builddir: true
+    no-make-install: true
     config-opts:
       - -DBUILD_TESTING=OFF
       - -DJPEGXL_ENABLE_DEVTOOLS=OFF
@@ -182,7 +180,8 @@ modules:
       - -DJPEGXL_FORCE_SYSTEM_LCMS2=ON
       - -DJPEGXL_FORCE_SYSTEM_HWY=ON
     post-install:
-      - rm "$FLATPAK_DEST"/lib/libjxl*
+      - cp "$FLATPAK_BUILDER_BUILDDIR"/_flatpak_build/lib/libjpegli-static.a "$FLATPAK_DEST"/lib/libjpeg.a
+      - ar rcs "$FLATPAK_DEST"/lib/libjpeg.a "$FLATPAK_BUILDER_BUILDDIR"/_flatpak_build/lib/CMakeFiles/jpegli-libjpeg-obj.dir/jpegli/libjpeg_wrapper.cc.o
     sources:
       - type: git
         url: https://github.com/libjxl/libjxl.git
@@ -194,6 +193,8 @@ modules:
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
+    cleanup:
+      - '*'
 
   - name: libde265
     buildsystem: cmake-ninja
@@ -301,8 +302,6 @@ modules:
   - name: qtimageformats
     buildsystem: cmake-ninja
     builddir: true
-    config-opts:
-      - -DINPUT_tiff=qt
     sources:
       - type: archive
         url: https://download.qt.io/archive/qt/6.9/6.9.1/submodules/qtimageformats-everywhere-src-6.9.1.tar.xz
