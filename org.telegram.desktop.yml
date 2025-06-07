@@ -19,7 +19,7 @@ finish-args:
   - --unset-env=QT_PLUGIN_PATH
   - --env=PATH=/app/lib/webview/bin:/app/bin:/usr/bin
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm19
+  - org.freedesktop.Sdk.Extension.llvm20
 add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     directory: lib/ffmpeg
@@ -37,8 +37,8 @@ cleanup-commands:
   - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
   - mkdir -p ${FLATPAK_DEST}/lib/webview
 build-options:
-  append-path: /usr/lib/sdk/llvm19/bin
-  append-ld-library-path: /usr/lib/sdk/llvm19/lib
+  append-path: /usr/lib/sdk/llvm20/bin
+  append-ld-library-path: /usr/lib/sdk/llvm20/lib
   env:
     CMAKE_BUILD_TYPE: None
 cleanup:
