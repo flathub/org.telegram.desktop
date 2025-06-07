@@ -52,7 +52,6 @@ cleanup:
   - /lib/sbom
   - /lib/systemd
   - /mkspecs
-  - /share/doc
   - /share/man
   - '*.prl'
   - '*.la'
@@ -244,13 +243,15 @@ modules:
 
   - name: rnnoise
     config-opts:
-      - --disable-static
+      - --disable-shared
       - --disable-examples
       - --disable-doc
     sources:
       - type: git
         url: https://gitlab.xiph.org/xiph/rnnoise.git
         commit: 7f449bf8bd3b933891d12c30112268c4090e4d59
+    cleanup:
+      - '*'
 
   - name: qtbase
     buildsystem: cmake-ninja
