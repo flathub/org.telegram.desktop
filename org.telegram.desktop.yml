@@ -119,7 +119,7 @@ modules:
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=${FLATPAK_DEST} --with-libraries=regex
-      - ./b2 variant=release link=shared runtime-link=shared cxxflags="$CXXFLAGS"
+      - ./b2 variant=release link=static runtime-link=shared cxxflags="$CXXFLAGS"
         linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS install
     sources:
       - type: archive
@@ -131,6 +131,8 @@ modules:
           stable-only: true
           url-template: https://archives.boost.io/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
           url-query: '"https://github.com/strukturag/libheif/archive/\($tag)/libheif-\($version).tar.gz"'
+    cleanup:
+      - '*'
 
   - name: ada
     buildsystem: cmake-ninja
