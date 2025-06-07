@@ -45,13 +45,13 @@ cleanup:
   - /doc
   - /include
   - /lib/cmake
-  - /lib/libexec
-  - /lib/metatypes
-  - /lib/modules
   - /lib/pkgconfig
-  - /lib/sbom
   - /lib/systemd
+  - /libexec
+  - /metatypes
   - /mkspecs
+  - /modules
+  - /sbom
   - /share/doc
   - /share/man
   - '*.prl'
@@ -256,7 +256,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DINSTALL_ARCHDATADIR=/app/lib
       - -DINPUT_openssl=linked
     sources:
       - type: archive
