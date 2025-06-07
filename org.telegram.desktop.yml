@@ -154,7 +154,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DBUILD_SHARED_LIBS=ON
       - -Dprotobuf_BUILD_TESTS=OFF
     sources:
       - type: git
@@ -168,7 +167,7 @@ modules:
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
     cleanup:
-      - /bin
+      - '*'
 
   - name: libde265
     buildsystem: cmake-ninja
