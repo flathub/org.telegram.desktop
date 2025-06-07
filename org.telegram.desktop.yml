@@ -173,6 +173,7 @@ modules:
   - name: libde265
     buildsystem: cmake-ninja
     config-opts:
+      - -DBUILD_SHARED_LIBS=OFF
       - -DENABLE_SDL=OFF
     sources:
       - type: archive
@@ -186,7 +187,7 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/strukturag/libde265/archive/\($tag)/libde265-\($version).tar.gz"'
     cleanup:
-      - /bin
+      - '*'
 
   - name: libheif
     buildsystem: cmake-ninja
