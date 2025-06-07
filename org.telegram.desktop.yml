@@ -195,6 +195,7 @@ modules:
     config-opts:
       - -DCMAKE_COMPILE_WARNING_AS_ERROR=OFF
       - -DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=ON
+      - -DBUILD_SHARED_LIBS=OFF
       - -DBUILD_TESTING=OFF
       - -DWITH_FFMPEG_DECODER=ON
       - -DWITH_EXAMPLES=OFF
@@ -209,6 +210,8 @@ modules:
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
           url-query: '"https://github.com/strukturag/libheif/archive/\($tag)/libheif-\($version).tar.gz"'
+    cleanup:
+      - '*'
 
   - name: jpegli
     buildsystem: cmake-ninja
