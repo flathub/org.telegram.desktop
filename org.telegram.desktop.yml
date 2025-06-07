@@ -41,6 +41,7 @@ build-options:
   append-ld-library-path: /usr/lib/sdk/llvm19/lib
   env:
     CMAKE_BUILD_TYPE: None
+    CMAKE_PREFIX_PATH: /app
 cleanup:
   - /doc
   - /include
