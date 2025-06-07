@@ -148,6 +148,8 @@ modules:
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
+    cleanup:
+      - '*'
 
   - name: protobuf
     buildsystem: cmake-ninja
