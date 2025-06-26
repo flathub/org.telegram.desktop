@@ -1,14 +1,11 @@
 {
     "type": "patch",
     "paths": [
-        "desktop-app-patches/qtwayland_6.9.1/0001-always-fractional-scale.patch",
-        "desktop-app-patches/qtwayland_6.9.1/0002-scale-transparency-filling.patch",
-        "desktop-app-patches/qtwayland_6.9.1/0003-fix-gtk4-embedding.patch",
-        "desktop-app-patches/qtwayland_6.9.1/0004-owning-rhi-backing-store.patch",
-        "desktop-app-patches/qtwayland_6.9.1/0005-fix-egl-compositor-shutdown.patch",
-        "desktop-app-patches/qtwayland_6.9.1/0006-compositor-xkb-state-from-platform.patch",
-        "desktop-app-patches/qtwayland_6.9.1/0007-force-screen-creation.patch",
-        "desktop-app-patches/qtwayland_6.9.1/0008-link-wayland-egl-in-static-build.patch",
-        "desktop-app-patches/qtwayland_6.9.1/0009-workaround-crash-with-static-lto.patch"
+        "desktop-app-patches/qtwayland_6.9.1/0001-fix-gtk4-embedding.patch",
+        "desktop-app-patches/qtwayland_6.9.1/0002-owning-rhi-backing-store.patch",
+        "desktop-app-patches/qtwayland_6.9.1/0003-fix-egl-compositor-shutdown.patch",
+        "desktop-app-patches/qtwayland_6.9.1/0004-compositor-xkb-state-from-platform.patch",
+        "desktop-app-patches/qtwayland_6.9.1/0005-link-wayland-egl-in-static-build.patch",
+        "desktop-app-patches/qtwayland_6.9.1/0006-workaround-crash-with-static-lto.patch"
     ]
 }
