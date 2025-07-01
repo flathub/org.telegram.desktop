@@ -87,8 +87,8 @@ modules:
       - install -D systemd-detect-virt "$FLATPAK_DEST/bin"
     sources:
       - type: archive
-        url: https://github.com/systemd/systemd/archive/v257.6/systemd-257.6.tar.gz
-        sha256: 1ac656c61e595cc6e653883d554caadd2053f323d9065c0daff69f83368b120c
+        url: https://github.com/systemd/systemd/archive/v257.7/systemd-257.7.tar.gz
+        sha256: 70ecf759260549486045d065555d2f8a0ac0b8523d8f58227559fbd6d7523b08
         x-checker-data:
           type: json
           url: https://api.github.com/repos/systemd/systemd/releases/latest
@@ -129,8 +129,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ada-url/ada.git
-        commit: 010f7c45aeaff1205452e7da2df8702cf725fb3e
-        tag: v3.2.4
+        commit: a3b57b2ce2a38485fcad3e4877cee893fe8456da
+        tag: v3.2.5
         x-checker-data:
           type: json
           url: https://api.github.com/repos/ada-url/ada/releases/latest
@@ -410,8 +410,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: dcbda7b3afea36ed765a9e19ae6ac571436a1d53
-        tag: v5.15.2
+        commit: 2e4a437d32c6b1141d8ac541ba013e5e4239b38c
+        tag: v5.15.4
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
