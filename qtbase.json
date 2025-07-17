@@ -1,5 +1,8 @@
 {
     "type": "patch",
+    "options": [
+        "-dqtbase"
+    ],
     "paths": [
         "desktop-app-patches/qtbase_6.9.1/0001-spellcheck-underline-from-chrome.patch",
         "desktop-app-patches/qtbase_6.9.1/0002-improve-apostrophe-processing.patch",

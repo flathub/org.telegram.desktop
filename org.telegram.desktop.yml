@@ -260,92 +260,23 @@ modules:
     cleanup:
       - '*'
 
-  - name: qtbase
+  - name: qt
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
       - -DBUILD_SHARED_LIBS=OFF
+      - -DQT_BUILD_SUBMODULES=qtbase;qtdeclarative;qtimageformats;qtshadertools;qtsvg;qtwayland
       - -DQT_QPA_PLATFORMS=wayland;xcb
       - -DINPUT_openssl=linked
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.9/6.9.1/submodules/qtbase-everywhere-src-6.9.1.tar.xz
-        sha256: 40caedbf83cc9a1959610830563565889878bc95f115868bbf545d1914acf28e
+        url: https://download.qt.io/archive/qt/6.9/6.9.1/single/qt-everywhere-src-6.9.1.tar.xz
+        sha256: 364fde2d7fa42dd7c9b2ea6db3d462dd54f3869e9fd0ca0a0ca62f750cd8329b
         x-checker-data:
           type: anitya
           project-id: 7927
-          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtbase-everywhere-src-$version.tar.xz
+          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/single/qt-everywhere-src-$version.tar.xz
       - qtbase.json
-    cleanup:
-      - '*'
-
-  - name: qtshadertools
-    buildsystem: cmake-ninja
-    builddir: true
-    sources:
-      - type: archive
-        url: https://download.qt.io/archive/qt/6.9/6.9.1/submodules/qtshadertools-everywhere-src-6.9.1.tar.xz
-        sha256: 4e1ed24cce0887fb4b6c7be4f150239853a29c330c9717f6bacfb6376f3b4b74
-        x-checker-data:
-          type: anitya
-          project-id: 7927
-          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtshadertools-everywhere-src-$version.tar.xz
-    cleanup:
-      - '*'
-
-  - name: qtdeclarative
-    buildsystem: cmake-ninja
-    builddir: true
-    sources:
-      - type: archive
-        url: https://download.qt.io/archive/qt/6.9/6.9.1/submodules/qtdeclarative-everywhere-src-6.9.1.tar.xz
-        sha256: ccb94665df0199d7ee387b965b29677c8b89cfb1782bb6f01239b1d1524cec97
-        x-checker-data:
-          type: anitya
-          project-id: 7927
-          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtdeclarative-everywhere-src-$version.tar.xz
-    cleanup:
-      - '*'
-
-  - name: qtimageformats
-    buildsystem: cmake-ninja
-    builddir: true
-    sources:
-      - type: archive
-        url: https://download.qt.io/archive/qt/6.9/6.9.1/submodules/qtimageformats-everywhere-src-6.9.1.tar.xz
-        sha256: ebe9f238daaf9bb752c7233edadf4af33fc4fa30d914936812b6410d3af1577c
-        x-checker-data:
-          type: anitya
-          project-id: 7927
-          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtimageformats-everywhere-src-$version.tar.xz
-    cleanup:
-      - '*'
-
-  - name: qtsvg
-    buildsystem: cmake-ninja
-    builddir: true
-    sources:
-      - type: archive
-        url: https://download.qt.io/archive/qt/6.9/6.9.1/submodules/qtsvg-everywhere-src-6.9.1.tar.xz
-        sha256: 2dfc5de5fd891ff2afd9861e519bf1a26e6deb729b3133f68a28ba763c9abbd5
-        x-checker-data:
-          type: anitya
-          project-id: 7927
-          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtsvg-everywhere-src-$version.tar.xz
-    cleanup:
-      - '*'
-
-  - name: qtwayland
-    buildsystem: cmake-ninja
-    builddir: true
-    sources:
-      - type: archive
-        url: https://download.qt.io/archive/qt/6.9/6.9.1/submodules/qtwayland-everywhere-src-6.9.1.tar.xz
-        sha256: 7d21ea0e687180ebb19b9a1f86ae9cfa7a25b4f02d5db05ec834164409932e3e
-        x-checker-data:
-          type: anitya
-          project-id: 7927
-          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/submodules/qtwayland-everywhere-src-$version.tar.xz
       - qtwayland.json
     cleanup:
       - '*'

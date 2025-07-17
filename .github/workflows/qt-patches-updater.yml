@@ -11,7 +11,7 @@ jobs:
           submodules: true
       - name: Update Qt patches
         run: |
-          QT=$(yq '.modules[] | select(.name == "qtbase").sources[0].url' org.telegram.desktop.yml | sed -r 's/.*([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+          QT=$(yq '.modules[] | select(.name == "qt").sources[0].url' org.telegram.desktop.yml | sed -r 's/.*([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
           pushd desktop-app-patches > /dev/null
           repo=$(git remote get-url origin | sed -r 's@^https://github.com/(.*)\.git$@\1@')
           git fetch
@@ -19,7 +19,8 @@ jobs:
           commit=$(git rev-parse --short HEAD)
           popd > /dev/null
           for i in desktop-app-patches/*_${QT}; do
-            ./gen-patchset.py -o $(basename $i | sed -r "s/_${QT}//").json $i
+            submodule=$(basename $i | sed -r "s/_${QT}//")
+            ./gen-patchset.py -o $submodule.json -d $submodule $i
           done
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
