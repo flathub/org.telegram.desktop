@@ -8,6 +8,7 @@ from pathlib import Path
 def main():
     parser = argparse.ArgumentParser(description="Create flatpak source from patch files")
     parser.add_argument("-o", "--output", help="Output json file")
+    parser.add_argument("-d", "--directory", help="Change the patch(1) working directory to DIR first.")
     parser.add_argument("patchdir")
     args = parser.parse_args()
 
@@ -23,8 +24,11 @@ def main():
 
     patch_source = {
         "type": "patch",
+        "options": [],
         "paths": patch_paths
     }
+    if args.directory:
+        patch_source["options"].append("-d" + args.directory)
     if args.output:
         patch_source_file = args.output
     else:

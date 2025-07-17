@@ -1,5 +1,8 @@
 {
     "type": "patch",
+    "options": [
+        "-dqtwayland"
+    ],
     "paths": [
         "desktop-app-patches/qtwayland_6.9.1/0001-fix-gtk4-embedding.patch",
         "desktop-app-patches/qtwayland_6.9.1/0002-owning-rhi-backing-store.patch",
