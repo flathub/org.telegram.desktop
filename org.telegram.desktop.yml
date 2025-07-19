@@ -86,16 +86,16 @@ modules:
       - install -d "$FLATPAK_DEST/bin"
       - install -D systemd-detect-virt "$FLATPAK_DEST/bin"
     sources:
-      - type: archive
-        url: https://github.com/systemd/systemd/archive/v257.7/systemd-257.7.tar.gz
-        sha256: 70ecf759260549486045d065555d2f8a0ac0b8523d8f58227559fbd6d7523b08
+      - type: git
+        url: https://github.com/systemd/systemd.git
+        commit: 162e5e4a77931e4a7a7c9b6f86f09a70ec52a3e5
+        tag: v257.7
         x-checker-data:
           type: json
           url: https://api.github.com/repos/systemd/systemd/releases/latest
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
-          url-query: '"https://github.com/systemd/systemd/archive/\($tag)/systemd-\($version).tar.gz"'
       - type: shell
         commands:
           - 'sed -i "/systemd-detect-virt/,/link_with/ s/link_with : \\[libshared\\]/link_with
