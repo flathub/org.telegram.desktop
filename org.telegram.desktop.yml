@@ -202,15 +202,15 @@ modules:
       - -DENABLE_SDL=OFF
     sources:
       - type: archive
-        url: https://github.com/strukturag/libde265/archive/v1.0.16/libde265-1.0.16.tar.gz
-        sha256: ed12c931759c1575848832f70db5071a001ac813db4e4f568ee08aef6e234d4e
+        url: https://github.com/strukturag/libde265/releases/download/v1.0.16/libde265-1.0.16.tar.gz
+        sha256: b92beb6b53c346db9a8fae968d686ab706240099cdd5aff87777362d668b0de7
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libde265/releases/latest
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
-          url-query: '"https://github.com/strukturag/libde265/archive/\($tag)/libde265-\($version).tar.gz"'
+          url-query: '"https://github.com/strukturag/libde265/releases/download/\($tag)/libde265-\($version).tar.gz"'
     cleanup:
       - '*'
 
@@ -226,15 +226,15 @@ modules:
       - -DWITH_EXAMPLES=OFF
     sources:
       - type: archive
-        url: https://github.com/strukturag/libheif/archive/v1.20.1/libheif-1.20.1.tar.gz
-        sha256: 9d3d601ec7a55281217aaa6c773cf6645757b062bc7e9680b664bbd8e481112d
+        url: https://github.com/strukturag/libheif/releases/download/v1.20.1/libheif-1.20.1.tar.gz
+        sha256: 55cc76b77c533151fc78ba58ef5ad18562e84da403ed749c3ae017abaf1e2090
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libheif/releases/latest
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
-          url-query: '"https://github.com/strukturag/libheif/archive/\($tag)/libheif-\($version).tar.gz"'
+          url-query: '"https://github.com/strukturag/libheif/releases/download/\($tag)/libheif-\($version).tar.gz"'
     cleanup:
       - '*'
 
