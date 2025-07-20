@@ -128,8 +128,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ada-url/ada.git
-        commit: a3b57b2ce2a38485fcad3e4877cee893fe8456da
-        tag: v3.2.5
+        commit: 99569f85db1bc42e702c71c73bdbf5ea7a36cd4a
+        tag: v3.2.6
         x-checker-data:
           type: json
           url: https://api.github.com/repos/ada-url/ada/releases/latest
@@ -350,8 +350,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: d205e3b4a3d03eb9497782158a980133e15e343b
-        tag: v5.16.2
+        commit: 0514f13af0d7d1686944e7ba909df2dab16a6f5e
+        tag: v5.16.4
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
