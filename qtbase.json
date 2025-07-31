@@ -32,6 +32,7 @@
         "desktop-app-patches/qtbase_6.9.1/0026-accept-only-cf_hdrop-as-uri-list.patch",
         "desktop-app-patches/qtbase_6.9.1/0027-fix-fallback-icon-theme.patch",
         "desktop-app-patches/qtbase_6.9.1/0028-fix-static-xcb-link.patch",
-        "desktop-app-patches/qtbase_6.9.1/0029-fix-static-wayland-link.patch"
+        "desktop-app-patches/qtbase_6.9.1/0029-fix-static-wayland-link.patch",
+        "desktop-app-patches/qtbase_6.9.1/0030-fix-theme-icon-order.patch"
     ]
 }
