@@ -1,7 +1,7 @@
 id: org.telegram.desktop
-runtime: org.freedesktop.Platform
-runtime-version: '24.08'
-sdk: org.freedesktop.Sdk
+runtime: org.gnome.Platform
+runtime-version: '48'
+sdk: org.gnome.Sdk
 command: Telegram
 finish-args:
   - --share=ipc
@@ -17,7 +17,6 @@ finish-args:
   - --talk-name=org.ayatana.indicator.application
   - --talk-name=org.sigxcpu.Feedback
   - --unset-env=QT_PLUGIN_PATH
-  - --env=PATH=/app/lib/webview/bin:/app/bin:/usr/bin
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.llvm20
 add-extensions:
@@ -27,15 +26,8 @@ add-extensions:
     version: '24.08'
     autodownload: true
     autodelete: false
-  org.telegram.desktop.webview:
-    directory: lib/webview
-    add-ld-path: lib
-    version: stable
-    autodownload: true
-    autodelete: true
 cleanup-commands:
   - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
-  - mkdir -p ${FLATPAK_DEST}/lib/webview
 build-options:
   append-path: /usr/lib/sdk/llvm20/bin
   append-ld-library-path: /usr/lib/sdk/llvm20/lib
@@ -44,6 +36,44 @@ build-options:
     CMAKE_BUILD_TYPE: None
     CMAKE_PREFIX_PATH: /app
 modules:
+  - name: pkg-config
+    buildsystem: simple
+    build-commands:
+      - install -d $FLATPAK_DEST/bin
+      - |
+        cat <<EOF > $FLATPAK_DEST/bin/pkg-config
+        #!/bin/sh
+        unset PKG_CONFIG_ALLOW_SYSTEM_LIBS
+        exec /usr/bin/pkg-config "\$@"
+        EOF
+      - chmod +x $FLATPAK_DEST/bin/pkg-config
+    cleanup:
+      - '*'
+
+  - name: implib
+    buildsystem: simple
+    build-commands:
+      - |
+        install -d $FLATPAK_DEST/lib
+        mkdir build
+        cd build
+        implib() {
+          LIBFILE=$(basename $1)
+          LIBNAME=$(basename $1 .so)
+          ../implib-gen.py -q $1
+          gcc $CFLAGS -c -o $LIBFILE.tramp.o $LIBFILE.tramp.S
+          gcc $CFLAGS -c -o $LIBFILE.init.o $LIBFILE.init.c
+          ar rcs $FLATPAK_DEST/lib/$LIBNAME.a $LIBFILE.tramp.o $LIBFILE.init.o
+        }
+        implib /usr/lib/$FLATPAK_ARCH-linux-gnu/libgtk-3.so
+        implib /usr/lib/$FLATPAK_ARCH-linux-gnu/libgdk-3.so
+    sources:
+      - type: git
+        url: https://github.com/yugr/Implib.so.git
+        commit: ecf7bb51a92a0fb16834c5b698570ab25f9f1d21
+    cleanup:
+      - '*'
+
   - name: jinja2
     buildsystem: simple
     build-commands:
