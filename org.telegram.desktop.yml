@@ -19,10 +19,10 @@ finish-args:
   - --talk-name=org.sigxcpu.Feedback
   - --unset-env=QT_PLUGIN_PATH
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.llvm21
 build-options:
-  append-path: /usr/lib/sdk/llvm20/bin
-  append-ld-library-path: /usr/lib/sdk/llvm20/lib
+  append-path: /usr/lib/sdk/llvm21/bin
+  append-ld-library-path: /usr/lib/sdk/llvm21/lib
   cflags: -g1
   cxxflags: -g1
   ldflags: -fuse-ld=lld -lhwy
