@@ -219,6 +219,26 @@ modules:
     cleanup:
       - '*'
 
+  - name: openh264
+    buildsystem: meson
+    config-opts:
+      - --buildtype=plain
+      - --default-library=static
+      - -Dtests=disabled
+    sources:
+      - type: git
+        url: https://github.com/cisco/openh264.git
+        commit: 652bdb7719f30b52b08e506645a7322ff1b2cc6f
+        tag: v2.6.0
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/cisco/openh264/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
+          version-query: $tag | sub("^[vV]"; "")
+    cleanup:
+      - '*'
+
   - name: libde265
     buildsystem: cmake-ninja
     config-opts:
