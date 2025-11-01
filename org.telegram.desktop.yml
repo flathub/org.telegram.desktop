@@ -1,6 +1,6 @@
 id: org.telegram.desktop
 runtime: org.gnome.Platform
-runtime-version: '48'
+runtime-version: '49'
 sdk: org.gnome.Sdk
 command: Telegram
 finish-args:
@@ -19,19 +19,10 @@ finish-args:
   - --talk-name=org.sigxcpu.Feedback
   - --unset-env=QT_PLUGIN_PATH
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm20
-add-extensions:
-  org.freedesktop.Platform.ffmpeg-full:
-    directory: lib/ffmpeg
-    add-ld-path: .
-    version: '24.08'
-    autodownload: true
-    autodelete: false
-cleanup-commands:
-  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+  - org.freedesktop.Sdk.Extension.llvm21
 build-options:
-  append-path: /usr/lib/sdk/llvm20/bin
-  append-ld-library-path: /usr/lib/sdk/llvm20/lib
+  append-path: /usr/lib/sdk/llvm21/bin
+  append-ld-library-path: /usr/lib/sdk/llvm21/lib
   ldflags: -fuse-ld=lld -lhwy
   env:
     CMAKE_BUILD_TYPE: None
@@ -227,6 +218,25 @@ modules:
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
+    cleanup:
+      - '*'
+
+  - name: openh264
+    buildsystem: meson
+    config-opts:
+      - -Ddefault_library=static
+      - -Dtests=disabled
+    sources:
+      - type: archive
+        url: https://github.com/cisco/openh264/archive/refs/tags/v2.6.0.tar.gz
+        sha256: 558544ad358283a7ab2930d69a9ceddf913f4a51ee9bf1bfb9e377322af81a69
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/cisco/openh264/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
+          version-query: $tag
+          url-query: '"https://github.com/cisco/openh264/archive/refs/tags/\($tag).tar.gz"'
     cleanup:
       - '*'
 
