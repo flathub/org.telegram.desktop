@@ -32,6 +32,8 @@ cleanup-commands:
 build-options:
   append-path: /usr/lib/sdk/llvm20/bin
   append-ld-library-path: /usr/lib/sdk/llvm20/lib
+  cflags: -fdebug-types-section
+  cxxflags: -fdebug-types-section
   ldflags: -fuse-ld=lld -lhwy
   env:
     CMAKE_BUILD_TYPE: None
