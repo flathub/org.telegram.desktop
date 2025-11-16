@@ -1,6 +1,6 @@
 id: org.telegram.desktop
 runtime: org.gnome.Platform
-runtime-version: '48'
+runtime-version: '49'
 sdk: org.gnome.Sdk
 command: Telegram
 finish-args:
@@ -19,19 +19,10 @@ finish-args:
   - --talk-name=org.sigxcpu.Feedback
   - --unset-env=QT_PLUGIN_PATH
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm20
-add-extensions:
-  org.freedesktop.Platform.ffmpeg-full:
-    directory: lib/ffmpeg
-    add-ld-path: .
-    version: '24.08'
-    autodownload: true
-    autodelete: false
-cleanup-commands:
-  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+  - org.freedesktop.Sdk.Extension.llvm21
 build-options:
-  append-path: /usr/lib/sdk/llvm20/bin
-  append-ld-library-path: /usr/lib/sdk/llvm20/lib
+  append-path: /usr/lib/sdk/llvm21/bin
+  append-ld-library-path: /usr/lib/sdk/llvm21/lib
   cflags: -fdebug-types-section
   cxxflags: -fdebug-types-section
   ldflags: -fuse-ld=lld -lhwy
@@ -231,50 +222,26 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
     cleanup:
       - '*'
-
-  - name: libde265
-    buildsystem: cmake-ninja
+  - name: openh264
+    buildsystem: meson
     config-opts:
-      - -DBUILD_SHARED_LIBS=OFF
-      - -DENABLE_SDL=OFF
+      - --buildtype=plain
+      - --default-library=static
+      - -Dtests=disabled
     sources:
-      - type: archive
-        url: https://github.com/strukturag/libde265/releases/download/v1.0.16/libde265-1.0.16.tar.gz
-        sha256: b92beb6b53c346db9a8fae968d686ab706240099cdd5aff87777362d668b0de7
+      - type: git
+        url: https://github.com/cisco/openh264.git
+        commit: 652bdb7719f30b52b08e506645a7322ff1b2cc6f
+        tag: v2.6.0
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/strukturag/libde265/releases/latest
+          url: https://api.github.com/repos/cisco/openh264/releases/latest
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
-          url-query: '"https://github.com/strukturag/libde265/releases/download/\($tag)/libde265-\($version).tar.gz"'
     cleanup:
       - '*'
-
-  - name: libheif
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_COMPILE_WARNING_AS_ERROR=OFF
-      - -DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=ON
-      - -DBUILD_SHARED_LIBS=OFF
-      - -DBUILD_TESTING=OFF
-      - -DWITH_FFMPEG_DECODER=ON
-      - -DWITH_EXAMPLES=OFF
-    sources:
-      - type: archive
-        url: https://github.com/strukturag/libheif/releases/download/v1.20.2/libheif-1.20.2.tar.gz
-        sha256: 68ac9084243004e0ef3633f184eeae85d615fe7e4444373a0a21cebccae9d12a
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/strukturag/libheif/releases/latest
-          tag-query: .tag_name
-          timestamp-query: .published_at
-          version-query: $tag | sub("^[vV]"; "")
-          url-query: '"https://github.com/strukturag/libheif/releases/download/\($tag)/libheif-\($version).tar.gz"'
-    cleanup:
-      - '*'
-
+      
   - name: rnnoise
     config-opts:
       - --disable-shared
