@@ -4,8 +4,6 @@
         "-dqtwayland"
     ],
     "paths": [
-        "desktop-app-patches/qtwayland_6.10.0/0001-fix-gtk4-embedding.patch",
-        "desktop-app-patches/qtwayland_6.10.0/0002-fix-egl-compositor-shutdown.patch",
-        "desktop-app-patches/qtwayland_6.10.0/0003-compositor-xkb-state-from-platform.patch"
+        "desktop-app-patches/qtwayland_6.10.1/0001-compositor-xkb-state-from-platform.patch"
     ]
 }
