@@ -304,7 +304,6 @@ modules:
       - -DBUILD_SHARED_LIBS=OFF
       - -DQT_BUILD_SUBMODULES=qtbase;qtdeclarative;qtimageformats;qtshadertools;qtsvg;qtwayland
       - -DQT_QPA_PLATFORMS=wayland;xcb
-      - -DFEATURE_copy_file_range=OFF
       - -DINPUT_openssl=linked
     sources:
       - type: archive
