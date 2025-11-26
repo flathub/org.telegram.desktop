@@ -33,6 +33,7 @@
         "desktop-app-patches/qtbase_6.10.1/0027-fix-fallback-icon-theme.patch",
         "desktop-app-patches/qtbase_6.10.1/0028-fix-static-wayland-link.patch",
         "desktop-app-patches/qtbase_6.10.1/0029-fix-theme-icon-order.patch",
-        "desktop-app-patches/qtbase_6.10.1/0030-accessible-class-name-from-rtti.patch"
+        "desktop-app-patches/qtbase_6.10.1/0030-accessible-class-name-from-rtti.patch",
+        "desktop-app-patches/qtbase_6.10.1/0031-fix-windows-font-fallback.patch"
     ]
 }
