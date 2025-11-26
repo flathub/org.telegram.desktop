@@ -4,6 +4,7 @@
         "-dqtwayland"
     ],
     "paths": [
-        "desktop-app-patches/qtwayland_6.10.1/0001-compositor-xkb-state-from-platform.patch"
+        "desktop-app-patches/qtwayland_6.10.1/0001-compositor-xkb-state-from-platform.patch",
+        "desktop-app-patches/qtwayland_6.10.1/0002-fix-xdg-output-done.patch"
     ]
 }
