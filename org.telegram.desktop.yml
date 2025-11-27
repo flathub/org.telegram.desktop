@@ -269,6 +269,7 @@ modules:
       - -DBUILD_WITH_PCH=OFF
       - -DQT_BUILD_SUBMODULES=qtbase;qtdeclarative;qtimageformats;qtshadertools;qtsvg;qtwayland
       - -DQT_QPA_PLATFORMS=wayland;xcb
+      - -DFEATURE_glibc_fortify_source=OFF
       - -DINPUT_openssl=linked
     sources:
       - type: archive
