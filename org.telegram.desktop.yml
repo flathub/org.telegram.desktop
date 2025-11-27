@@ -266,6 +266,7 @@ modules:
     builddir: true
     config-opts:
       - -DBUILD_SHARED_LIBS=OFF
+      - -DBUILD_WITH_PCH=OFF
       - -DQT_BUILD_SUBMODULES=qtbase;qtdeclarative;qtimageformats;qtshadertools;qtsvg;qtwayland
       - -DQT_QPA_PLATFORMS=wayland;xcb
       - -DINPUT_openssl=linked
