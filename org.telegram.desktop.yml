@@ -32,16 +32,12 @@ cleanup-commands:
 build-options:
   append-path: /usr/lib/sdk/llvm20/bin
   append-ld-library-path: /usr/lib/sdk/llvm20/lib
-  cflags: -fdebug-types-section
-  cxxflags: -fdebug-types-section
+  cflags: -g1
+  cxxflags: -g1
   ldflags: -fuse-ld=lld -lhwy
   env:
     CMAKE_BUILD_TYPE: None
     CMAKE_PREFIX_PATH: /app
-  arch:
-    aarch64:
-      cflags: -g1
-      cxxflags: -g1
 modules:
   - name: pkg-config
     buildsystem: simple
