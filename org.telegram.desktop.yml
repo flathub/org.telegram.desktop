@@ -216,6 +216,13 @@ modules:
           tag-query: .tag_name
           timestamp-query: .published_at
           version-query: $tag | sub("^[vV]"; "")
+      - type: file
+        url: https://github.com/libjxl/libjxl/commit/ee3955b1553bcc10304d45b85dfef9afa9349d72.patch
+        sha256: 5f8e3aa4fec3812ba17bbbf387a8781785a802642c31b1485d6758959d43f334
+      - type: shell
+        commands:
+          - sed -i 's/offset + t/offset + i/' ee3955b1553bcc10304d45b85dfef9afa9349d72.patch
+          - patch -p1 -i ee3955b1553bcc10304d45b85dfef9afa9349d72.patch
     cleanup:
       - '*'
 
