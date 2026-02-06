@@ -111,8 +111,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/systemd/systemd.git
-        commit: 9ca433482f2281d71718718705ca8cd3bf562ad6
-        tag: v259
+        commit: 6a36f1c7420dcb8e5176796676047f058466fe7a
+        tag: v259.1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/systemd/systemd/releases/latest
