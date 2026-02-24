@@ -34,6 +34,7 @@
         "desktop-app-patches/qtbase_6.10.2/0028-fix-static-wayland-link.patch",
         "desktop-app-patches/qtbase_6.10.2/0029-fix-theme-icon-order.patch",
         "desktop-app-patches/qtbase_6.10.2/0030-accessible-class-name-from-rtti.patch",
-        "desktop-app-patches/qtbase_6.10.2/0031-fix-windows-font-fallback.patch"
+        "desktop-app-patches/qtbase_6.10.2/0031-fix-windows-font-fallback.patch",
+        "desktop-app-patches/qtbase_6.10.2/0032-fix-toggle-state-notification-for-all-checkable.patch"
     ]
 }
