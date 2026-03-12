@@ -363,3 +363,5 @@ modules:
       - type: shell
         commands:
           - sed -i '/-Werror/d' Telegram/ThirdParty/dispatch/cmake/modules/DispatchCompilerWarnings.cmake
+    cleanup:
+      - /share/icons/hicolor/512x512@2
