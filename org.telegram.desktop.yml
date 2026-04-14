@@ -106,8 +106,7 @@ modules:
       - systemd-detect-virt
     no-make-install: true
     post-install:
-      - install -d "$FLATPAK_DEST/bin"
-      - install -D systemd-detect-virt "$FLATPAK_DEST/bin"
+      - install -Dt "$FLATPAK_DEST/bin" systemd-detect-virt
     sources:
       - type: git
         url: https://github.com/systemd/systemd.git
