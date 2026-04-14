@@ -25,7 +25,6 @@ build-options:
   append-ld-library-path: /usr/lib/sdk/llvm21/lib
   cflags: -g1
   cxxflags: -g1
-  ldflags: -Wl,--push-state,--no-as-needed,-lhwy,--pop-state
   env:
     CMAKE_BUILD_TYPE: None
     CMAKE_PREFIX_PATH: /app
@@ -181,47 +180,22 @@ modules:
     cleanup:
       - '*'
 
-  - name: jpegli
+  - name: mozjpeg
     buildsystem: cmake-ninja
     builddir: true
-    no-make-install: true
     config-opts:
-      - -DBUILD_TESTING=OFF
-      - -DJPEGXL_ENABLE_DEVTOOLS=OFF
-      - -DJPEGXL_ENABLE_TOOLS=OFF
-      - -DJPEGXL_INSTALL_JPEGLI_LIBJPEG=ON
-      - -DJPEGXL_ENABLE_DOXYGEN=OFF
-      - -DJPEGXL_ENABLE_MANPAGES=OFF
-      - -DJPEGXL_ENABLE_BENCHMARK=OFF
-      - -DJPEGXL_ENABLE_EXAMPLES=OFF
-      - -DJPEGXL_ENABLE_JNI=OFF
-      - -DJPEGXL_ENABLE_SJPEG=OFF
-      - -DJPEGXL_ENABLE_OPENEXR=OFF
-      - -DJPEGXL_ENABLE_SKCMS=OFF
-      - -DJPEGXL_FORCE_SYSTEM_BROTLI=ON
-      - -DJPEGXL_FORCE_SYSTEM_LCMS2=ON
-      - -DJPEGXL_FORCE_SYSTEM_HWY=ON
-    post-install:
-      - cp "$FLATPAK_BUILDER_BUILDDIR"/_flatpak_build/lib/libjpegli-static.a "$FLATPAK_DEST"/lib/libjpeg.a
-      - ar rcs "$FLATPAK_DEST"/lib/libjpeg.a "$FLATPAK_BUILDER_BUILDDIR"/_flatpak_build/lib/CMakeFiles/jpegli-libjpeg-obj.dir/jpegli/libjpeg_wrapper.cc.o
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DCMAKE_INSTALL_DEFAULT_LIBDIR=lib
+      - -DENABLE_SHARED=OFF
+      - -DPNG_SUPPORTED=OFF
     sources:
       - type: git
-        url: https://github.com/libjxl/libjxl.git
-        commit: 332feb17d17311c748445f7ee75c4fb55cc38530
-        tag: v0.11.2
+        url: https://github.com/mozilla/mozjpeg.git
+        commit: 6c9f0897afa1c2738d7222a0a9ab49e8b536a267
+        tag: v4.1.5
         x-checker-data:
-          type: json
-          url: https://api.github.com/repos/libjxl/libjxl/releases/latest
-          tag-query: .tag_name
-          timestamp-query: .published_at
-          version-query: $tag | sub("^[vV]"; "")
-      - type: file
-        url: https://github.com/libjxl/libjxl/commit/ee3955b1553bcc10304d45b85dfef9afa9349d72.patch
-        sha256: 5f8e3aa4fec3812ba17bbbf387a8781785a802642c31b1485d6758959d43f334
-      - type: shell
-        commands:
-          - sed -i 's/offset + t/offset + i/' ee3955b1553bcc10304d45b85dfef9afa9349d72.patch
-          - patch -p1 -i ee3955b1553bcc10304d45b85dfef9afa9349d72.patch
+          type: git
+          tag-pattern: ^v([\\d.]+)$
     cleanup:
       - '*'
 
