@@ -256,11 +256,47 @@ modules:
         url: https://download.qt.io/archive/qt/6.11/6.11.0/single/qt-everywhere-src-6.11.0.tar.xz
         sha256: acf3b3db04c9e5d0820e8324b097320388954c297cee83d2bd698789234f68a4
         x-checker-data:
-          type: anitya
-          project-id: 7927
-          url-template: https://download.qt.io/archive/qt/$major.$minor/$version/single/qt-everywhere-src-$version.tar.xz
-      - qtbase.json
-      - qtwayland.json
+          type: json
+          parent-id: tdesktop-git-0
+          tag-data-url: >-
+            "https://github.com/telegramdesktop/tdesktop/raw/\($parent.new.tag//$parent.current.tag)/snap/snapcraft.yaml"
+          tag-query: >-
+            .parts.qt."source-tag"
+          version-query: >-
+            $tag | sub("^[vV]"; "")
+          timestamp-data-url: >-
+            "https://api.github.com/repos/qt/qt5/commits/\($tag)"
+          timestamp-query: >-
+            .commit.committer.date
+          url-query: >-
+            $version | split(".") as $v |
+            "https://download.qt.io/archive/qt/\($v[0]).\($v[1])/\($version)/single/qt-everywhere-src-\($version).tar.xz"
+      - type: git
+        url: https://github.com/desktop-app/patches.git
+        commit: 4519c85c924b9da81f29d4aac045886f896ee479
+        dest: patches
+        x-checker-data:
+          type: json
+          parent-id: tdesktop-git-0
+          commit-data-url: >-
+            "https://github.com/telegramdesktop/tdesktop/raw/\($parent.new.tag//$parent.current.tag)/snap/snapcraft.yaml"
+          commit-query: >-
+            .parts.patches."source-commit"
+          version-data-url: >-
+            "https://api.github.com/repos/desktop-app/patches/commits/\($commit)"
+          version-query: >-
+            "desktop-app/patches@\(.sha[0:7])"
+          timestamp-data-url: >-
+            "https://api.github.com/repos/desktop-app/patches/commits/\($commit)"
+          timestamp-query: >-
+            .commit.committer.date
+      - type: shell
+        commands:
+          - |
+            set -euo pipefail
+            QT="$(grep 'set(QT_REPO_MODULE_VERSION' qtbase/.cmake.conf | sed -r 's/.*"(.*)".*/\1/')"
+            find $PWD/patches/qtbase_${QT} -type f -print0 | sort -z | xargs -r0 git -C qtbase apply
+            find $PWD/patches/qtwayland_${QT} -type f -print0 | sort -z | xargs -r0 git -C qtwayland apply
     cleanup:
       - '*'
 
