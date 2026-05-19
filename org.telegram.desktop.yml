@@ -253,8 +253,8 @@ modules:
       - -DINPUT_openssl=linked
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.11/6.11.0/single/qt-everywhere-src-6.11.0.tar.xz
-        sha256: acf3b3db04c9e5d0820e8324b097320388954c297cee83d2bd698789234f68a4
+        url: https://download.qt.io/archive/qt/6.11/6.11.1/single/qt-everywhere-src-6.11.1.tar.xz
+        sha256: 252acef8c5ae68074d91cadba2ee4a83465051bbb970dd26e8f0daa0f3904e03
         x-checker-data:
           type: json
           parent-id: tdesktop-git-0
@@ -273,7 +273,7 @@ modules:
             "https://download.qt.io/archive/qt/\($v[0]).\($v[1])/\($version)/single/qt-everywhere-src-\($version).tar.xz"
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: 4519c85c924b9da81f29d4aac045886f896ee479
+        commit: 3128a5b5879c450f686f240cc9602ad7f4a054b4
         dest: patches
         x-checker-data:
           type: json
@@ -361,8 +361,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: b8e95a1a7d92447d09b7dcb57195bf0352d221ff
-        tag: v6.8.2
+        commit: 4898025bb786872a27ca0a7c5889473528b18727
+        tag: v6.8.3
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
