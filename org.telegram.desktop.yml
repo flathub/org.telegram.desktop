@@ -127,8 +127,7 @@ modules:
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=${FLATPAK_DEST} --with-libraries=regex
-      - ./b2 variant=release link=static runtime-link=shared cxxflags="$CXXFLAGS"
-        linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS install
+      - ./b2 release link=static cflags="$CFLAGS" cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j$FLATPAK_BUILDER_N_JOBS install
     sources:
       - type: archive
         url: https://archives.boost.io/release/1.91.0/source/boost_1_91_0.tar.bz2
