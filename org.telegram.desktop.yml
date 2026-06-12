@@ -380,16 +380,13 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 1380c62819c18e8c458d517f1a526adb35d453d3
-        tag: v6.9.1
+        commit: f5e93bedbd20bd3e282b7e4c920d96589d082f77
+        tag: v6.9.2
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
           tag-query: first | .tag_name
           timestamp-query: first | .published_at
           version-query: $tag | sub("^[vV]"; "")
-      - type: shell
-        commands:
-          - sed -i '/-Werror/d' Telegram/ThirdParty/dispatch/cmake/modules/DispatchCompilerWarnings.cmake
     cleanup:
       - /share/icons/hicolor/512x512@2
