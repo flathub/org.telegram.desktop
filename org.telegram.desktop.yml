@@ -26,6 +26,7 @@ build-options:
   cflags: -g1
   cxxflags: -g1
   env:
+    CCACHE_COMPILERCHECK: '%compiler% -v'
     CMAKE_BUILD_TYPE: None
     CMAKE_PREFIX_PATH: /app
 modules:
