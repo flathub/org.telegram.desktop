@@ -266,15 +266,16 @@ modules:
     config-opts:
       - -DBUILD_SHARED_LIBS=OFF
       - -DBUILD_WITH_PCH=OFF
-      - -DQT_BUILD_SUBMODULES=qtbase;qtdeclarative;qtimageformats;qtshadertools;qtsvg;qtwayland
       - -DQT_QPA_PLATFORMS=wayland;xcb
       - -DFEATURE_glibc_fortify_source=OFF
       - -DINPUT_openssl=linked
     sources:
-      - type: archive
-        url: https://download.qt.io/archive/qt/6.11/6.11.1/single/qt-everywhere-src-6.11.1.tar.xz
-        sha256: 252acef8c5ae68074d91cadba2ee4a83465051bbb970dd26e8f0daa0f3904e03
-        x-checker-data:
+      - type: git
+        url: https://github.com/qt/qt5.git
+        commit: bfde7b892add48396756dc44a3e3fa03d98c5710
+        tag: v6.11.1
+        disable-submodules: true
+        x-checker-data: &qt-checker-data
           type: json
           parent-id: tdesktop-git-0
           tag-data-url: >-
@@ -287,9 +288,42 @@ modules:
             "https://api.github.com/repos/qt/qt5/commits/\($tag)"
           timestamp-query: >-
             .commit.committer.date
-          url-query: >-
-            $version | split(".") as $v |
-            "https://download.qt.io/archive/qt/\($v[0]).\($v[1])/\($version)/single/qt-everywhere-src-\($version).tar.xz"
+      - type: git
+        url: https://github.com/qt/qtbase.git
+        commit: 59c81a3c2247b821b9b84b4eb8d939b77e07e276
+        tag: v6.11.1
+        dest: qtbase
+        x-checker-data: *qt-checker-data
+      - type: git
+        url: https://github.com/qt/qtdeclarative.git
+        commit: a02bed441965ee1f18f856352c7d5ee5ba35d795
+        tag: v6.11.1
+        dest: qtdeclarative
+        x-checker-data: *qt-checker-data
+      - type: git
+        url: https://github.com/qt/qtimageformats.git
+        commit: 77f35e5694885844c3eb3a737769b5ed290b8ccc
+        tag: v6.11.1
+        dest: qtimageformats
+        x-checker-data: *qt-checker-data
+      - type: git
+        url: https://github.com/qt/qtshadertools.git
+        commit: b3b8537b3c5ab01919e30b87d48d2f1ba1f2a3fe
+        tag: v6.11.1
+        dest: qtshadertools
+        x-checker-data: *qt-checker-data
+      - type: git
+        url: https://github.com/qt/qtsvg.git
+        commit: 2596f43da2dc72d2afecc084355b0f5f87922a6c
+        tag: v6.11.1
+        dest: qtsvg
+        x-checker-data: *qt-checker-data
+      - type: git
+        url: https://github.com/qt/qtwayland.git
+        commit: 23b98e2c05f411365860c3607d611d1dd83bff47
+        tag: v6.11.1
+        dest: qtwayland
+        x-checker-data: *qt-checker-data
       - type: git
         url: https://github.com/desktop-app/patches.git
         commit: 701cfb4b3d6612188d168f198c842114fd64726f
