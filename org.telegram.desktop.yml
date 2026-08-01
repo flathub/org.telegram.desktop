@@ -293,7 +293,7 @@ modules:
             "https://download.qt.io/archive/qt/\($v[0]).\($v[1])/\($version)/single/qt-everywhere-src-\($version).tar.xz"
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: 5c6549de54d24aa11bff0968b92fae06afe5b168
+        commit: 27efa67b60881c52b112cf924d705e573d03a0ab
         dest: patches
         x-checker-data:
           type: json
@@ -386,8 +386,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: fccb2672b05f7b788708e39a7b482e50ebdea510
-        tag: v7.0.6
+        commit: ee93b401ced86ece3f2582fc2ca4da72dfc4f06a
+        tag: v7.0.7
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
