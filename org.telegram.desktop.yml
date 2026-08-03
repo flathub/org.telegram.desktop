@@ -265,6 +265,8 @@ modules:
   - name: qt
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      strip: true
     config-opts:
       - -DBUILD_SHARED_LIBS=OFF
       - -DBUILD_WITH_PCH=OFF
