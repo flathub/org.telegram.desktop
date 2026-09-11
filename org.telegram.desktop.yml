@@ -20,16 +20,19 @@ finish-args:
   - --talk-name=org.sigxcpu.Feedback
   - --unset-env=QT_PLUGIN_PATH
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.llvm22
+  - org.freedesktop.Sdk.Extension.rust-stable
 build-options:
-  append-path: /usr/lib/sdk/llvm22/bin
-  append-ld-library-path: /usr/lib/sdk/llvm22/lib
+  append-path: /usr/lib/sdk/rust-stable/bin
   cflags: -g1
   cxxflags: -g1
   env:
     CCACHE_COMPILERCHECK: '%compiler% -v'
     CMAKE_BUILD_TYPE: None
     CMAKE_PREFIX_PATH: /app
+    CARGO_NET_OFFLINE: true
+    CARGO_PROFILE_RELEASE_OPT_LEVEL: 3
+    CARGO_PROFILE_RELEASE_LTO: 'off'
+    CARGO_PROFILE_RELEASE_PANIC: unwind
 modules:
   - name: pkg-config
     buildsystem: simple
@@ -111,8 +114,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/systemd/systemd.git
-        commit: 4925d9f07fc697efccd98a93046ff535b8832445
-        tag: v261.2
+        commit: 3255daee1572366b74fe92f002a3d60ecbb27103
+        tag: v261.3
         x-checker-data:
           type: json
           url: https://api.github.com/repos/systemd/systemd/releases/latest
@@ -356,6 +359,38 @@ modules:
     cleanup:
       - '*'
 
+  - name: tdesktop_rust
+    buildsystem: simple
+    build-options:
+      env:
+        CARGO_HOME: /run/build/tdesktop_rust/cargo
+    build-commands:
+      - cargo rustc --offline --lib --release --locked --features c-api --crate-type staticlib
+      - objcopy --strip-debug target/release/libtlottie.a $FLATPAK_DEST/lib/libtlottie.a
+      - install -Dm644 include/tlottie.h $FLATPAK_DEST/include/tlottie/tlottie.h
+    sources:
+      - type: git
+        url: https://github.com/dkaraush/tlottie.git
+        commit: 4b940c7942fbde8ee56f10f39a5224a4153bd91e
+        x-checker-data:
+          type: json
+          parent-id: tdesktop-git-0
+          commit-data-url: >-
+            "https://github.com/telegramdesktop/tdesktop/raw/\($parent.new.tag//$parent.current.tag)/snap/snapcraft.yaml"
+          commit-query: >-
+            .parts.tlottie."source-commit"
+          version-data-url: >-
+            "https://api.github.com/repos/dkaraush/tlottie/commits/\($commit)"
+          version-query: >-
+            "dkaraush/tlottie@\(.sha[0:7])"
+          timestamp-data-url: >-
+            "https://api.github.com/repos/dkaraush/tlottie/commits/\($commit)"
+          timestamp-query: >-
+            .commit.committer.date
+      - tdesktop_rust.yml
+    cleanup:
+      - '*'
+
   - name: tdesktop
     buildsystem: cmake-ninja
     builddir: true
@@ -372,8 +407,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 80158983dba09d3bf5d96701f21473d6c34bf5f5
-        tag: v7.2.6
+        commit: 272f6f5c2d29d8cdb3aec15907d616b87451a3ca
+        tag: v7.2.8
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
