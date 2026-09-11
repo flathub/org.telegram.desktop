@@ -1,0 +1,76 @@
+- type: archive
+  archive-type: tar-gzip
+  url: https://static.crates.io/crates/cfg-if/cfg-if-1.0.4.crate
+  sha256: 9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801
+  dest: cargo/vendor/cfg-if-1.0.4
+- type: inline
+  contents: '{"package": "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801", "files": {}}'
+  dest: cargo/vendor/cfg-if-1.0.4
+  dest-filename: .cargo-checksum.json
+- type: archive
+  archive-type: tar-gzip
+  url: https://static.crates.io/crates/dlmalloc/dlmalloc-0.2.14.crate
+  sha256: ad5208a115eaba24916f7456929832e310a81518c641f93fee4f89aa93aa3675
+  dest: cargo/vendor/dlmalloc-0.2.14
+- type: inline
+  contents: '{"package": "ad5208a115eaba24916f7456929832e310a81518c641f93fee4f89aa93aa3675", "files": {}}'
+  dest: cargo/vendor/dlmalloc-0.2.14
+  dest-filename: .cargo-checksum.json
+- type: archive
+  archive-type: tar-gzip
+  url: https://static.crates.io/crates/foldhash/foldhash-0.1.5.crate
+  sha256: d9c4f5dac5e15c24eb999c26181a6ca40b39fe946cbe4c263c7209467bc83af2
+  dest: cargo/vendor/foldhash-0.1.5
+- type: inline
+  contents: '{"package": "d9c4f5dac5e15c24eb999c26181a6ca40b39fe946cbe4c263c7209467bc83af2", "files": {}}'
+  dest: cargo/vendor/foldhash-0.1.5
+  dest-filename: .cargo-checksum.json
+- type: archive
+  archive-type: tar-gzip
+  url: https://static.crates.io/crates/hashbrown/hashbrown-0.15.5.crate
+  sha256: 9229cfe53dfd69f0609a49f65461bd93001ea1ef889cd5529dd176593f5338a1
+  dest: cargo/vendor/hashbrown-0.15.5
+- type: inline
+  contents: '{"package": "9229cfe53dfd69f0609a49f65461bd93001ea1ef889cd5529dd176593f5338a1", "files": {}}'
+  dest: cargo/vendor/hashbrown-0.15.5
+  dest-filename: .cargo-checksum.json
+- type: archive
+  archive-type: tar-gzip
+  url: https://static.crates.io/crates/libc/libc-0.2.189.crate
+  sha256: 3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2
+  dest: cargo/vendor/libc-0.2.189
+- type: inline
+  contents: '{"package": "3eaf3ede3fee6db1a4c2ee091bf8a8b4dccdc6d17f656fb07896ee72867612f2", "files": {}}'
+  dest: cargo/vendor/libc-0.2.189
+  dest-filename: .cargo-checksum.json
+- type: archive
+  archive-type: tar-gzip
+  url: https://static.crates.io/crates/windows-link/windows-link-0.2.1.crate
+  sha256: f0805222e57f7521d6a62e36fa9163bc891acd422f971defe97d64e70d0a4fe5
+  dest: cargo/vendor/windows-link-0.2.1
+- type: inline
+  contents: '{"package": "f0805222e57f7521d6a62e36fa9163bc891acd422f971defe97d64e70d0a4fe5", "files": {}}'
+  dest: cargo/vendor/windows-link-0.2.1
+  dest-filename: .cargo-checksum.json
+- type: archive
+  archive-type: tar-gzip
+  url: https://static.crates.io/crates/windows-sys/windows-sys-0.61.2.crate
+  sha256: ae137229bcbd6cdf0f7b80a31df61766145077ddf49416a728b02cb3921ff3fc
+  dest: cargo/vendor/windows-sys-0.61.2
+- type: inline
+  contents: '{"package": "ae137229bcbd6cdf0f7b80a31df61766145077ddf49416a728b02cb3921ff3fc", "files": {}}'
+  dest: cargo/vendor/windows-sys-0.61.2
+  dest-filename: .cargo-checksum.json
+- type: inline
+  contents: '[source.vendored-sources]
+
+    directory = "cargo/vendor"
+
+
+    [source.crates-io]
+
+    replace-with = "vendored-sources"
+
+'
+  dest: cargo
+  dest-filename: config
