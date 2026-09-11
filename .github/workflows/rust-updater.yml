@@ -1,0 +1,36 @@
+name: Update Rust sources
+on: pull_request
+jobs:
+  rust-updater:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'flathubbot'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Update Rust sources
+        run: |
+          set -euo pipefail
+          pip install aiohttp tomlkit PyYAML
+          work="$RUNNER_TEMP/tdesktop_rust"
+          mkdir -p "$work"
+          curl -sSLo "$work/flatpak-cargo-generator.py" https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/master/cargo/flatpak-cargo-generator.py
+          # shellcheck disable=SC2016
+          query='.modules[] | select(.name == "tdesktop_rust").sources[] | select(tag == "!!map" and .type == "git")
+            | .url as $url | .commit as $commit
+            | (.["x-cargo-lock"] // ["Cargo.lock"])[] | $url + " " + $commit + " " + .'
+          yq "$query" org.telegram.desktop.yml > "$work/locks"
+          n=0
+          while read -r url commit lock; do
+            n=$((n + 1))
+            repo=$(echo "$url" | sed -r 's@^https://github.com/(.*)\.git$@\1@')
+            curl -sSLo "$work/$n.lock" "https://raw.githubusercontent.com/$repo/$commit/$lock"
+            python3 "$work/flatpak-cargo-generator.py" --yaml "$work/$n.lock" -o "$work/$n.yml"
+          done < "$work/locks"
+          # shellcheck disable=SC2016
+          yq ea '. as $i ireduce ([]; . + $i) | unique_by(.dest + "/" + (.["dest-filename"] // ""))' \
+            "$work"/*.yml > tdesktop_rust.yml
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add .
+          git diff --staged --quiet || (git commit -m "Update Rust sources" && git push)
