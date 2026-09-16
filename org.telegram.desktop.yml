@@ -78,8 +78,8 @@ modules:
         "Jinja2" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/46/ef/34533186e76c526d9ec17a1ad9a10c7354cbfb20f51583cc36dfe4bdccd0/flit_core-4.0.2.tar.gz
-        sha256: b6929defd93884b584d7c87829e0e7b5c26ed6be17b0b873979019314aa841c8
+        url: https://files.pythonhosted.org/packages/e7/91/add211b38c357bf1b94900b4f79c34661a92be65c0243d2b0a3393c5092d/flit_core-4.1.0.tar.gz
+        sha256: 62e12b63ead8335b37f59fabb977c7167fe476dafb5e41785dfa8c9aff843bc6
         x-checker-data:
           type: pypi
           name: flit-core
@@ -111,8 +111,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/systemd/systemd.git
-        commit: 4925d9f07fc697efccd98a93046ff535b8832445
-        tag: v261.2
+        commit: 3255daee1572366b74fe92f002a3d60ecbb27103
+        tag: v261.3
         x-checker-data:
           type: json
           url: https://api.github.com/repos/systemd/systemd/releases/latest
@@ -372,8 +372,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 80158983dba09d3bf5d96701f21473d6c34bf5f5
-        tag: v7.2.6
+        commit: 272f6f5c2d29d8cdb3aec15907d616b87451a3ca
+        tag: v7.2.8
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
