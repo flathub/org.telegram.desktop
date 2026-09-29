@@ -31,7 +31,7 @@ build-options:
     CMAKE_PREFIX_PATH: /app
     CARGO_NET_OFFLINE: 'true'
     CARGO_PROFILE_RELEASE_OPT_LEVEL: '3'
-    CARGO_PROFILE_RELEASE_LTO: 'off'
+    CARGO_PROFILE_RELEASE_LTO: off
     CARGO_PROFILE_RELEASE_PANIC: unwind
 modules:
   - name: pkg-config
@@ -280,7 +280,7 @@ modules:
             "https://download.qt.io/archive/qt/\($v[0]).\($v[1])/\($version)/single/qt-everywhere-src-\($version).tar.xz"
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: 519aaa084608fa6f9a2bfbd1959d133c44d94227
+        commit: c6b2868d527e2d00a2438e95225a22ce9346d79f
         dest: patches
         x-checker-data:
           type: json
@@ -313,7 +313,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/desktop-app/tg_owt.git
-        commit: 26068e29bfa8d74a9dc9c8f7f94172fafbc262b8
+        commit: 9826d0e27894a575a63d4b15b2acf8e749e3da67
         x-checker-data:
           type: json
           parent-id: tdesktop-git-0
@@ -365,7 +365,8 @@ modules:
       env:
         CARGO_HOME: /run/build/tdesktop_rust/cargo
     build-commands:
-      - cargo rustc --offline --lib --release --locked --features c-api --crate-type staticlib
+      - cargo rustc --offline --lib --release --locked --features c-api --crate-type
+        staticlib
       - objcopy --strip-debug target/release/libtlottie.a $FLATPAK_DEST/lib/libtlottie.a
       - install -Dm644 include/tlottie.h $FLATPAK_DEST/include/tlottie/tlottie.h
     sources:
@@ -391,7 +392,7 @@ modules:
             .commit.committer.date
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: 519aaa084608fa6f9a2bfbd1959d133c44d94227
+        commit: c6b2868d527e2d00a2438e95225a22ce9346d79f
         dest: patches
         x-checker-data:
           type: json
@@ -431,8 +432,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: fb2e33209517e1a34637d837bfadb3783f2fd59c
-        tag: v7.2.9
+        commit: d81a5ac270fdcb5315b49f813614caa71f85697f
+        tag: v7.2.10
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
