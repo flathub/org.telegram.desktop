@@ -280,7 +280,7 @@ modules:
             "https://download.qt.io/archive/qt/\($v[0]).\($v[1])/\($version)/single/qt-everywhere-src-\($version).tar.xz"
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: c6b2868d527e2d00a2438e95225a22ce9346d79f
+        commit: aec474953ff7ee9b6e4cd9b8658288ea86d124f3
         dest: patches
         x-checker-data:
           type: json
@@ -313,7 +313,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/desktop-app/tg_owt.git
-        commit: 9826d0e27894a575a63d4b15b2acf8e749e3da67
+        commit: d1cf250ea73de26c4c1f0a3c8173eb2648efbb04
         x-checker-data:
           type: json
           parent-id: tdesktop-git-0
@@ -372,7 +372,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/dkaraush/tlottie.git
-        commit: 31f1b542f88e7b4be9a01e749920d857535fc715
+        commit: 92df98dc209bc39b1e567ec74a8c86a0af5239de
         x-cargo-lock:
           - Cargo.lock
         x-checker-data:
@@ -392,7 +392,7 @@ modules:
             .commit.committer.date
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: c6b2868d527e2d00a2438e95225a22ce9346d79f
+        commit: aec474953ff7ee9b6e4cd9b8658288ea86d124f3
         dest: patches
         x-checker-data:
           type: json
@@ -432,8 +432,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: d81a5ac270fdcb5315b49f813614caa71f85697f
-        tag: v7.2.10
+        commit: 42f8a36d43b8c805bc821905bea4cfeb3af1d41d
+        tag: v7.3.0
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
