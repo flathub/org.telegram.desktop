@@ -365,12 +365,25 @@ modules:
       env:
         CARGO_HOME: /run/build/tdesktop_rust/cargo
     build-commands:
-      - cargo rustc --offline --lib --release --locked --features c-api --crate-type
-        staticlib
-      - objcopy --strip-debug target/release/libtlottie.a $FLATPAK_DEST/lib/libtlottie.a
-      - install -Dm644 include/tlottie.h $FLATPAK_DEST/include/tlottie/tlottie.h
+      - |
+        set -euo pipefail
+        cargo new --lib --vcs none tdesktop_rust
+        cd tdesktop_rust
+        printf 'pub use ::tlottie;\npub use ::wallet_engine;\n' > src/lib.rs
+        cargo add --path ../tlottie --features c-api
+        cargo add --path ../wallet-engine
+        cargo rustc --lib --release \
+          --crate-type staticlib --crate-type cdylib \
+          -- --print native-static-libs
+        mkdir -p $FLATPAK_DEST/lib $FLATPAK_DEST/include/tlottie $FLATPAK_DEST/include/wallet_engine
+        objcopy --strip-debug target/release/libtdesktop_rust.a $FLATPAK_DEST/lib/libtdesktop_rust.a
+        cp ../tlottie/include/tlottie.h $FLATPAK_DEST/include/tlottie/tlottie.h
+        cargo run --locked --manifest-path ../wallet-engine/bindgen/cpp/bindgen/Cargo.toml -- \
+          --library --out-dir $FLATPAK_DEST/include/wallet_engine \
+          target/release/libtdesktop_rust.so
     sources:
       - type: git
+        dest: tlottie
         url: https://github.com/dkaraush/tlottie.git
         commit: 92df98dc209bc39b1e567ec74a8c86a0af5239de
         x-cargo-lock:
@@ -388,6 +401,28 @@ modules:
             "dkaraush/tlottie@\(.sha[0:7])"
           timestamp-data-url: >-
             "https://api.github.com/repos/dkaraush/tlottie/commits/\($commit)"
+          timestamp-query: >-
+            .commit.committer.date
+      - type: git
+        dest: wallet-engine
+        url: https://github.com/i582/wallet-engine.git
+        commit: e59e0d89d7ee90c388bf36e3334c5b276f396697
+        x-cargo-lock:
+          - Cargo.lock
+          - bindgen/cpp/Cargo.lock
+        x-checker-data:
+          type: json
+          parent-id: tdesktop-git-0
+          commit-data-url: >-
+            "https://github.com/telegramdesktop/tdesktop/raw/\($parent.new.tag//$parent.current.tag)/snap/snapcraft.yaml"
+          commit-query: >-
+            .parts."wallet-engine"."source-commit"
+          version-data-url: >-
+            "https://api.github.com/repos/i582/wallet-engine/commits/\($commit)"
+          version-query: >-
+            "i582/wallet-engine@\(.sha[0:7])"
+          timestamp-data-url: >-
+            "https://api.github.com/repos/i582/wallet-engine/commits/\($commit)"
           timestamp-query: >-
             .commit.committer.date
       - type: git
@@ -411,7 +446,7 @@ modules:
             .commit.committer.date
       - type: shell
         commands:
-          - git apply $PWD/patches/tlottie.patch
+          - git -C wallet-engine apply $PWD/patches/wallet-engine.patch
       - tdesktop_rust.yml
     cleanup:
       - '*'
