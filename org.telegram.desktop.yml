@@ -194,8 +194,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/cisco/openh264.git
-        commit: 652bdb7719f30b52b08e506645a7322ff1b2cc6f
-        tag: v2.6.0
+        commit: 1bca62311e447fd9c39fc93de2c4b96cd5ce971c
+        tag: v2.7.0
         x-checker-data:
           type: json
           url: https://api.github.com/repos/cisco/openh264/releases/latest
@@ -280,7 +280,7 @@ modules:
             "https://download.qt.io/archive/qt/\($v[0]).\($v[1])/\($version)/single/qt-everywhere-src-\($version).tar.xz"
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: fe957833b84525e634a8d776a7f834ed536d9a21
+        commit: a895fef40eaa7d66481cff542c623b039b7ce494
         dest: patches
         x-checker-data:
           type: json
@@ -427,7 +427,7 @@ modules:
             .commit.committer.date
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: fe957833b84525e634a8d776a7f834ed536d9a21
+        commit: a895fef40eaa7d66481cff542c623b039b7ce494
         dest: patches
         x-checker-data:
           type: json
@@ -467,8 +467,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 0eca52223cceed229932add1cc80792763120844
-        tag: v7.3.2
+        commit: 5c674f1f6a0f6ace55b67f8bc295138680fe588b
+        tag: v7.3.3
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
