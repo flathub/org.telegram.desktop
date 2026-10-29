@@ -81,19 +81,22 @@ modules:
         "Jinja2" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/e7/91/add211b38c357bf1b94900b4f79c34661a92be65c0243d2b0a3393c5092d/flit_core-4.1.0.tar.gz
-        sha256: 62e12b63ead8335b37f59fabb977c7167fe476dafb5e41785dfa8c9aff843bc6
+        url: 
+          https://files.pythonhosted.org/packages/d3/8b/0370578a456986d6995344967a479dd5c9d4e064681550c2a9594bb58b4a/flit_core-4.2.0.tar.gz
+        sha256: 84e4e4d8fdd45ba2613800a3ebc6834de26d47ec9746efc3719f94181137b460
         x-checker-data:
           type: pypi
           name: flit-core
       - type: file
-        url: https://files.pythonhosted.org/packages/38/9b/e422a865e1d5d57d0e509b4e0bf1c1a70a7f6382c29a5aa428df994c8bc8/markupsafe-3.0.4.tar.gz
+        url: 
+          https://files.pythonhosted.org/packages/38/9b/e422a865e1d5d57d0e509b4e0bf1c1a70a7f6382c29a5aa428df994c8bc8/markupsafe-3.0.4.tar.gz
         sha256: 2e9ad7dd851bf45fab9f75cbff4cb493fee9979e8d8c7c9c3ee119022518edd6
         x-checker-data:
           type: pypi
           name: MarkupSafe
       - type: file
-        url: https://files.pythonhosted.org/packages/df/bf/f7da0350254c0ed7c72f3e33cef02e048281fec7ecec5f032d4aac52226b/jinja2-3.1.6.tar.gz
+        url: 
+          https://files.pythonhosted.org/packages/df/bf/f7da0350254c0ed7c72f3e33cef02e048281fec7ecec5f032d4aac52226b/jinja2-3.1.6.tar.gz
         sha256: 0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d
         x-checker-data:
           type: pypi
@@ -142,7 +145,8 @@ modules:
           type: anitya
           project-id: 6845
           stable-only: true
-          url-template: https://archives.boost.io/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
+          url-template: 
+            https://archives.boost.io/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
     cleanup:
       - '*'
 
@@ -260,7 +264,8 @@ modules:
       - -DINPUT_openssl=linked
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.11/6.11.2/single/qt-everywhere-src-6.11.2.tar.xz
+        url: 
+          https://download.qt.io/archive/qt/6.11/6.11.2/single/qt-everywhere-src-6.11.2.tar.xz
         sha256: 6dcfbca271d76a6502741a2c0dc6fc98ef7dd0b7b4cfd0abcebb285a86a26f33
         x-checker-data:
           type: json
@@ -280,7 +285,7 @@ modules:
             "https://download.qt.io/archive/qt/\($v[0]).\($v[1])/\($version)/single/qt-everywhere-src-\($version).tar.xz"
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: a895fef40eaa7d66481cff542c623b039b7ce494
+        commit: 8b1791a08893e84bc94b3d4ae274747d25852dab
         dest: patches
         x-checker-data:
           type: json
@@ -313,7 +318,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/desktop-app/tg_owt.git
-        commit: 07fb35bc33b3e79125a1beab7690e830f183f5d8
+        commit: ec71c06aaaed1cfda8669d51cf3b8d5b447b2031
         x-checker-data:
           type: json
           parent-id: tdesktop-git-0
@@ -427,7 +432,7 @@ modules:
             .commit.committer.date
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: a895fef40eaa7d66481cff542c623b039b7ce494
+        commit: 8b1791a08893e84bc94b3d4ae274747d25852dab
         dest: patches
         x-checker-data:
           type: json
@@ -467,8 +472,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 5c674f1f6a0f6ace55b67f8bc295138680fe588b
-        tag: v7.3.3
+        commit: 0771a62cdc10470cd5f3b61601cc251b019e42c0
+        tag: v7.3.4
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
