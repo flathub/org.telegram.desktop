@@ -470,8 +470,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 6d7e0ab348cb2a5520776de442e215833f4573c0
-        tag: v7.4.0
+        commit: 157f5cfc85e2dd1fa67f129a5e31a81db5ddeb19
+        tag: v7.4.1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
