@@ -283,7 +283,7 @@ modules:
             "https://download.qt.io/archive/qt/\($v[0]).\($v[1])/\($version)/single/qt-everywhere-src-\($version).tar.xz"
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: e47f8669a2c144e13a2bc828b09abe6bfe89336e
+        commit: 23d349a3ff09dbc1fa8127ce39ba9223de0edf21
         dest: patches
         x-checker-data:
           type: json
@@ -430,7 +430,7 @@ modules:
             .commit.committer.date
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: e47f8669a2c144e13a2bc828b09abe6bfe89336e
+        commit: 23d349a3ff09dbc1fa8127ce39ba9223de0edf21
         dest: patches
         x-checker-data:
           type: json
@@ -470,8 +470,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: 346f10fde53c499ad50de8708a99e3c003bc1cf3
-        tag: v7.4.3
+        commit: bf4f714036f21c750d535dab199c811b3f9bfdd4
+        tag: v7.4.4
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
