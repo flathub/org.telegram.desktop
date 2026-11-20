@@ -156,8 +156,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ada-url/ada.git
-        commit: b12a893a45809da8103bb4f1e2f6f5ee13f9100b
-        tag: v4.0.0
+        commit: 75f282df6bdc87dcb8c1e0b25065915cbe1b4a28
+        tag: v4.1.1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/ada-url/ada/releases/latest
@@ -263,8 +263,8 @@ modules:
       - -DINPUT_openssl=linked
     sources:
       - type: archive
-        url: https://download.qt.io/archive/qt/6.11/6.11.2/single/qt-everywhere-src-6.11.2.tar.xz
-        sha256: 6dcfbca271d76a6502741a2c0dc6fc98ef7dd0b7b4cfd0abcebb285a86a26f33
+        url: https://download.qt.io/archive/qt/6.12/6.12.0/single/qt-everywhere-src-6.12.0.tar.xz
+        sha256: 98ff4f44bac6ec3e1e62ee2a4316ae0e3d15badb015d753cc0268a20db52f165
         x-checker-data:
           type: json
           parent-id: tdesktop-git-0
@@ -283,7 +283,7 @@ modules:
             "https://download.qt.io/archive/qt/\($v[0]).\($v[1])/\($version)/single/qt-everywhere-src-\($version).tar.xz"
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: 23d349a3ff09dbc1fa8127ce39ba9223de0edf21
+        commit: 69f23a834024d6064da209076151393582b3c966
         dest: patches
         x-checker-data:
           type: json
@@ -316,7 +316,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/desktop-app/tg_owt.git
-        commit: 020feec5c040fdae2cf752c2c2be62ddde7c236d
+        commit: 642ddb107b42da7c8d152401b71cd429475e5266
         x-checker-data:
           type: json
           parent-id: tdesktop-git-0
@@ -430,7 +430,7 @@ modules:
             .commit.committer.date
       - type: git
         url: https://github.com/desktop-app/patches.git
-        commit: 23d349a3ff09dbc1fa8127ce39ba9223de0edf21
+        commit: 69f23a834024d6064da209076151393582b3c966
         dest: patches
         x-checker-data:
           type: json
@@ -470,8 +470,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/telegramdesktop/tdesktop.git
-        commit: bf4f714036f21c750d535dab199c811b3f9bfdd4
-        tag: v7.4.4
+        commit: 9aec590520da6bb6d728229c9652b9c51aac8da7
+        tag: v7.4.5
         x-checker-data:
           type: json
           url: https://api.github.com/repos/telegramdesktop/tdesktop/releases
