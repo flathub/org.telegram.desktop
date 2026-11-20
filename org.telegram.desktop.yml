@@ -147,26 +147,6 @@ modules:
     cleanup:
       - '*'
 
-  - name: ada
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DBUILD_TESTING=OFF
-      - -DADA_TOOLS=OFF
-    sources:
-      - type: git
-        url: https://github.com/ada-url/ada.git
-        commit: 75f282df6bdc87dcb8c1e0b25065915cbe1b4a28
-        tag: v4.1.1
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/ada-url/ada/releases/latest
-          tag-query: .tag_name
-          timestamp-query: .published_at
-          version-query: $tag | sub("^[vV]"; "")
-    cleanup:
-      - '*'
-
   - name: mozjpeg
     buildsystem: cmake-ninja
     builddir: true
